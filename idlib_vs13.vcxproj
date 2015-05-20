@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -27,26 +27,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -55,43 +55,43 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(SolutionDir)\vs2013\enet.props" />
-    <Import Project="$(SolutionDir)\vs2013\libraries.props" />
-    <Import Project="$(SolutionDir)\vs2013\lua.props" />
-    <Import Project="$(SolutionDir)\vs2013\multithreaded_debug.props" />
-    <Import Project="$(SolutionDir)\vs2013\opengl.props" />
-    <Import Project="$(SolutionDir)\vs2013\physfs.props" />
-    <Import Project="$(SolutionDir)\vs2013\sdl.props" />
+    <Import Project="..\vs2013\enet.props" />
+    <Import Project="..\vs2013\libraries.props" />
+    <Import Project="..\vs2013\lua.props" />
+    <Import Project="..\vs2013\multithreaded_debug.props" />
+    <Import Project="..\vs2013\opengl.props" />
+    <Import Project="..\vs2013\physfs.props" />
+    <Import Project="..\vs2013\sdl2.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(SolutionDir)\vs2013\enet.props" />
-    <Import Project="$(SolutionDir)\vs2013\libraries.props" />
-    <Import Project="$(SolutionDir)\vs2013\lua.props" />
-    <Import Project="$(SolutionDir)\vs2013\multithreaded_debug.props" />
-    <Import Project="$(SolutionDir)\vs2013\opengl.props" />
-    <Import Project="$(SolutionDir)\vs2013\physfs.props" />
-    <Import Project="$(SolutionDir)\vs2013\sdl.props" />
+    <Import Project="..\vs2013\enet.props" />
+    <Import Project="..\vs2013\libraries.props" />
+    <Import Project="..\vs2013\lua.props" />
+    <Import Project="..\vs2013\multithreaded_debug.props" />
+    <Import Project="..\vs2013\opengl.props" />
+    <Import Project="..\vs2013\physfs.props" />
+    <Import Project="..\vs2013\sdl2.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(SolutionDir)\vs2013\enet.props" />
-    <Import Project="$(SolutionDir)\vs2013\libraries.props" />
-    <Import Project="$(SolutionDir)\vs2013\lua.props" />
-    <Import Project="$(SolutionDir)\vs2013\multithreaded.props" />
-    <Import Project="$(SolutionDir)\vs2013\opengl.props" />
-    <Import Project="$(SolutionDir)\vs2013\physfs.props" />
-    <Import Project="$(SolutionDir)\vs2013\sdl.props" />
+    <Import Project="..\vs2013\enet.props" />
+    <Import Project="..\vs2013\libraries.props" />
+    <Import Project="..\vs2013\lua.props" />
+    <Import Project="..\vs2013\multithreaded.props" />
+    <Import Project="..\vs2013\opengl.props" />
+    <Import Project="..\vs2013\physfs.props" />
+    <Import Project="..\vs2013\sdl2.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(SolutionDir)\vs2013\enet.props" />
-    <Import Project="$(SolutionDir)\vs2013\libraries.props" />
-    <Import Project="$(SolutionDir)\vs2013\lua.props" />
-    <Import Project="$(SolutionDir)\vs2013\multithreaded.props" />
-    <Import Project="$(SolutionDir)\vs2013\opengl.props" />
-    <Import Project="$(SolutionDir)\vs2013\physfs.props" />
-    <Import Project="$(SolutionDir)\vs2013\sdl.props" />
+    <Import Project="..\vs2013\enet.props" />
+    <Import Project="..\vs2013\libraries.props" />
+    <Import Project="..\vs2013\lua.props" />
+    <Import Project="..\vs2013\multithreaded.props" />
+    <Import Project="..\vs2013\opengl.props" />
+    <Import Project="..\vs2013\physfs.props" />
+    <Import Project="..\vs2013\sdl2.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -119,7 +119,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <FloatingPointExceptions>true</FloatingPointExceptions>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
-      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
       <BrowseInformation>true</BrowseInformation>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -127,7 +127,7 @@
       <CompileAsManaged>false</CompileAsManaged>
       <SDLCheck>false</SDLCheck>
       <StringPooling>false</StringPooling>
-      <SmallerTypeCheck>true</SmallerTypeCheck>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
       <CompileAsWinRT>false</CompileAsWinRT>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -150,9 +150,9 @@
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
       <StringPooling>false</StringPooling>
-      <SmallerTypeCheck>true</SmallerTypeCheck>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
@@ -182,7 +182,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
-      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4820;4668;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -214,7 +214,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
-      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4820;4668;%(DisableSpecificWarnings)</DisableSpecificWarnings>
