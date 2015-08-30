@@ -17,37 +17,40 @@
 //*
 //********************************************************************************************
 
-/**
- * @file   IdLib/IdLib.hpp
- * @brief  Master include file for IdLib.
- * @author Michael Heilmann
- */
-
-#pragma once
+/// @file   IdLib/Location.cpp
+/// @brief  Definition of a location in an Egoboo DSL file
+/// @author Michael Heilmann
 
 #define IDLIB_PRIVATE 1
-#include "IdLib/Target.hpp"
-#include "IdLib/Platform.hpp"
-#include "IdLib/NonCopyable.hpp"
-
-// Exceptions.
-#include "IdLib/Exception.hpp"
-#include "IdLib/EnvironmentErrorException.hpp"
-#include "IdLib/AssertionFailedException.hpp"
-#include "IdLib/UnhandledSwitchCaseException.hpp"
-#include "IdLib/RuntimeErrorException.hpp"
-
-// DSL utilities.
 #include "IdLib/Location.hpp"
-
-// DSL exceptions.
-#include "IdLib/AbstractLexicalErrorException.hpp"
-#include "IdLib/LexicalErrorException.hpp"
-#include "IdLib/AbstractSyntacticalErrorException.hpp"
-#include "IdLib/SyntacticalErrorException.hpp"
-
-/// Define __ID_CURRENT_FILE__, __ID_CURRENT_LINE__ and __ID_CURRENT_FUNCTION__.
-/// Those constants will either be properly defined or not at all.
-#include "IdLib/CurrentFunction.inline"
-
 #undef IDLIB_PRIVATE
+
+namespace Id {
+
+Location::Location(const std::string& loadName, const size_t lineNumber) :
+    _loadName(loadName), _lineNumber(lineNumber) {
+}
+
+Location::Location(const Location& other) :
+    _loadName(other._loadName), _lineNumber(other._lineNumber) {
+}
+
+bool Location::operator==(const Location& other) {
+    return _loadName == other._loadName
+        && _lineNumber == other._lineNumber;
+}
+
+bool Location::operator!=(const Location& other) {
+    return _loadName != other._loadName
+        || _lineNumber != other._lineNumber;
+}
+
+const std::string& Location::getLoadName() const {
+    return _loadName;
+}
+
+size_t Location::getLineNumber() const {
+    return _lineNumber;
+}
+
+} // namespace Id
