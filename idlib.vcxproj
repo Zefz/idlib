@@ -253,6 +253,7 @@
     <ClCompile Include="src\IdLib\Signal\ConnectionBase.cpp" />
     <ClCompile Include="src\IdLib\Signal\NodeBase.cpp" />
     <ClCompile Include="src\IdLib\Signal\SignalBase.cpp" />
+    <ClCompile Include="src\IdLib\TextRange.cpp" />
     <ClCompile Include="src\IdLib\Location.cpp" />
     <ClCompile Include="src\IdLib\IdLib.cpp" />
   </ItemGroup>
@@ -265,6 +266,7 @@
     <ClInclude Include="src\IdLib\Signal\Signal.hpp" />
     <ClInclude Include="src\IdLib\Signal\SignalBase.hpp" />
     <ClInclude Include="src\IdLib\Signal\Include.hpp" />
+    <ClInclude Include="src\IdLib\TextRange.hpp" />
     <ClInclude Include="src\IdLib\CompilationErrorException.hpp" />
     <ClInclude Include="src\IdLib\Token.hpp" />
     <ClInclude Include="src\IdLib\CRTP.hpp" />

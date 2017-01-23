@@ -43,6 +43,9 @@
 // CRTP.
 #include "IdLib/CRTP.hpp"
 
+// Text utilities.
+#include "IdLib/TextRange.hpp"
+
 // DSL utilities.
 #include "IdLib/Location.hpp"
 #include "IdLib/Token.hpp"

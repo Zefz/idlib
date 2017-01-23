@@ -23,6 +23,9 @@
     <ClCompile Include="src\IdLib\Location.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\IdLib\TextRange.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\IdLib\Signal\ConnectionBase.cpp">
       <Filter>Source Files\Signal</Filter>
     </ClCompile>
@@ -86,6 +89,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\IdLib\CompilationErrorException.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IdLib\TextRange.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\IdLib\Signal\Connection.hpp">
