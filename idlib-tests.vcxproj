@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="tests\idlib\Tests\Signal.cpp" />
     <ClCompile Include="tests\idlib\Tests\Compilation.cpp" />
   </ItemGroup>
   <ItemGroup>

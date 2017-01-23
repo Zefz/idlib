@@ -57,4 +57,7 @@
 // Debug assertions.
 #include "IdLib/DebugAssert.hpp"
 
+// Signals.
+#include "IdLib/Signal/Include.hpp"
+
 #undef IDLIB_PRIVATE
