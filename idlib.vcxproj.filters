@@ -15,6 +15,9 @@
     <Filter Include="Source Files\Signal">
       <UniqueIdentifier>{85d4351b-f275-4b8f-9a95-4e4cbb9b9b32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Colour">
+      <UniqueIdentifier>{91080862-76cd-4be9-addf-73d4e3f6970c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\IdLib\IdLib.cpp">
@@ -117,6 +120,30 @@
     </ClInclude>
     <ClInclude Include="src\IdLib\Signal\Include.hpp">
       <Filter>Header Files\Signal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IdLib\Colour\Colour.hpp">
+      <Filter>Header Files\Colour</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IdLib\Colour\ColourComponents.hpp">
+      <Filter>Header Files\Colour</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IdLib\Colour\ColourL.hpp">
+      <Filter>Header Files\Colour</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IdLib\Colour\ColourLA.hpp">
+      <Filter>Header Files\Colour</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IdLib\Colour\ColourRGB.hpp">
+      <Filter>Header Files\Colour</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IdLib\Colour\ColourRGBA.hpp">
+      <Filter>Header Files\Colour</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IdLib\Colour\ColourSpace.hpp">
+      <Filter>Header Files\Colour</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IdLib\Colour\Include.hpp">
+      <Filter>Header Files\Colour</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

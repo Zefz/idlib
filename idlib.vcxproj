@@ -258,6 +258,14 @@
     <ClCompile Include="src\IdLib\IdLib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\IdLib\Colour\Colour.hpp" />
+    <ClInclude Include="src\IdLib\Colour\ColourComponents.hpp" />
+    <ClInclude Include="src\IdLib\Colour\ColourL.hpp" />
+    <ClInclude Include="src\IdLib\Colour\ColourLA.hpp" />
+    <ClInclude Include="src\IdLib\Colour\ColourRGB.hpp" />
+    <ClInclude Include="src\IdLib\Colour\ColourRGBA.hpp" />
+    <ClInclude Include="src\IdLib\Colour\ColourSpace.hpp" />
+    <ClInclude Include="src\IdLib\Colour\Include.hpp" />
     <ClInclude Include="src\IdLib\Signal\Connection.hpp" />
     <ClInclude Include="src\IdLib\Signal\ConnectionBase.hpp" />
     <ClInclude Include="src\IdLib\Signal\Node.hpp" />

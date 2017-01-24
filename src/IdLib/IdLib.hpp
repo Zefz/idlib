@@ -63,4 +63,7 @@
 // Signals.
 #include "IdLib/Signal/Include.hpp"
 
+// Colours.
+#include "IdLib/Colour/Include.hpp"
+
 #undef IDLIB_PRIVATE
