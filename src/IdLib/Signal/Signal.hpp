@@ -98,10 +98,11 @@ public:
     /// @param arguments the arguments
     /// @remark
     /// Iterate over the nodes. If a node is connected, then it is invoked.
-    void operator()(ParameterTypes&& ... arguments)
+    void operator()(ParameterTypes ... arguments)
     {
         if (!running)
-        { /// @todo Use ReentrantBarrier (not committed yet).
+        { 
+            /// @todo Use ReentrantBarrier (not committed yet).
             running = true;
             try
             {

@@ -62,4 +62,30 @@ EgoTest_Test(signal2) {
     EgoTest_Assert(false == invoked);
 }
 
+EgoTest_Test(signal3) {
+    bool invoked = false;
+    Id::Signal<void(const std::string&, const std::string&)> signal;
+    {
+        auto function = [&invoked](const std::string& s0, const std::string& s1) { invoked = true; };
+        Id::ScopedConnection scopedConnection(signal.subscribe(function));
+        EgoTest_Assert(true == scopedConnection.isConnected());
+    }
+    signal("Hello, ", "World!");
+    EgoTest_Assert(false == invoked);
+}
+
+EgoTest_Test(signal4)
+{
+    bool invoked = false;
+    Id::Signal<void(float, float)> signal;
+    {
+        auto function = [&invoked](float s0, float s1) { invoked = true; };
+        Id::ScopedConnection scopedConnection(signal.subscribe(function));
+        EgoTest_Assert(true == scopedConnection.isConnected());
+    }
+    signal(1.0f, 2.0f);
+    EgoTest_Assert(false == invoked);
+}
+
+
 };
