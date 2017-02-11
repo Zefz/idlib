@@ -18,6 +18,9 @@
     <Filter Include="Header Files\Colour">
       <UniqueIdentifier>{91080862-76cd-4be9-addf-73d4e3f6970c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Colour">
+      <UniqueIdentifier>{985c56b7-2424-4422-aba9-ddafe963cc74}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\IdLib\IdLib.cpp">
@@ -37,6 +40,9 @@
     </ClCompile>
     <ClCompile Include="src\IdLib\Signal\SignalBase.cpp">
       <Filter>Source Files\Signal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IdLib\Colour\Utilities.cpp">
+      <Filter>Source Files\Colour</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +149,9 @@
       <Filter>Header Files\Colour</Filter>
     </ClInclude>
     <ClInclude Include="src\IdLib\Colour\Include.hpp">
+      <Filter>Header Files\Colour</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IdLib\Colour\Utilities.hpp">
       <Filter>Header Files\Colour</Filter>
     </ClInclude>
   </ItemGroup>

@@ -244,6 +244,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\IdLib\Colour\Utilities.cpp" />
     <ClCompile Include="src\IdLib\Signal\ConnectionBase.cpp" />
     <ClCompile Include="src\IdLib\Signal\NodeBase.cpp" />
     <ClCompile Include="src\IdLib\Signal\SignalBase.cpp" />
@@ -252,6 +253,7 @@
     <ClCompile Include="src\IdLib\IdLib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\IdLib\Colour\Utilities.hpp" />
     <ClInclude Include="src\IdLib\Colour\Colour.hpp" />
     <ClInclude Include="src\IdLib\Colour\ColourComponents.hpp" />
     <ClInclude Include="src\IdLib\Colour\ColourL.hpp" />

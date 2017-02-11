@@ -28,46 +28,12 @@
 #endif
 
 #include "IdLib/Colour/ColourSpace.hpp"
+#include "IdLib/Colour/Utilities.hpp"
 
 /// If defined and @a 1, then colour components allow for setting the component values.
 #define ID_COLOURCOMPONENTS_MUTABLE (1)
 
 namespace Id {
-
-namespace Internal {
-
-inline float b2f(uint8_t x)
-{
-    return std::max(std::min(float(x) * 255.0f, 1.0f), 0.0f);
-}
-
-inline uint8_t d2b(double x)
-{
-    // (1) Ensure that y is within the bounds of 0 and 1.
-    double y = std::max(0.0, std::min(1.0, x));
-    // (2) Multiply y by 256.0. This ensures that numbers very
-    //     close to 1.0 (e.g. 0.999) are not mapped to 254 but
-    //     to 255 as desired. As a consequence, however, the case
-    //     in which y is really 1.0f must be handled separatedly.
-    uint8_t b = std::floor(y == 1.0 ? 255.0 : y * 256.0);
-    // (3) Return the result.
-    return b;
-}
-
-inline uint8_t f2b(float x)
-{
-    // (1) Ensure that y is within the bounds of 0 and 1.
-    float y = std::max(0.0f, std::min(1.0f, x));
-    // (2) Multiply y by 256.0f. This ensures that numbers very
-    //     close to 1.0f (e.g. 0.999f) are not mapped to 254 but
-    //     to 255 as desired. As a consequence, however, the case
-    //     in which y is really 1.0f must be handled separatedly.
-    uint8_t b = std::floor(y == 1.0f ? 255.0f : y * 256.0f);
-    // (3) Return the result.
-    return b;
-}
-
-} // Internal
 
 template <typename ColourSpaceTypeArg, typename _Enabled = void>
 struct ColourComponents;
