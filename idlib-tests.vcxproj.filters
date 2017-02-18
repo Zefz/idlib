@@ -21,5 +21,8 @@
     <ClCompile Include="tests\idlib\Tests\Signal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tests\idlib\Tests\Math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

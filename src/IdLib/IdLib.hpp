@@ -66,4 +66,7 @@
 // Colours.
 #include "IdLib/Colour/Include.hpp"
 
+// Math.
+#include "IdLib/Math/Dimensionality.hpp"
+
 #undef IDLIB_PRIVATE

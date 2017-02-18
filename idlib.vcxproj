@@ -253,6 +253,7 @@
     <ClCompile Include="src\IdLib\IdLib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\IdLib\Math\Dimensionality.hpp" />
     <ClInclude Include="src\IdLib\Colour\Utilities.hpp" />
     <ClInclude Include="src\IdLib\Colour\Colour.hpp" />
     <ClInclude Include="src\IdLib\Colour\ColourComponents.hpp" />

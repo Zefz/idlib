@@ -21,6 +21,9 @@
     <Filter Include="Source Files\Colour">
       <UniqueIdentifier>{985c56b7-2424-4422-aba9-ddafe963cc74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Math">
+      <UniqueIdentifier>{a9b6abf4-79f0-4dfe-8373-76a0f4df9c8f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\IdLib\IdLib.cpp">
@@ -153,6 +156,9 @@
     </ClInclude>
     <ClInclude Include="src\IdLib\Colour\Utilities.hpp">
       <Filter>Header Files\Colour</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IdLib\Math\Dimensionality.hpp">
+      <Filter>Header Files\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
