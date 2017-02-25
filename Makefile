@@ -3,11 +3,11 @@
 #---------------------
 # the source files
 
-IDLIB_SOURCE := $(wildcard src/IdLib/*.c)
-IDLIB_SOURCE += $(wildcard src/IdLib/*/*.c)
-IDLIB_CPPSRC := $(wildcard src/IdLib/*.cpp)
-IDLIB_CPPSRC += $(wildcard src/IdLib/*/*.cpp)
-IDLIB_CPPSRC += $(wildcard src/IdLib/*/*/*.cpp)
+IDLIB_SOURCE := $(wildcard src/idlib/*.c)
+IDLIB_SOURCE += $(wildcard src/idlib/*/*.c)
+IDLIB_CPPSRC := $(wildcard src/idlib/*.cpp)
+IDLIB_CPPSRC += $(wildcard src/idlib/*/*.cpp)
+IDLIB_CPPSRC += $(wildcard src/idlib/*/*/*.cpp)
 
 # remove some files
 # (no files yet)

@@ -18,7 +18,7 @@
 //********************************************************************************************
 
 #include "EgoTest/EgoTest.hpp"
-#include "IdLib/IdLib.hpp"
+#include "idlib/idlib.hpp"
 
 EgoTest_TestCase(Signal) {
 

@@ -17,19 +17,21 @@
 //*
 //********************************************************************************************
 
-#include "EgoTest/EgoTest.hpp"
-#include "idlib/math/Dimensionality.hpp"
-#include <limits>
+/// @file idlib/color/Colour.hpp
+/// @brief Colours.
+/// @author Michael Heilmann
 
-EgoTest_TestCase(Concepts)
-{
-    EgoTest_Test(dimensionality)
-    {
-        EgoTest_Assert(false == id::is_dimensionality<0>::value);
-        EgoTest_Assert(false == id::is_dimensionality_v<0>);
-        EgoTest_Assert(true == id::is_dimensionality<1>::value);
-        EgoTest_Assert(true == id::is_dimensionality_v<1>);
-        EgoTest_Assert(true == id::is_dimensionality<std::numeric_limits<size_t>::max()>::value);
-        EgoTest_Assert(true == id::is_dimensionality_v<std::numeric_limits<size_t>::max()>);
-    }
-};
+#pragma once
+
+#if !defined(IDLIB_PRIVATE) || IDLIB_PRIVATE != 1
+#error(do not include directly, include `idlib/idlib.hpp` instead)
+#endif
+
+#include "idlib/color/ColourComponents.hpp"
+
+namespace Id {
+
+template <typename ColourSpaceTypeArg, typename EnabledArg = void>
+struct Colour;
+
+} // namespace Id

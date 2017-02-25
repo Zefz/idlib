@@ -17,19 +17,50 @@
 //*
 //********************************************************************************************
 
-#include "EgoTest/EgoTest.hpp"
-#include "idlib/math/Dimensionality.hpp"
-#include <limits>
+/// @file idlib/signal/NodeBase.cpp
+/// @brief Non-generic base class of all nodes.
+/// @author Michael Heilmann
 
-EgoTest_TestCase(Concepts)
+#define IDLIB_PRIVATE 1
+#include "idlib/signal/NodeBase.hpp"
+#undef IDLIB_PRIVATE
+
+namespace Id {
+namespace Internal {
+
+NodeBase::NodeBase(int numberOfReferences)
+    : state(State::Disconnected), signal(nullptr), numberOfReferences(numberOfReferences), next(nullptr)
+{}
+
+NodeBase::~NodeBase() {}
+
+bool NodeBase::hasSignal() const
 {
-    EgoTest_Test(dimensionality)
+    return nullptr != signal;
+}
+
+bool NodeBase::hasReferences() const
+{
+    return 0 < getNumberOfReferences();
+}
+
+int NodeBase::getNumberOfReferences() const
+{
+    return numberOfReferences;
+}
+
+void NodeBase::addReference()
+{
+    numberOfReferences++;
+}
+
+void NodeBase::removeReference()
+{
+    if (0 == --numberOfReferences)
     {
-        EgoTest_Assert(false == id::is_dimensionality<0>::value);
-        EgoTest_Assert(false == id::is_dimensionality_v<0>);
-        EgoTest_Assert(true == id::is_dimensionality<1>::value);
-        EgoTest_Assert(true == id::is_dimensionality_v<1>);
-        EgoTest_Assert(true == id::is_dimensionality<std::numeric_limits<size_t>::max()>::value);
-        EgoTest_Assert(true == id::is_dimensionality_v<std::numeric_limits<size_t>::max()>);
+        /* Nothing to do yet. */
     }
-};
+}
+
+} // namespace Internal
+} // namespace Id

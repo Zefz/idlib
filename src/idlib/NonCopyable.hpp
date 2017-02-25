@@ -17,19 +17,33 @@
 //*
 //********************************************************************************************
 
-#include "EgoTest/EgoTest.hpp"
-#include "idlib/math/Dimensionality.hpp"
-#include <limits>
+/// @file idlib/NonCopyable.hpp
+/// @brief Make classes non-copyable.
+/// @author Michael Heilmann
 
-EgoTest_TestCase(Concepts)
+#pragma once
+
+#if !defined(IDLIB_PRIVATE) || IDLIB_PRIVATE != 1
+#error(do not include directly, include `idlib/idlib.hpp` instead)
+#endif
+
+namespace Id {
+
+/// @brief Inherit from this class to make the inheriting class and its descendant class non-copyable.
+/// @detail Example usage
+/// @code
+///  class Foo : Bar, NonCopyable
+///  { ... }
+///  @endcode
+/// @see http://en.cppreference.com/w/cpp/language/copy_assignment
+/// @see http://en.cppreference.com/w/cpp/language/move_assignment
+/// @see http://en.cppreference.com/w/cpp/language/copy_constructor
+/// @see http://en.cppreference.com/w/cpp/language/move_constructor
+struct NonCopyable
 {
-    EgoTest_Test(dimensionality)
-    {
-        EgoTest_Assert(false == id::is_dimensionality<0>::value);
-        EgoTest_Assert(false == id::is_dimensionality_v<0>);
-        EgoTest_Assert(true == id::is_dimensionality<1>::value);
-        EgoTest_Assert(true == id::is_dimensionality_v<1>);
-        EgoTest_Assert(true == id::is_dimensionality<std::numeric_limits<size_t>::max()>::value);
-        EgoTest_Assert(true == id::is_dimensionality_v<std::numeric_limits<size_t>::max()>);
-    }
+    NonCopyable() = default;
+    NonCopyable(const NonCopyable&) = delete;
+    NonCopyable& operator=(const NonCopyable&) = delete;
 };
+
+} // namespace Id

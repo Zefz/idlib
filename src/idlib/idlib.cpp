@@ -17,19 +17,4 @@
 //*
 //********************************************************************************************
 
-#include "EgoTest/EgoTest.hpp"
-#include "idlib/math/Dimensionality.hpp"
-#include <limits>
-
-EgoTest_TestCase(Concepts)
-{
-    EgoTest_Test(dimensionality)
-    {
-        EgoTest_Assert(false == id::is_dimensionality<0>::value);
-        EgoTest_Assert(false == id::is_dimensionality_v<0>);
-        EgoTest_Assert(true == id::is_dimensionality<1>::value);
-        EgoTest_Assert(true == id::is_dimensionality_v<1>);
-        EgoTest_Assert(true == id::is_dimensionality<std::numeric_limits<size_t>::max()>::value);
-        EgoTest_Assert(true == id::is_dimensionality_v<std::numeric_limits<size_t>::max()>);
-    }
-};
+#include "idlib/idlib.hpp"

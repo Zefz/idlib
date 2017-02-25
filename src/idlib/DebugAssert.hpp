@@ -17,19 +17,23 @@
 //*
 //********************************************************************************************
 
-#include "EgoTest/EgoTest.hpp"
-#include "idlib/math/Dimensionality.hpp"
-#include <limits>
+/// @file idlib/DebugAssert.hpp
+/// @brief Debug assertion functionality.
+/// @author Michael Heilmann
 
-EgoTest_TestCase(Concepts)
-{
-    EgoTest_Test(dimensionality)
-    {
-        EgoTest_Assert(false == id::is_dimensionality<0>::value);
-        EgoTest_Assert(false == id::is_dimensionality_v<0>);
-        EgoTest_Assert(true == id::is_dimensionality<1>::value);
-        EgoTest_Assert(true == id::is_dimensionality_v<1>);
-        EgoTest_Assert(true == id::is_dimensionality<std::numeric_limits<size_t>::max()>::value);
-        EgoTest_Assert(true == id::is_dimensionality_v<std::numeric_limits<size_t>::max()>);
-    }
-};
+#pragma once
+
+#include "idlib/AssertionFailedException.hpp"
+
+/// @brief Macro raising an exception if an assertion fails.
+/// @param assertion the assertion
+/// @throw Id::AssertionFailedException if the assertion fails
+/// @remark This macro evaluates to the empty statement if #_DEBUG is not defined.
+#if defined(_DEBUG)
+    #define ID_ASSERT(assertion, ...) \
+	    if(!(assertion)) { \
+		    throw Id::AssertionFailedException(__FILE__, __LINE__, #assertion); \
+        }
+#else
+    #define ID_ASSERT(assertion) /* Empty statement. */;
+#endif
