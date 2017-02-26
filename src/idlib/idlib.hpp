@@ -47,7 +47,8 @@
 #include "idlib/TextRange.hpp"
 
 // DSL utilities.
-#include "idlib/Location.hpp"
+#include "idlib/location.hpp"
+#include "idlib/qualified_name.hpp"
 #include "idlib/Token.hpp"
 
 // DSL exceptions.

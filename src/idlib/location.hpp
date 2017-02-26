@@ -18,77 +18,74 @@
 //********************************************************************************************
 
 /// @file idlib/Location.hpp
-/// @brief Declaration of a location in an Egoboo DSL file.
+/// @brief Definition of a location in a text.
 /// @author Michael Heilmann
 
 #pragma once
 
 #if !defined(IDLIB_PRIVATE) || IDLIB_PRIVATE != 1
-#error(do not include directly, include `idlib/Idlib.hpp` instead)
+#error(do not include directly, include `idlib/idlib.hpp` instead)
 #endif
 
 #include "idlib/CRTP.hpp"
 #include <type_traits>
 
-namespace Id {
+namespace id {
 
 /// @brief A location is identified by a file name and line number within that file.
-class Location : public EqualToExpr<Location>
+class location : public Id::EqualToExpr<location>
 {
 private:
     /// @brief The file name of the file.
-    std::string m_fileName;
+    std::string m_file_name;
 
     /// @brief The line number of a line within the file.
-    size_t m_lineNumber;
+    size_t m_line_number;
 
 public:
     /// @brief Construct this location.
-    /// @param fileName the file name of the file
-    /// @param lineNumber the line number of a line within the file
-    Location(const std::string& fileName, const size_t lineNumber);
+    /// @param file_name the file name of the file
+    /// @param line_number the line number of a line within the file
+    location(const std::string& file_name, const size_t line_number);
 
     /// @brief Copy-Construct this lociation from another location.
     /// @param other the other location
-    Location(const Location& other);
+    location(const location& other);
+
+    /// @brief Move-construct this location from another location.
+    /// @param other the other location
+    location(location&& other);
 
     /// @brief Assign this location from another location.
     /// @param other the other location
     /// @return this location
-    Location& operator=(Location other);
+    location& operator=(location other);
 
-public:
-    // CRTP
-    bool equalTo(const Location& other) const;
-
-public:
     /// @brief Get the file name of the file of this location.
     /// @return the file name of the file
-    const std::string& getFileName() const;
+    const std::string& file_name() const;
 
     /// @brief Get the line number of a line in the file.
     /// @return the line number of a line in the file
-    size_t getLineNumber() const;
+    size_t line_number() const;
 
-public:
-    /// @brief Move-construct this location from another location.
-    /// @param other the other location
-    Location(Location&& other);
+    // CRTP
+    bool equalTo(const location& other) const;
 
     /// @brief Swap two locations.
     /// @param x, y the locations
-    friend void swap(Location& x, Location& y)
+    friend void swap(location& x, location& y)
     {
         using std::swap;
-        swap(x.m_fileName, y.m_fileName);
-        swap(x.m_lineNumber, y.m_lineNumber);
+        swap(x.m_file_name, y.m_file_name);
+        swap(x.m_line_number, y.m_line_number);
     }
 
-}; // struct Location
+}; // class location
 
-static_assert(std::is_copy_constructible<Location>::value, "Id::Location must be copy constructible");
-static_assert(std::is_move_constructible<Location>::value, "Id::Location must be move constructible");
-static_assert(std::is_copy_assignable<Location>::value, "Id::Location must be copy assignable");
-static_assert(std::is_move_assignable<Location>::value, "Id::Location must be move assignable");
+static_assert(std::is_copy_constructible<location>::value, "id::location must be copy constructible");
+static_assert(std::is_move_constructible<location>::value, "id::location must be move constructible");
+static_assert(std::is_copy_assignable<location>::value, "id::location must be copy assignable");
+static_assert(std::is_move_assignable<location>::value, "id::location must be move assignable");
 
-} // namespace Id
+} // namespace id

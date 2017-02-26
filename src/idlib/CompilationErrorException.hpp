@@ -28,7 +28,7 @@
 #endif
 
 #include "idlib/Exception.hpp"
-#include "idlib/Location.hpp"
+#include "idlib/location.hpp"
 
 namespace Id {
 
@@ -50,7 +50,7 @@ class CompilationErrorException : public Exception
 {
 private:
     /// @brief The location associated with the compilation error.
-    Location location;
+    id::location location;
     /// @brief A description of the compilation error.
     string description;
     /// @brief The kind of the compilation error.
@@ -63,7 +63,7 @@ public:
     /// @param kind the kind of the compilation error
     /// @param location the location associated with the error
     /// @param description a description of the error
-    CompilationErrorException(const char *file, int line, CompilationErrorKind kind, const Location& location, const std::string& description) :
+    CompilationErrorException(const char *file, int line, CompilationErrorKind kind, const id::location& location, const std::string& description) :
         Exception(file, line), kind(kind), location(location), description(description)
     {}
 
@@ -88,7 +88,7 @@ public:
 public:
     /// @brief Get the location associated with the compilation error.
     /// @return the location associated with the compilation error
-    const Location& getLocation() const
+    const id::location& getLocation() const
     {
         return location;
     }
@@ -105,7 +105,7 @@ public:
     operator string() const override
     {
         ostringstream o;
-        o << location.getFileName() << ": " << location.getLineNumber()
+        o << location.file_name() << ": " << location.line_number()
           << " (raised in file " << getFile() << ", line " << getLine() << ")";
         o << ": ";
         switch (kind)

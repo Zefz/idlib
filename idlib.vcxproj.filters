@@ -24,11 +24,11 @@
     <Filter Include="Source Files\color">
       <UniqueIdentifier>{985c56b7-2424-4422-aba9-ddafe963cc74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\parsing_expressions">
+      <UniqueIdentifier>{686fbc11-2d64-4804-92e3-3d1553b0185b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\idlib\Location.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\idlib\TextRange.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -47,6 +47,12 @@
     <ClCompile Include="src\idlib\idlib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\idlib\location.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\qualified_name.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\idlib\Platform.hpp">
@@ -62,9 +68,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\idlib\Exception.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\Location.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\idlib\LockFailedException.hpp">
@@ -159,6 +162,39 @@
     </ClInclude>
     <ClInclude Include="src\idlib\idlib.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\qualified_name.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\location.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\parsing_expressions\choice.hpp">
+      <Filter>Header Files\parsing_expressions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\parsing_expressions\include.hpp">
+      <Filter>Header Files\parsing_expressions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\parsing_expressions\n_ary_expr.hpp">
+      <Filter>Header Files\parsing_expressions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\parsing_expressions\predefined.hpp">
+      <Filter>Header Files\parsing_expressions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\parsing_expressions\repetition.hpp">
+      <Filter>Header Files\parsing_expressions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\parsing_expressions\sequence.hpp">
+      <Filter>Header Files\parsing_expressions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\parsing_expressions\sym.hpp">
+      <Filter>Header Files\parsing_expressions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\parsing_expressions\sym_range.hpp">
+      <Filter>Header Files\parsing_expressions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\parsing_expressions\option.hpp">
+      <Filter>Header Files\parsing_expressions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

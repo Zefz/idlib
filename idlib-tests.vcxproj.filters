@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\parsing_expressions">
+      <UniqueIdentifier>{2a9f329f-6c0e-42cd-8810-48debce9ceff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tests\idlib\Tests\Compilation.cpp">
@@ -22,6 +25,24 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tests\idlib\Tests\Math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\idlib\Tests\parsing_expressions\choice.cpp">
+      <Filter>Source Files\parsing_expressions</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\idlib\Tests\parsing_expressions\name.cpp">
+      <Filter>Source Files\parsing_expressions</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\idlib\Tests\parsing_expressions\name_regression.cpp">
+      <Filter>Source Files\parsing_expressions</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\idlib\Tests\parsing_expressions\qualified_name.cpp">
+      <Filter>Source Files\parsing_expressions</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\idlib\Tests\parsing_expressions\symbols.cpp">
+      <Filter>Source Files\parsing_expressions</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\idlib\Tests\qualified_name.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

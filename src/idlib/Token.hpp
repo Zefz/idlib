@@ -4,7 +4,7 @@
 #error(do not include directly, include `idlib/idlib.hpp` instead)
 #endif
 
-#include "idlib/Location.hpp"
+#include "idlib/location.hpp"
 
 #define Id_Token_WithEndLocation (0)
 
@@ -20,11 +20,11 @@ private:
 	KindType m_kind;
 
 	/// @brief The start location of this token.
-	Location m_startLocation;
+	id::location m_startLocation;
 
 #if defined(Id_Token_WithEndLocation) && 1 == Id_Token_WithEndLocation
     /// @brief The end location of this token.
-    Location m_endLocation;
+    id::location m_endLocation;
 #endif
 
 	/// @brief The lexeme of this token.
@@ -36,7 +36,7 @@ public:
 	/// @param startLocation the start location of this token
     /// @param endLocation the end location of this token
 	/// @param lexeme the lexeme of this token. Default is the empty string.
-	Token(KindType kind, const Location& startLocation,
+	Token(KindType kind, const id::location& startLocation,
       #if defined(Id_Token_WithEndLocation) && 1 == Id_Token_WithEndLocation  
           const Location& endLocation,
       #endif
@@ -132,7 +132,7 @@ public:
 	/// @return the start location of this token
     /// @see setStartLocation
     /// @remark The start location is the location at which the lexeme of this token starts at.
-	const Location& getStartLocation() const
+	const id::location& getStartLocation() const
 	{
 		return m_startLocation;
 	}
@@ -140,7 +140,7 @@ public:
 	/// @brief Set the start location of this token.
 	/// @param startLocation the start location of this token
     /// @see getStartLocation
-	void setStartLocation(const Location& startLocation)
+	void setStartLocation(const id::location& startLocation)
 	{
 		m_startLocation = startLocation;
 	}

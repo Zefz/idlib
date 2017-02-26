@@ -244,15 +244,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\idlib\location.cpp" />
+    <ClCompile Include="src\idlib\qualified_name.cpp" />
     <ClCompile Include="src\idlib\color\Utilities.cpp" />
     <ClCompile Include="src\idlib\signal\ConnectionBase.cpp" />
     <ClCompile Include="src\idlib\signal\NodeBase.cpp" />
     <ClCompile Include="src\idlib\signal\SignalBase.cpp" />
     <ClCompile Include="src\idlib\TextRange.cpp" />
-    <ClCompile Include="src\idlib\Location.cpp" />
     <ClCompile Include="src\idlib\idlib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\idlib\parsing_expressions\option.hpp" />
+    <ClInclude Include="src\idlib\location.hpp" />
+    <ClInclude Include="src\idlib\qualified_name.hpp" />
+    <ClInclude Include="src\idlib\parsing_expressions\n_ary_expr.hpp" />
+    <ClInclude Include="src\idlib\parsing_expressions\repetition.hpp" />
+    <ClInclude Include="src\idlib\parsing_expressions\sequence.hpp" />
+    <ClInclude Include="src\idlib\parsing_expressions\choice.hpp" />
+    <ClInclude Include="src\idlib\parsing_expressions\predefined.hpp" />
+    <ClInclude Include="src\idlib\parsing_expressions\include.hpp" />
+    <ClInclude Include="src\idlib\parsing_expressions\sym.hpp" />
+    <ClInclude Include="src\idlib\parsing_expressions\sym_range.hpp" />
     <ClInclude Include="src\idlib\Math\Dimensionality.hpp" />
     <ClInclude Include="src\idlib\color\Utilities.hpp" />
     <ClInclude Include="src\idlib\color\Colour.hpp" />
@@ -283,7 +295,6 @@
     <ClInclude Include="src\idlib\AssertionFailedException.hpp" />
     <ClInclude Include="src\idlib\EnvironmentErrorException.hpp" />
     <ClInclude Include="src\idlib\Exception.hpp" />
-    <ClInclude Include="src\idlib\Location.hpp" />
     <ClInclude Include="src\idlib\LockFailedException.hpp" />
     <ClInclude Include="src\idlib\UnhandledSwitchCaseException.hpp" />
     <ClInclude Include="src\idlib\NonCopyable.hpp" />

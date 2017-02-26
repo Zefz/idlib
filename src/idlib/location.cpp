@@ -17,48 +17,48 @@
 //*
 //********************************************************************************************
 
-/// @file   idlib/Location.cpp
-/// @brief  Definition of a location in an Egoboo DSL file
+/// @file idlib/location.cpp
+/// @brief Definition of a location in a text.
 /// @author Michael Heilmann
 
 #define IDLIB_PRIVATE 1
-#include "idlib/Location.hpp"
+#include "idlib/location.hpp"
 #undef IDLIB_PRIVATE
 
-namespace Id {
+namespace id {
 
-Location::Location(const std::string& fileName, const size_t lineNumber)
-    : m_fileName(fileName), m_lineNumber(lineNumber)
+location::location(const std::string& file_name, const size_t line_number)
+    : m_file_name(file_name), m_line_number(line_number)
 {}
 
-Location::Location(const Location& other)
-    : m_fileName(other.m_fileName), m_lineNumber(other.m_lineNumber)
+location::location(const location& other)
+    : m_file_name(other.m_file_name), m_line_number(other.m_line_number)
 {}
 
-Location::Location(Location&& other)
-    : m_fileName(std::move(other.m_fileName)), m_lineNumber(std::move(other.m_lineNumber))
+location::location(location&& other)
+    : m_file_name(std::move(other.m_file_name)), m_line_number(std::move(other.m_line_number))
 {}
 
-Location& Location::operator=(Location other)
+location& location::operator=(location other)
 {
     swap(*this, other);
     return *this;
 }
 
-bool Location::equalTo(const Location& other) const
+bool location::equalTo(const location& other) const
 {
-    return m_fileName == other.m_fileName
-        && m_lineNumber == other.m_lineNumber;
+    return m_file_name == other.m_file_name
+        && m_line_number == other.m_line_number;
 }
 
-const std::string& Location::getFileName() const
+const std::string& location::file_name() const
 {
-    return m_fileName;
+    return m_file_name;
 }
 
-size_t Location::getLineNumber() const
+size_t location::line_number() const
 {
-    return m_lineNumber;
+    return m_line_number;
 }
 
-} // namespace Id
+} // namespace id

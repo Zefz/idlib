@@ -1,0 +1,158 @@
+#pragma once
+
+#if !defined(IDLIB_PRIVATE) || IDLIB_PRIVATE != 1
+#error(do not include directly, include `idlib/parsing_expressions/include.hpp` instead)
+#endif
+
+#include "idlib/parsing_expressions/sym.hpp"
+#include "idlib/parsing_expressions/sym_range.hpp"
+#include "idlib/parsing_expressions/choice.hpp"
+#include "idlib/parsing_expressions/sequence.hpp"
+#include "idlib/parsing_expressions/repetition.hpp"
+
+namespace id {
+namespace parsing_expressions {
+
+/// @brief Parsing expression accepting @code{whitespace = ' '|'\t'}.
+/// @tparam Sym the symbol type
+template <typename Sym>
+class whitespace
+{
+public:
+    template <typename It>
+    bool operator()(It& at, It& end) const
+    {
+        static const auto x = choice<Sym>(sym<Sym>(' '), sym<Sym>('\t'));
+        return x(at, end);
+    }
+};
+
+/// @brief Parsing expression accepting @code{newline = '\n'|'\r'}.
+/// @tparam Sym the symbol type
+template <typename Sym>
+class newline
+{
+public:
+    template <typename It>
+    bool operator()(It& at, It& end) const
+    {
+        static const auto x = choice<Sym>(sym<Sym>('\n'), sym<Sym>('\r'));
+        return x(at, end);
+    }
+};
+
+/// @brief Parsing expression accepting @code{alpha_lowercase = 'a' .. 'z'}.
+/// @tparam Sym the symbol type
+template <typename Sym>
+class alpha_lowercase
+{
+public:
+    template <typename It>
+    bool operator()(It& at, It& end) const
+    {
+        static const auto x = sym_range<Sym>('a', 'z');
+        return x(at, end);
+    }
+};
+
+/// @brief Parsing expression accepting @code{alpha_uppercase = 'A' .. 'Z'}.
+/// @tparam Sym the symbol type
+template <typename Sym>
+class alpha_uppercase
+{
+public:
+    template <typename It>
+    bool operator()(It& at, It& end) const
+    {
+        static const auto x = sym_range<Sym>('A', 'Z');
+        return x(at, end);
+    }
+};
+
+/// @brief Parsing expression accepting @code{alpha = alpha_lowercase|alpha_uppercase}.
+/// @tparam Sym the symbol type
+template <typename Sym>
+class alpha
+{
+public:
+    template <typename It>
+    bool operator()(It& at, It& end) const
+    {
+        static const auto x = choice<Sym>(alpha_lowercase<Sym>(), alpha_uppercase<Sym>());
+        return x(at, end);
+    }
+};
+
+/// @brief Parsing expression accepting @code{digit = '0' .. '9'}.
+/// @tparam Sym the symbol type
+template <typename Sym>
+class digit
+{
+public:
+    template <typename It>
+    bool operator()(It& at, It& end) const
+    {
+        static const auto x = sym_range<Sym>('0', '9');
+        return x(at, end);
+    }
+};
+
+/// @brief Parsing expression accepting @code{name = ('_'|alpha)('_'|alpha|digit)*}.
+/// @tparam Sym the symbol type
+template <typename Sym>
+class name
+{
+public:
+    template <typename It>
+    bool operator()(It& at, It& end) const
+    {
+        static const auto w =
+            sequence<char>
+            (
+                choice<char>
+                (
+                    alpha<char>(),
+                    sym<char>('_')
+                ),
+                repetition<char>
+                (
+                    choice<char>
+                    (
+                        alpha<char>(),
+                        digit<char>(),
+                        sym<char>('_')
+                    )
+                )
+            );
+        return w(at, end);
+    }
+};
+
+/// @brief Parsing expression accepting @code{qualified_name = name ('.' name)*}.
+/// @tparam Sym the symbol type
+template <typename Sym>
+class qualified_name
+{
+public:
+    template <typename It>
+    bool operator()(It& at, It& end) const
+    {
+        static const auto w =
+            sequence<char>
+            (
+                name<char>(),
+                repetition<char>
+                (
+                    sequence<char>
+                    (
+                        sym<char>('.'),
+                        name<char>()
+                    )
+                )
+            );
+        return w(at, end);
+    }
+};
+
+} // namespace parsing_expressions
+} // namespace id

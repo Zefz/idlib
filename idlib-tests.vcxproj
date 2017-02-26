@@ -19,6 +19,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="tests\idlib\Tests\qualified_name.cpp" />
+    <ClCompile Include="tests\idlib\Tests\parsing_expressions\choice.cpp" />
+    <ClCompile Include="tests\idlib\Tests\parsing_expressions\name.cpp" />
+    <ClCompile Include="tests\idlib\Tests\parsing_expressions\name_regression.cpp" />
+    <ClCompile Include="tests\idlib\Tests\parsing_expressions\qualified_name.cpp">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\parsing_expressions\qualified_name.asm</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\parsing_expressions\qualified_name.o</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\parsing_expressions\qualified_name.asm</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\parsing_expressions\qualified_name.o</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\parsing_expressions\qualified_name.asm</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\parsing_expressions\qualified_name.o</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\parsing_expressions\qualified_name.asm</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\parsing_expressions\qualified_name.o</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="tests\idlib\Tests\parsing_expressions\symbols.cpp" />
     <ClCompile Include="tests\idlib\Tests\Math.cpp" />
     <ClCompile Include="tests\idlib\Tests\Signal.cpp" />
     <ClCompile Include="tests\idlib\Tests\Compilation.cpp" />
