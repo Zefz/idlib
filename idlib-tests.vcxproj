@@ -19,6 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="tests\idlib\Tests\prefix.cpp" />
+    <ClCompile Include="tests\idlib\Tests\suffix.cpp" />
+    <ClCompile Include="tests\idlib\Tests\to_lower.cpp" />
+    <ClCompile Include="tests\idlib\Tests\to_upper.cpp" />
     <ClCompile Include="tests\idlib\Tests\qualified_name.cpp" />
     <ClCompile Include="tests\idlib\Tests\parsing_expressions\choice.cpp" />
     <ClCompile Include="tests\idlib\Tests\parsing_expressions\name.cpp" />

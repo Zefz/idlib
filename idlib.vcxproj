@@ -244,6 +244,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\idlib\prefix.cpp" />
+    <ClCompile Include="src\idlib\suffix.cpp" />
+    <ClCompile Include="src\idlib\to_lower.cpp" />
+    <ClCompile Include="src\idlib\to_upper.cpp" />
     <ClCompile Include="src\idlib\location.cpp" />
     <ClCompile Include="src\idlib\qualified_name.cpp" />
     <ClCompile Include="src\idlib\color\Utilities.cpp" />
@@ -254,6 +258,10 @@
     <ClCompile Include="src\idlib\idlib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\idlib\prefix.hpp" />
+    <ClInclude Include="src\idlib\suffix.hpp" />
+    <ClInclude Include="src\idlib\to_lower.hpp" />
+    <ClInclude Include="src\idlib\to_upper.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\option.hpp" />
     <ClInclude Include="src\idlib\location.hpp" />
     <ClInclude Include="src\idlib\qualified_name.hpp" />

@@ -53,6 +53,18 @@
     <ClCompile Include="src\idlib\qualified_name.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\idlib\to_upper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\to_lower.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\suffix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\prefix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\idlib\Platform.hpp">
@@ -195,6 +207,18 @@
     </ClInclude>
     <ClInclude Include="src\idlib\parsing_expressions\option.hpp">
       <Filter>Header Files\parsing_expressions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\to_upper.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\to_lower.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\suffix.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\prefix.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

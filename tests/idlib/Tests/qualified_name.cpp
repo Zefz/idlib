@@ -20,7 +20,8 @@
 #include "EgoTest/EgoTest.hpp"
 #include "idlib/idlib.hpp"
 
-namespace id { namespace tests {
+namespace id {
+namespace tests {
 
 EgoTest_TestCase(id_qualified_name)
 {
@@ -31,25 +32,24 @@ EgoTest_TestCase(id_qualified_name)
     {
         const std::vector<string> words
         {
-			"",
-			".",
-			".egoboo",
-			"org.egoboo.",
+            "",
+            ".",
+            ".egoboo",
+            "org.egoboo.",
             "org.",
         };
         for (const auto& word : words)
         {
-			try
-			{
-				id::qualified_name qualified_name(word);
-				EgoTest_Assert(false);
-			}
-			catch (...)
-			{
-			}
+            try
+            {
+                id::qualified_name qualified_name(word);
+                EgoTest_Assert(false);
+            }
+            catch (...)
+            {
+            }
         }
     }
 };
 
-} // namespace tests
-} // namespace id
+} } // namespace id::tests
