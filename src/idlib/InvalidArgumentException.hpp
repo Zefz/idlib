@@ -13,8 +13,6 @@
 
 namespace Id {
 
-using namespace std;
-
 /// @brief An exception indicating an invalid argument.
 /// @detail Use this exception only if there is no exception type available which is more specific.
 class InvalidArgumentException : public RuntimeErrorException
@@ -26,7 +24,7 @@ public:
     /// @param file the C++ source file (as obtained by the __FILE__ macro) associated with this exception
     /// @param line the line within the C++ source file (as obtained by the __LINE__ macro) associated with this exception
     /// @param message a message describing the error
-    InvalidArgumentException(const char *file, int line, const string& message) :
+    InvalidArgumentException(const char *file, int line, const std::string& message) :
         RuntimeErrorException(file, line, message)
     {}
 

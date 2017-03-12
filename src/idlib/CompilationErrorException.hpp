@@ -32,8 +32,6 @@
 
 namespace Id {
 
-using namespace std;
-
 /// @brief An enumeration of the different kinds of compilation errors.
 enum class CompilationErrorKind
 {
@@ -52,7 +50,7 @@ private:
     /// @brief The location associated with the compilation error.
     id::location location;
     /// @brief A description of the compilation error.
-    string description;
+    std::string description;
     /// @brief The kind of the compilation error.
     CompilationErrorKind kind;
 
@@ -102,9 +100,9 @@ public:
 
     /// @brief Overloaded cast to std::string operator.
     /// @return the result of the cast
-    operator string() const override
+    operator std::string() const override
     {
-        ostringstream o;
+        std::ostringstream o;
         o << location.file_name() << ": " << location.line_number()
           << " (raised in file " << getFile() << ", line " << getLine() << ")";
         o << ": ";

@@ -31,8 +31,6 @@
 
 namespace Id {
 
-using namespace std;
-
 /// @brief The base class of all Id exceptions.
 class Exception
 {
@@ -92,7 +90,7 @@ public:
 
     /// @brief Overloaded cast operator for casting into std::string.
     /// @return a human-readable textual description of the string.
-    virtual operator string() const
+    virtual operator std::string() const
     {
         std::ostringstream os;
         os << getFile() << ":" << getLine() << ": exception";

@@ -31,8 +31,6 @@
 
 namespace Id {
 
-using namespace std;
-
 /// @brief Exception indicating a value is out of bounds
 class OutOfBoundsException : public Exception
 {
@@ -41,7 +39,7 @@ public:
     /// @param file the C++ source file (as obtained by the __FILE__ macro) associated with this exception
     /// @param line the line within the C++ source file (as obtained by the __LINE__ macro) associated with this exception
     /// @param message optional exception string message
-    OutOfBoundsException(const char *file, int line, const string& message = "Value out of bounds") :
+    OutOfBoundsException(const char *file, int line, const std::string& message = "Value out of bounds") :
         Exception(file, line), _message(message)
     {}
 
@@ -64,16 +62,16 @@ public:
 public:
     /// @brief Get the message associated with this exception.
     /// @return the message associated with this exception
-    const string& getMessage() const
+    const std::string& getMessage() const
     {
         return _message;
     }
 
     /// @brief Overloaded cast operator for casting into std::string.
     /// @return a human-readable textual description of the string.
-    virtual operator string() const override
+    virtual operator std::string() const override
     {
-        ostringstream buffer;
+        std::ostringstream buffer;
         buffer << "(raised in file " << getFile() << ", line " << getLine() << ")"
             << ":" << std::endl;
         buffer << _message;
@@ -81,7 +79,7 @@ public:
     }
 
 private:
-    string _message;
+    std::string _message;
 };
 
 } // namespace Id

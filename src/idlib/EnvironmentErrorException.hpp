@@ -31,8 +31,6 @@
 
 namespace Id {
 
-using namespace std;
-
 /// @brief A generic exception to propagate errors of the environment (e.g. SDL, Win32, OSX, Linux, ...)
 /// to the application level. Use this exception as well if the environment does not follow its
 /// specification (e.g. documented behavior vs. actual behavior).
@@ -40,10 +38,10 @@ class EnvironmentErrorException : public Exception
 {
 private:
     /// @brief The component associated with this environment error.
-    string _component;
+    std::string _component;
 
     /// @brief The messsage associated with this environment error.
-    string _message;
+    std::string _message;
 
 public:
     /// @brief Construct this environment error.
@@ -52,7 +50,7 @@ public:
     /// @param component the component the error is related to e.g. "pthreads", "SDL video", ...
     /// @param message a message describing the error
     /// @remark Intentionally protected.
-    EnvironmentErrorException(const char *file, int line, const string& component, const string& message) :
+    EnvironmentErrorException(const char *file, int line, const std::string& component, const std::string& message) :
         Exception(file, line), _component(component), _message(message)
     {}
 
@@ -71,23 +69,23 @@ public:
 public:
     /// @brief Get the component associated with this environment error.
     /// @return the component associated with this environment error
-    const string& getComponent() const
+    const std::string& getComponent() const
     {
         return _component;
     }
 
     /// @brief Get the message associated with this environment error.
     /// @return the message associated with this environment error
-    const string& getMessage() const
+    const std::string& getMessage() const
     {
         return _message;
     }
 
     /// @brief Overloaded cast operator for casting into std::string.
     /// @return a human-readable textual description of the string.
-    virtual operator ::std::string() const override
+    virtual operator std::string() const override
     {
-        ostringstream buffer;
+        std::ostringstream buffer;
         buffer << _component
             << " "
             << "(raised in file " << getFile() << ", line " << getLine() << ")"

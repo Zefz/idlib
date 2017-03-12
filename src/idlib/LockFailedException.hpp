@@ -31,8 +31,6 @@
 
 namespace Id {
 
-using namespace std;
-
 /// @brief An lock failure exception.
 class LockFailedException : public Exception {
 
@@ -48,7 +46,7 @@ public:
      * @param message
      * optional exception string message
      */
-    LockFailedException(const char *file, int line, const string& message = "Lock failed") :
+    LockFailedException(const char *file, int line, const std::string& message = "Lock failed") :
         Exception(file, line),
         _message(message) {}
 
@@ -84,7 +82,7 @@ public:
      * @return
      *  the message associated with this exception
      */
-    const string& getMessage() const {
+    const std::string& getMessage() const {
         return _message;
     }
 
@@ -95,7 +93,7 @@ public:
      *  a human-readable textual description of the string.
      */
     virtual operator ::std::string() const {
-        ostringstream buffer;
+        std::ostringstream buffer;
         buffer << "(raised in file " << getFile() << ", line " << getLine() << ")"
             << ":" << std::endl;
         buffer << _message;

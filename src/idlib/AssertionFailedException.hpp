@@ -43,7 +43,7 @@ public:
     /// @param file the C++ source file associated with this exception
     /// @param line the line within the C++ source file associated with this exception
     /// @param assertion a description of the assertion
-    AssertionFailedException(const char *file, int line, const string& assertion) :
+    AssertionFailedException(const char *file, int line, const std::string& assertion) :
         Exception(file, line), _assertion(assertion)
     {}
 
@@ -66,14 +66,14 @@ public:
 public:
     /// @brief Get a description of the assertion.
     /// @return a description of the assertion
-    const string& getAssertion() const
+    const std::string& getAssertion() const
     {
         return _assertion;
     }
 
-    virtual operator string() const override
+    virtual operator std::string() const override
     {
-        ostringstream buffer;
+        std::ostringstream buffer;
         buffer << "assertion `" << _assertion << "` failed";
         buffer << " (raised in file " << getFile() << ", line " << getLine() << ")";
         return buffer.str();

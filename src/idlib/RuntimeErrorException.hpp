@@ -13,8 +13,6 @@
 
 namespace Id {
 
-using namespace std;
-
 /// @brief A generic exception indicating a runtime error.
 /// @detail Use this exception only if there is no exception type available which is more specific.
 class RuntimeErrorException : public Exception
@@ -24,7 +22,7 @@ public:
     /// @param file the C++ source file (as obtained by the __FILE__ macro) associated with this exception
     /// @param line the line within the C++ source file (as obtained by the __LINE__ macro) associated with this exception
     /// @param message a message describing the error
-    RuntimeErrorException(const char *file, int line, const string& message) :
+    RuntimeErrorException(const char *file, int line, const std::string& message) :
         Exception(file, line), _message(message)
     {}
 
@@ -47,7 +45,7 @@ public:
 public:
     /// @brief Get the message associated with this environment error.
     /// @return the message associated with this environment error
-    const string& getMessage() const
+    const std::string& getMessage() const
     {
         return _message;
     }
@@ -56,7 +54,7 @@ public:
     /// @return a human-readable textual description of the string.
     virtual operator ::std::string() const override
     {
-        ostringstream buffer;
+        std::ostringstream buffer;
         buffer << "(raised in file " << getFile() << ", line " << getLine() << ")"
             << ":" << std::endl;
         buffer << _message;
@@ -65,7 +63,7 @@ public:
 
 private:
     /// @brief The exception message.
-    string _message;
+    std::string _message;
 };
 
 } // namespace Id
