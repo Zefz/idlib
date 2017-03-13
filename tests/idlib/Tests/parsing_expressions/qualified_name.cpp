@@ -24,12 +24,10 @@ namespace id { namespace parsing_expressions { namespace tests {
 
 EgoTest_TestCase(id_parsing_expressions_tests_qualified_name)
 {
-    using string = std::basic_string<char>;
-
     EgoTest_Test(qualified_name_accept)
     {
         auto p = id::parsing_expressions::qualified_name<char>();
-        const std::vector<string> words
+        const std::vector<std::string> words
             {
                 "org.egoboo",
                 "org.egoboo.ego",
@@ -48,7 +46,7 @@ EgoTest_TestCase(id_parsing_expressions_tests_qualified_name)
     EgoTest_Test(qualified_name_reject)
     {
         auto p = id::parsing_expressions::qualified_name<char>();
-        const std::vector<std::tuple<string, bool, size_t>> words
+        const std::vector<std::tuple<std::string, bool, size_t>> words
         {
                 { ".egoboo", false, 0 },
                 { "org.", true, 3 },

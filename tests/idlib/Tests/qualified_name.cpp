@@ -25,12 +25,10 @@ namespace tests {
 
 EgoTest_TestCase(id_qualified_name)
 {
-    using string = std::basic_string<char>;
-
     /// Assert selected strings which are not qualified name strings are rejected.
     EgoTest_Test(qualified_name_exception)
     {
-        const std::vector<string> words
+        const std::vector<std::string> words
         {
             "",
             ".",

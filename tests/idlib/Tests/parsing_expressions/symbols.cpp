@@ -24,15 +24,13 @@ namespace id { namespace parsing_expressions { namespace tests {
 
 EgoTest_TestCase(id_parsing_expressions_tests_symbols)
 {
-    using string = std::basic_string<char>;
-
     EgoTest_Test(period)
     {
         auto p = id::parsing_expressions::sym<char>('.');
-        string w;
-        string::const_iterator c, e;
+        std::string w;
+        std::string::const_iterator c, e;
         //
-        w = string(".");
+        w = std::string(".");
         c = w.cbegin(); e = w.cend();
         EgoTest_Assert(true == p(c, e));
         EgoTest_Assert(c == e);
@@ -42,16 +40,16 @@ EgoTest_TestCase(id_parsing_expressions_tests_symbols)
     EgoTest_Test(whitespace)
     {
         auto p = id::parsing_expressions::whitespace<char>();
-        string w;
-        string::const_iterator c, e;
+        std::string w;
+        std::string::const_iterator c, e;
         //
-        w = string(" ");
+        w = std::string(" ");
         c = w.cbegin(); e = w.cend();
         EgoTest_Assert(true == p(c, e));
         EgoTest_Assert(c == e);
         EgoTest_Assert(false == p(c, e));
         //
-        w = string("\t");
+        w = std::string("\t");
         c = w.cbegin(); e = w.cend();
         EgoTest_Assert(true == p(c, e));
         EgoTest_Assert(c == e);
@@ -61,16 +59,16 @@ EgoTest_TestCase(id_parsing_expressions_tests_symbols)
     EgoTest_Test(newline)
     {
         auto p = id::parsing_expressions::newline<char>();
-        string w;
-        string::const_iterator c, e;
+        std::string w;
+        std::string::const_iterator c, e;
         //
-        w = string("\n");
+        w = std::string("\n");
         c = w.cbegin(); e = w.cend();
         EgoTest_Assert(true == p(c, e));
         EgoTest_Assert(c == e);
         EgoTest_Assert(false == p(c, e));
         //
-        w = string("\r");
+        w = std::string("\r");
         c = w.cbegin(); e = w.cend();
         EgoTest_Assert(true == p(c, e));
         EgoTest_Assert(c == e);
@@ -82,7 +80,7 @@ EgoTest_TestCase(id_parsing_expressions_tests_symbols)
         auto p = id::parsing_expressions::digit<char>();
         for (char symbol = '0'; symbol <= '9'; ++symbol)
         {
-            auto w = string(1, symbol);
+            auto w = std::string(1, symbol);
             auto c = w.cbegin(), e = w.cend();
             EgoTest_Assert(true == p(c, e));
             EgoTest_Assert(c == e);
@@ -95,7 +93,7 @@ EgoTest_TestCase(id_parsing_expressions_tests_symbols)
         auto p = id::parsing_expressions::alpha_lowercase<char>();
         for (char symbol = 'a'; symbol <= 'z'; ++symbol)
         {
-            auto w = string(1, symbol);
+            auto w = std::string(1, symbol);
             auto c = w.cbegin(), e = w.cend();
             EgoTest_Assert(true == p(c, e));
             EgoTest_Assert(c == e);
@@ -108,7 +106,7 @@ EgoTest_TestCase(id_parsing_expressions_tests_symbols)
         auto p = id::parsing_expressions::alpha_uppercase<char>();
         for (char symbol = 'A'; symbol <= 'Z'; ++symbol)
         {
-            auto w = string(1, symbol);
+            auto w = std::string(1, symbol);
             auto c = w.cbegin(), e = w.cend();
             EgoTest_Assert(true == p(c, e));
             EgoTest_Assert(c == e);
@@ -122,7 +120,7 @@ EgoTest_TestCase(id_parsing_expressions_tests_symbols)
         //
         for (char symbol = 'a'; symbol <= 'z'; ++symbol)
         {
-            auto w = string(1, symbol);
+            auto w = std::string(1, symbol);
             auto c = w.cbegin(), e = w.cend();
             EgoTest_Assert(true == p(c, e));
             EgoTest_Assert(c == e);
@@ -131,7 +129,7 @@ EgoTest_TestCase(id_parsing_expressions_tests_symbols)
         //
         for (char symbol = 'A'; symbol <= 'Z'; ++symbol)
         {
-            auto w = string(1, symbol);
+            auto w = std::string(1, symbol);
             auto c = w.cbegin(), e = w.cend();
             EgoTest_Assert(true == p(c, e));
             EgoTest_Assert(c == e);
