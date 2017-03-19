@@ -258,6 +258,8 @@
     <ClCompile Include="src\idlib\idlib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\idlib\math\even_odd.hpp" />
+    <ClInclude Include="src\idlib\math\one_zero.hpp" />
     <ClInclude Include="src\idlib\prefix.hpp" />
     <ClInclude Include="src\idlib\suffix.hpp" />
     <ClInclude Include="src\idlib\to_lower.hpp" />

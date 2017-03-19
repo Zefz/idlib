@@ -220,6 +220,12 @@
     <ClInclude Include="src\idlib\prefix.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\idlib\math\even_odd.hpp">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\math\one_zero.hpp">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\idlib\CurrentFunction.inline">
