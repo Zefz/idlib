@@ -39,7 +39,7 @@ namespace id {
 /// name := '_'* (alphabetic) (alphabetic|digit|'_')*
 /// @endcode
 /// @remark std::hash, std::equal_to and std::less have specializations for qualified names.
-class qualified_name final : public Id::EqualToExpr<qualified_name>
+class qualified_name final : public id::equal_to_expr<qualified_name>
 {
 private:
     /// @brief The string.
@@ -71,7 +71,7 @@ public:
     const std::string& string() const;
 
     // CRTP
-    bool equalTo(const qualified_name& other) const;
+    bool equal_to(const qualified_name& other) const;
 };
 
 static_assert(std::is_copy_constructible<qualified_name>::value, "id::qualified_name must be copy constructible");

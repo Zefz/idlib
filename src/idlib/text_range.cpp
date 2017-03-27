@@ -17,58 +17,58 @@
 //*
 //********************************************************************************************
 
-/// @file idlib/TextRange.cpp
+/// @file idlib/text_range.cpp
 /// @brief Information on a text range in a text.
 /// @author Michael Heilmann
 
 #define IDLIB_PRIVATE 1
-#include "idlib/TextRange.hpp"
+#include "idlib/text_range.hpp"
 #undef IDLIB_PRIVATE
 
-namespace Id {
+namespace id {
 
-TextRange::TextRange(size_t start, size_t length) noexcept :
+text_range::text_range(size_t start, size_t length) noexcept :
 	start(start), length(length)
 {}
 
-TextRange::TextRange(const TextRange& other) noexcept :
+text_range::text_range(const text_range& other) noexcept :
 	start(other.start), length(other.length)
 {}
 
-TextRange& TextRange::operator=(const TextRange& other) noexcept
+text_range& text_range::operator=(const text_range& other) noexcept
 {
 	start = other.start;
 	length = other.length;
 	return *this;
 }
 
-bool TextRange::isEmpty() const noexcept
+bool text_range::is_empty() const noexcept
 {
-	return 0 == getLength();	
+	return 0 == get_length();	
 }
 
-size_t TextRange::getStart() const noexcept
+size_t text_range::get_start() const noexcept
 {
 	return start;
 }
 
-#if defined(ID_TEXTRANGE_MUTABLE) && 1 == ID_TEXTRANGE_MUTABLE
-void TextRange::setStart(size_t start) noexcept
+#if defined(ID_TEXT_RANGE_MUTABLE) && 1 == ID_TEXT_RANGE_MUTABLE
+void text_range::set_start(size_t start) noexcept
 {
 	this->start = start;
 }
 #endif
 
-size_t TextRange::getLength() const noexcept
+size_t text_range::get_length() const noexcept
 {
 	return length;
 }
 
-#if defined(ID_TEXTRANGE_MUTABLE) && 1 == ID_TEXTRANGE_MUTABLE
-void TextRange::setLength(size_t length) noexcept
+#if defined(ID_TEXT_RANGE_MUTABLE) && 1 == ID_TEXT_RANGE_MUTABLE
+void text_range::set_length(size_t length) noexcept
 {
 	this->length = length;
 }
 #endif
 
-} // namespace Id
+} // namespace id

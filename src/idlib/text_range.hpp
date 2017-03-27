@@ -17,7 +17,7 @@
 //*
 //********************************************************************************************
 
-/// @file idlib/TextRange.hpp
+/// @file idlib/text_range.hpp
 /// @brief Information on a text range in a text.
 /// @author Michael Heilmann
 
@@ -27,16 +27,16 @@
 #error(do not include directly, include `idlib/idlib.hpp` instead)
 #endif
 
-#include "idlib/Platform.hpp"
+#include <type_traits>
 
 /// @brief If defined to @a 1, text ranges are mutable i.e. provide setters.
-#define ID_TEXTRANGE_MUTABLE (0)
+#define ID_TEXT_RANGE_MUTABLE (0)
 
-namespace Id {
+namespace id {
 
 /// @brief Information on a text range in a text.
 /// @remark A text range (start, length) is empty iff length = 0.
-struct TextRange
+class text_range
 {
 private:
     /// @brief The codepoint at which the text range starts.
@@ -49,44 +49,49 @@ public:
     /// @brief Construct this text range with the specified values.
     /// @param start the codepoint at which this text range starts at
     /// @param length the length of this text range in codepoints
-    TextRange(size_t start, size_t length) noexcept;
+    text_range(size_t start, size_t length) noexcept;
 
 public:
     /// @brief Construct this text range with the values of another text range.
     /// @param other the other text range
-    TextRange(const TextRange& other) noexcept;
+    text_range(const text_range& other) noexcept;
 
     /// @brief Assign this text range with the values of another text range.
     /// @param other the other text range
     /// @return this text range
-    TextRange& operator=(const TextRange& other) noexcept;
+    text_range& operator=(const text_range& other) noexcept;
 
 public:
     /// @brief Get if this text range is empty.
     /// @return @a true if this text range is empty, @a false otherwise
-    bool isEmpty() const noexcept;
+    bool is_empty() const noexcept;
 
 public:
     /// @brief Get the codepoint at which the text range starts.
     /// @return the codepoint at which the text range starts
-    size_t getStart() const noexcept;
+    size_t get_start() const noexcept;
 
-#if defined(ID_TEXTRANGE_MUTABLE) && 1 == ID_TEXTRANGE_MUTABLE
+#if defined(ID_TEXT_RANGE_MUTABLE) && 1 == ID_TEXT_RANGE_MUTABLE
     /// @brief Set the codepoint at which this text range starts.
     /// @param start the codepoint at which this text range starts
-    void setStart(size_t start) noexcept;
+    void set_start(size_t start) noexcept;
 #endif
 
     /// @brief Get the length of this text range in codepoints.
     /// @return the length of this text range in codepoints
-    size_t getLength() const noexcept;
+    size_t get_length() const noexcept;
 
-#if defined(ID_TEXTRANGE_MUTABLE) && 1 == ID_TEXTRANGE_MUTABLE
+#if defined(ID_TEXT_RANGE_MUTABLE) && 1 == ID_TEXT_RANGE_MUTABLE
     /// @brief Set the length of this text range in codepoints.
     /// @param length the length of this text range in codepoints
-    void setLength(size_t length) noexcept;
+    void set_length(size_t length) noexcept;
 #endif
 
-};
+}; // class text_range
 
-} // namespace Id
+static_assert(std::is_copy_constructible<text_range>::value, "id::text_range must be copy constructible");
+static_assert(std::is_move_constructible<text_range>::value, "id::text_range must be move constructible");
+static_assert(std::is_copy_assignable<text_range>::value, "id::text_range must be copy assignable");
+static_assert(std::is_move_assignable<text_range>::value, "id::text_range must be move assignable");
+
+} // namespace id

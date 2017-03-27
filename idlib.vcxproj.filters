@@ -29,9 +29,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\idlib\TextRange.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\idlib\signal\ConnectionBase.cpp">
       <Filter>Source Files\signal</Filter>
     </ClCompile>
@@ -63,6 +60,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\idlib\prefix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\text_range.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -106,16 +106,13 @@
     <ClInclude Include="src\idlib\BitmaskTypes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\idlib\CRTP.hpp">
+    <ClInclude Include="src\idlib\crtp.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\idlib\Token.hpp">
+    <ClInclude Include="src\idlib\token.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\idlib\CompilationErrorException.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\TextRange.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\idlib\signal\Connection.hpp">
@@ -225,6 +222,12 @@
     </ClInclude>
     <ClInclude Include="src\idlib\math\one_zero.hpp">
       <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\text_range.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\is_any_of.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

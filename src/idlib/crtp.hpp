@@ -17,7 +17,7 @@
 //*
 //********************************************************************************************
 
-/// @file idlib/CRTP.hpp
+/// @file idlib/crtp.hpp
 /// @brief CRTP (Curiously Recurring Template Pattern) for misc. operators.
 /// @author Michael Heilmann
 
@@ -29,25 +29,23 @@
 
 #include "idlib/Platform.hpp"
 
-namespace Id {
-/**
- * @brief
- *  Inherit from this class to define the postfix increment and prefix increment operators.
- *  The derived class needs to define a <tt>void increment();</tt> function.
- *  @code
- *  class Foo : Incrementable<Foo>
- *  {
- *  ...
- *  protected:
- *     void increment() override { ... }
- *  ...
- *  }
- *  @endcode
- * @author
- *  Michael Heilmann
- */
+namespace id {
+
+/// @brief
+/// Inherit from this class to define the postfix increment and prefix increment operators.
+/// The derived class needs to define a <tt>void increment();</tt> function.
+/// @code
+/// class foo : increment_expr<foo>
+/// {
+/// ...
+/// protected:
+///    void increment() override { ... }
+/// ...
+/// }
+/// @endcode
 template <typename Derived>
-class IncrementExpr {
+class increment_expr
+{
 public:
     Derived& operator++()
     { 
@@ -62,13 +60,11 @@ public:
     }
 };
 
-/**
- * @brief
- *	Inherit from this class to define the postfix decrement and prefix decremen operators.
- *  The derived class needs to define a <tt>void decrement();</tt> function.
- */
+/// @brief Inherit from this class to define the postfix decrement and prefix decremen operators.
+/// The derived class needs to define a <tt>void decrement();</tt> function.
 template <typename Derived>
-class DecrementExpr {
+class decrement_expr
+{
 public:
     Derived& operator--()
     { 
@@ -83,17 +79,15 @@ public:
     }
 };
 
-/**
- * @brief
- *	Inherit from this class to define the equality and inequality operators.
- *  The derived class needs to define a <tt>bool equalTo(const Derived&) const;</tt> function.
- */
+/// @brief Inherit from this class to define the equality and inequality operators.
+/// The derived class needs to define a <tt>bool equal_to(const Derived&) const;</tt> function.
 template <typename Derived>
-class EqualToExpr {
+class equal_to_expr
+{
 public:
     bool operator==(const Derived& other) const
     {
-        return static_cast<const Derived *>(this)->equalTo(other);
+        return static_cast<const Derived *>(this)->equal_to(other);
     }
     bool operator!=(const Derived& other) const
     {
@@ -101,18 +95,16 @@ public:
     }
 };
 
-/**
- * @brief
- *  Inherit from this class to define the lower than, lower than or equal to,
- *  greater than, and greater than or equal to operators.
- *  The derived class needs to define a <tt>bool lowerThan(const Derived&) const;</tt> function.
- */
+/// @brief Inherit from this class to define the
+/// lower than, lower than or equal to, greater than, and greater than or equal to operators.
+/// The derived class needs to define a <tt>bool lower_than(const Derived&) const;</tt> function.
 template <typename Derived>
-class LowerThanExpr {
+class lower_than_expr
+{
 public:
 	bool operator<(const Derived& other) const
     {
-        return static_cast<const Derived *>(this)->lowerThan(other);
+        return static_cast<const Derived *>(this)->lower_than(other);
     }
     bool operator>(const Derived& other) const
     {
@@ -128,16 +120,14 @@ public:
     }
 };
 
-/**
- * @brief
- *  Inherit from this class to define the addition and compount addition operators.
- *  The derived class needs to define a <tt>void add(const Derived&);</tt> function.
- */
+/// @brief Inherit from this class to define the addition and compount addition assignment operators.
+/// The derived class needs to define a <tt>void add(const Derived&);</tt> function.
 template <typename Derived>
-struct PlusExpr
+class plus_expr
 {
-    Derived& operator+=(const Derived& rhs) // compound assignment (does not need to be a member,
-    {                                 // but often is, to modify the private members)
+public:
+    Derived& operator+=(const Derived& rhs) // compound addition assignment (does not need to be a member,
+    {                                       // but often is, to modify the private members)
         static_cast<Derived *>(this)->add(rhs);
         return *static_cast<Derived *>(this); // return the result by reference
     }
@@ -150,17 +140,14 @@ struct PlusExpr
     }
 };
 
-/**
- * @brief
- *  Inherit from this class to define the subtraction and compount subtraction operators.
- *  The derived class needs to define a <tt>void subtract(const Derived&);</tt> function.
- */
+/// @brief Inherit from this class to define the subtraction and compound subtraction assignment operators.
+/// The derived class needs to define a <tt>void subtract(const Derived&);</tt> function.
 template <typename Derived>
-struct MinusExpr
+class minus_expr
 {
 public:
     Derived& operator-=(const Derived& rhs) // compound assignment (does not need to be a member,
-    {                                 // but often is, to modify the private members)
+    {                                       // but often is, to modify the private members)
         static_cast<Derived *>(this)->subtract(rhs);
         return *static_cast<Derived *>(this); // return the result by reference
     }
@@ -173,34 +160,28 @@ public:
     }
 };
 
-/**
- * @brief
- *  Inherit from this class to define the unary plus operator.
- *  The derived class needs to define a <tt>Derived unaryPlus() const;</tt> function.
- */
+/// @brief Inherit from this class to define the unary plus operator.
+/// The derived class needs to define a <tt>Derived unary_plus() const;</tt> function.
 template <typename Derived>
-struct UnaryPlusExpr
+class unary_plus_expr
 {
 public:
     Derived operator+() const
     {
-        return static_cast<const Derived *>(this)->unaryPlus();
+        return static_cast<const Derived *>(this)->unary_plus();
     }
 };
 
-/**
- * @brief
- *  Inherit from this class to define the unary minus operator.
- *  The derived class needs to define a <tt>Derived unaryMinus() const;</tt> function.
- */
+/// @brief Inherit from this class to define the unary minus operator.
+/// The derived class needs to define a <tt>Derived unary_minus() const;</tt> function.
 template <typename Derived>
-struct UnaryMinusExpr
+class unary_minus_expr
 {
 public:
     Derived operator-() const
     {
-        return static_cast<const Derived *>(this)->unaryMinus();
+        return static_cast<const Derived *>(this)->unary_minus();
     }
 };
  
-} // namespace Id
+} // namespace id

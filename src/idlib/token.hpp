@@ -6,25 +6,25 @@
 
 #include "idlib/location.hpp"
 
-#define Id_Token_WithEndLocation (0)
+#define ID_TOKEN_WITH_ENDLOCATION (0)
 
-namespace Id
-{
+namespace id {
 
 /// @brief Generic token.
-template <typename KindType>
-struct Token	
+/// @tparam Kind the type of the kinds of this token type.
+template <typename Kind>
+class token	
 {
 private:
 	/// @brief The kind of this token.
-	KindType m_kind;
+	Kind m_kind;
 
 	/// @brief The start location of this token.
-	id::location m_startLocation;
+	location m_start_location;
 
-#if defined(Id_Token_WithEndLocation) && 1 == Id_Token_WithEndLocation
+#if defined(ID_TOKEN_WITH_END_LOCATION) && 1 == ID_TOKEN_WITH_END_LOCATION
     /// @brief The end location of this token.
-    id::location m_endLocation;
+    location m_end_location;
 #endif
 
 	/// @brief The lexeme of this token.
@@ -33,18 +33,18 @@ private:
 public:
 	/// @brief Construct this token with the specified values.
 	/// @param kind the kind of this token
-	/// @param startLocation the start location of this token
-    /// @param endLocation the end location of this token
+	/// @param start_location the start location of this token
+    /// @param end_location the end location of this token
 	/// @param lexeme the lexeme of this token. Default is the empty string.
-	Token(KindType kind, const id::location& startLocation,
-      #if defined(Id_Token_WithEndLocation) && 1 == Id_Token_WithEndLocation  
-          const Location& endLocation,
+	token(Kind kind, const id::location& start_location,
+      #if defined(ID_TOKEN_WITH_END_LOCATION) && 1 == ID_TOKEN_WITH_END_LOCATION  
+          const Location& end_location,
       #endif
           const std::string& lexeme = std::string())
 		: m_kind(kind),
-          m_startLocation(startLocation),
-    #if defined(Id_Token_WithEndLocation) && 1 == Id_Token_WithEndLocation  
-          m_endLocation(endLocation),
+          m_start_location(start_location),
+    #if defined(ID_TOKEN_WITH_END_LOCATION) && 1 == ID_TOKEN_WITH_END_LOCATION  
+          m_end_location(end_location),
     #endif
           m_lexeme(lexeme)
 	{
@@ -53,24 +53,24 @@ public:
 	
 	/// @brief Copy-Construct this token from another token.
 	/// @param other the other token
-	Token(const Token& other)
-		: m_kind(other.getKind()),
-          m_startLocation(other.getStartLocation()),
-    #if defined(Id_Token_WithEndLocation) && 1 == Id_Token_WithEndLocation
-          m_endLocation(other.getEndLocation()),
+	token(const token& other)
+		: m_kind(other.get_kind()),
+          m_start_location(other.get_start_location()),
+    #if defined(ID_TOKEN_WITH_END_LOCATION) && 1 == ID_TOKEN_WITH_END_LOCATION
+          m_end_location(other.get_end_location()),
     #endif
-          m_lexeme(other.getLexeme())
+          m_lexeme(other.get_lexeme())
 	{
 		/* Intentionally empty. */
 	}
 
     /// @brief Move-construct this token from another token.
     /// @param other the other token
-    Token(Token&& other)
-        : m_kind(std::move(other.getKind())),
-          m_startLocation(std::move(other.m_startLocation)),
-    #if defined(Id_Token_WithEndLocation) && 1 == Id_Token_WithEndLocation
-          m_endLocation(std::move(other.m_endLocation)),
+    token(token&& other)
+        : m_kind(std::move(other.get_kind())),
+          m_start_location(std::move(other.m_start_location)),
+    #if defined(ID_TOKEN_WITH_END_LOCATION) && 1 == ID_TOKEN_WITH_END_LOCATION
+          m_end_location(std::move(other.m_end_location)),
     #endif
           m_lexeme(std::move(other.m_lexeme))
     {}
@@ -78,18 +78,18 @@ public:
     /// @brief Assign this token from another token.
     /// @param other the other token
     /// @return this token
-    Token& operator=(Token other)
+    token& operator=(token other)
     {
         swap(*this, other);
         return *this;
     }
 
-    friend void swap(Token& x, Token& y)
+    friend void swap(token& x, token& y)
     {
         std::swap(x.m_kind, y.m_kind);
-        std::swap(x.m_startLocation, y.m_startLocation);
-    #if defined(Id_Token_WithEndLocation) && 1 == Id_Token_WithEndLocation
-        std::swap(x.m_endLocation, y.m_endLocatation);
+        std::swap(x.m_start_location, y.m_start_location);
+    #if defined(ID_TOKEN_WITH_END_LOCATION) && 1 == ID_TOKEN_WITH_END_LOCATION
+        std::swap(x.m_end_location, y.m_end_locatation);
     #endif
         std::swap(x.m_lexeme, y.m_lexeme);
     }
@@ -97,58 +97,58 @@ public:
 public:
 	/// @brief Get the kind of this token.
 	/// @return the kind of this token
-	const KindType& getKind() const
+	const Kind& get_kind() const
 	{
 		return m_kind;
 	}
 	
 	/// @brief Set the kind of this token.
 	/// @param kind the kind of this token
-	void setKind(const KindType& kind)
+	void set_kind(const Kind& kind)
 	{
 		m_kind = kind;
 	}
 
-#if defined(Id_Token_WithEndLocation) && 1 == Id_Token_WithEndLocation
+#if defined(ID_TOKEN_WITH_END_LOCATION) && 1 == ID_TOKEN_WITH_END_LOCATION
     /// @brief @brief Get the end location of this token.
     /// @return the end location of this token
-    /// @see setEndLocation
+    /// @see set_end_location
     /// @remark The end location is the location at which the lexeme of this token ends at.
-    const Location& getEndLocation() const
+    const location& get_end_location() const
     {
         return m_endLocation;
     }
 
     /// @brief Set the end location of this token.
     /// @param endLocation the end location of this token
-    /// @see getEndlocation
-    void setEndLocation(const Location& endLocation)
+    /// @see get_end_location
+    void set_end_location(const location& end_location)
     {
-        m_endLocation = endLocation;
+        m_end_location = end_location;
     }
 #endif
 
 	/// @brief @brief Get the start location of this token.
 	/// @return the start location of this token
-    /// @see setStartLocation
+    /// @see set_start_location
     /// @remark The start location is the location at which the lexeme of this token starts at.
-	const id::location& getStartLocation() const
+	const location& get_start_location() const
 	{
-		return m_startLocation;
+		return m_start_location;
 	}
 	
 	/// @brief Set the start location of this token.
-	/// @param startLocation the start location of this token
-    /// @see getStartLocation
-	void setStartLocation(const id::location& startLocation)
+	/// @param start_location the start location of this token
+    /// @see get_start_Location
+	void set_start_location(const location& start_location)
 	{
-		m_startLocation = startLocation;
+		m_start_location = start_location;
 	}
 
 	/// @brief Get the lexeme of this token.
 	/// @return the lexeme of this token
-    /// @see setLexeme
-	const std::string& getLexeme() const
+    /// @see set_lexeme
+	const std::string& get_lexeme() const
 	{
 		return m_lexeme;
 	}
@@ -156,7 +156,7 @@ public:
 	/// @brief Set the lexeme of this token.
 	/// @param lexeme the lexeme of this token
     /// @see getLexeme
-	void setLexeme(const std::string& lexeme)
+	void set_lexeme(const std::string& lexeme)
 	{
 		m_lexeme = lexeme;
 	}
@@ -165,15 +165,15 @@ public:
     /// @brief Get if this token is of the given kind.
     /// @param kind the kind
     /// @return @a true if this token is of the given kind @a kind, @a false otherwise
-    bool is(const KindType& kind) const
+    bool is(const Kind& kind) const
 	{
-		return kind == getKind();
+		return kind == get_kind();
 	}
 
     /// @brief Get if this token is of the given kinds.
     /// @param kind1, kind2 the kinds
     /// @return @a true if this token is of the kinds @a kind1 or @a kind2, @a false otherwise
-    bool isOneOf(const KindType& kind1, const KindType& kind2) const
+    bool is_one_of(const Kind& kind1, const Kind& kind2) const
 	{
 		return is(kind1) || is(kind2);
 	}
@@ -182,11 +182,11 @@ public:
     /// @param kind1, kind2, kinds the types
     /// @return @a true if this token is of the given kinds @a kind1, @a kind2, or @a kinds, @a false otherwise
     template <typename ... Kinds>
-    bool isOneOf(const KindType& kind1, const KindType& kind2, Kinds ... kinds) const
+    bool is_one_of(const Kind& kind1, const Kind& kind2, Kinds ... kinds) const
     {
-        return is(kind1) || isOneOf(kind2, kinds ...);
+        return is(kind1) || is_one_of(kind2, kinds ...);
     }
 
-}; // struct Token
+}; // class token
 
-} // namespace Id
+} // namespace id

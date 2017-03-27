@@ -41,15 +41,15 @@
 #include "idlib/BitmaskTypes.hpp"
 
 // CRTP.
-#include "idlib/CRTP.hpp"
+#include "idlib/crtp.hpp"
 
 // Text utilities.
-#include "idlib/TextRange.hpp"
+#include "idlib/text_range.hpp"
 
 // DSL utilities.
 #include "idlib/location.hpp"
 #include "idlib/qualified_name.hpp"
-#include "idlib/Token.hpp"
+#include "idlib/token.hpp"
 
 // DSL exceptions.
 #include "idlib/CompilationErrorException.hpp"

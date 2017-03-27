@@ -254,10 +254,11 @@
     <ClCompile Include="src\idlib\signal\ConnectionBase.cpp" />
     <ClCompile Include="src\idlib\signal\NodeBase.cpp" />
     <ClCompile Include="src\idlib\signal\SignalBase.cpp" />
-    <ClCompile Include="src\idlib\TextRange.cpp" />
+    <ClCompile Include="src\idlib\text_range.cpp" />
     <ClCompile Include="src\idlib\idlib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\idlib\is_any_of.hpp" />
     <ClInclude Include="src\idlib\math\even_odd.hpp" />
     <ClInclude Include="src\idlib\math\one_zero.hpp" />
     <ClInclude Include="src\idlib\prefix.hpp" />
@@ -293,10 +294,10 @@
     <ClInclude Include="src\idlib\signal\Signal.hpp" />
     <ClInclude Include="src\idlib\signal\SignalBase.hpp" />
     <ClInclude Include="src\idlib\signal\Include.hpp" />
-    <ClInclude Include="src\idlib\TextRange.hpp" />
+    <ClInclude Include="src\idlib\text_range.hpp" />
     <ClInclude Include="src\idlib\CompilationErrorException.hpp" />
-    <ClInclude Include="src\idlib\Token.hpp" />
-    <ClInclude Include="src\idlib\CRTP.hpp" />
+    <ClInclude Include="src\idlib\token.hpp" />
+    <ClInclude Include="src\idlib\crtp.hpp" />
     <ClInclude Include="src\idlib\BitmaskTypes.hpp" />
     <ClInclude Include="src\idlib\DebugAssert.hpp" />
     <ClInclude Include="src\idlib\InvalidArgumentException.hpp" />

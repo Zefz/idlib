@@ -17,7 +17,7 @@
 //*
 //********************************************************************************************
 
-/// @file idlib/Location.hpp
+/// @file idlib/location.hpp
 /// @brief Definition of a location in a text.
 /// @author Michael Heilmann
 
@@ -33,7 +33,7 @@
 namespace id {
 
 /// @brief A location is identified by a file name and line number within that file.
-class location : public Id::EqualToExpr<location>
+class location : public id::equal_to_expr<location>
 {
 private:
     /// @brief The file name of the file.
@@ -70,7 +70,7 @@ public:
     size_t line_number() const;
 
     // CRTP
-    bool equalTo(const location& other) const;
+    bool equal_to(const location& other) const;
 
     /// @brief Swap two locations.
     /// @param x, y the locations

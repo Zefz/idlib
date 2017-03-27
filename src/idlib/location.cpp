@@ -45,7 +45,7 @@ location& location::operator=(location other)
     return *this;
 }
 
-bool location::equalTo(const location& other) const
+bool location::equal_to(const location& other) const
 {
     return m_file_name == other.m_file_name
         && m_line_number == other.m_line_number;

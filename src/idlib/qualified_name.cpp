@@ -81,7 +81,7 @@ const std::string& qualified_name::string() const
     return m_string;
 }
 
-bool qualified_name::equalTo(const qualified_name& other) const
+bool qualified_name::equal_to(const qualified_name& other) const
 {
     return m_string == other.m_string;
 }

@@ -36,7 +36,7 @@ namespace Id {
 template <typename ColourSpaceTypeArg>
 struct Colour<ColourSpaceTypeArg, std::enable_if_t<Internal::IsLA<ColourSpaceTypeArg>::value>> :
     public ColourComponents<ColourSpaceTypeArg>,
-    public EqualToExpr<Colour<ColourSpaceTypeArg>>
+    public id::equal_to_expr<Colour<ColourSpaceTypeArg>>
 {
 public:
     using ColourSpaceType = ColourSpaceTypeArg;
@@ -82,7 +82,7 @@ public:
 
 public:
     // CRTP
-    bool equalTo(const MyType& other) const
+    bool equal_to(const MyType& other) const
     {
         return this->getLuminance() == other.getLuminance()
             && this->getAlpha() == other.getAlpha();
