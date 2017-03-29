@@ -28,7 +28,7 @@
 #endif
 
 #include "idlib/color/Colour.hpp"
-#include "idlib/CRTP.hpp"
+#include "idlib/crtp.hpp"
 
 namespace Id {
 

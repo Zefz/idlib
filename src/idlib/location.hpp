@@ -27,7 +27,7 @@
 #error(do not include directly, include `idlib/idlib.hpp` instead)
 #endif
 
-#include "idlib/CRTP.hpp"
+#include "idlib/crtp.hpp"
 #include <type_traits>
 
 namespace id {
