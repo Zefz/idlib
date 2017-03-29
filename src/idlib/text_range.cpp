@@ -27,7 +27,7 @@
 
 namespace id {
 
-text_range::text_range(size_t start, size_t length) noexcept :
+text_range::text_range(std::size_t start, std::size_t length) noexcept :
 	start(start), length(length)
 {}
 
@@ -47,25 +47,25 @@ bool text_range::is_empty() const noexcept
 	return 0 == get_length();	
 }
 
-size_t text_range::get_start() const noexcept
+std::size_t text_range::get_start() const noexcept
 {
 	return start;
 }
 
 #if defined(ID_TEXT_RANGE_MUTABLE) && 1 == ID_TEXT_RANGE_MUTABLE
-void text_range::set_start(size_t start) noexcept
+void text_range::set_start(std::size_t start) noexcept
 {
 	this->start = start;
 }
 #endif
 
-size_t text_range::get_length() const noexcept
+std::size_t text_range::get_length() const noexcept
 {
 	return length;
 }
 
 #if defined(ID_TEXT_RANGE_MUTABLE) && 1 == ID_TEXT_RANGE_MUTABLE
-void text_range::set_length(size_t length) noexcept
+void text_range::set_length(std::size_t length) noexcept
 {
 	this->length = length;
 }

@@ -27,6 +27,7 @@
 #error(do not include directly, include `idlib/idlib.hpp` instead)
 #endif
 
+#include <cstddef>
 #include <type_traits>
 
 /// @brief If defined to @a 1, text ranges are mutable i.e. provide setters.
@@ -40,16 +41,16 @@ class text_range
 {
 private:
     /// @brief The codepoint at which the text range starts.
-    size_t start;
+    std::size_t start;
 
     /// @brief The length of the text range in codepoints.
-    size_t length;
+    std::size_t length;
 
 public:
     /// @brief Construct this text range with the specified values.
     /// @param start the codepoint at which this text range starts at
     /// @param length the length of this text range in codepoints
-    text_range(size_t start, size_t length) noexcept;
+    text_range(std::size_t start, std::size_t length) noexcept;
 
 public:
     /// @brief Construct this text range with the values of another text range.
@@ -69,22 +70,22 @@ public:
 public:
     /// @brief Get the codepoint at which the text range starts.
     /// @return the codepoint at which the text range starts
-    size_t get_start() const noexcept;
+    std::size_t get_start() const noexcept;
 
 #if defined(ID_TEXT_RANGE_MUTABLE) && 1 == ID_TEXT_RANGE_MUTABLE
     /// @brief Set the codepoint at which this text range starts.
     /// @param start the codepoint at which this text range starts
-    void set_start(size_t start) noexcept;
+    void set_start(std::size_t start) noexcept;
 #endif
 
     /// @brief Get the length of this text range in codepoints.
     /// @return the length of this text range in codepoints
-    size_t get_length() const noexcept;
+    std::size_t get_length() const noexcept;
 
 #if defined(ID_TEXT_RANGE_MUTABLE) && 1 == ID_TEXT_RANGE_MUTABLE
     /// @brief Set the length of this text range in codepoints.
     /// @param length the length of this text range in codepoints
-    void set_length(size_t length) noexcept;
+    void set_length(std::size_t length) noexcept;
 #endif
 
 }; // class text_range
