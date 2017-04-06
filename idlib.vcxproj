@@ -258,6 +258,7 @@
     <ClCompile Include="src\idlib\idlib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\idlib\color\a.hpp" />
     <ClInclude Include="src\idlib\is_any_of.hpp" />
     <ClInclude Include="src\idlib\math\even_odd.hpp" />
     <ClInclude Include="src\idlib\math\one_zero.hpp" />
@@ -277,14 +278,13 @@
     <ClInclude Include="src\idlib\parsing_expressions\sym.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\sym_range.hpp" />
     <ClInclude Include="src\idlib\Math\Dimensionality.hpp" />
-    <ClInclude Include="src\idlib\color\Utilities.hpp" />
-    <ClInclude Include="src\idlib\color\Colour.hpp" />
-    <ClInclude Include="src\idlib\color\ColourComponents.hpp" />
-    <ClInclude Include="src\idlib\color\ColourL.hpp" />
-    <ClInclude Include="src\idlib\color\ColourLA.hpp" />
-    <ClInclude Include="src\idlib\color\ColourRGB.hpp" />
-    <ClInclude Include="src\idlib\color\ColourRGBA.hpp" />
-    <ClInclude Include="src\idlib\color\ColourSpace.hpp" />
+    <ClInclude Include="src\idlib\color\utilities.hpp" />
+    <ClInclude Include="src\idlib\color\color.hpp" />
+    <ClInclude Include="src\idlib\color\l.hpp" />
+    <ClInclude Include="src\idlib\color\la.hpp" />
+    <ClInclude Include="src\idlib\color\rgb.hpp" />
+    <ClInclude Include="src\idlib\color\rgba.hpp" />
+    <ClInclude Include="src\idlib\color\space.hpp" />
     <ClInclude Include="src\idlib\color\Include.hpp" />
     <ClInclude Include="src\idlib\signal\Connection.hpp" />
     <ClInclude Include="src\idlib\signal\ConnectionBase.hpp" />

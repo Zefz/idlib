@@ -266,6 +266,70 @@ struct RGBAb
     static constexpr ComponentType max() noexcept { return 255; }
 };
 
+/// @brief The type of an A colour space with floating-point components each within the range from 0 (inclusive) to 1 (inclusive).
+/// A component value of 0 indicates minimal intensity of the component and 1 indicates maximal intensity of the component.
+struct Af
+{
+    /// @brief The component type.
+    using ComponentType = float;
+
+    /// @brief Get if the colour space has RGB components.
+    /// @return @a true if the colour space has RGB components, @a false otherwise
+    static constexpr bool hasRgb() noexcept { return false; }
+
+    /// @brief Get if the colour space has an A component.
+    /// @return @a true if the colour space has an A component, @a false otherwise
+    static constexpr bool hasA() noexcept { return true; }
+
+    /// @brief Get if the colour space has a L component.
+    /// @return @a true if the colour space has an L component, @a false otherwise
+    static constexpr bool hasL() noexcept { return false; }
+
+    /// @brief Get the number of components of a colour in the colour space.
+    /// @return the number of components of a colour in the colour space
+    static constexpr size_t count() noexcept { return 1; }
+
+    /// @brief Get the minimum component value.
+    /// @return the minimum component value
+    static constexpr ComponentType min() noexcept { return 0.0f; }
+
+    /// @brief Get the maximum component value.
+    /// @return the maximum component value
+    static constexpr ComponentType max() noexcept { return 1.0f; }
+};
+
+/// @brief The type of an A colour space with unsigned integer components each within the range from 0 (inclusive) to 255 (inclusive).
+/// A component value of 0 indicates minimal intensity of the component and 255 indicates maximal intensity of the component.
+struct Ab
+{
+    /// @brief The component type.
+    using ComponentType = uint8_t;
+
+    /// @brief Get if the colour space has RGB components.
+    /// @return @a true if the colour space has RGB components, @a false otherwise
+    static constexpr bool hasRgb() noexcept { return false; }
+
+    /// @brief Get if the colour space has an A component.
+    /// @return @a true if the colour space has an A component, @a false otherwise
+    static constexpr bool hasA() noexcept { return true; }
+
+    /// @brief Get if the colour space has a L component.
+    /// @return @a true if the colour space has an L component, @a false otherwise
+    static constexpr bool hasL() noexcept { return false; }
+
+    /// @brief Get the number of components of a colour in the colour space.
+    /// @return the number of components of a colour in the colour space
+    static constexpr size_t count() noexcept { return 1; }
+
+    /// @brief Get the minimum component value.
+    /// @return the minimum component value
+    static constexpr ComponentType min() noexcept { return 0; }
+
+    /// @brief Get the maximum component value.
+    /// @return the maximum component value
+    static constexpr ComponentType max() noexcept { return 255; }
+};
+
 /**
  * @brief Get the type of the opaque color space of a specified color space.
  * @remark The opaque color space consists of all opaque colors of the specified color space.
@@ -296,36 +360,44 @@ using Opaque = typename _Opaque<ColourSpaceTypeArg>::Type;
 
 namespace Internal {
 
-template <typename _ColourSpaceType>
+template <typename ColorSpace>
 struct IsRgb
 {
-    static constexpr bool value = _ColourSpaceType::hasRgb()
-        && !_ColourSpaceType::hasL()
-        && !_ColourSpaceType::hasA();
+    static constexpr bool value = ColorSpace::hasRgb()
+        && !ColorSpace::hasL()
+        && !ColorSpace::hasA();
 };
 
-template <typename _ColourSpaceType>
+template <typename ColorSpace>
 struct IsRgba
 {
-    static constexpr bool value = _ColourSpaceType::hasRgb()
-        && !_ColourSpaceType::hasL()
-        && _ColourSpaceType::hasA();
+    static constexpr bool value = ColorSpace::hasRgb()
+        && !ColorSpace::hasL()
+        && ColorSpace::hasA();
 };
 
-template <typename _ColourSpaceType>
+template <typename ColorSpace>
 struct IsL
 {
-    static constexpr bool value = !_ColourSpaceType::hasRgb()
-        && _ColourSpaceType::hasL()
-        && !_ColourSpaceType::hasA();
+    static constexpr bool value = !ColorSpace::hasRgb()
+        && ColorSpace::hasL()
+        && !ColorSpace::hasA();
 };
 
-template <typename _ColourSpaceType>
+template <typename ColorSpace>
 struct IsLA
 {
-    static constexpr bool value = !_ColourSpaceType::hasRgb()
-        && _ColourSpaceType::hasL()
-        && _ColourSpaceType::hasA();
+    static constexpr bool value = !ColorSpace::hasRgb()
+        && ColorSpace::hasL()
+        && ColorSpace::hasA();
+};
+
+template <typename ColorSpace>
+struct IsA
+{
+    static constexpr bool value = !ColorSpace::hasRgb()
+        && !ColorSpace::hasL()
+        && ColorSpace::hasA();
 };
 
 

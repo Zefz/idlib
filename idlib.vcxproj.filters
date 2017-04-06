@@ -142,32 +142,8 @@
     <ClInclude Include="src\idlib\color\Include.hpp">
       <Filter>Header Files\color</Filter>
     </ClInclude>
-    <ClInclude Include="src\idlib\color\Utilities.hpp">
-      <Filter>Header Files\color</Filter>
-    </ClInclude>
     <ClInclude Include="src\idlib\math\Dimensionality.hpp">
       <Filter>Header Files\math</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\color\Colour.hpp">
-      <Filter>Header Files\color</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\color\ColourComponents.hpp">
-      <Filter>Header Files\color</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\color\ColourLA.hpp">
-      <Filter>Header Files\color</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\color\ColourL.hpp">
-      <Filter>Header Files\color</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\color\ColourRGB.hpp">
-      <Filter>Header Files\color</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\color\ColourRGBA.hpp">
-      <Filter>Header Files\color</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\color\ColourSpace.hpp">
-      <Filter>Header Files\color</Filter>
     </ClInclude>
     <ClInclude Include="src\idlib\idlib.hpp">
       <Filter>Header Files</Filter>
@@ -228,6 +204,30 @@
     </ClInclude>
     <ClInclude Include="src\idlib\is_any_of.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color\l.hpp">
+      <Filter>Header Files\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color\la.hpp">
+      <Filter>Header Files\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color\rgb.hpp">
+      <Filter>Header Files\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color\rgba.hpp">
+      <Filter>Header Files\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color\space.hpp">
+      <Filter>Header Files\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color\color.hpp">
+      <Filter>Header Files\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color\utilities.hpp">
+      <Filter>Header Files\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color\a.hpp">
+      <Filter>Header Files\color</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -27,7 +27,21 @@
 #error(do not include directly, include `idlib/idlib.hpp` instead)
 #endif
 
-#include "idlib/color/ColourComponents.hpp"
+#include "idlib/color/space.hpp"
+#include "idlib/color/utilities.hpp"
+
+/// If defined and @a 1, then colors allow for setting the component values.
+#define ID_COLOR_SETTERS (1)
+
+/// If defined and @a 1 and #ID_COLOR_SETTERS is defined and @a 1,
+/// then short setters are provided.
+/// For example, the setter setRed has the short setter setR.
+#define ID_COLOR_SHORT_SETTERS (1)
+
+/// If defined and @a 1 and #ID_COLOR_GETTERS is defined and @a 1,
+/// then short getters are provided.
+/// For example, the getter getRed has the short getter getR.
+#define ID_COLOR_SHORT_GETTERS (1)
 
 namespace Id {
 
