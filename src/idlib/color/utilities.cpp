@@ -1,5 +1,5 @@
 #define IDLIB_PRIVATE 1
-#include "idlib/color/Utilities.hpp"
+#include "idlib/color/utilities.hpp"
 #undef IDLIB_PRIVATE
 
 namespace Id {

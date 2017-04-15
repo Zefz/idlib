@@ -38,7 +38,7 @@
     <ClCompile Include="src\idlib\signal\SignalBase.cpp">
       <Filter>Source Files\signal</Filter>
     </ClCompile>
-    <ClCompile Include="src\idlib\Color\Utilities.cpp">
+    <ClCompile Include="src\idlib\color\utilities.cpp">
       <Filter>Source Files\color</Filter>
     </ClCompile>
     <ClCompile Include="src\idlib\idlib.cpp">
@@ -142,9 +142,6 @@
     <ClInclude Include="src\idlib\color\Include.hpp">
       <Filter>Header Files\color</Filter>
     </ClInclude>
-    <ClInclude Include="src\idlib\math\Dimensionality.hpp">
-      <Filter>Header Files\math</Filter>
-    </ClInclude>
     <ClInclude Include="src\idlib\idlib.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -228,6 +225,9 @@
     </ClInclude>
     <ClInclude Include="src\idlib\color\a.hpp">
       <Filter>Header Files\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\math\Dimensionality.hpp">
+      <Filter>Header Files\math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
