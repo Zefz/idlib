@@ -29,8 +29,10 @@
 
 namespace id {
 
-/// @brief Functor which defines an operator @code{constexpr bool operator()(T x) const noexcept}
-/// which determines wether the specified value @a x is even.
+/// @brief Functor which determines wether a value is even.
+/// It defines an operator
+/// @code{constexpr bool operator()(T x) const noexcept}
+/// which returns @a true if the value @a x is even and returns @a false if the value is odd.
 /// @tparam T the type of the value
 /// @tparam E SFINAE support
 /// @remark Feel free to provide your own implementation.

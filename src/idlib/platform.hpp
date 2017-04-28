@@ -17,13 +17,9 @@
 //*
 //********************************************************************************************
 
-
-/**
- * @ingroup idlib
- * @file idlib/platform.hpp
- * @brief Functionality protecting the programmer from platform and compiler idiosyncrasies.
- * @author Michael Heilmann
- */
+/// @file idlib/platform.hpp
+/// @brief Functionality protecting the programmer from platform and compiler idiosyncrasies.
+/// @author Michael Heilmann
 
 #pragma once
 
@@ -33,26 +29,16 @@
 
 #include "idlib/target.hpp"
 
-/**
-* @ingroup idlib
-* @brief
-*  Format attributes for printf-style functions for GCC/Clang.
-* @see
-*  https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#Common-Function-Attributes
-*/
+/// @brief Format attributes for printf-style functions for GCC/Clang.
+/// @see https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#Common-Function-Attributes
 #if defined(__GNUC__)
     #define GCC_PRINTF_FUNC(fmtargnum) __attribute__ (( format( __printf__, fmtargnum, fmtargnum+1 ) ))
 #else
     #define GCC_PRINTF_FUNC(fmtargnum)
 #endif
 
-/**
-* @ingroup idlib
-* @brief
-*  Format attributes for scanf-style functions for GCC/Clang.
-* @see
-*  https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#Common-Function-Attributes
-*/
+/// @brief Format attributes for scanf-style functions for GCC/Clang.
+/// @see https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#Common-Function-Attributes
 #if defined(__GNUC__)
     #define GCC_SCANF_FUNC(fmtargnum) __attribute__ (( format( __scanf__, fmtargnum, fmtargnum+1 ) ))
 #else
@@ -185,38 +171,24 @@
 #include <future>
 #include <queue>
 
-/**
-* @ingroup idlib
-* @brief
-*  printf/scanf-style format specifier for size_t.
-* @remark
-*  This is necessary because of Redmon Retards' (aka Microsoft's) Visual C++.
-*/
+/// @brief printf/scanf-style format specifier for size_t.
+/// @remark This is necessary because of Redmon Retards' (aka Microsoft's) Visual C++.
 #if defined(_MSC_VER) || defined(ID_MINGW)
     #define PRIuZ "Iu"
 #else
     #define PRIuZ "zu"
 #endif
 
-/**
- * @ingroup idlib
- * @brief
- *  printf/scanf-style format specifier for ssize_t.
- * @remark
- *  This is necessary because of Redmon Retards' (aka Microsoft's) Visual C++.
- */
+/// @brief printf/scanf-style format specifier for ssize_t.
+/// @remark This is necessary because of Redmon Retards' (aka Microsoft's) Visual C++.
 #if defined(_MSC_VER) || defined(ID_MINGW)
     #define PRIdZ "Id"
 #else
     #define PRIdZ "zd"
 #endif
 
-/**
- * @brief
- *  A macro alias for Linux-flavored functions for MSVC.
- * @remark
- *  This is necessary because of Redmon Retards' (aka Microsoft) Visual C++ / Windows.
- */
+/// @brief A macro alias for Linux-flavored functions for MSVC.
+/// @remark This is necessary because of Redmon Retards' (aka Microsoft) Visual C++ / Windows.
 #if defined(_MSC_VER)
 #define stricmp _stricmp
 #define strlwr _strlwr

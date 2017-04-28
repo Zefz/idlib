@@ -31,7 +31,7 @@
 
 namespace Id {
 
-/// @brief The base class of all Id exceptions.
+/// @brief The base class of all id exceptions.
 class Exception
 {
 private:
@@ -68,7 +68,7 @@ protected:
         return *this;
     }
 
-    /// @brief Destruct this idlib exception.
+    /// @brief Destruct this exception.
     /// @remark Intentionally protected.
     virtual ~Exception()
     {}
