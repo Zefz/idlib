@@ -33,7 +33,7 @@
 namespace id {
 
 /// @brief A location is identified by a file name and line number within that file.
-class location : public id::equal_to_expr<location>
+class location final
 {
 private:
     /// @brief The file name of the file.
@@ -54,38 +54,52 @@ public:
 
     /// @brief Move-construct this location from another location.
     /// @param other the other location
-    location(location&& other);
+    location(location&& other) noexcept(std::is_nothrow_move_constructible_v<std::string>);
 
-    /// @brief Assign this location from another location.
+    /// @brief Copy assign this location from another location.
     /// @param other the other location
     /// @return this location
-    location& operator=(location other);
+    location& operator=(const location& other);
 
+    /// @brief Move assign this location from another location.
+    /// @param other the other location
+    /// @return this location
+    location& operator=(location&& other) noexcept(std::is_nothrow_move_assignable_v<std::string>);
+
+    /// @brief Compare this location to another location.
+    /// @param other the other location
+    /// @return @a true if this location is equal to the other location, @a false otherwise
+    bool operator==(const location& other) const;
+
+    /// @brief Compare this location to another location.
+    /// @param other the other location
+    /// @return @a true if this location is not equal to the other location, @a false otherwise
+    bool operator!=(const location& other) const;
+    
     /// @brief Get the file name of the file of this location.
     /// @return the file name of the file
-    const std::string& file_name() const;
+    const std::string& file_name() const noexcept;
 
     /// @brief Get the line number of a line in the file.
     /// @return the line number of a line in the file
-    size_t line_number() const;
-
-    // CRTP
-    bool equal_to(const location& other) const;
-
-    /// @brief Swap two locations.
-    /// @param x, y the locations
-    friend void swap(location& x, location& y)
-    {
-        using std::swap;
-        swap(x.m_file_name, y.m_file_name);
-        swap(x.m_line_number, y.m_line_number);
-    }
+    size_t line_number() const noexcept;
 
 }; // class location
 
-static_assert(std::is_copy_constructible<location>::value, "id::location must be copy constructible");
-static_assert(std::is_move_constructible<location>::value, "id::location must be move constructible");
-static_assert(std::is_copy_assignable<location>::value, "id::location must be copy assignable");
-static_assert(std::is_move_assignable<location>::value, "id::location must be move assignable");
+static_assert(std::is_copy_constructible_v<location>, "id::location must be copy constructible");
+
+static_assert(std::is_move_constructible_v<location>, "id::location must be move constructible");
+static_assert(std::is_nothrow_move_constructible_v<std::string> == std::is_nothrow_move_constructible_v<location>,
+              "id::location is nothrow move constructible iff std::string is nothrow move constructible");
+
+static_assert(std::is_copy_assignable_v<location>, "id::location must be copy assignable");
+
+static_assert(std::is_move_assignable_v<location>, "id::location must be move assignable");
+static_assert(std::is_nothrow_move_assignable_v<std::string> == std::is_nothrow_move_assignable_v<location>,
+              "id::location is nothrow move assignable iff std::string is nothrow move assignable");
+
+static_assert(std::is_swappable_v<location>, "id::location must be swappable");
+static_assert(std::is_nothrow_swappable_v<std::string> == std::is_nothrow_swappable_v<location>,
+              "id::location is nothrow swappable iff std::string is nothrow swappable");
 
 } // namespace id

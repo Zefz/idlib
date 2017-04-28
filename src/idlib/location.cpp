@@ -35,28 +35,41 @@ location::location(const location& other)
     : m_file_name(other.m_file_name), m_line_number(other.m_line_number)
 {}
 
-location::location(location&& other)
+location::location(location&& other) noexcept(std::is_nothrow_move_constructible_v<std::string>)
     : m_file_name(std::move(other.m_file_name)), m_line_number(std::move(other.m_line_number))
 {}
 
-location& location::operator=(location other)
+location& location::operator=(const location& other)
 {
-    swap(*this, other);
+    m_file_name = other.m_file_name;
+    m_line_number = other.m_line_number;
     return *this;
 }
 
-bool location::equal_to(const location& other) const
+location& location::operator=(location&& other) noexcept(std::is_nothrow_move_assignable_v<std::string>)
+{
+    m_file_name = std::move(other.m_file_name);
+    m_line_number = std::move(other.m_line_number);
+    return *this;
+}
+
+bool location::operator==(const location& other) const
 {
     return m_file_name == other.m_file_name
         && m_line_number == other.m_line_number;
 }
 
-const std::string& location::file_name() const
+bool location::operator!=(const location&other) const
+{
+    return !((*this) == other);
+}
+
+const std::string& location::file_name() const noexcept
 {
     return m_file_name;
 }
 
-size_t location::line_number() const
+size_t location::line_number() const noexcept
 {
     return m_line_number;
 }
