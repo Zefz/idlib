@@ -69,5 +69,8 @@
 
 // Math.
 #include "idlib/math/dimensionality.hpp"
+#include "idlib/math/interpolation_method.hpp"
+#include "idlib/math/interpolate.hpp"
+#include "idlib/math/mu.hpp"
 
 #undef IDLIB_PRIVATE

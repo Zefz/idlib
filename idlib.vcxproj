@@ -270,11 +270,15 @@
     <ClCompile Include="src\idlib\idlib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\idlib\math\interpolate.hpp" />
+    <ClInclude Include="src\idlib\math\interpolate_floating_point.hpp" />
     <ClInclude Include="src\idlib\color\include.hpp" />
+    <ClInclude Include="src\idlib\math\mu.hpp" />
     <ClInclude Include="src\idlib\target.hpp" />
     <ClInclude Include="src\idlib\exception.hpp" />
     <ClInclude Include="src\idlib\math\dimensionality.hpp" />
     <ClInclude Include="src\idlib\platform.hpp" />
+    <ClInclude Include="src\idlib\math\interpolation_method.hpp" />
     <ClInclude Include="src\idlib\color\a.hpp" />
     <ClInclude Include="src\idlib\is_any_of.hpp" />
     <ClInclude Include="src\idlib\math\even_odd.hpp" />

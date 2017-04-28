@@ -214,6 +214,7 @@
     <ClInclude Include="src\idlib\color\a.hpp">
       <Filter>Header Files\color</Filter>
     </ClInclude>
+    <ClInclude Include="src\idlib\math\interpolation_method.hpp">
       <Filter>Header Files\math</Filter>
     </ClInclude>
     <ClInclude Include="src\idlib\math\dimensionality.hpp">
@@ -228,8 +229,17 @@
     <ClInclude Include="src\idlib\target.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\idlib\math\mu.hpp">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
     <ClInclude Include="src\idlib\color\include.hpp">
       <Filter>Header Files\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\math\interpolate.hpp">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\math\interpolate_floating_point.hpp">
+      <Filter>Header Files\math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
