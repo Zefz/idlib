@@ -24,47 +24,47 @@
 #pragma once
 
 #if !defined(IDLIB_PRIVATE) || IDLIB_PRIVATE != 1
-#error(do not include directly, include `idlib/Idlib.hpp` instead)
+#error(do not include directly, include `idlib/idlib.hpp` instead)
 #endif
 
 #include "idlib/color/color.hpp"
 #include "idlib/crtp.hpp"
 
-namespace Id {
+namespace id {
 
 /// @brief A color in LA color space.
-template <typename ColourSpaceTypeArg>
-struct Colour<ColourSpaceTypeArg, std::enable_if_t<Internal::IsA<ColourSpaceTypeArg>::value>> :
-    public id::equal_to_expr<Colour<ColourSpaceTypeArg>>
+template <typename ColorSpace>
+struct color<ColorSpace, std::enable_if_t<internal::IsA<ColorSpace>::value>> :
+    public equal_to_expr<color<ColorSpace>>
 {
 public:
-    using ColourSpaceType = ColourSpaceTypeArg;
-    using ComponentType = typename ColourSpaceType::ComponentType;
-    using MyType = Colour<ColourSpaceType>;
+    using color_space = ColorSpace;
+    using component = typename ColorSpace::ComponentType;
+    using this_type = color<ColorSpace>;
 
 private:
     /// @brief The alpha component value.
-    /// @invariant Within the bounds of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive).
-    ComponentType a;
+    /// @invariant Within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive).
+    component a;
 
-    void assign(const MyType& other)
+    void assign(const this_type& other)
     {
         a = other.a;
     }
 
 public:
     /// @brief Default construct with component values corresponding to "opaque".
-    Colour() :
-        a(ColourSpaceType::max())
+    color() :
+        a(color_space::max())
     {
         // Intentionally empty.
     }
 
     /// @brief Construct this color with the values of another color.
     /// @param other the other color
-    template <typename OtherColourSpaceTypeArg,
-        std::enable_if_t<std::is_same<OtherColourSpaceTypeArg, ColourSpaceTypeArg>::value, int *> = 0>
-    Colour(const Colour<OtherColourSpaceTypeArg>& other) :
+    template<typename OtherColorSpace,
+             std::enable_if_t<std::is_same<OtherColorSpace, ColorSpace>::value, int *> = 0>
+    color(const color<OtherColorSpace>& other) :
         a(other.getAlpha())
     {
         // Intentionally empty.
@@ -72,41 +72,41 @@ public:
 
     /// @brief Construct this color with the specified alpha component values.
     /// @param a the component value of the alpha component
-    /// @throws OutOfBoundsException @a a is not within the bounds of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive)
-    Colour(ComponentType a) :
+    /// @throws out_of_bounds_exception @a a is not within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive)
+    color(component a) :
         a(a)
     {
-        if (a < ColourSpaceType::min() || a > ColourSpaceType::max())
+        if (a < color_space::min() || a > color_space::max())
         {
-            throw OutOfBoundsException(__FILE__, __LINE__, "alpha component out of bounds");
+            throw out_of_bounds_exception(__FILE__, __LINE__, "alpha component out of bounds");
         }
     }
 
     // If Af to Ab.
-    template <typename OtherColourSpaceTypeArg,
-              std::enable_if_t<std::is_same<ColourSpaceTypeArg, Ab>::value &&
-              std::is_same<OtherColourSpaceTypeArg, Af>::value, int *> = 0>
-    Colour(const Colour<OtherColourSpaceTypeArg>& other) :
+    template <typename OtherColorSpace,
+              std::enable_if_t<std::is_same<ColorSpace, Ab>::value &&
+              std::is_same<OtherColorSpace, Af>::value, int *> = 0>
+    color(const color<OtherColorSpace>& other) :
         a(f2b(other.getAlpha()))
     {
         // Intentionally empty.
     }
 
     // If Ab to Af.
-    template <typename OtherColourSpaceTypeArg,
-              std::enable_if_t<std::is_same<ColourSpaceTypeArg, Af>::value &&
-              std::is_same<OtherColourSpaceTypeArg, Ab>::value, int *> = 0>
-    Colour(const Colour<OtherColourSpaceTypeArg>& other) :
-        a(Internal::b2f(other.getAlpha()))
+    template <typename OtherColorSpace,
+              std::enable_if_t<std::is_same<ColorSpace, Af>::value &&
+              std::is_same<OtherColorSpace, Ab>::value, int *> = 0>
+    color(const color<OtherColorSpace>& other) :
+        a(internal::b2f(other.getAlpha()))
     {
         // Intentionally empty.
     }
 
 public:
-    /// @brief Assign this colour from another colour.
-    /// @param other the other colour
-    /// @return this colour
-    const MyType& operator=(const MyType& other)
+    /// @brief Assign this color from another color.
+    /// @param other the other color
+    /// @return this color
+    const this_type& operator=(const this_type& other)
     {
         this->assign(other);
         return *this;
@@ -114,7 +114,7 @@ public:
 
 public:
     // CRTP
-    bool equal_to(const MyType& other) const
+    bool equal_to(const this_type& other) const
     {
         return this->getAlpha() == other.getAlpha();
     }
@@ -122,7 +122,7 @@ public:
 public:
     /// @brief Get the value of the alpha component.
     /// @return the value of the alpha component
-    ComponentType getAlpha() const
+    component getAlpha() const
     {
         return a;
     }
@@ -130,7 +130,7 @@ public:
 #if defined(ID_COLOR_SHORT_GETTERS) && 1 == ID_COLOR_SHORT_GETTERS
     /// @brief Get the value of the alpha component.
     /// @return the value of the alpha component
-    ComponentType getA() const
+    component getA() const
     {
         return a;
     }
@@ -139,30 +139,30 @@ public:
 #if defined(ID_COLOR_SETTERS) && 1 == ID_COLOR_SETTERS
     /// @brief Set the value of the alpha component.
     /// @param a the value of the alpha component
-    /// @throws OutOfBoundsException @a a is not within the bounds of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive)
-    void setAlpha(const ComponentType a)
+    /// @throws out_of_bounds_exception @a a is not within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive)
+    void setAlpha(const component a)
     {
-        if (a < ColourSpaceType::min() || a > ColourSpaceType::max())
+        if (a < color_space::min() || a > color_space::max())
         {
-            throw OutOfBoundsException(__FILE__, __LINE__, "alpha component out of bounds");
+            throw out_of_bounds_exception(__FILE__, __LINE__, "alpha component out of bounds");
         }
         this->a = a;
     }
 #if defined(ID_COLOR_SHORT_SETTERS) && 1 == ID_COLOR_SHORT_SETTERS
     /// @brief Set the value of the alpha component.
     /// @param a the value of the alpha component
-    /// @throws OutOfBoundsException @a a is not within the bounds of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive)
-    void setA(const ComponentType a)
+    /// @throws out_of_bounds_exception @a a is not within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive)
+    void setA(const component a)
     {
-        if (a < ColourSpaceType::min() || a > ColourSpaceType::max())
+        if (a < color_space::min() || a > color_space::max())
         {
-            throw OutOfBoundsException(__FILE__, __LINE__, "alpha component out of bounds");
+            throw out_of_bounds_exception(__FILE__, __LINE__, "alpha component out of bounds");
         }
         this->a = a;
     }
 #endif
 #endif
 
-};
+}; // struct color
 
-} // namespace Id
+} // namespace id

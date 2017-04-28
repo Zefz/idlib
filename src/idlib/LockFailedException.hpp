@@ -32,7 +32,7 @@
 namespace Id {
 
 /// @brief An lock failure exception.
-class LockFailedException : public Exception {
+class LockFailedException : public id::exception {
 
 public:
 
@@ -47,7 +47,7 @@ public:
      * optional exception string message
      */
     LockFailedException(const char *file, int line, const std::string& message = "Lock failed") :
-        Exception(file, line),
+        id::exception(file, line),
         _message(message) {}
 
     /**
@@ -57,7 +57,7 @@ public:
      *  the other exception
      */
     LockFailedException(const LockFailedException& other) :
-        Exception(other),
+        id::exception(other),
         _message(other._message) {}
 
     /**
@@ -69,7 +69,7 @@ public:
      *  this exception
      */
     LockFailedException& operator=(const LockFailedException& other) {
-        Exception::operator=(other);
+        id::exception::operator=(other);
         _message = other._message;
         return *this;
     }

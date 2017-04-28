@@ -34,7 +34,7 @@ namespace Id {
 /// @brief A generic exception to propagate errors of the environment (e.g. SDL, Win32, OSX, Linux, ...)
 /// to the application level. Use this exception as well if the environment does not follow its
 /// specification (e.g. documented behavior vs. actual behavior).
-class EnvironmentErrorException : public Exception
+class EnvironmentErrorException : public id::exception
 {
 private:
     /// @brief The component associated with this environment error.
@@ -51,16 +51,16 @@ public:
     /// @param message a message describing the error
     /// @remark Intentionally protected.
     EnvironmentErrorException(const char *file, int line, const std::string& component, const std::string& message) :
-        Exception(file, line), _component(component), _message(message)
+        id::exception(file, line), _component(component), _message(message)
     {}
 
     EnvironmentErrorException(const EnvironmentErrorException& other) :
-        Exception(other), _component(other._component), _message(other._message)
+        id::exception(other), _component(other._component), _message(other._message)
     {}
 
     EnvironmentErrorException& operator=(const EnvironmentErrorException& other)
     {
-        Exception::operator=(other);
+        id::exception::operator=(other);
         _component = other._component;
         _message = other._message;
         return *this;

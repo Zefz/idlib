@@ -29,10 +29,10 @@
 
 #include "idlib/platform.hpp"
 
-namespace Id {
+namespace id {
 
 /// @brief The base class of all id exceptions.
-class Exception
+class exception
 {
 private:
     /// @brief The C++ source file (as obtained by the __FILE__ macro) associated with this exception.
@@ -46,14 +46,14 @@ protected:
     /// @param file the C++ source file (as obtained by the __FILE__ macro) associated with this exception
     /// @param line the line within the C++ source file (as obtained by the __LINE__ macro) associated with this exception
     /// @remark Intentionally protected.
-    Exception(const char *file, int line) throw() :
+    exception(const char *file, int line) throw() :
         _file((char *)(file)), _line(line)
     {}
 
     /// @brief Construct this exception using the values of another exception.
     /// @param other the other exception
     /// @remark Intentionally protected.
-    Exception(const Exception& other) throw() :
+    exception(const exception& other) throw() :
         _file(other._file), _line(other._line)
     {}
 
@@ -61,7 +61,7 @@ protected:
     /// @param other the other exception
     /// @return this exception
     /// @remark Intentionally protected
-    Exception& operator=(const Exception& other) throw()
+    exception& operator=(const exception& other) throw()
     {
         _file = other._file;
         _line = other._line;
@@ -70,7 +70,7 @@ protected:
 
     /// @brief Destruct this exception.
     /// @remark Intentionally protected.
-    virtual ~Exception()
+    virtual ~exception()
     {}
 
 public:
@@ -98,4 +98,4 @@ public:
     }
 };
 
-} // namespace Id
+} // namespace id

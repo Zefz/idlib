@@ -17,44 +17,44 @@
 //*
 //********************************************************************************************
 
-/// @file idlib/OutOfBoundsException.hpp
+/// @file idlib/out_of_bounds_exception.hpp
 /// @brief Definition of an exception indicating a value is out of bounds.
 /// @author Michael Heilmann
 
 #pragma once
 
 #if !defined(IDLIB_PRIVATE) || IDLIB_PRIVATE != 1
-#error(do not include directly, include `idlib/Idlib.hpp` instead)
+#error(do not include directly, include `idlib/idlib.hpp` instead)
 #endif
 
 #include "idlib/exception.hpp"
 
-namespace Id {
+namespace id {
 
 /// @brief Exception indicating a value is out of bounds
-class OutOfBoundsException : public Exception
+class out_of_bounds_exception : public exception
 {
 public:
     /// @brief Construct this exception.
     /// @param file the C++ source file (as obtained by the __FILE__ macro) associated with this exception
     /// @param line the line within the C++ source file (as obtained by the __LINE__ macro) associated with this exception
     /// @param message optional exception string message
-    OutOfBoundsException(const char *file, int line, const std::string& message = "Value out of bounds") :
-        Exception(file, line), _message(message)
+    out_of_bounds_exception(const char *file, int line, const std::string& message = "Value out of bounds") :
+        id::exception(file, line), _message(message)
     {}
 
     /// @brief Construct this exception with the value of another exception.
     /// @param other the other exception
-    OutOfBoundsException(const OutOfBoundsException& other) :
-        Exception(other), _message(other._message)
+    out_of_bounds_exception(const out_of_bounds_exception& other) :
+        id::exception(other), _message(other._message)
     {}
 
     /// @brief Assign this exception the values of another exception.
     /// @param other the other exception
     /// @return this exception
-    OutOfBoundsException& operator=(const OutOfBoundsException& other)
+    out_of_bounds_exception& operator=(const out_of_bounds_exception& other)
     {
-        Exception::operator=(other);
+        id::exception::operator=(other);
         _message = other._message;
         return *this;
     }
@@ -82,4 +82,4 @@ private:
     std::string _message;
 };
 
-} // namespace Id
+} // namespace id

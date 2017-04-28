@@ -32,7 +32,7 @@
 namespace Id {
 
 /// @brief Exception indicating a missing switch case handle for a specific label
-class UnhandledSwitchCaseException : public Exception
+class UnhandledSwitchCaseException : public id::exception
 {
 public:
     /// @brief Construct this exception.
@@ -40,13 +40,13 @@ public:
     /// @param line the line within the C++ source file (as obtained by the __LINE__ macro) associated with this exception
     /// @param message optional exception string message
     UnhandledSwitchCaseException(const char *file, int line, const std::string& message = "Unhandled switch case") :
-        Exception(file, line), _message(message)
+        id::exception(file, line), _message(message)
     {}
 
     /// @brief Construct this exception with the value of another exception.
     /// @param other the other exception
     UnhandledSwitchCaseException(const UnhandledSwitchCaseException& other) :
-        Exception(other), _message(other._message)
+        id::exception(other), _message(other._message)
     {}
 
     /// @brief Assign this exception the values of another exception.
@@ -54,7 +54,7 @@ public:
     /// @return this exception
     UnhandledSwitchCaseException& operator=(const UnhandledSwitchCaseException& other)
     {
-        Exception::operator=(other);
+        id::exception::operator=(other);
         _message = other._message;
         return *this;
     }

@@ -2,8 +2,8 @@
 #include "idlib/color/utilities.hpp"
 #undef IDLIB_PRIVATE
 
-namespace Id {
-namespace Internal {
+namespace id {
+namespace internal {
 
 float b2f(uint8_t x)
 {
@@ -30,5 +30,5 @@ uint8_t f2b(float x)
     return static_cast<uint8_t>(std::floor(x == 1.0f ? 255.0f : x * 256.0f));
 }
 
-} // namespace Internal
-} // namespace Id
+} // namespace internal
+} // namespace id

@@ -43,9 +43,9 @@
 /// For example, the getter getRed has the short getter getR.
 #define ID_COLOR_SHORT_GETTERS (1)
 
-namespace Id {
+namespace id {
 
-template <typename ColourSpaceTypeArg, typename EnabledArg = void>
-struct Colour;
+template <typename ColorSpace, typename Enabled = void>
+struct color;
 
-} // namespace Id
+} // namespace id

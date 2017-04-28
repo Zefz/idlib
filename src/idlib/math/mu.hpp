@@ -5,7 +5,7 @@
 #pragma once
 
 #include "idlib/math/one_zero.hpp"
-#include "idlib/OutOfBoundsException.hpp"
+#include "idlib/out_of_bounds_exception.hpp"
 
 namespace id {
 
@@ -27,12 +27,12 @@ private:
 public:
     /// @brief Construct this mu.
     /// @param mu the float value this mu represents
-    /// @throw id::out_of_bounds_exception @a mu is smaller than @a 0 or greater than @a 1
+    /// @throw out_of_bounds_exception @a mu is smaller than @a 0 or greater than @a 1
     mu(T value) :
         m_value(value)
     {
-        if (value < zero<T>()) throw Id::OutOfBoundsException(__FILE__, __LINE__);
-        else if (value > one<T>()) throw Id::OutOfBoundsException(__FILE__, __LINE__);
+        if (value < zero<T>()) throw out_of_bounds_exception(__FILE__, __LINE__);
+        else if (value > one<T>()) throw out_of_bounds_exception(__FILE__, __LINE__);
         m_oneMinusValue = one<T>() - value;
     }
 

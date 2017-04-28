@@ -44,7 +44,7 @@ enum class CompilationErrorKind
 };
 
 /// @brief A compilation error exception.
-class CompilationErrorException : public Exception
+class CompilationErrorException : public id::exception
 {
 private:
     /// @brief The location associated with the compilation error.
@@ -62,13 +62,13 @@ public:
     /// @param location the location associated with the error
     /// @param description a description of the error
     CompilationErrorException(const char *file, int line, CompilationErrorKind kind, const id::location& location, const std::string& description) :
-        Exception(file, line), kind(kind), location(location), description(description)
+        id::exception(file, line), kind(kind), location(location), description(description)
     {}
 
     /// @brief Copy construct this exception with the values of another exception.
     /// @param other the other exception
     CompilationErrorException(const CompilationErrorException& other) :
-        Exception(other), kind(other.kind), location(other.location), description(other.description)
+        id::exception(other), kind(other.kind), location(other.location), description(other.description)
     {}
 
     /// @brief Assign this exception with the values of another exception.
@@ -76,7 +76,7 @@ public:
     /// @return this exception
     CompilationErrorException& operator=(const CompilationErrorException& other)
     {
-        Exception::operator=(other);
+        id::exception::operator=(other);
         kind = other.kind;
         location = other.location;
         description = other.description;

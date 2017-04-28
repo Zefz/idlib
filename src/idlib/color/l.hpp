@@ -30,55 +30,55 @@
 #include "idlib/color/color.hpp"
 #include "idlib/crtp.hpp"
 
-namespace Id {
+namespace id {
 
 /// @brief A color in L color space.
-template <typename ColourSpaceTypeArg>
-struct Colour<ColourSpaceTypeArg, std::enable_if_t<Internal::IsL<ColourSpaceTypeArg>::value>> :
-    public id::equal_to_expr<Colour<ColourSpaceTypeArg>>
+template <typename ColorSpace>
+struct color<ColorSpace, std::enable_if_t<internal::is_l<ColorSpace>::value>> :
+    public equal_to_expr<color<ColorSpace>>
 {
 public:
-    using ColourSpaceType = ColourSpaceTypeArg;
-    using ComponentType = typename ColourSpaceType::ComponentType;
-    using MyType = Colour<ColourSpaceType>;
-    static_assert(Id::Internal::IsL<ColourSpaceTypeArg>::value, "not an L color space type");
-    static_assert(ColourSpaceTypeArg::hasL() && !ColourSpaceTypeArg::hasRgb() && !ColourSpaceTypeArg::hasA(), "not an L color space type");
+    using color_space = ColorSpace;
+    using component = typename ColorSpace::ComponentType;
+    using this_type = color<ColorSpace>;
+    static_assert(internal::is_l<color_space>::value, "not an L color space type");
+    static_assert(ColorSpace::has_l() && !ColorSpace::has_rgb() && !ColorSpace::has_a(), "not an L color space type");
 
 private:
     /// @brief The luminance component value.
-    /// @invariant Within the bounds of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive).
-    ComponentType l;
+    /// @invariant Within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive).
+    component l;
 
-    void assign(const MyType& other)
+    void assign(const this_type& other)
     {
         l = other.l;
     }
 
 public:
     /// @brief Default construct with component values corresponding to "opaque black".
-    Colour() :
-        l(ColourSpaceType::min())
+    color() :
+        l(color_space::min())
     {
         // Intentionally empty.
     }
 
     /// @brief Construct this color with the specified luminance component color.
     /// @param l the component value of the luminance component
-    /// @throws OutOfBoundsException @a l is not within the bounds of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive)
-    Colour(ComponentType l) :
+    /// @throws out_of_bounds_exception @a l is not within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive)
+    color(component l) :
         l(l)
     {
-        if (l < ColourSpaceType::min() || l > ColourSpaceType::max())
+        if (l < color_space::min() || l > color_space::max())
         {
-            throw OutOfBoundsException(__FILE__, __LINE__, "luminance component out of bounds");
+            throw out_of_bounds_exception(__FILE__, __LINE__, "luminance component out of bounds");
         }
     }
 
     /// @brief Copy construct this color with the component values of another color.
     /// @param other the other color
-    template <typename OtherColourSpaceTypeArg,
-              std::enable_if_t<std::is_same<OtherColourSpaceTypeArg, ColourSpaceTypeArg>::value, int *> = nullptr>
-    Colour(const Colour<OtherColourSpaceTypeArg>& other) :
+    template <typename OtherColorSpace,
+        std::enable_if_t<std::is_same<OtherColorSpace, ColorSpace>::value, int *> = nullptr>
+        color(const color<OtherColorSpace>& other) :
         l(other.getLuminance())
     {
         // Intentionally empty.
@@ -86,22 +86,22 @@ public:
 
     /// @brief Construct this Lb color with the component values of an Lf color.
     /// @param other the Lf color
-    template <typename OtherColourSpaceTypeArg,
-              std::enable_if_t<std::is_same<ColourSpaceTypeArg, RGBb>::value &&
-              std::is_same<OtherColourSpaceTypeArg, Lf>::value, int *> = nullptr>
-    Colour(const Colour<OtherColourSpaceTypeArg>& other) :
-        l(Internal::f2b(other.getLuminance()))
+    template <typename OtherColorSpace,
+        std::enable_if_t<std::is_same<ColorSpace, RGBb>::value &&
+        std::is_same<OtherColorSpace, Lf>::value, int *> = nullptr>
+        color(const color<OtherColorSpace>& other) :
+        l(internal::f2b(other.getLuminance()))
     {
         // Intentionally empty.
     }
 
     /// @brief Construct this Lf color with the component values of an Lb color.
     /// @param other the Lb color
-    template <typename OtherColourSpaceTypeArg,
-              std::enable_if_t<std::is_same<ColourSpaceTypeArg, Lf>::value &&
-              std::is_same<OtherColourSpaceTypeArg, Lb>::value, int *> = nullptr>
-    Colour(const Colour<OtherColourSpaceTypeArg>& other) :
-        l(Internal::b2f(other.getLuminance()))
+    template <typename OtherColorSpace,
+        std::enable_if_t<std::is_same<ColorSpace, Lf>::value &&
+        std::is_same<OtherColorSpace, Lb>::value, int *> = nullptr>
+        color(const color<OtherColorSpace>& other) :
+        l(internal::b2f(other.getLuminance()))
     {
         // Intentionally empty.
     }
@@ -110,7 +110,7 @@ public:
     /// @brief Assign this color from another color.
     /// @param other the other color
     /// @return this color
-    const MyType& operator=(const MyType& other)
+    const this_type& operator=(const this_type& other)
     {
         this->assign(other);
         return *this;
@@ -118,7 +118,7 @@ public:
 
 public:
     // CRTP
-    bool equal_to(const MyType& other) const
+    bool equal_to(const this_type& other) const
     {
         return this->getLuminance() == other.getLuminance();
     }
@@ -126,7 +126,7 @@ public:
 public:
     /// @brief Get the value of the luminance component.
     /// @return the value of the luminance component
-    ComponentType getLuminance() const
+    component getLuminance() const
     {
         return l;
     }
@@ -134,7 +134,7 @@ public:
 #if defined(ID_COLOR_SHORT_GETTERS) && 1 == ID_COLOR_SHORT_GETTERS
     /// @brief Get the value of the luminance component.
     /// @return the value of the luminance component
-    ComponentType getL() const
+    component getL() const
     {
         return l;
     }
@@ -143,12 +143,12 @@ public:
 #if defined(ID_COLOR_SETTERS) && 1 == ID_COLOR_SETTERS
     /// @brief Set the value of the luminance component.
     /// @param l the value of the luminance component
-    /// @throws OutOfBoundsException @a l is not within the bounds of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive)
-    void setLuminance(ComponentType l)
+    /// @throws out_of_bounds_exception @a l is not within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive)
+    void setLuminance(component l)
     {
-        if (l < ColourSpaceType::min() || l > ColourSpaceType::max())
+        if (l < color_space::min() || l > color_space::max())
         {
-            throw OutOfBoundsException(__FILE__, __LINE__, "luminance component out of bounds");
+            throw out_of_bounds_exception(__FILE__, __LINE__, "luminance component out of bounds");
         }
         this->l = l;
     }
@@ -156,12 +156,12 @@ public:
 #if defined(ID_COLOR_SHORT_SETTERS) && 1 == ID_COLOR_SHORT_SETTERS
     /// @brief Set the value of the luminance component.
     /// @param l the value of the luminance component
-    /// @throws OutOfBoundsException @a l is not within the bounds of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive)
-    void setL(ComponentType l)
+    /// @throws out_of_bounds_exception @a l is not within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive)
+    void setL(component l)
     {
-        if (l < ColourSpaceType::min() || l > ColourSpaceType::max())
+        if (l < color_space::min() || l > color_space::max())
         {
-            throw OutOfBoundsException(__FILE__, __LINE__, "luminance component out of bounds");
+            throw out_of_bounds_exception(__FILE__, __LINE__, "luminance component out of bounds");
         }
         this->l = l;
     }
@@ -169,6 +169,6 @@ public:
 
 #endif
 
-};
+}; // struct color
 
-} // namespace Id
+} // namespace id

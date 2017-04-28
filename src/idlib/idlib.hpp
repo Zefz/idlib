@@ -35,7 +35,7 @@
 #include "idlib/UnhandledSwitchCaseException.hpp"
 #include "idlib/RuntimeErrorException.hpp"
 #include "idlib/InvalidArgumentException.hpp"
-#include "idlib/OutOfBoundsException.hpp"
+#include "idlib/out_of_bounds_exception.hpp"
 
 // Bitmask types.
 #include "idlib/BitmaskTypes.hpp"

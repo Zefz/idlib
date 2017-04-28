@@ -6,8 +6,8 @@
 
 #include "idlib/platform.hpp"
 
-namespace Id {
-namespace Internal {
+namespace id {
+namespace internal {
 
 /// @brief Convert an @a uint8_t value within the bounds of \f$0\f$ (incl.)
 /// and \f$255\f$ (incl.) to a @a float value within the bounds of \f$0\f$
@@ -27,5 +27,5 @@ uint8_t d2b(double x);
 /// \f$x \cdot 255\f$ for an input \f$x\f$.
 uint8_t f2b(float x);
 
-} // namespace Internal
-} // namespace Id
+} // namespace internal
+} // namespace id

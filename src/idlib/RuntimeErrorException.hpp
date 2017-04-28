@@ -15,7 +15,7 @@ namespace Id {
 
 /// @brief A generic exception indicating a runtime error.
 /// @detail Use this exception only if there is no exception type available which is more specific.
-class RuntimeErrorException : public Exception
+class RuntimeErrorException : public id::exception
 {
 public:
     /// @brief Construct this runtime error exception.
@@ -23,13 +23,13 @@ public:
     /// @param line the line within the C++ source file (as obtained by the __LINE__ macro) associated with this exception
     /// @param message a message describing the error
     RuntimeErrorException(const char *file, int line, const std::string& message) :
-        Exception(file, line), _message(message)
+        id::exception(file, line), _message(message)
     {}
 
     /// @brief Construct this exception with the value of another exception.
     /// @param other the other exception
     RuntimeErrorException(const RuntimeErrorException& other) :
-        Exception(other), _message(other._message)
+        id::exception(other), _message(other._message)
     {}
 
     /// @brief Assign this exception the values of another exception.
@@ -37,7 +37,7 @@ public:
     /// @return this exception
     RuntimeErrorException& operator=(const RuntimeErrorException& other)
     {
-        Exception::operator=(other);
+        id::exception::operator=(other);
         _message = other._message;
         return *this;
     }

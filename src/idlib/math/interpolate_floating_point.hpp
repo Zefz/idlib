@@ -18,7 +18,7 @@ struct interpolation_functor<T, interpolation_method::LINEAR, std::enable_if_t<s
     /// @param x, y the values to interpolate between
     /// @param t the parameter. Must be within the bounds of @a 0 (inclusive) and @a 1 (inclusive).
     /// @return the interpolated value
-    /// @throw id::out_of_bounds_exception @a t is not within the bounds of @a 0 (inclusive) and @a 1 (inclusive)
+    /// @throw out_of_bounds_exception @a t is not within the bounds of @a 0 (inclusive) and @a 1 (inclusive)
     T operator()(T x, T y, T t) const
     {
         return (*this)(x, y, mu<T>(t));

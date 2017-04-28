@@ -32,7 +32,7 @@
 namespace Id {
 
 /// @brief Exception for when an assertion failed.
-class AssertionFailedException : public Exception
+class AssertionFailedException : public id::exception
 {
 private:
     /// @brief A string describing the assertion e.g. <tt>nullptr != ptr</tt>.
@@ -44,13 +44,13 @@ public:
     /// @param line the line within the C++ source file associated with this exception
     /// @param assertion a description of the assertion
     AssertionFailedException(const char *file, int line, const std::string& assertion) :
-        Exception(file, line), _assertion(assertion)
+        id::exception(file, line), _assertion(assertion)
     {}
 
     /// @brief Construct this exception with the value of another exception.
     /// @param other the other exception
     AssertionFailedException(const AssertionFailedException& other) :
-        Exception(other), _assertion(other._assertion)
+        id::exception(other), _assertion(other._assertion)
     {}
 
     /// @brief Assign this exception the values of another exception.
@@ -58,7 +58,7 @@ public:
     /// @return this exception
     AssertionFailedException& operator=(const AssertionFailedException& other)
     {
-        Exception::operator=(other);
+        id::exception::operator=(other);
         _assertion = other._assertion;
         return *this;
     }

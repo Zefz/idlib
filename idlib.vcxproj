@@ -270,6 +270,7 @@
     <ClCompile Include="src\idlib\idlib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\idlib\out_of_bounds_exception.hpp" />
     <ClInclude Include="src\idlib\math\interpolate.hpp" />
     <ClInclude Include="src\idlib\math\interpolate_floating_point.hpp" />
     <ClInclude Include="src\idlib\color\include.hpp" />
@@ -320,7 +321,6 @@
     <ClInclude Include="src\idlib\BitmaskTypes.hpp" />
     <ClInclude Include="src\idlib\DebugAssert.hpp" />
     <ClInclude Include="src\idlib\InvalidArgumentException.hpp" />
-    <ClInclude Include="src\idlib\OutOfBoundsException.hpp" />
     <ClInclude Include="src\idlib\RuntimeErrorException.hpp" />
     <ClInclude Include="src\idlib\AssertionFailedException.hpp" />
     <ClInclude Include="src\idlib\EnvironmentErrorException.hpp" />

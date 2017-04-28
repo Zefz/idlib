@@ -6,7 +6,7 @@
 
 #include "idlib/platform.hpp"
 
-namespace Id {
+namespace id {
 
 /// @brief The type of an L colour space with floating-point components each within the range from 0 (inclusive) to 1 (inclusive).
 /// A component value of 0 indicates minimal intensity of the component and 1 indicates maximal intensity of the component.
@@ -17,15 +17,15 @@ struct Lf
 
     /// @brief Get if the colour space has RGB components.
     /// @return @a true if the colour space has RGB components, @a false otherwise
-    static constexpr bool hasRgb() noexcept { return false; }
+    static constexpr bool has_rgb() noexcept { return false; }
 
     /// @brief Get if the colour space has an A component.
     /// @return @a true if the colour space has an A component, @a false otherwise
-    static constexpr bool hasA() noexcept { return false; }
+    static constexpr bool has_a() noexcept { return false; }
 
     /// @brief Get if the colour space has a L component.
     /// @return @a true if the colour space has an L component, @a false otherwise
-    static constexpr bool hasL() noexcept { return true; }
+    static constexpr bool has_l() noexcept { return true; }
 
     /// @brief Get the number of components of a colour in the colour space.
     /// @return the number of components of a colour in the colour space
@@ -49,15 +49,15 @@ struct LAf
 
     /// @brief Get if the colour space has RGB components.
     /// @return @a true if the colour space has RGB components, @a false otherwise
-    static constexpr bool hasRgb() noexcept { return false; }
+    static constexpr bool has_rgb() noexcept { return false; }
 
     /// @brief Get if the colour space has an A component.
     /// @return @a true if the colour space has an A component, @a false otherwise
-    static constexpr bool hasA() noexcept { return true; }
+    static constexpr bool has_a() noexcept { return true; }
 
     /// @brief Get if the colour space has a L component.
     /// @return @a true if the colour space has an L component, @a false otherwise
-    static constexpr bool hasL() noexcept { return true; }
+    static constexpr bool has_l() noexcept { return true; }
 
     /// @brief Get the number of components of a colour in the colour space.
     /// @return the number of components of a colour in the colour space
@@ -81,15 +81,15 @@ struct Lb
 
     /// @brief Get if the colour space has RGB components.
     /// @return @a true if the colour space has RGB components, @a false otherwise
-    static constexpr bool hasRgb() noexcept { return false; }
+    static constexpr bool has_rgb() noexcept { return false; }
 
     /// @brief Get if the colour space has an A component.
     /// @return @a true if the colour space has an A component, @a false otherwise
-    static constexpr bool hasA() noexcept { return false; }
+    static constexpr bool has_a() noexcept { return false; }
 
     /// @brief Get if the colour space has a L component.
     /// @return @a true if the colour space has an L component, @a false otherwise
-    static constexpr bool hasL() noexcept { return true; }
+    static constexpr bool has_l() noexcept { return true; }
 
     /// @brief Get the number of components of a colour in the colour space.
     /// @return the number of components of a colour in the colour space
@@ -113,15 +113,15 @@ struct LAb
 
     /// @brief Get if the colour space has RGB components.
     /// @return @a true if the colour space has RGB components, @a false otherwise
-    static constexpr bool hasRgb() noexcept { return false; }
+    static constexpr bool has_rgb() noexcept { return false; }
 
     /// @brief Get if the colour space has an A component.
     /// @return @a true if the colour space has an A component, @a false otherwise
-    static constexpr bool hasA() noexcept { return true; }
+    static constexpr bool has_a() noexcept { return true; }
 
     /// @brief Get if the colour space has a L component.
     /// @return @a true if the colour space has an L component, @a false otherwise
-    static constexpr bool hasL() noexcept { return true; }
+    static constexpr bool has_l() noexcept { return true; }
 
     /// @brief Get the number of components of a colour in the colour space.
     /// @return the number of components of a colour in the colour space
@@ -145,15 +145,15 @@ struct RGBf
 
     /// @brief Get if the colour space has RGB components.
     /// @return @a true if the colour space has RGB components, @a false otherwise
-    static constexpr bool hasRgb() noexcept { return true; }
+    static constexpr bool has_rgb() noexcept { return true; }
 
     /// @brief Get if the colour space has an A component.
     /// @return @a true if the colour space has an A component, @a false otherwise
-    static constexpr bool hasA() noexcept { return false; }
+    static constexpr bool has_a() noexcept { return false; }
 
     /// @brief Get if the colour space has a L component.
     /// @return @a true if the colour space has an L component, @a false otherwise
-    static constexpr bool hasL() noexcept { return false; }
+    static constexpr bool has_l() noexcept { return false; }
 
     /// @brief Get the number of components of a colour in the colour space.
     /// @return the number of components of a colour in the colour space
@@ -178,15 +178,15 @@ struct RGBAf
 
     /// @brief Get if the colour space has RGB components.
     /// @return @a true if the colour space has RGB components, @a false otherwise
-    static constexpr bool hasRgb() noexcept { return true; }
+    static constexpr bool has_rgb() noexcept { return true; }
 
     /// @brief Get if the colour space has an A component.
     /// @return @a true if the colour space has an A component, @a false otherwise
-    static constexpr bool hasA() noexcept { return true; }
+    static constexpr bool has_a() noexcept { return true; }
 
     /// @brief Get if the colour space has an L component.
     /// @return @a true if the colour space has an L component, @a false otherwise
-    static constexpr bool hasL() noexcept { return false; }
+    static constexpr bool has_l() noexcept { return false; }
 
     /// @brief Get the number of components of a colour in the colour space.
     /// @return the number of components of a colour in the colour space
@@ -211,15 +211,15 @@ struct RGBb
 
     /// @brief Get if the colour space has RGB components.
     /// @return @a true if the colour space has RGB components, @a false otherwise
-    static constexpr bool hasRgb() noexcept { return true; }
+    static constexpr bool has_rgb() noexcept { return true; }
 
     /// @brief Get if the colour space has an A component.
     /// @return @a true if the colour space has an A component, @a false otherwise
-    static constexpr bool hasA() noexcept { return false; }
+    static constexpr bool has_a() noexcept { return false; }
 
     /// @brief Get if the colour space has an L component.
     /// @return @a true if the colour space has an L component, @a false otherwise
-    static constexpr bool hasL() noexcept { return false; }
+    static constexpr bool has_l() noexcept { return false; }
 
     /// @brief Get the number of components of a colour in the colour space.
     /// @return the number of components of a colour in the colour space
@@ -243,15 +243,15 @@ struct RGBAb
 
     /// @brief Get if the colour space has RGB components.
     /// @return @a true if the colour space has RGB components, @a false otherwise
-    static constexpr bool hasRgb() noexcept { return true; }
+    static constexpr bool has_rgb() noexcept { return true; }
 
     /// @brief Get if the colour space has an A component.
     /// @return @a true if the colour space has an A component, @a false otherwise
-    static constexpr bool hasA() noexcept { return true; }
+    static constexpr bool has_a() noexcept { return true; }
 
     /// @brief Get if the colour space has an L component.
     /// @return @a true if the colour space has an L component, @a false otherwise
-    static constexpr bool hasL() noexcept { return false; }
+    static constexpr bool has_l() noexcept { return false; }
 
     /// @brief Get the number of components in the colour space.
     /// @return the number of components of a colour in the colour space
@@ -275,15 +275,15 @@ struct Af
 
     /// @brief Get if the colour space has RGB components.
     /// @return @a true if the colour space has RGB components, @a false otherwise
-    static constexpr bool hasRgb() noexcept { return false; }
+    static constexpr bool has_rgb() noexcept { return false; }
 
     /// @brief Get if the colour space has an A component.
     /// @return @a true if the colour space has an A component, @a false otherwise
-    static constexpr bool hasA() noexcept { return true; }
+    static constexpr bool has_a() noexcept { return true; }
 
     /// @brief Get if the colour space has a L component.
     /// @return @a true if the colour space has an L component, @a false otherwise
-    static constexpr bool hasL() noexcept { return false; }
+    static constexpr bool has_l() noexcept { return false; }
 
     /// @brief Get the number of components of a colour in the colour space.
     /// @return the number of components of a colour in the colour space
@@ -307,15 +307,15 @@ struct Ab
 
     /// @brief Get if the colour space has RGB components.
     /// @return @a true if the colour space has RGB components, @a false otherwise
-    static constexpr bool hasRgb() noexcept { return false; }
+    static constexpr bool has_rgb() noexcept { return false; }
 
     /// @brief Get if the colour space has an A component.
     /// @return @a true if the colour space has an A component, @a false otherwise
-    static constexpr bool hasA() noexcept { return true; }
+    static constexpr bool has_a() noexcept { return true; }
 
     /// @brief Get if the colour space has a L component.
     /// @return @a true if the colour space has an L component, @a false otherwise
-    static constexpr bool hasL() noexcept { return false; }
+    static constexpr bool has_l() noexcept { return false; }
 
     /// @brief Get the number of components of a colour in the colour space.
     /// @return the number of components of a colour in the colour space
@@ -334,73 +334,73 @@ struct Ab
  * @brief Get the type of the opaque color space of a specified color space.
  * @remark The opaque color space consists of all opaque colors of the specified color space.
  */
-template <typename ColourSpaceTypeArg>
-struct _Opaque;
+template <typename ColorSpace>
+struct opaque;
 
 template <>
-struct _Opaque<RGBb> { using Type = RGBb; };
+struct opaque<RGBb> { using type = RGBb; };
 template <>
-struct _Opaque<RGBf> { using Type = RGBf; };
+struct opaque<RGBf> { using type = RGBf; };
 template <>
-struct _Opaque<Lb> { using Type = Lb; };
+struct opaque<Lb> { using type = Lb; };
 template <>
-struct _Opaque<Lf> { using Type = Lf; };
+struct opaque<Lf> { using type = Lf; };
 
 template <>
-struct _Opaque<RGBAb> { using Type = RGBb; };
+struct opaque<RGBAb> { using type = RGBb; };
 template <>
-struct _Opaque<RGBAf> { using Type = RGBf; };
+struct opaque<RGBAf> { using type = RGBf; };
 template <>
-struct _Opaque<LAb> { using Type = Lb; };
+struct opaque<LAb> { using type = Lb; };
 template <>
-struct _Opaque<LAf> { using Type = Lf; };
-
-template <typename ColourSpaceTypeArg>
-using Opaque = typename _Opaque<ColourSpaceTypeArg>::Type;
-
-namespace Internal {
+struct opaque<LAf> { using type = Lf; };
 
 template <typename ColorSpace>
-struct IsRgb
+using opaque_t = typename opaque<ColorSpace>::type;
+
+namespace internal {
+
+template <typename ColorSpace>
+struct is_rgb
 {
-    static constexpr bool value = ColorSpace::hasRgb()
-        && !ColorSpace::hasL()
-        && !ColorSpace::hasA();
+    static constexpr bool value = ColorSpace::has_rgb()
+        && !ColorSpace::has_l()
+        && !ColorSpace::has_a();
 };
 
 template <typename ColorSpace>
-struct IsRgba
+struct is_rgba
 {
-    static constexpr bool value = ColorSpace::hasRgb()
-        && !ColorSpace::hasL()
-        && ColorSpace::hasA();
+    static constexpr bool value = ColorSpace::has_rgb()
+        && !ColorSpace::has_l()
+        && ColorSpace::has_a();
 };
 
 template <typename ColorSpace>
-struct IsL
+struct is_l
 {
-    static constexpr bool value = !ColorSpace::hasRgb()
-        && ColorSpace::hasL()
-        && !ColorSpace::hasA();
+    static constexpr bool value = !ColorSpace::has_rgb()
+        && ColorSpace::has_l()
+        && !ColorSpace::has_a();
 };
 
 template <typename ColorSpace>
 struct IsLA
 {
-    static constexpr bool value = !ColorSpace::hasRgb()
-        && ColorSpace::hasL()
-        && ColorSpace::hasA();
+    static constexpr bool value = !ColorSpace::has_rgb()
+        && ColorSpace::has_l()
+        && ColorSpace::has_a();
 };
 
 template <typename ColorSpace>
 struct IsA
 {
-    static constexpr bool value = !ColorSpace::hasRgb()
-        && !ColorSpace::hasL()
-        && ColorSpace::hasA();
+    static constexpr bool value = !ColorSpace::has_rgb()
+        && !ColorSpace::has_l()
+        && ColorSpace::has_a();
 };
 
 
-} // namespace Internal
+} // namespace internal
 
-} // namespace Id
+} // namespace id
