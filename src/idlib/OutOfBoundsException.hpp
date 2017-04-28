@@ -27,7 +27,7 @@
 #error(do not include directly, include `idlib/Idlib.hpp` instead)
 #endif
 
-#include "idlib/Exception.hpp"
+#include "idlib/exception.hpp"
 
 namespace Id {
 

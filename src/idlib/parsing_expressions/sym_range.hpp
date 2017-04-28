@@ -8,7 +8,7 @@
 #error(do not include directly, include `idlib/parsing_expressions/include.hpp` instead)
 #endif
 
-#include "idlib/Platform.hpp"
+#include "idlib/platform.hpp"
 
 namespace id {
 namespace parsing_expressions {

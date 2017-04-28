@@ -17,7 +17,7 @@
 //*
 //********************************************************************************************
 
-/// @file idlib/Target.hpp
+/// @file idlib/target.hpp
 /// @brief Target platform detection.
 /// @author Michael Heilmann
 

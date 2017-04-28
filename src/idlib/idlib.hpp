@@ -24,12 +24,12 @@
 #pragma once
 
 #define IDLIB_PRIVATE 1
-#include "idlib/Target.hpp"
-#include "idlib/Platform.hpp"
+#include "idlib/target.hpp"
+#include "idlib/platform.hpp"
 #include "idlib/NonCopyable.hpp"
 
 // Exceptions.
-#include "idlib/Exception.hpp"
+#include "idlib/exception.hpp"
 #include "idlib/EnvironmentErrorException.hpp"
 #include "idlib/AssertionFailedException.hpp"
 #include "idlib/UnhandledSwitchCaseException.hpp"
@@ -65,9 +65,9 @@
 #include "idlib/signal/Include.hpp"
 
 // Colors.
-#include "idlib/color/Include.hpp"
+#include "idlib/color/include.hpp"
 
 // Math.
-#include "idlib/math/Dimensionality.hpp"
+#include "idlib/math/dimensionality.hpp"
 
 #undef IDLIB_PRIVATE

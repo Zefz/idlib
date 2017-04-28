@@ -270,6 +270,11 @@
     <ClCompile Include="src\idlib\idlib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\idlib\color\include.hpp" />
+    <ClInclude Include="src\idlib\target.hpp" />
+    <ClInclude Include="src\idlib\exception.hpp" />
+    <ClInclude Include="src\idlib\math\dimensionality.hpp" />
+    <ClInclude Include="src\idlib\platform.hpp" />
     <ClInclude Include="src\idlib\color\a.hpp" />
     <ClInclude Include="src\idlib\is_any_of.hpp" />
     <ClInclude Include="src\idlib\math\even_odd.hpp" />
@@ -289,7 +294,6 @@
     <ClInclude Include="src\idlib\parsing_expressions\include.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\sym.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\sym_range.hpp" />
-    <ClInclude Include="src\idlib\math\Dimensionality.hpp" />
     <ClInclude Include="src\idlib\color\utilities.hpp" />
     <ClInclude Include="src\idlib\color\color.hpp" />
     <ClInclude Include="src\idlib\color\l.hpp" />
@@ -297,7 +301,6 @@
     <ClInclude Include="src\idlib\color\rgb.hpp" />
     <ClInclude Include="src\idlib\color\rgba.hpp" />
     <ClInclude Include="src\idlib\color\space.hpp" />
-    <ClInclude Include="src\idlib\color\Include.hpp" />
     <ClInclude Include="src\idlib\signal\Connection.hpp" />
     <ClInclude Include="src\idlib\signal\ConnectionBase.hpp" />
     <ClInclude Include="src\idlib\signal\Node.hpp" />
@@ -317,12 +320,9 @@
     <ClInclude Include="src\idlib\RuntimeErrorException.hpp" />
     <ClInclude Include="src\idlib\AssertionFailedException.hpp" />
     <ClInclude Include="src\idlib\EnvironmentErrorException.hpp" />
-    <ClInclude Include="src\idlib\Exception.hpp" />
     <ClInclude Include="src\idlib\LockFailedException.hpp" />
     <ClInclude Include="src\idlib\UnhandledSwitchCaseException.hpp" />
     <ClInclude Include="src\idlib\NonCopyable.hpp" />
-    <ClInclude Include="src\idlib\Platform.hpp" />
-    <ClInclude Include="src\idlib\Target.hpp" />
     <ClInclude Include="src\idlib\idlib.hpp" />
   </ItemGroup>
   <ItemGroup>

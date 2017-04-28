@@ -9,7 +9,7 @@
 #error(do not include directly, include `idlib/idlib.hpp` instead)
 #endif
 
-#include "idlib/Exception.hpp"
+#include "idlib/exception.hpp"
 
 namespace Id {
 

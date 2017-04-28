@@ -20,7 +20,7 @@
 
 /**
  * @ingroup idlib
- * @file idlib/Platform.hpp
+ * @file idlib/platform.hpp
  * @brief Functionality protecting the programmer from platform and compiler idiosyncrasies.
  * @author Michael Heilmann
  */
@@ -31,7 +31,7 @@
 #error(do not include directly, include `idlib/idlib.hpp` instead)
 #endif
 
-#include "idlib/Target.hpp"
+#include "idlib/target.hpp"
 
 /**
 * @ingroup idlib

@@ -67,19 +67,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\idlib\Platform.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\Target.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\idlib\NonCopyable.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\idlib\AssertionFailedException.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\Exception.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\idlib\LockFailedException.hpp">
@@ -138,9 +129,6 @@
     </ClInclude>
     <ClInclude Include="src\idlib\signal\Include.hpp">
       <Filter>Header Files\signal</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\color\Include.hpp">
-      <Filter>Header Files\color</Filter>
     </ClInclude>
     <ClInclude Include="src\idlib\idlib.hpp">
       <Filter>Header Files</Filter>
@@ -226,8 +214,22 @@
     <ClInclude Include="src\idlib\color\a.hpp">
       <Filter>Header Files\color</Filter>
     </ClInclude>
-    <ClInclude Include="src\idlib\math\Dimensionality.hpp">
       <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\math\dimensionality.hpp">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\exception.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\platform.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\target.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color\include.hpp">
+      <Filter>Header Files\color</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

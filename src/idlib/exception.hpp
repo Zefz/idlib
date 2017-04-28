@@ -17,7 +17,7 @@
 //*
 //********************************************************************************************
 
-/// @file idlib/Exception.hpp
+/// @file idlib/exception.hpp
 /// @brief Root of the exception hierarchy.
 /// @author Michael Heilmann
 
@@ -27,7 +27,7 @@
 #error(do not include directly, include `idlib/idlib.hpp` instead)
 #endif
 
-#include "idlib/Platform.hpp"
+#include "idlib/platform.hpp"
 
 namespace Id {
 
