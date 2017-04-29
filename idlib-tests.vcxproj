@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="tests\idlib\Tests\color.cpp" />
     <ClCompile Include="tests\idlib\Tests\prefix.cpp" />
     <ClCompile Include="tests\idlib\Tests\suffix.cpp" />
     <ClCompile Include="tests\idlib\Tests\to_lower.cpp" />
