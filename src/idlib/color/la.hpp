@@ -59,6 +59,34 @@ private:
     }
 
 public:
+    /// @brief The color "black" (0,0,0).
+    /// @return the color "black"
+    static const this_type& black()
+    {
+        static const this_type color(color<opaque_t<color_space>>(0),
+                                     color_space::max());
+        return color;
+    }
+
+    /// @brief The color "grey" (75,75,75).
+    /// @return the color "grey".
+    static const this_type& grey()
+    {
+        static const this_type color(color<opaque_t<color_space>>(75),
+                                     color_space::max());
+        return color;
+    }
+
+    /// @brief The color "white" (255,255,255).
+    /// @return the color "white"
+    static const this_type& white()
+    {
+        static const this_type color(color<opaque_t<color_space>>(255),
+                                     color_space::max());
+        return color;
+    }
+
+public:
     /// @brief Default construct with component values corresponding to "opaque black".
     color() :
         l(color_space::min()), a(color_space::max())
