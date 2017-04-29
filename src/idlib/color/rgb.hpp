@@ -29,6 +29,7 @@
 
 #include "idlib/color/color.hpp"
 #include "idlib/crtp.hpp"
+#include "idlib/math/interpolate.hpp"
 
 namespace id {
 
@@ -381,5 +382,36 @@ public:
 #endif
 
 }; // struct color
+
+
+/// @brief Interpolation functor for id::color<id::RGBf> values.
+template <typename ColorSpace>
+struct interpolation_functor<color<ColorSpace>, interpolation_method::LINEAR,
+    std::enable_if_t<std::is_same<RGBf, ColorSpace>::value>>
+{
+    using the_color_space = ColorSpace;
+    using the_color = color<the_color_space>;
+    using the_component_interpolation_functor = interpolation_functor<float, interpolation_method::LINEAR>;
+
+    the_color operator()(const the_color& x, const the_color& y, float t) const
+    {
+        return (*this)(x, y, mu<float>(t));
+    }
+
+    the_color operator()(const the_color& x, const the_color& y, const mu<float>& mu) const
+    {
+        static const the_component_interpolation_functor f{};
+        return the_color(std::clamp(f(x.getRed(), y.getRed(), mu),
+                                    the_color_space::min(),
+                                    the_color_space::max()),
+                         std::clamp(f(x.getGreen(), y.getGreen(), mu),
+                                    the_color_space::min(),
+                                    the_color_space::max()),
+                         std::clamp(f(x.getBlue(), y.getBlue(), mu),
+                                    the_color_space::min(),
+                                    the_color_space::max()));
+    }
+
+}; // struct interpolate_functor
 
 } // namespace id
