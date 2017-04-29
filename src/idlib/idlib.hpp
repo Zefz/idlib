@@ -71,6 +71,9 @@
 #include "idlib/math/dimensionality.hpp"
 #include "idlib/math/interpolation_method.hpp"
 #include "idlib/math/interpolate.hpp"
+#include "idlib/math/interpolate_floating_point.hpp"
 #include "idlib/math/mu.hpp"
+#include "idlib/math/even_odd.hpp"
+#include "idlib/math/one_zero.hpp"
 
 #undef IDLIB_PRIVATE
