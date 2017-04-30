@@ -25,7 +25,7 @@ namespace id {
 /// @remark Feel free to provide your own implementation.
 /// Specialization for all integral types excluding @a bool are provided.
 /// Specializations for @a float and @a double are provided.
-template <typename T, typename E>
+template <typename T, typename E = void>
 class zero_functor;
 
 /// @internal
@@ -69,7 +69,7 @@ public:
 /// @remark Feel free to provide your own implementation.
 /// Specialization for all integral types excluding @a bool are provided.
 /// Specializations for @a float and @a double are provided.
-template <typename T, typename E>
+template <typename T, typename E = void>
 class one_functor;
 
 /// @internal
@@ -109,18 +109,18 @@ public:
 /// @tparam T the type
 /// @return the zero value of the type @a T
 template <typename T>
-typename std::result_of<zero_functor<T, void>()>::type zero()
+decltype(auto) zero()
 {
-	return zero_functor<T, void>()();
+	return zero_functor<T>()();
 }
 
 /// @brief Get the one value of the type @a T.
 /// @tparam T the type
 /// @return the one value of the type @a T
 template <typename T>
-typename std::result_of<one_functor<T, void>()>::type one()
+decltype(auto) one()
 {
-	return one_functor<T, void>()();
+	return one_functor<T>()();
 }
 
 } // namespace id
