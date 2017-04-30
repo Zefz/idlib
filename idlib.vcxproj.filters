@@ -27,6 +27,9 @@
     <Filter Include="Header Files\parsing_expressions">
       <UniqueIdentifier>{686fbc11-2d64-4804-92e3-3d1553b0185b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\math">
+      <UniqueIdentifier>{0134ec10-8f51-45bb-b820-5b4e662daee5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\idlib\signal\ConnectionBase.cpp">
@@ -64,6 +67,12 @@
     </ClCompile>
     <ClCompile Include="src\idlib\text_range.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\color\instantiations.cpp">
+      <Filter>Source Files\color</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\math\instantiations.cpp">
+      <Filter>Source Files\math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

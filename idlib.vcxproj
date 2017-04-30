@@ -256,6 +256,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\idlib\color\instantiations.cpp" />
+    <ClCompile Include="src\idlib\math\instantiations.cpp" />
     <ClCompile Include="src\idlib\prefix.cpp" />
     <ClCompile Include="src\idlib\suffix.cpp" />
     <ClCompile Include="src\idlib\to_lower.cpp" />
