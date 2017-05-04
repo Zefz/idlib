@@ -1,405 +1,507 @@
+// Copyright Michael Heilmann 2016, 2017.
+//
+// This file is part of Idlib.
+//
+// Idlib is free software: you can redistribute it and/or modify it
+// under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Idlib is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+// General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Idlib. If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 #if !defined(IDLIB_PRIVATE) || IDLIB_PRIVATE != 1
 #error(do not include directly, include `idlib/idlib.hpp` instead)
 #endif
 
-#include "idlib/platform.hpp"
+#include "idlib/type.hpp"
 
 namespace id {
 
-/// @brief The type of an L colour space with floating-point components each within the range from 0 (inclusive) to 1 (inclusive).
+namespace semantics {
+
+/// @brief "red".
+struct r {};
+/// @brief "green".
+struct g {};
+/// @brief "blue".
+struct b {};
+/// @brief "alpha".
+struct a {};
+/// @brief "luminance".
+struct l {};
+
+}
+
+template <typename Semantics, typename Syntax, size_t Index>
+struct component
+{ 
+    using semantics = Semantics;
+    using syntax = Syntax;
+    static constexpr size_t index = Index;
+};
+
+template <typename ... Components>
+struct space
+{};
+
+/// @brief The type of an L color space with floating-point components each within the range from 0 (inclusive) to 1 (inclusive).
 /// A component value of 0 indicates minimal intensity of the component and 1 indicates maximal intensity of the component.
-struct Lf
+template <>
+struct space<component<semantics::l, type::clamped_single_traits, 0>>
 {
-    /// @brief The component type.
-    using ComponentType = float;
+    /// @brief The L component.
+    using l = component<semantics::l, type::clamped_single_traits, 0>;
 
-    /// @brief Get if the colour space has RGB components.
-    /// @return @a true if the colour space has RGB components, @a false otherwise
-    static constexpr bool has_rgb() noexcept { return false; }
+    /// @brief If the color space has RGB components.
+    /// @return @a true if the color space has RGB components, @a false otherwise
+    static constexpr bool has_rgb = false;
 
-    /// @brief Get if the colour space has an A component.
-    /// @return @a true if the colour space has an A component, @a false otherwise
-    static constexpr bool has_a() noexcept { return false; }
+    /// @brief If the color space has an A component.
+    /// @return @a true if the color space has an A component, @a false otherwise
+    static constexpr bool has_a = false;
 
-    /// @brief Get if the colour space has a L component.
-    /// @return @a true if the colour space has an L component, @a false otherwise
-    static constexpr bool has_l() noexcept { return true; }
+    /// @brief If the color space has a L component.
+    /// @return @a true if the color space has an L component, @a false otherwise
+    static constexpr bool has_l = true;
 
-    /// @brief Get the number of components of a colour in the colour space.
-    /// @return the number of components of a colour in the colour space
-    static constexpr size_t count() noexcept { return 1; }
-
-    /// @brief Get the minimum component value.
-    /// @return the minimum component value
-    static constexpr ComponentType min() noexcept { return 0.0f; }
-
-    /// @brief Get the maximum component value.
-    /// @return the maximum component value
-    static constexpr ComponentType max() noexcept { return 1.0f; }
+    /// @brief Get the number of components of a color in the color space.
+    /// @return the number of components of a color in the color space
+    static constexpr size_t count = 1;
 };
 
-/// @brief The type of an LA colour space with floating-point components each within the range from 0 (inclusive) to 1 (inclusive).
+using Lf = space<component<semantics::l, type::clamped_single_traits, 0>>;
+
+/// @brief The type of an LA color space with floating-point components each within the range from 0 (inclusive) to 1 (inclusive).
 /// A component value of 0 indicates minimal intensity of the component and 1 indicates maximal intensity of the component.
-struct LAf
+template <>
+struct space<component<semantics::l, type::clamped_single_traits, 0>,
+             component<semantics::a, type::clamped_single_traits, 1>>
 {
-    /// @brief The component type.
-    using ComponentType = float;
+    /// @brief The L component.
+    using l = component<semantics::l, type::clamped_single_traits, 0>;
 
-    /// @brief Get if the colour space has RGB components.
-    /// @return @a true if the colour space has RGB components, @a false otherwise
-    static constexpr bool has_rgb() noexcept { return false; }
+    /// @brief The A component.
+    using a = component<semantics::a, type::clamped_single_traits, 1>;
 
-    /// @brief Get if the colour space has an A component.
-    /// @return @a true if the colour space has an A component, @a false otherwise
-    static constexpr bool has_a() noexcept { return true; }
+    /// @brief If the color space has RGB components.
+    /// @return @a true if the color space has RGB components, @a false otherwise
+    static constexpr bool has_rgb = false;
 
-    /// @brief Get if the colour space has a L component.
-    /// @return @a true if the colour space has an L component, @a false otherwise
-    static constexpr bool has_l() noexcept { return true; }
+    /// @brief If the color space has an A component.
+    /// @return @a true if the color space has an A component, @a false otherwise
+    static constexpr bool has_a = true;
 
-    /// @brief Get the number of components of a colour in the colour space.
-    /// @return the number of components of a colour in the colour space
-    static constexpr size_t count() noexcept { return 2; }
+    /// @brief If the color space has a L component.
+    /// @return @a true if the color space has an L component, @a false otherwise
+    static constexpr bool has_l = true;
 
-    /// @brief Get the minimum component value.
-    /// @return the minimum component value
-    static constexpr ComponentType min() noexcept { return 0.0f; }
-
-    /// @brief Get the maximum component value.
-    /// @return the maximum component value
-    static constexpr ComponentType max() noexcept { return 1.0f; }
+    /// @brief The number of components of a color in the color space.
+    /// @return the number of components of a color in the color space
+    static constexpr size_t count = 2;
 };
 
-/// @brief The type of an L colour space with unsigned integer components each within the range from 0 (inclusive) to 255 (inclusive).
+using LAf = space<component<semantics::l, type::clamped_single_traits, 0>,
+                  component<semantics::a, type::clamped_single_traits, 1>>;
+
+/// @brief The type of an L color space with unsigned integer components each within the range from 0 (inclusive) to 255 (inclusive).
 /// A component value of 0 indicates minimal intensity of the component and 255 indicates maximal intensity of the component.
-struct Lb
+template <>
+struct space<component<semantics::l, type::uint8_traits, 0>>
 {
-    /// @brief The component type.
-    using ComponentType = uint8_t;
+    /// @brief The L component.
+    using l = component<semantics::l, type::uint8_traits, 0>;
 
-    /// @brief Get if the colour space has RGB components.
-    /// @return @a true if the colour space has RGB components, @a false otherwise
-    static constexpr bool has_rgb() noexcept { return false; }
+    /// @brief If the color space has RGB components.
+    /// @return @a true if the color space has RGB components, @a false otherwise
+    static constexpr bool has_rgb = false;
 
-    /// @brief Get if the colour space has an A component.
-    /// @return @a true if the colour space has an A component, @a false otherwise
-    static constexpr bool has_a() noexcept { return false; }
+    /// @brief If the color space has an A component.
+    /// @return @a true if the color space has an A component, @a false otherwise
+    static constexpr bool has_a = false;
 
-    /// @brief Get if the colour space has a L component.
-    /// @return @a true if the colour space has an L component, @a false otherwise
-    static constexpr bool has_l() noexcept { return true; }
+    /// @brief If the color space has a L component.
+    /// @return @a true if the color space has an L component, @a false otherwise
+    static constexpr bool has_l = true;
 
-    /// @brief Get the number of components of a colour in the colour space.
-    /// @return the number of components of a colour in the colour space
-    static constexpr size_t count() noexcept { return 1; }
-
-    /// @brief Get the minimum component value.
-    /// @return the minimum component value
-    static constexpr ComponentType min() noexcept { return 0; }
-
-    /// @brief Get the maximum component value.
-    /// @return the maximum component value
-    static constexpr ComponentType max() noexcept { return 255; }
+    /// @brief The number of components of a color in the color space.
+    /// @return the number of components of a color in the color space
+    static constexpr size_t count = 1;
 };
 
-/// @brief The type of an LA colour space with unsigned integer components each within the range from 0 (inclusive) to 255 (inclusive).
+using Lb = space<component<semantics::l, type::uint8_traits, 0>>;
+
+/// @brief The type of an LA color space with unsigned integer components each within the range from 0 (inclusive) to 255 (inclusive).
 /// A component value of 0 indicates minimal intensity of the component and 255 indicates maximal intensity of the component.
-struct LAb
+template <>
+struct space<component<semantics::l, type::uint8_traits, 0>,
+             component<semantics::a, type::uint8_traits, 1>>
 {
-    /// @brief The component type.
-    using ComponentType = uint8_t;
+    /// @brief The L component.
+    using l = component<semantics::l, type::uint8_traits, 0>;
 
-    /// @brief Get if the colour space has RGB components.
-    /// @return @a true if the colour space has RGB components, @a false otherwise
-    static constexpr bool has_rgb() noexcept { return false; }
+    /// @brief The A component.
+    using a = component<semantics::a, type::uint8_traits, 1>;
 
-    /// @brief Get if the colour space has an A component.
-    /// @return @a true if the colour space has an A component, @a false otherwise
-    static constexpr bool has_a() noexcept { return true; }
+    /// @brief If the color space has RGB components.
+    /// @return @a true if the color space has RGB components, @a false otherwise
+    static constexpr bool has_rgb = false;
 
-    /// @brief Get if the colour space has a L component.
-    /// @return @a true if the colour space has an L component, @a false otherwise
-    static constexpr bool has_l() noexcept { return true; }
+    /// @brief If the color space has an A component.
+    /// @return @a true if the color space has an A component, @a false otherwise
+    static constexpr bool has_a = true;
 
-    /// @brief Get the number of components of a colour in the colour space.
-    /// @return the number of components of a colour in the colour space
-    static constexpr size_t count() noexcept { return 2; }
+    /// @brief If the color space has a L component.
+    /// @return @a true if the color space has an L component, @a false otherwise
+    static constexpr bool has_l = true;
 
-    /// @brief Get the minimum component value.
-    /// @return the minimum component value
-    static constexpr ComponentType min() noexcept { return 0; }
-
-    /// @brief Get the maximum component value.
-    /// @return the maximum component value
-    static constexpr ComponentType max() noexcept { return 255; }
+    /// @brief The number of components of a color in the color space.
+    /// @return the number of components of a color in the color space
+    static constexpr size_t count = 2;
 };
 
-/// @brief The type of an RGB colour space with floating-point components each within the range from 0 (inclusive) to 1 (inclusive).
+using LAb = space<component<semantics::l, type::uint8_traits, 0>,
+                  component<semantics::a, type::uint8_traits, 1>>;
+
+/// @brief The type of an RGB color space with floating-point components each within the range from 0 (inclusive) to 1 (inclusive).
 /// A component value of 0 indicates minimal intensity of the component and 1 indicates maximal intensity of the component.
-struct RGBf
+template <>
+struct space<component<semantics::r, type::clamped_single_traits, 0>,
+             component<semantics::g, type::clamped_single_traits, 1>,
+             component<semantics::b, type::clamped_single_traits, 2>>
 {
-    /// @brief The component type.
-    using ComponentType = float;
+    /// @brief The R component.
+    using r = component<semantics::r, type::clamped_single_traits, 0>;
 
-    /// @brief Get if the colour space has RGB components.
-    /// @return @a true if the colour space has RGB components, @a false otherwise
-    static constexpr bool has_rgb() noexcept { return true; }
+    /// @brief The G component.
+    using g = component<semantics::g, type::clamped_single_traits, 1>;
 
-    /// @brief Get if the colour space has an A component.
-    /// @return @a true if the colour space has an A component, @a false otherwise
-    static constexpr bool has_a() noexcept { return false; }
+    /// @brief The B component.
+    using b = component<semantics::b, type::clamped_single_traits, 2>;
 
-    /// @brief Get if the colour space has a L component.
-    /// @return @a true if the colour space has an L component, @a false otherwise
-    static constexpr bool has_l() noexcept { return false; }
+    /// @brief If the color space has RGB components.
+    /// @return @a true if the color space has RGB components, @a false otherwise
+    static constexpr bool has_rgb = true;
 
-    /// @brief Get the number of components of a colour in the colour space.
-    /// @return the number of components of a colour in the colour space
-    static constexpr size_t count() noexcept { return 3; }
+    /// @brief If the color space has an A component.
+    /// @return @a true if the color space has an A component, @a false otherwise
+    static constexpr bool has_a = false;
 
-    /// @brief Get the minimum component value.
-    /// @return the minimum component value
-    static constexpr ComponentType min() noexcept { return 0.0f; }
+    /// @brief If the color space has a L component.
+    /// @return @a true if the color space has an L component, @a false otherwise
+    static constexpr bool has_l = false;
 
-    /// @brief Get the maximum component value.
-    /// @return the maximum component value
-    static constexpr ComponentType max() noexcept { return 1.0f; }
-
+    /// @brief The number of components of a color in the color space.
+    /// @return the number of components of a color in the color space
+    static constexpr size_t count = 3;
 };
 
-/// @brief The type of an RGBA colour space with floating-point components each within the range from 0 (inclusive) to 1 (inclusive).
+using RGBf = space<component<semantics::r, type::clamped_single_traits, 0>,
+                   component<semantics::g, type::clamped_single_traits, 1>,
+                   component<semantics::b, type::clamped_single_traits, 2>>;
+
+/// @brief The type of an RGBA color space with floating-point components each within the range from 0 (inclusive) to 1 (inclusive).
 /// A component value of 0 indicates minimal intensity of the component and 1 indicates maximal intensity of the component.
-struct RGBAf
+template <>
+struct space<component<semantics::r, type::clamped_single_traits, 0>,
+             component<semantics::g, type::clamped_single_traits, 1>,
+             component<semantics::b, type::clamped_single_traits, 2>,
+             component<semantics::a, type::clamped_single_traits, 3>>
 {
-    /// @brief The component type.
-    using ComponentType = float;
+    /// @brief The R component.
+    using r = component<semantics::r, type::clamped_single_traits, 0>;
 
-    /// @brief Get if the colour space has RGB components.
-    /// @return @a true if the colour space has RGB components, @a false otherwise
-    static constexpr bool has_rgb() noexcept { return true; }
+    /// @brief The G component.
+    using g = component<semantics::g, type::clamped_single_traits, 1>;
 
-    /// @brief Get if the colour space has an A component.
-    /// @return @a true if the colour space has an A component, @a false otherwise
-    static constexpr bool has_a() noexcept { return true; }
+    /// @brief The B component.
+    using b = component<semantics::b, type::clamped_single_traits, 2>;
 
-    /// @brief Get if the colour space has an L component.
-    /// @return @a true if the colour space has an L component, @a false otherwise
-    static constexpr bool has_l() noexcept { return false; }
+    /// @brief The A component.
+    using a = component<semantics::a, type::clamped_single_traits, 3>;
 
-    /// @brief Get the number of components of a colour in the colour space.
-    /// @return the number of components of a colour in the colour space
-    static constexpr size_t count() noexcept { return 4; }
+    /// @brief If the color space has RGB components.
+    /// @return @a true if the color space has RGB components, @a false otherwise
+    static constexpr bool has_rgb = true;
 
-    /// @brief Get the minimum component value.
-    /// @return the minimum component value
-    static constexpr ComponentType min() noexcept { return 0.0f; }
+    /// @brief If the color space has an A component.
+    /// @return @a true if the color space has an A component, @a false otherwise
+    static constexpr bool has_a = true;
 
-    /// @brief Get the maximum component value.
-    /// @return the maximum component value
-    static constexpr ComponentType max() noexcept { return 1.0f; }
+    /// @brief If the color space has an L component.
+    /// @return @a true if the color space has an L component, @a false otherwise
+    static constexpr bool has_l = false;
 
+    /// @brief The number of components of a color in the color space.
+    /// @return the number of components of a color in the color space
+    static constexpr size_t count = 4;
 };
 
-/// @brief The type of an RGB colour space with unsigned integer components each within the range from 0 (inclusive) to 255 (inclusive).
+using RGBAf = space<component<semantics::r, type::clamped_single_traits, 0>,
+                    component<semantics::g, type::clamped_single_traits, 1>,
+                    component<semantics::b, type::clamped_single_traits, 2>,
+                    component<semantics::a, type::clamped_single_traits, 3>>;
+
+/// @brief The type of an RGB color space with unsigned integer components each within the range from 0 (inclusive) to 255 (inclusive).
 /// A component value of 0 indicates minimal intensity of the component and 255 indicates maximal intensity of the component.
-struct RGBb
+template <>
+struct space<component<semantics::r, type::uint8_traits, 0>,
+             component<semantics::g, type::uint8_traits, 1>,
+             component<semantics::b, type::uint8_traits, 2>>
 {
-    /// @brief The component type.
-    using ComponentType = uint8_t;
+    /// @brief The R component.
+    using r = component<semantics::r, type::uint8_traits, 0>;
 
-    /// @brief Get if the colour space has RGB components.
-    /// @return @a true if the colour space has RGB components, @a false otherwise
-    static constexpr bool has_rgb() noexcept { return true; }
+    /// @brief The G component.
+    using g = component<semantics::g, type::uint8_traits, 1>;
 
-    /// @brief Get if the colour space has an A component.
-    /// @return @a true if the colour space has an A component, @a false otherwise
-    static constexpr bool has_a() noexcept { return false; }
+    /// @brief The B component.
+    using b = component<semantics::b, type::uint8_traits, 2>;
 
-    /// @brief Get if the colour space has an L component.
-    /// @return @a true if the colour space has an L component, @a false otherwise
-    static constexpr bool has_l() noexcept { return false; }
+    /// @brief If the color space has RGB components.
+    /// @return @a true if the color space has RGB components, @a false otherwise
+    static constexpr bool has_rgb = true;
 
-    /// @brief Get the number of components of a colour in the colour space.
-    /// @return the number of components of a colour in the colour space
-    static constexpr size_t count() noexcept { return 3; }
+    /// @brief If the color space has an A component.
+    /// @return @a true if the color space has an A component, @a false otherwise
+    static constexpr bool has_a = false;
 
-    /// @brief Get the minimum component value.
-    /// @return the minimum component value
-    static constexpr ComponentType min() noexcept { return 0; }
+    /// @brief If the color space has an L component.
+    /// @return @a true if the color space has an L component, @a false otherwise
+    static constexpr bool has_l = false;
 
-    /// @brief Get the maximum component value.
-    /// @return the maximum component value
-    static constexpr ComponentType max() noexcept { return 255; }
+    /// @brief The number of components of a color in the color space.
+    /// @return the number of components of a color in the color space
+    static constexpr size_t count = 3;
 };
 
-/// @brief The type of an RGBA colour space with unsigned integer components each within the range from 0 (inclusive) to 255 (inclusive).
+using RGBb = space<component<semantics::r, type::uint8_traits, 0>,
+                   component<semantics::g, type::uint8_traits, 1>,
+                   component<semantics::b, type::uint8_traits, 2>>;
+
+/// @brief The type of an RGBA color space with unsigned integer components each within the range from 0 (inclusive) to 255 (inclusive).
 /// A component value of 0 indicates minimal intensity of the component and 255 indicates maximal intensity of the component.
-struct RGBAb
+template <>
+struct space<component<semantics::r, type::uint8_traits, 0>,
+             component<semantics::g, type::uint8_traits, 1>,
+             component<semantics::b, type::uint8_traits, 2>,
+             component<semantics::a, type::uint8_traits, 3>>
 {
-    /// @brief The component type.
-    using ComponentType = uint8_t;
+    /// @brief The R component.
+    using r = component<semantics::r, type::uint8_traits, 0>;
 
-    /// @brief Get if the colour space has RGB components.
-    /// @return @a true if the colour space has RGB components, @a false otherwise
-    static constexpr bool has_rgb() noexcept { return true; }
+    /// @brief The G component.
+    using g = component<semantics::g, type::uint8_traits, 1>;
 
-    /// @brief Get if the colour space has an A component.
-    /// @return @a true if the colour space has an A component, @a false otherwise
-    static constexpr bool has_a() noexcept { return true; }
+    /// @brief The B component.
+    using b = component<semantics::b, type::uint8_traits, 2>;
 
-    /// @brief Get if the colour space has an L component.
-    /// @return @a true if the colour space has an L component, @a false otherwise
-    static constexpr bool has_l() noexcept { return false; }
+    /// @brief The A component.
+    using a = component<semantics::a, type::uint8_traits, 3>;
 
-    /// @brief Get the number of components in the colour space.
-    /// @return the number of components of a colour in the colour space
-    static constexpr size_t count() noexcept { return 4; }
+    /// @brief If the color space has RGB components.
+    /// @return @a true if the color space has RGB components, @a false otherwise
+    static constexpr bool has_rgb = true;
 
-    /// @brief Get the minimum component value.
-    /// @return the minimum component value
-    static constexpr ComponentType min() noexcept { return 0; }
+    /// @brief If the color space has an A component.
+    /// @return @a true if the color space has an A component, @a false otherwise
+    static constexpr bool has_a = true;
 
-    /// @brief Get the maximum component value.
-    /// @return the maximum component value
-    static constexpr ComponentType max() noexcept { return 255; }
+    /// @brief If the color space has an L component.
+    /// @return @a true if the color space has an L component, @a false otherwise
+    static constexpr bool has_l = false;
+
+    /// @brief The number of components in the color space.
+    /// @return the number of components of a color in the color space
+    static constexpr size_t count = 4;
 };
 
-/// @brief The type of an A colour space with floating-point components each within the range from 0 (inclusive) to 1 (inclusive).
+using RGBAb = space<component<semantics::r, type::uint8_traits, 0>,
+                    component<semantics::g, type::uint8_traits, 1>,
+                    component<semantics::b, type::uint8_traits, 2>,
+                    component<semantics::a, type::uint8_traits, 3>>;
+
+/// @brief The type of an A color space with floating-point components each within the range from 0 (inclusive) to 1 (inclusive).
 /// A component value of 0 indicates minimal intensity of the component and 1 indicates maximal intensity of the component.
-struct Af
+template <>
+struct space<component<semantics::a, type::clamped_single_traits, 0>>
 {
-    /// @brief The component type.
-    using ComponentType = float;
+    /// @brief The A component.
+    using a = component<semantics::a, type::clamped_single_traits, 0>;
 
-    /// @brief Get if the colour space has RGB components.
-    /// @return @a true if the colour space has RGB components, @a false otherwise
-    static constexpr bool has_rgb() noexcept { return false; }
+    /// @brief If the color space has RGB components.
+    /// @return @a true if the color space has RGB components, @a false otherwise
+    static constexpr bool has_rgb = false;
 
-    /// @brief Get if the colour space has an A component.
-    /// @return @a true if the colour space has an A component, @a false otherwise
-    static constexpr bool has_a() noexcept { return true; }
+    /// @brief If the color space has an A component.
+    /// @return @a true if the color space has an A component, @a false otherwise
+    static constexpr bool has_a = true;
 
-    /// @brief Get if the colour space has a L component.
-    /// @return @a true if the colour space has an L component, @a false otherwise
-    static constexpr bool has_l() noexcept { return false; }
+    /// @brief If the color space has a L component.
+    /// @return @a true if the color space has an L component, @a false otherwise
+    static constexpr bool has_l = false;
 
-    /// @brief Get the number of components of a colour in the colour space.
-    /// @return the number of components of a colour in the colour space
-    static constexpr size_t count() noexcept { return 1; }
-
-    /// @brief Get the minimum component value.
-    /// @return the minimum component value
-    static constexpr ComponentType min() noexcept { return 0.0f; }
-
-    /// @brief Get the maximum component value.
-    /// @return the maximum component value
-    static constexpr ComponentType max() noexcept { return 1.0f; }
+    /// @brief The number of components of a color in the color space.
+    /// @return the number of components of a color in the color space
+    static constexpr size_t count = 1;
 };
 
-/// @brief The type of an A colour space with unsigned integer components each within the range from 0 (inclusive) to 255 (inclusive).
+using Af = space<component<semantics::a, type::clamped_single_traits, 0>>;
+
+/// @brief The type of an A color space with unsigned integer components each within the range from 0 (inclusive) to 255 (inclusive).
 /// A component value of 0 indicates minimal intensity of the component and 255 indicates maximal intensity of the component.
-struct Ab
+template <>
+struct space<component<semantics::a, type::uint8_traits, 0>>
 {
-    /// @brief The component type.
-    using ComponentType = uint8_t;
+    /// @brief The A component.
+    using a = component<semantics::a, type::uint8_traits, 0>;
 
-    /// @brief Get if the colour space has RGB components.
-    /// @return @a true if the colour space has RGB components, @a false otherwise
-    static constexpr bool has_rgb() noexcept { return false; }
+    /// @brief If the color space has RGB components.
+    /// @return @a true if the color space has RGB components, @a false otherwise
+    static constexpr bool has_rgb = false;
 
-    /// @brief Get if the colour space has an A component.
-    /// @return @a true if the colour space has an A component, @a false otherwise
-    static constexpr bool has_a() noexcept { return true; }
+    /// @brief If the color space has an A component.
+    /// @return @a true if the color space has an A component, @a false otherwise
+    static constexpr bool has_a = true;
 
-    /// @brief Get if the colour space has a L component.
-    /// @return @a true if the colour space has an L component, @a false otherwise
-    static constexpr bool has_l() noexcept { return false; }
+    /// @brief If the color space has a L component.
+    /// @return @a true if the color space has an L component, @a false otherwise
+    static constexpr bool has_l = false;
 
-    /// @brief Get the number of components of a colour in the colour space.
-    /// @return the number of components of a colour in the colour space
-    static constexpr size_t count() noexcept { return 1; }
-
-    /// @brief Get the minimum component value.
-    /// @return the minimum component value
-    static constexpr ComponentType min() noexcept { return 0; }
-
-    /// @brief Get the maximum component value.
-    /// @return the maximum component value
-    static constexpr ComponentType max() noexcept { return 255; }
+    /// @brief The number of components of a color in the color space.
+    /// @return the number of components of a color in the color space
+    static constexpr size_t count = 1;
 };
 
-/**
- * @brief Get the type of the opaque color space of a specified color space.
- * @remark The opaque color space consists of all opaque colors of the specified color space.
- */
+using Ab = space<component<semantics::a, type::uint8_traits, 0>>;
+
+/// @brief Get the color space containing only the opacity components of a color space if the color space has any.
+/// Undefined otherwise.
 template <typename ColorSpace>
-struct opaque;
+struct pure_opacity_space;
 
 template <>
-struct opaque<RGBb> { using type = RGBb; };
-template <>
-struct opaque<RGBf> { using type = RGBf; };
-template <>
-struct opaque<Lb> { using type = Lb; };
-template <>
-struct opaque<Lf> { using type = Lf; };
+struct pure_opacity_space<RGBAb>
+{ using type = Ab; };
 
 template <>
-struct opaque<RGBAb> { using type = RGBb; };
+struct pure_opacity_space<RGBAf>
+{ using type = Af; };
+
 template <>
-struct opaque<RGBAf> { using type = RGBf; };
+struct pure_opacity_space<LAb>
+{ using type = Ab; };
+
 template <>
-struct opaque<LAb> { using type = Lb; };
-template <>
-struct opaque<LAf> { using type = Lf; };
+struct pure_opacity_space<LAf>
+{ using type = Af; };
 
 template <typename ColorSpace>
-using opaque_t = typename opaque<ColorSpace>::type;
+using pure_opacity_space_t = typename pure_opacity_space<ColorSpace>::type;
+
+/// @brief Get the color space containing only the color components of a color space if the color space has any.
+/// Undefined otherwise.
+template <typename ColorSpace>
+struct pure_color_space;
+
+template <>
+struct pure_color_space<RGBb>
+{ using type = RGBb; };
+
+template <>
+struct pure_color_space<RGBf>
+{ using type = RGBf; };
+
+template <>
+struct pure_color_space<Lb>
+{ using type = Lb; };
+
+template <>
+struct pure_color_space<Lf>
+{ using type = Lf; };
+
+template <>
+struct pure_color_space<RGBAb>
+{ using type = RGBb; };
+
+template <>
+struct pure_color_space<RGBAf>
+{ using type = RGBf; };
+
+template <>
+struct pure_color_space<LAb>
+{ using type = Lb; };
+
+template <>
+struct pure_color_space<LAf>
+{ using type = Lf; };
+
+template <typename ColorSpace>
+using pure_color_space_t = typename pure_color_space<ColorSpace>::type;
 
 namespace internal {
 
 template <typename ColorSpace>
+struct is_l
+{
+    static constexpr bool value =
+           !ColorSpace::has_rgb
+        &&  ColorSpace::has_l
+        && !ColorSpace::has_a;
+};
+template <typename ColorSpace>
+using is_l_v = typename is_l<ColorSpace>::value;
+
+template <typename ColorSpace>
+struct is_a
+{
+    static constexpr bool value =
+           !ColorSpace::has_rgb
+        && !ColorSpace::has_l
+        &&  ColorSpace::has_a;
+};
+template <typename ColorSpace>
+using is_a_v = typename is_a<ColorSpace>::value;
+
+template <typename ColorSpace>
+struct is_la
+{
+    static constexpr bool value =
+           !ColorSpace::has_rgb
+        &&  ColorSpace::has_l
+        &&  ColorSpace::has_a;
+};
+template <typename ColorSpace>
+using is_la_v = typename is_la<ColorSpace>::value;
+
+template <typename ColorSpace>
 struct is_rgb
 {
-    static constexpr bool value = ColorSpace::has_rgb()
-        && !ColorSpace::has_l()
-        && !ColorSpace::has_a();
+    static constexpr bool value = 
+            ColorSpace::has_rgb
+        && !ColorSpace::has_l
+        && !ColorSpace::has_a;
 };
+template <typename ColorSpace>
+using is_rgb_v = typename is_rgb<ColorSpace>::value;
 
 template <typename ColorSpace>
 struct is_rgba
 {
-    static constexpr bool value = ColorSpace::has_rgb()
-        && !ColorSpace::has_l()
-        && ColorSpace::has_a();
+    static constexpr bool value =
+            ColorSpace::has_rgb
+        && !ColorSpace::has_l
+        &&  ColorSpace::has_a;
 };
-
 template <typename ColorSpace>
-struct is_l
-{
-    static constexpr bool value = !ColorSpace::has_rgb()
-        && ColorSpace::has_l()
-        && !ColorSpace::has_a();
-};
-
-template <typename ColorSpace>
-struct IsLA
-{
-    static constexpr bool value = !ColorSpace::has_rgb()
-        && ColorSpace::has_l()
-        && ColorSpace::has_a();
-};
-
-template <typename ColorSpace>
-struct IsA
-{
-    static constexpr bool value = !ColorSpace::has_rgb()
-        && !ColorSpace::has_l()
-        && ColorSpace::has_a();
-};
-
+using is_rgba_v = typename is_rgba<ColorSpace>::value;
 
 } // namespace internal
 

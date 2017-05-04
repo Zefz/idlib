@@ -1,3 +1,20 @@
+// Copyright Michael Heilmann 2016, 2017.
+//
+// This file is part of Idlib.
+//
+// Idlib is free software: you can redistribute it and/or modify it
+// under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Idlib is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+// General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Idlib. If not, see <http://www.gnu.org/licenses/>.
+
 /// @file id/math/interpolate.hpp
 /// @brief Functionality to interpolate between values.
 /// @author Michael Heilmann
@@ -5,7 +22,7 @@
 #pragma once
 
 #include "idlib/math/one_zero.hpp"
-#include "idlib/out_of_bounds_exception.hpp"
+#include "idlib/utility/out_of_bounds_error.hpp"
 
 namespace id {
 
@@ -31,8 +48,8 @@ public:
     mu(T value) :
         m_value(value)
     {
-        if (value < zero<T>()) throw out_of_bounds_exception(__FILE__, __LINE__);
-        else if (value > one<T>()) throw out_of_bounds_exception(__FILE__, __LINE__);
+        if (value < zero<T>()) throw out_of_bounds_error(__FILE__, __LINE__, "value");
+        else if (value > one<T>()) throw out_of_bounds_error(__FILE__, __LINE__, "value");
         m_oneMinusValue = one<T>() - value;
     }
 

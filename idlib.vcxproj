@@ -256,43 +256,146 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\idlib\color\instantiations.cpp" />
-    <ClCompile Include="src\idlib\math\instantiations.cpp" />
-    <ClCompile Include="src\idlib\prefix.cpp" />
-    <ClCompile Include="src\idlib\suffix.cpp" />
-    <ClCompile Include="src\idlib\to_lower.cpp" />
-    <ClCompile Include="src\idlib\to_upper.cpp" />
-    <ClCompile Include="src\idlib\location.cpp" />
-    <ClCompile Include="src\idlib\qualified_name.cpp" />
-    <ClCompile Include="src\idlib\color\utilities.cpp" />
-    <ClCompile Include="src\idlib\signal\ConnectionBase.cpp" />
-    <ClCompile Include="src\idlib\signal\NodeBase.cpp" />
-    <ClCompile Include="src\idlib\signal\SignalBase.cpp" />
+    <ClCompile Include="src\idlib\utility\prefix.cpp" />
+    <ClCompile Include="src\idlib\utility\suffix.cpp" />
+    <ClCompile Include="src\idlib\utility\to_lower.cpp" />
+    <ClCompile Include="src\idlib\utility\to_upper.cpp" />
+    <ClCompile Include="src\idlib\language\location.cpp" />
+    <ClCompile Include="src\idlib\language\qualified_name.cpp" />
+    <ClCompile Include="src\idlib\signal\connection_base.cpp" />
+    <ClCompile Include="src\idlib\signal\node_base.cpp" />
+    <ClCompile Include="src\idlib\signal\signal_base.cpp" />
+    <ClCompile Include="src\idlib\color\instantiations.cpp">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)color\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)color\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)color\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)color\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)color\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)color\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)color\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)color\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="src\idlib\math\instantiations.cpp">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)math\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)math\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)math\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)math\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)math\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)math\</ObjectFileName>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)math\</AssemblerListingLocation>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)math\</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="src\idlib\text_range.cpp" />
     <ClCompile Include="src\idlib\idlib.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\idlib\out_of_bounds_exception.hpp" />
+    <ClInclude Include="src\idlib\utility\null_error.hpp" />
+    <ClInclude Include="src\idlib\utility.hpp" />
+    <ClInclude Include="src\idlib\utility\assertion_failed_error.hpp" />
+    <ClInclude Include="src\idlib\utility\environment_error.hpp" />
+    <ClInclude Include="src\idlib\utility\exception.hpp" />
+    <ClInclude Include="src\idlib\utility\internal\footer.hpp" />
+    <ClInclude Include="src\idlib\utility\internal\header.hpp" />
+    <ClInclude Include="src\idlib\utility\invalid_argument_error.hpp" />
+    <ClInclude Include="src\idlib\utility\is_any_of.hpp" />
+    <ClInclude Include="src\idlib\utility\lock_failed_error.hpp" />
+    <ClInclude Include="src\idlib\utility\non_copyable.hpp" />
+    <ClInclude Include="src\idlib\utility\out_of_bounds_error.hpp" />
+    <ClInclude Include="src\idlib\utility\platform.hpp" />
+    <ClInclude Include="src\idlib\utility\prefix.hpp" />
+    <ClInclude Include="src\idlib\utility\runtime_error.hpp" />
+    <ClInclude Include="src\idlib\utility\suffix.hpp" />
+    <ClInclude Include="src\idlib\utility\target.hpp" />
+    <ClInclude Include="src\idlib\utility\to_lower.hpp" />
+    <ClInclude Include="src\idlib\utility\to_string.hpp" />
+    <ClInclude Include="src\idlib\utility\to_upper.hpp" />
+    <ClInclude Include="src\idlib\utility\unhandled_switch_case_error.hpp" />
+    <ClInclude Include="src\idlib\language.hpp" />
+    <ClInclude Include="src\idlib\language\compilation_error.hpp" />
+    <ClInclude Include="src\idlib\language\location.hpp" />
+    <ClInclude Include="src\idlib\language\qualified_name.hpp" />
+    <ClInclude Include="src\idlib\language\token.hpp" />
+    <ClInclude Include="src\idlib\color.hpp" />
+    <ClInclude Include="src\idlib\event.hpp" />
+    <ClInclude Include="src\idlib\math.hpp" />
+    <ClInclude Include="src\idlib\signal.hpp" />
+    <ClInclude Include="src\idlib\type.hpp" />
+    <ClInclude Include="src\idlib\event\event.hpp" />
+    <ClInclude Include="src\idlib\event\internal\footer.hpp" />
+    <ClInclude Include="src\idlib\event\internal\header.hpp" />
+    <ClInclude Include="src\idlib\event\keyboard_key_event_kind.hpp" />
+    <ClInclude Include="src\idlib\event\mouse_button_event_kind.hpp" />
+    <ClInclude Include="src\idlib\event\mouse_wheel_event_kind.hpp" />
+    <ClInclude Include="src\idlib\event\window_event_kind.hpp" />
+    <ClInclude Include="src\idlib\signal\connection.hpp" />
+    <ClInclude Include="src\idlib\signal\connection_base.hpp" />
+    <ClInclude Include="src\idlib\signal\internal\footer.hpp" />
+    <ClInclude Include="src\idlib\signal\internal\header.hpp" />
+    <ClInclude Include="src\idlib\signal\node.hpp" />
+    <ClInclude Include="src\idlib\signal\node_base.hpp" />
+    <ClInclude Include="src\idlib\signal\scoped_connection.hpp" />
+    <ClInclude Include="src\idlib\signal\signal.hpp" />
+    <ClInclude Include="src\idlib\signal\signal_base.hpp" />
+    <ClInclude Include="src\idlib\type\add.hpp" />
+    <ClInclude Include="src\idlib\type\clamped_double_add.hpp" />
+    <ClInclude Include="src\idlib\type\clamped_double_invert.hpp" />
+    <ClInclude Include="src\idlib\type\clamped_double_scale.hpp" />
+    <ClInclude Include="src\idlib\type\clamped_double_subtract.hpp" />
+    <ClInclude Include="src\idlib\type\clamped_double_traits.hpp" />
+    <ClInclude Include="src\idlib\type\clamped_single_add.hpp" />
+    <ClInclude Include="src\idlib\type\clamped_single_invert.hpp" />
+    <ClInclude Include="src\idlib\type\clamped_single_scale.hpp" />
+    <ClInclude Include="src\idlib\type\clamped_single_subtract.hpp" />
+    <ClInclude Include="src\idlib\type\clamped_single_traits.hpp" />
+    <ClInclude Include="src\idlib\type\convert.hpp" />
+    <ClInclude Include="src\idlib\type\internal\footer.hpp" />
+    <ClInclude Include="src\idlib\type\internal\header.hpp" />
+    <ClInclude Include="src\idlib\type\invert.hpp" />
+    <ClInclude Include="src\idlib\type\range.hpp" />
+    <ClInclude Include="src\idlib\type\scale.hpp" />
+    <ClInclude Include="src\idlib\type\subtract.hpp" />
+    <ClInclude Include="src\idlib\type\uint16_add.hpp" />
+    <ClInclude Include="src\idlib\type\uint16_invert.hpp" />
+    <ClInclude Include="src\idlib\type\uint16_scale.hpp" />
+    <ClInclude Include="src\idlib\type\uint16_subtract.hpp" />
+    <ClInclude Include="src\idlib\type\uint16_traits.hpp" />
+    <ClInclude Include="src\idlib\type\uint32_add.hpp" />
+    <ClInclude Include="src\idlib\type\uint32_invert.hpp" />
+    <ClInclude Include="src\idlib\type\uint32_scale.hpp" />
+    <ClInclude Include="src\idlib\type\uint32_subtract.hpp" />
+    <ClInclude Include="src\idlib\type\uint32_traits.hpp" />
+    <ClInclude Include="src\idlib\type\uint64_add.hpp" />
+    <ClInclude Include="src\idlib\type\uint64_invert.hpp" />
+    <ClInclude Include="src\idlib\type\uint64_scale.hpp" />
+    <ClInclude Include="src\idlib\type\uint64_subtract.hpp" />
+    <ClInclude Include="src\idlib\type\uint64_traits.hpp" />
+    <ClInclude Include="src\idlib\type\uint8_add.hpp" />
+    <ClInclude Include="src\idlib\type\uint8_invert.hpp" />
+    <ClInclude Include="src\idlib\type\uint8_scale.hpp" />
+    <ClInclude Include="src\idlib\type\uint8_subtract.hpp" />
+    <ClInclude Include="src\idlib\type\uint8_traits.hpp" />
+    <ClInclude Include="src\idlib\color\brighten.hpp" />
+    <ClInclude Include="src\idlib\color\darken.hpp" />
+    <ClInclude Include="src\idlib\color\a-header.in.h" />
+    <ClInclude Include="src\idlib\color\a.in.h" />
+    <ClInclude Include="src\idlib\color\l-header.in.h" />
+    <ClInclude Include="src\idlib\color\l.in.h" />
+    <ClInclude Include="src\idlib\color\la-header.in.h" />
+    <ClInclude Include="src\idlib\color\la.in.h" />
+    <ClInclude Include="src\idlib\color\rgb-header.in.h" />
+    <ClInclude Include="src\idlib\color\rgb.in.h" />
+    <ClInclude Include="src\idlib\color\rgba-header.in.h" />
+    <ClInclude Include="src\idlib\color\rgba.in.h" />
+    <ClInclude Include="src\idlib\math\invert.hpp" />
     <ClInclude Include="src\idlib\math\interpolate.hpp" />
     <ClInclude Include="src\idlib\math\interpolate_floating_point.hpp" />
-    <ClInclude Include="src\idlib\color\include.hpp" />
     <ClInclude Include="src\idlib\math\mu.hpp" />
-    <ClInclude Include="src\idlib\target.hpp" />
-    <ClInclude Include="src\idlib\exception.hpp" />
     <ClInclude Include="src\idlib\math\dimensionality.hpp" />
-    <ClInclude Include="src\idlib\platform.hpp" />
     <ClInclude Include="src\idlib\math\interpolation_method.hpp" />
     <ClInclude Include="src\idlib\color\a.hpp" />
-    <ClInclude Include="src\idlib\is_any_of.hpp" />
     <ClInclude Include="src\idlib\math\even_odd.hpp" />
     <ClInclude Include="src\idlib\math\one_zero.hpp" />
-    <ClInclude Include="src\idlib\prefix.hpp" />
-    <ClInclude Include="src\idlib\suffix.hpp" />
-    <ClInclude Include="src\idlib\to_lower.hpp" />
-    <ClInclude Include="src\idlib\to_upper.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\option.hpp" />
-    <ClInclude Include="src\idlib\location.hpp" />
-    <ClInclude Include="src\idlib\qualified_name.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\n_ary_expr.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\repetition.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\sequence.hpp" />
@@ -301,34 +404,16 @@
     <ClInclude Include="src\idlib\parsing_expressions\include.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\sym.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\sym_range.hpp" />
-    <ClInclude Include="src\idlib\color\utilities.hpp" />
     <ClInclude Include="src\idlib\color\color.hpp" />
     <ClInclude Include="src\idlib\color\l.hpp" />
     <ClInclude Include="src\idlib\color\la.hpp" />
     <ClInclude Include="src\idlib\color\rgb.hpp" />
     <ClInclude Include="src\idlib\color\rgba.hpp" />
     <ClInclude Include="src\idlib\color\space.hpp" />
-    <ClInclude Include="src\idlib\signal\Connection.hpp" />
-    <ClInclude Include="src\idlib\signal\ConnectionBase.hpp" />
-    <ClInclude Include="src\idlib\signal\Node.hpp" />
-    <ClInclude Include="src\idlib\signal\NodeBase.hpp" />
-    <ClInclude Include="src\idlib\signal\ScopedConnection.hpp" />
-    <ClInclude Include="src\idlib\signal\Signal.hpp" />
-    <ClInclude Include="src\idlib\signal\SignalBase.hpp" />
-    <ClInclude Include="src\idlib\signal\Include.hpp" />
     <ClInclude Include="src\idlib\text_range.hpp" />
-    <ClInclude Include="src\idlib\CompilationErrorException.hpp" />
-    <ClInclude Include="src\idlib\token.hpp" />
     <ClInclude Include="src\idlib\crtp.hpp" />
     <ClInclude Include="src\idlib\BitmaskTypes.hpp" />
     <ClInclude Include="src\idlib\DebugAssert.hpp" />
-    <ClInclude Include="src\idlib\InvalidArgumentException.hpp" />
-    <ClInclude Include="src\idlib\RuntimeErrorException.hpp" />
-    <ClInclude Include="src\idlib\AssertionFailedException.hpp" />
-    <ClInclude Include="src\idlib\EnvironmentErrorException.hpp" />
-    <ClInclude Include="src\idlib\LockFailedException.hpp" />
-    <ClInclude Include="src\idlib\UnhandledSwitchCaseException.hpp" />
-    <ClInclude Include="src\idlib\NonCopyable.hpp" />
     <ClInclude Include="src\idlib\idlib.hpp" />
   </ItemGroup>
   <ItemGroup>
