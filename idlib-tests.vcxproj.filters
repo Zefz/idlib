@@ -13,49 +13,75 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\parsing_expressions">
+    <Filter Include="Source Files\color">
+      <UniqueIdentifier>{ca870cb1-f61c-4784-8024-3b2fb002e25f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\parsing_expression">
       <UniqueIdentifier>{2a9f329f-6c0e-42cd-8810-48debce9ceff}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="tests\idlib\Tests\Compilation.cpp">
+    <ClCompile Include="tests\idlib\tests\Compilation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tests\idlib\Tests\Signal.cpp">
+    <ClCompile Include="tests\idlib\tests\Signal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tests\idlib\Tests\Math.cpp">
+    <ClCompile Include="tests\idlib\tests\Math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tests\idlib\Tests\parsing_expressions\choice.cpp">
-      <Filter>Source Files\parsing_expressions</Filter>
+    <ClCompile Include="tests\idlib\tests\parsing_expressions\choice.cpp">
+      <Filter>Source Files\parsing_expression</Filter>
     </ClCompile>
-    <ClCompile Include="tests\idlib\Tests\parsing_expressions\name.cpp">
-      <Filter>Source Files\parsing_expressions</Filter>
+    <ClCompile Include="tests\idlib\tests\parsing_expressions\name.cpp">
+      <Filter>Source Files\parsing_expression</Filter>
     </ClCompile>
-    <ClCompile Include="tests\idlib\Tests\parsing_expressions\name_regression.cpp">
-      <Filter>Source Files\parsing_expressions</Filter>
+    <ClCompile Include="tests\idlib\tests\parsing_expressions\qualified_name.cpp">
+      <Filter>Source Files\parsing_expression</Filter>
     </ClCompile>
-    <ClCompile Include="tests\idlib\Tests\parsing_expressions\qualified_name.cpp">
-      <Filter>Source Files\parsing_expressions</Filter>
+    <ClCompile Include="tests\idlib\tests\parsing_expressions\symbols.cpp">
+      <Filter>Source Files\parsing_expression</Filter>
     </ClCompile>
-    <ClCompile Include="tests\idlib\Tests\parsing_expressions\symbols.cpp">
-      <Filter>Source Files\parsing_expressions</Filter>
-    </ClCompile>
-    <ClCompile Include="tests\idlib\Tests\qualified_name.cpp">
+    <ClCompile Include="tests\idlib\tests\qualified_name.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tests\idlib\Tests\prefix.cpp">
+    <ClCompile Include="tests\idlib\tests\prefix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tests\idlib\Tests\suffix.cpp">
+    <ClCompile Include="tests\idlib\tests\suffix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tests\idlib\Tests\to_lower.cpp">
+    <ClCompile Include="tests\idlib\tests\to_lower.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tests\idlib\Tests\to_upper.cpp">
+    <ClCompile Include="tests\idlib\tests\to_upper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tests\idlib\tests\color\interpolation.cpp">
+      <Filter>Source Files\color</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\idlib\tests\color\inversion.cpp">
+      <Filter>Source Files\color</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\idlib\tests\color\copy_construction.cpp">
+      <Filter>Source Files\color</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\idlib\tests\color\compose_construction.cpp">
+      <Filter>Source Files\color</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\idlib\tests\color\decompose_construction.cpp">
+      <Filter>Source Files\color</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\idlib\tests\color\brightening_darkening.cpp">
+      <Filter>Source Files\color</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\idlib\tests\color\addition_subtraction.cpp">
+      <Filter>Source Files\color</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="tests\idlib\tests\color\color_generator.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

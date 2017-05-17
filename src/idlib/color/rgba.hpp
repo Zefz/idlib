@@ -1,21 +1,19 @@
-//********************************************************************************************
-//*
-//*    This file is part of Egoboo.
-//*
-//*    Egoboo is free software: you can redistribute it and/or modify it
-//*    under the terms of the GNU General Public License as published by
-//*    the Free Software Foundation, either version 3 of the License, or
-//*    (at your option) any later version.
-//*
-//*    Egoboo is distributed in the hope that it will be useful, but
-//*    WITHOUT ANY WARRANTY; without even the implied warranty of
-//*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-//*    General Public License for more details.
-//*
-//*    You should have received a copy of the GNU General Public License
-//*    along with Egoboo.  If not, see <http://www.gnu.org/licenses/>.
-//*
-//********************************************************************************************
+// Copyright Michael Heilmann 2016, 2017.
+//
+// This file is part of Idlib.
+//
+// Idlib is free software: you can redistribute it and/or modify it
+// under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Idlib is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+// General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
 /// @file idlib/color/rgba.hpp
 /// @brief Colors in RGBA color spaces.
@@ -29,39 +27,42 @@
 
 #include "idlib/color/color.hpp"
 #include "idlib/crtp.hpp"
+#include "idlib/math/interpolate.hpp"
+#include "idlib/math/interpolate_floating_point.hpp"
+#include "idlib/math/invert.hpp"
+#include "idlib/utility/is_any_of.hpp"
+#include "idlib/color/brighten.hpp"
+#include "idlib/color/darken.hpp"
+#include "idlib/type.hpp"
 
-namespace Id {
+namespace id {
 
 /// @brief A color in RGBA color space.
-template <typename ColourSpaceTypeArg>
-struct Colour<ColourSpaceTypeArg, std::enable_if_t<Internal::IsRgba<ColourSpaceTypeArg>::value>> :
-    public id::equal_to_expr<Colour<ColourSpaceTypeArg>>
+template <typename ColorSpace>
+struct color<ColorSpace, std::enable_if_t<internal::is_rgba<ColorSpace>::value>> :
+    public equal_to_expr<color<ColorSpace>>,
+    public plus_expr<color<ColorSpace>>,
+    public minus_expr<color<ColorSpace>>
 {
 public:
-    using ColourSpaceType = ColourSpaceTypeArg;
-    using ComponentType = typename ColourSpaceType::ComponentType;
-    using MyType = Colour<ColourSpaceType>;
-    static_assert(Id::Internal::IsRgba<ColourSpaceTypeArg>::value, "not an RGBA colour space type");
-    static_assert(ColourSpaceTypeArg::hasRgb() && ColourSpaceTypeArg::hasA() && !ColourSpaceTypeArg::hasL(), "not an RGBA colour space type");
+    /// @brief The RGBA color space type.
+    using color_space = ColorSpace;
+    /// @brief The corresponding RGB color space type.
+    using pure_color_space = pure_color_space_t<color_space>;
+    /// @brief The corresponding A color space type.
+    using pure_opacity_space = pure_opacity_space_t<color_space>;
+
+    // Assert the color space is an RGBA color space.
+    static_assert(internal::is_rgba<ColorSpace>::value, "not an RGBA color space");
+
+    // Define component types and component members.
+    #include "idlib/color/rgba-header.in.h"
+
+public:
+    using this_type = color<color_space>;
 
 private:
-    /// @brief The red component value.
-    /// @invariant Within the bounds of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive).
-    ComponentType r;
-
-    /// @brief The green component value.
-    /// @invariant Within the bounds of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive).
-    ComponentType g;
-
-    /// @brief The blue component value.
-    /// @invariant Within the bounds of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive).
-    ComponentType b;
-
-    /// @brief The blue component value.
-    /// @invariant Within the bounds of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive).
-    ComponentType a;
-
-    void assign(const MyType& other)
+    void assign(const this_type& other)
     {
         r = other.r;
         g = other.g;
@@ -70,455 +71,428 @@ private:
     }
 
 public:
-    /// @brief The colour "red".
-    /// @return the colour "red"
-    /// @see Id::Colour<RGBb>::red()
-    static const MyType& red()
+    /// @brief The color "red".
+    /// @return the color "red"
+    /// @see color<RGBb>::red()
+    static const color& red()
     {
-        static const MyType colour(Colour<Opaque<ColourSpaceType>>::red(),
-                                   ColourSpaceType::max());
-        return colour;
+        static const color color(color<pure_color_space_t<color_space>>::red(),
+                                 color_space::a::syntax::range().max());
+        return color;
     }
 
-    /// @brief The colour "green".
-    /// @return the colour "green"
-    /// @see Id::Colour<RGBb>::green()
-    static const MyType& green()
+    /// @brief The color "green".
+    /// @return the color "green"
+    /// @see color<RGBb>::green()
+    static const color& green()
     {
-        static const MyType colour(Colour<Opaque<ColourSpaceType>>::green(),
-                                   ColourSpaceType::max());
-        return colour;
+        static const color color(color<pure_color_space_t<color_space>>::green(),
+                                 color_space::a::syntax::range().max());
+        return color;
     }
 
-    /// @brief The colour "blue".
-    /// @return the colour "blue"
-    /// @see Id::Colour<RGBb>::blue()
-    static const MyType blue()
+    /// @brief The color "blue".
+    /// @return the color "blue"
+    /// @see color<RGBb>::blue()
+    static const color& blue()
     {
-        static const MyType colour(Colour<Opaque<ColourSpaceType>>::blue(),
-                                   ColourSpaceType::max());
-        return colour;
+        static const color color(color<pure_color_space_t<color_space>>::blue(),
+                                 color_space::a::syntax::range().max());
+        return color;
     }
 
-    /// @brief The colour "white".
-    /// @return the colour "white"
-    /// @see Id::Colour<RGBb>::white()
-    static const MyType white()
+    /// @brief The color "white".
+    /// @return the color "white"
+    /// @see color<RGBb>::white()
+    static const color& white()
     {
-        static const MyType colour(Colour<Opaque<ColourSpaceType>>::white(),
-                                   ColourSpaceType::max());
-        return colour;
+        static const color color(color<pure_color_space_t<color_space>>::white(),
+                                 color_space::a::syntax::range().max());
+        return color;
     }
 
-    /// @brief The colour "black".
-    /// @return the colour "black"
-    /// @see Id::Colour<RGBb>::black()
-    static const MyType black()
+    /// @brief The color "black".
+    /// @return the color "black"
+    /// @see color<RGBb>::black()
+    static const color& black()
     {
-        static const MyType colour(Colour<Opaque<ColourSpaceType>>::black(),
-                                   ColourSpaceType::max());
-        return colour;
+        static const color color(color<pure_color_space_t<color_space>>::black(),
+                                 color_space::a::syntax::range().max());
+        return color;
     }
 
-    /// @brief The colour "cyan".
-    /// @return the colour "cyan"
-    /// @see Id::Colour<RGBb>::cyan()
-    static const MyType cyan()
+    /// @brief The color "cyan".
+    /// @return the color "cyan"
+    /// @see color<RGBb>::cyan()
+    static const color& cyan()
     {
-        static const MyType colour(Colour<Opaque<ColourSpaceType>>::cyan(),
-                                   ColourSpaceType::max());
-        return colour;
+        static const color color(color<pure_color_space_t<color_space>>::cyan(),
+                                 color_space::a::syntax::range().max());
+        return color;
     }
 
-    /// @brief The colour "magenta".
-    /// @return the colour "magenta"
-    /// @see Id::Colour<RGBb>::magenta()
-    static const MyType magenta()
+    /// @brief The color "magenta".
+    /// @return the color "magenta"
+    /// @see color<RGBb>::magenta()
+    static const color& magenta()
     {
-        static const MyType colour(Colour<Opaque<ColourSpaceType>>::magenta(),
-                                   ColourSpaceType::max());
-        return colour;
+        static const color color(color<pure_color_space_t<color_space>>::magenta(),
+                                 color_space::a::syntax::range().max());
+        return color;
     }
 
-    /// @brief The colour "yellow".
-    /// @return the colour "yellow"
-    /// @see Id::Colour<RGBb>::yellow()
-    static const MyType yellow()
+    /// @brief The color "yellow".
+    /// @return the color "yellow"
+    /// @see color<RGBb>::yellow()
+    static const color& yellow()
     {
-        static const MyType colour(Colour<Opaque<ColourSpaceType>>::yellow(),
-                                   ColourSpaceType::max());
-        return colour;
+        static const color color(color<pure_color_space_t<color_space>>::yellow(),
+                                 color_space::a::syntax::range().max());
+        return color;
     }
 
-    /// @brief The colour "purple".
-    /// @return the colour "purple"
-    /// @see Id::Colour<RGBb>::purple()
-    static const MyType purple()
+    /// @brief The color "purple".
+    /// @return the color "purple"
+    /// @see color<RGBb>::purple()
+    static const color& purple()
     {
-        static const MyType colour(Colour<Opaque<ColourSpaceType>>::purple(),
-                                   ColourSpaceType::max());
-        return colour;
+        static const color color(color<pure_color_space_t<color_space>>::purple(),
+                                 color_space::a::syntax::range().max());
+        return color;
     }
 
-    /// @brief The colour "grey".
-    /// @return the colour "grey"
-    /// @see Id::Colour<RGBb>::grey()
-    static const MyType grey()
+    /// @brief The color "grey".
+    /// @return the color "grey"
+    /// @see color<RGBb>::grey()
+    static const color& grey()
     {
-        static const MyType colour(Colour<Opaque<ColourSpaceType>>::grey(),
-                                   ColourSpaceType::max());
-        return colour;
+        static const color color(color<pure_color_space_t<color_space>>::grey(),
+                                 color_space::a::syntax::range().max());
+        return color;
     }
 
 public:
     /// @brief Default construct with component values corresponding to "opaque black".
-    Colour() :
-        r(ColourSpaceType::min()), g(ColourSpaceType::min()), b(ColourSpaceType::min()),
-        a(ColourSpaceType::max())
-    {
-        // Intentionally empty
-    }
+    color() :
+        r(color_space::r::syntax::range().min()),
+        g(color_space::g::syntax::range().min()),
+        b(color_space::b::syntax::range().min()),
+        a(color_space::a::syntax::range().max())
+    {}
 
     /// @brief Construct this color from the component values of a another color.
     /// @param other the other color
-    template <typename OtherColourSpaceTypeArg,
-              std::enable_if_t<std::is_same<OtherColourSpaceTypeArg, ColourSpaceTypeArg>::value, int *> = nullptr>
-    Colour(const Colour<OtherColourSpaceTypeArg>& other) :
-        r(other.getRed()), g(other.getGreen()), b(other.getBlue()), a(other.getAlpha())
+    template<typename OtherColorSpace,
+             std::enable_if_t<std::is_same<OtherColorSpace, ColorSpace>::value, int *> = nullptr>
+    color(const color<OtherColorSpace>& other) :
+        r(other.get_r()), g(other.get_g()), b(other.get_b()), a(other.get_a())
     {
         // Intentionally empty.
     }
 
-    /// @brief Construct this color from the specified color of the corresponding opaque color space and the specified alpha component value.
+    /// @brief Construct this color from an RGB color and an A component value.
     /// @param rgb the RGB color
-    /// @param a the component value of the blue component
-    /// @throws Id::OutOfBoundsException @a a is not within the bounds of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive)
-    Colour(const Colour<Opaque<ColourSpaceType>>& rgb, ComponentType a) :
-        r(rgb.getRed()), g(rgb.getGreen()), b(rgb.getBlue()), 
-        a(a)
-    {
-        /* r, g, b are known to be within in bounds. */
-        if (a < ColourSpaceType::min() || a > ColourSpaceType::max())
-        {
-            throw OutOfBoundsException(__FILE__, __LINE__, "alpha component out of bounds");
-        }
-    }
+    /// @param a the A component value
+    /// @throws out_of_bounds_exception @a a is not within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive)
+    color(const color<pure_color_space>& rgb, component_a a) :
+        color(rgb, color<pure_opacity_space>(a))
+    {}
 
-    /// @brief Construct this RGBAb color from the component values of an RGBAf color.
-    /// @param other the other color
-    template <typename OtherColourSpaceTypeArg,
-              std::enable_if_t<std::is_same<ColourSpaceTypeArg, RGBAb>::value &&
-              std::is_same<OtherColourSpaceTypeArg, RGBAf>::value, int *> = nullptr>
-    Colour(const Colour<OtherColourSpaceTypeArg>& other) :
-        r(Internal::f2b(other.getRed())),
-        g(Internal::f2b(other.getGreen())),
-        b(Internal::f2b(other.getBlue())),
-        a(Internal::f2b(other.getAlpha()))
-    {
-        // Intentionally empty.
-    }
+    /// @brief Construct this color from an RGB color and an A color.
+    /// @param rgb the RGB color
+    /// @param a the A color
+    color(const color<pure_color_space>& rgb, color<pure_opacity_space>& a) :
+        r(rgb.get_r()), g(rgb.get_g()), b(rgb.get_b()),
+        a(a.get_a())
+    {}
 
-    /// @brief Construct this RGBAf color from the component values of an RGBAb color.
-    /// @param other the other color
-    template <typename OtherColourSpaceTypeArg,
-              std::enable_if_t<std::is_same<ColourSpaceTypeArg, RGBAf>::value &&
-              std::is_same<OtherColourSpaceTypeArg, RGBAb>::value, int *> = nullptr>
-    Colour(const Colour<OtherColourSpaceTypeArg>& other) :
-        r(Internal::b2f(other.getRed())),
-        g(Internal::b2f(other.getGreen())),
-        b(Internal::b2f(other.getBlue())),
-        a(Internal::b2f(other.getAlpha()))
-    {
-        // Intentionally empty.
-    }
+    /// @brief Construct this RGBA color from another RGBA color.
+    /// @param other the other RGBA color
+    template<typename OtherColorSpace,
+             std::enable_if_t<!std::is_same<color_space, OtherColorSpace>::value &&
+                              is_any_of<OtherColorSpace, RGBAb, RGBAf>::value, int *> = nullptr>
+    explicit color(const color<OtherColorSpace>& other) :
+        r(type::convert<color_space::r::syntax, OtherColorSpace::r::syntax>()(other.get_r())),
+        g(type::convert<color_space::g::syntax, OtherColorSpace::g::syntax>()(other.get_g())),
+        b(type::convert<color_space::b::syntax, OtherColorSpace::b::syntax>()(other.get_b())),
+        a(type::convert<color_space::a::syntax, OtherColorSpace::a::syntax>()(other.get_a()))
+    {}
 
-    /// @brief Construct this RGBAf color from the component values of an LAf color.
-    /// @param other the other color
-    template <typename OtherColourSpaceTypeArg,
-              std::enable_if_t<std::is_same<ColourSpaceTypeArg, RGBAf>::value &&
-              std::is_same<OtherColourSpaceTypeArg, LAf>::value, int *> = nullptr>
-    Colour(const Colour<OtherColourSpaceTypeArg>& other) :
-        r(other.getLuminance()), g(other.getLuminance()), b(other.getLuminance()), a(other.getAlpha())
-    {
-        // Intentionally empty.
-    }
+    /// @brief Construct this RGBA clamped float color from an LA clamped float color.
+    /// @param other the LA clamped float color
+    template<typename OtherColorSpace,
+             std::enable_if_t<std::is_same<ColorSpace, RGBAf>::value &&
+                              std::is_same<OtherColorSpace, LAf>::value, int *> = nullptr>
+    explicit color(const color<OtherColorSpace>& other) :
+        r(other.get_l()), g(other.get_l()), b(other.get_l()), a(other.get_a())
+    {}
 
-    /// @brief Construct this RGBAb color from the component values of an LAb color.
-    /// @param other the other color
-    template <typename OtherColourSpaceTypeArg,
-              std::enable_if_t<std::is_same<ColourSpaceTypeArg, RGBAb>::value &&
-              std::is_same<OtherColourSpaceTypeArg, LAb>::value, int *> = nullptr>
-    Colour(const Colour<OtherColourSpaceTypeArg>& other) :
-        r(other.getLuminance()), g(other.getLuminance()), b(other.getLuminance()), a(other.getAlpha())
-    {
-        // Intentionally empty.
-    }
+    /// @brief Construct this RGBA byte color from an LA byte color.
+    /// @param other the LA byte color
+    template<typename OtherColorSpace,
+             std::enable_if_t<std::is_same<ColorSpace, RGBAb>::value &&
+                              std::is_same<OtherColorSpace, LAb>::value, int *> = nullptr>
+    explicit color(const color<OtherColorSpace>& other) :
+        r(other.get_l()), g(other.get_l()), b(other.get_l()), a(other.get_a())
+    {}
 
-    /// @brief Construct this colour from the specified component values.
+    /// @brief Construct this RGBA color from an RGB color and an A color.
+    /// @param rgb the RGB color
+    /// @param a the A color
+    template<typename ColorSpaceRgb, typename ColorSpaceA,
+             std::enable_if_t<std::is_same<ColorSpaceRgb, pure_color_space>::value &&
+                              std::is_same<ColorSpaceA, pure_opacity_space>::value, int *> = nullptr>
+    color(const color<ColorSpaceRgb>& rgb, const color<ColorSpaceA>& a) :
+        r(rgb.get_r()), g(rgb.get_g()), b(rgb.get_b()), a(a.get_a())
+    {}
+
+    /// @brief Construct this color from the specified component values.
     /// @param r the component value of the red component
     /// @param g the component value of the green component
     /// @param b the component value of the blue component
     /// @param a the component value of the alpha component
-    /// @throws Id::OutOfBoundsException @a a, @a g, @a b or @a a are not within the range of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive)
-    Colour(ComponentType r, ComponentType g, ComponentType b, ComponentType a) :
+    /// @throws out_of_bounds_exception @a a, @a g, @a b or @a a are not within the range of color_space::min() (inclusive) and color_space::max() (inclusive)
+    color(component_r r, component_g g, component_b b, component_a a) :
         r(r), g(g), b(b), a(a)
     {
-        if (r < ColourSpaceType::min() || r > ColourSpaceType::max())
+        if (color_space::r::syntax::range().outside(r))
         {
-            throw OutOfBoundsException(__FILE__, __LINE__, "red component out of bounds");
+            throw out_of_bounds_error(__FILE__, __LINE__, "red component out of bounds");
         }
-        if (g < ColourSpaceType::min() || g > ColourSpaceType::max())
+        if (color_space::g::syntax::range().outside(g))
         {
-            throw OutOfBoundsException(__FILE__, __LINE__, "green component out of bounds");
+            throw out_of_bounds_error(__FILE__, __LINE__, "green component out of bounds");
         }
-        if (b < ColourSpaceType::min() || b > ColourSpaceType::max())
+        if (color_space::b::syntax::range().outside(b))
         {
-            throw OutOfBoundsException(__FILE__, __LINE__, "blue component out of bounds");
+            throw out_of_bounds_error(__FILE__, __LINE__, "blue component out of bounds");
         }
-        if (a < ColourSpaceType::min() || a > ColourSpaceType::max())
+        if (color_space::a::syntax::range().outside(a))
         {
-            throw OutOfBoundsException(__FILE__, __LINE__, "alpha component out of bounds");
+            throw out_of_bounds_error(__FILE__, __LINE__, "alpha component out of bounds");
         }
     }
 
 public:
-    /// @brief Assign this colour from another colour.
-    /// @param other the other colour
-    /// @return this colour
-    const MyType& operator=(const MyType& other)
+    /// @brief Assign this color from another color.
+    /// @param other the other color
+    /// @return this color
+    const color& operator=(const color& other)
     {
         this->assign(other);
         return *this;
     }
 
-    /// @brief Invert this colour value.
-    /// @return the inverted colour
-    /// @remark
-    /// Given a colour  \f$(r,g,b,a)\f$ in real-valued, normalized RGBA space,
-    /// then corresponding inverted colour is \f$(1-r,1-g,1-b,a)\f$. Inverting
-    /// a colour twice yields the same colour (modula floating-point precision).
-    /// @remark
-    /// The corresponding inverted colour is also known as the complementary colour.
-    MyType invert() const
-    {
-        return MyType(ColourSpaceType::max() - this->getRed(),
-                      ColourSpaceType::max() - this->getGreen(),
-                      ColourSpaceType::max() - this->getBlue(),
-                      this->getAlpha());
-    }
-
-    /**
-     * @brief
-     *  Make a brighter version of this colour
-     * @param brightness
-     *  the scalar for brightness increase (0 = normal, 1 = twice as bright)
-     * @return
-     *  the brighter colour
-     * @remark
-     *  Given a colour  \f$(r,g,b,a)\f$ in real-valued, normalized RGBA space,
-     *  then corresponding inverted colour is \f$(brighness*r,brighness*1,brighness*1,a)\f$. This conversion
-     *  is not reverrsible.
-     */
-    MyType brighter(float brightness) const
-    {
-        if (brightness <= 0.0f) return *this;
-        brightness += 1.0f;
-        return MyType(std::min(ColourSpaceType::max(), this->getRed()*brightness),
-                      std::min(ColourSpaceType::max(), this->getGreen()*brightness),
-                      std::min(ColourSpaceType::max(), this->getBlue()*brightness),
-                      this->getAlpha());
-    }
-
 public:
     // CRTP
-    bool equal_to(const MyType& other) const
+    bool equal_to(const color& other) const
     {
-        return this->getRed() == other.getRed()
-            && this->getGreen() == other.getGreen()
-            && this->getBlue() == other.getBlue()
-            && this->getAlpha() == other.getAlpha();
+        return get_r() == other.get_r()
+            && get_g() == other.get_g()
+            && get_b() == other.get_b()
+            && get_a() == other.get_a();
+    }
+
+    // CRTP
+    void add(const color& other)
+    {
+        r = type::add<color_space::r::syntax>()(get_r(), other.get_r());
+        g = type::add<color_space::g::syntax>()(get_g(), other.get_g());
+        b = type::add<color_space::b::syntax>()(get_b(), other.get_b());
+        a = type::add<color_space::a::syntax>()(get_a(), other.get_a());
+    }
+
+    // CRTP
+    void subtract(const color& other)
+    {
+        r = type::subtract<color_space::r::syntax>()(get_r(), other.get_r());
+        g = type::subtract<color_space::g::syntax>()(get_g(), other.get_g());
+        b = type::subtract<color_space::b::syntax>()(get_b(), other.get_b());
+        a = type::subtract<color_space::a::syntax>()(get_a(), other.get_a());
     }
 
 public:
-    /// @brief Get the value of the red component.
-    /// @return the value of the red component
-    ComponentType getRed() const
-    {
-        return r;
-    }
+	#include "idlib/color/rgba.in.h"
 
-#if defined(ID_COLOR_SHORT_GETTERS) && 1 == ID_COLOR_SHORT_GETTERS
-    /// @brief Get the value of the red component.
-    /// @return the value of the red component
-    ComponentType getR() const
-    {
-        return r;
-    }
-#endif
-
-#if defined(ID_COLOR_SETTERS) && 1 == ID_COLOR_SETTERS
+public:
+    /// @{
     /// @brief Set the value of the red component.
     /// @param r the value of the red component
-    /// @throws OutOfBoundsException @a r is not within the bounds of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive)
-    void setRed(ComponentType r)
+    /// @throws out_of_bounds_exception @a r is not within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive)
+#if defined(ID_COLOR_SETTERS) && 1 == ID_COLOR_SETTERS
+    void set_red(component_r r)
     {
-        if (r < ColourSpaceType::min() || r > ColourSpaceType::max())
+        if (color_space::r::syntax::range().outside(r))
         {
-            throw OutOfBoundsException(__FILE__, __LINE__, "red component out of bounds");
+            throw out_of_bounds_error(__FILE__, __LINE__, "red component out of bounds");
         }
         this->r = r;
     }
-
 #if defined(ID_COLOR_SHORT_SETTERS) && 1 == ID_COLOR_SHORT_SETTERS
-    /// @brief Set the value of the red component.
-    /// @param r the value of the red component
-    /// @throws OutOfBoundsException @a r is not within the bounds of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive)
-    void setR(ComponentType r)
-    {
-        if (r < ColourSpaceType::min() || r > ColourSpaceType::max())
-        {
-            throw OutOfBoundsException(__FILE__, __LINE__, "red component out of bounds");
-        }
-        this->r = r;
-    }
+    void set_r(component_r r)
+    { set_red(r); }
 #endif
-
 #endif
+    /// @}
 
-    /// @brief Get the value of the green component.
-    /// @return the value of the green component
-    ComponentType getGreen() const
-    {
-        return g;
-    }
-
-#if defined(ID_COLOR_SHORT_GETTERS) && 1 == ID_COLOR_SHORT_GETTERS
-    /// @brief Get the value of the green component.
-    /// @return the value of the green component
-    ComponentType getG() const
-    {
-        return g;
-    }
-#endif
-
-#if defined(ID_COLOR_SETTERS) && 1 == ID_COLOR_SETTERS
+    /// @{
     /// @brief Set the value of the green component.
     /// @param g the value of the green component
-    /// @throws OutOfBoundsException @a g is not within the bounds of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive)
-    void setGreen(ComponentType g)
+    /// @throws out_of_bounds_exception @a g is not within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive)
+#if defined(ID_COLOR_SETTERS) && 1 == ID_COLOR_SETTERS
+    void set_green(component_g g)
     {
-        if (g < ColourSpaceType::min() || g > ColourSpaceType::max())
+        if (color_space::g::syntax().range().outside(g))
         {
-            throw OutOfBoundsException(__FILE__, __LINE__, "green component out of bounds");
+            throw out_of_bounds_error(__FILE__, __LINE__, "green component out of bounds");
         }
         this->g = g;
     }
-
 #if defined(ID_COLOR_SHORT_SETTERS) && 1 == ID_COLOR_SHORT_SETTERS
-    /// @brief Set the value of the green component.
-    /// @param g the value of the green component
-    /// @throws OutOfBoundsException @a g is not within the bounds of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive)
-    void setG(ComponentType g)
-    {
-        if (g < ColourSpaceType::min() || g > ColourSpaceType::max())
-        {
-            throw OutOfBoundsException(__FILE__, __LINE__, "green component out of bounds");
-        }
-        this->g = g;
-    }
+    void set_g(component_g g)
+    { set_green(g); }
 #endif
-
 #endif
+    /// @}
 
-    /// @brief Get the value of the blue component.
-    /// @return the value of the blue component
-    ComponentType getBlue() const
-    {
-        return b;
-    }
-
-#if defined(ID_COLOR_SHORT_GETTERS) && 1 == ID_COLOR_SHORT_GETTERS
-    /// @brief Get the value of the blue component.
-    /// @return the value of the blue component
-    ComponentType getB() const
-    {
-        return b;
-    }
-#endif
-
-#if defined(ID_COLOR_SETTERS) && 1 == ID_COLOR_SETTERS
+    /// @{
     /// @brief Set the value of the blue component.
     /// @param b the value of the blue component
-    /// @throws OutOfBoundsException @a b is not within the bounds of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive)
-    void setBlue(ComponentType b)
+    /// @throws out_of_bounds_exception @a b is not within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive)
+#if defined(ID_COLOR_SETTERS) && 1 == ID_COLOR_SETTERS
+    void set_blue(component_b b)
     {
-        if (b < ColourSpaceType::min() || b > ColourSpaceType::max())
+        if (color_space::b::syntax::range().outside(b))
         {
-            throw OutOfBoundsException(__FILE__, __LINE__, "blue component out of bounds");
+            throw out_of_bounds_error(__FILE__, __LINE__, "blue component out of bounds");
         }
         this->b = b;
     }
-
 #if defined(ID_COLOR_SHORT_SETTERS) && 1 == ID_COLOR_SHORT_SETTERS
-    /// @brief Set the value of the blue component.
-    /// @param b the value of the blue component
-    /// @throws OutOfBoundsException @a b is not within the bounds of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive)
-    void setB(ComponentType b)
-    {
-        if (b < ColourSpaceType::min() || b > ColourSpaceType::max())
-        {
-            throw OutOfBoundsException(__FILE__, __LINE__, "blue component out of bounds");
-        }
-        this->b = b;
-    }
+    void set_b(component_b b)
+    { set_blue(b); }
 #endif
-
 #endif
+    /// @}
 
-    /// @brief Get the value of the alpha component.
-    /// @return the value of the alpha component
-    ComponentType getAlpha() const
-    {
-        return a;
-    }
-
-#if defined(ID_COLOR_SHORT_GETTERS) && 1 == ID_COLOR_SHORT_GETTERS
-    /// @brief Get the value of the alpha component.
-    /// @return the value of the alpha component
-    ComponentType getA() const
-    {
-        return a;
-    }
-#endif
-
+    /// @{
+    /// @brief Set the value of the alpha component.
+    /// @param a the value of the alpha component
+    /// @throws out_of_bounds_exception @a a is not within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive)
 #if defined(ID_COLOR_SETTERS) && 1 == ID_COLOR_SETTERS
-    /// @brief Set the value of the alpha component.
-    /// @param a the value of the alpha component
-    /// @throws OutOfBoundsException @a a is not within the bounds of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive)
-    void setAlpha(const ComponentType a)
+    void set_alpha(const component_a a)
     {
-        if (a < ColourSpaceType::min() || a > ColourSpaceType::max())
+        if (color_space::a::syntax::range().outside(a))
         {
-            throw OutOfBoundsException(__FILE__, __LINE__, "alpha component out of bounds");
+            throw out_of_bounds_error(__FILE__, __LINE__, "alpha component out of bounds");
         }
         this->a = a;
     }
-
 #if defined(ID_COLOR_SHORT_SETTERS) && 1 == ID_COLOR_SHORT_SETTERS
-    /// @brief Set the value of the alpha component.
-    /// @param a the value of the alpha component
-    /// @throws OutOfBoundsException @a a is not within the bounds of ColourSpaceType::min() (inclusive) and ColourSpaceType::max() (inclusive)
-    void setA(const ComponentType a)
-    {
-        if (a < ColourSpaceType::min() || a > ColourSpaceType::max())
-        {
-            throw OutOfBoundsException(__FILE__, __LINE__, "alpha component out of bounds");
-        }
-        this->a = a;
-    }
+    void set_a(const component_a a)
+    { set_alpha(a); }
 #endif
+#endif
+    /// @}
 
-#endif
+}; // struct color
+
+/// @brief Brighten functor for id::color<id::RGBAb> and id::color<id::RGBAf> values.
+template <typename ColorSpace>
+struct brighten_functor<color<ColorSpace>,
+                        std::enable_if_t<is_any_of<ColorSpace, RGBAb, RGBAf>::value>>
+{
+    using color_space = ColorSpace;
+    using color = color<color_space>;
+    using pure_color = id::color<pure_color_space_t<color_space>>;
+    using pure_opacity = id::color<pure_opacity_space_t<color_space>>;
+
+    color operator()(const color& c, float f)
+    {
+        return color(brighten(pure_color(c), f),
+                     pure_opacity(c));
+    }
+
+    color operator()(const color& c, double f)
+    {
+        return color(brighten(pure_color(c), f),
+                     pure_opacity(c));
+    }
+
+}; // struct brighten_functor
+
+/// @brief Darken functor for id::color<id::RGBAb> and id::color<id::RGBAf> values.
+template <typename ColorSpace>
+struct darken_functor<color<ColorSpace>,
+                      std::enable_if_t<is_any_of<ColorSpace, RGBAb, RGBAf>::value>>
+{
+    using color_space = ColorSpace;
+    using color = color<color_space>;
+    using pure_color = id::color<pure_color_space_t<color_space>>;
+    using pure_opacity = id::color<pure_opacity_space_t<color_space>>;
+
+    color operator()(const color& c, float f)
+    {
+        return color(darken(pure_color(c), f),
+                     pure_opacity(c));
+    }
+
+    color operator()(const color& c, double f)
+    {
+        return color(darken(pure_color(c), f),
+                     pure_opacity(c));
+    }
+
+}; // struct darken_functor
+
+/// @brief Inversion functor for id::color<id::RGBAf> values.
+/// @remark Given a color \f$(r,g,b,a)\f$ in real-valued, normalized RGBA space,
+/// then corresponding inverted color is \f$(1-r,1-g,1-b,1-a)\f$. Inverting a
+/// color twice yields the same color (modula floating-point precision).
+/// @remark The corresponding inverted color is also known as the complementary color.
+template <typename ColorSpace>
+struct inversion_functor<color<ColorSpace>,
+                         std::enable_if_t<is_any_of<ColorSpace, RGBAb, RGBAf>::value>>
+{
+    using color_space = ColorSpace;
+    using color = color<color_space>;
+
+    color operator()(const color& x) const
+    {
+        return color(type::invert<color_space::r::syntax>()(x.get_r()),
+                     type::invert<color_space::g::syntax>()(x.get_g()),
+                     type::invert<color_space::b::syntax>()(x.get_b()),
+                     type::invert<color_space::a::syntax>()(x.get_a()));
+    }
 };
 
-} // namespace Id
+/// @brief Interpolation functor for id::color<id::RGBAf> values.
+template <typename ColorSpace>
+struct interpolation_functor<color<ColorSpace>, interpolation_method::LINEAR,
+                             std::enable_if_t<std::is_same<ColorSpace, RGBAf>::value>>
+{
+    using color_space = ColorSpace;
+    using color = color<color_space>;
+    using component_functor = interpolation_functor<float, interpolation_method::LINEAR>;
+
+    color operator()(const color& x, const color& y, float t) const
+    {
+        return (*this)(x, y, mu<float>(t));
+    }
+
+    color operator()(const color& x, const color& y, const mu<float>& mu) const
+    {
+        static const component_functor f{};
+        static const auto& range_r = color_space::r::syntax::range();
+        static const auto& range_g = color_space::g::syntax::range();
+        static const auto& range_b = color_space::b::syntax::range();
+        static const auto& range_a = color_space::a::syntax::range();
+        return color(range_r.clamp(f(x.get_r(), y.get_r(), mu)),
+                     range_g.clamp(f(x.get_g(), y.get_g(), mu)),
+                     range_b.clamp(f(x.get_b(), y.get_b(), mu)),
+                     range_a.clamp(f(x.get_a(), y.get_a(), mu)));
+    }
+
+}; // struct interpolation_functor
+
+} // namespace id

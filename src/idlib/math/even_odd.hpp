@@ -1,21 +1,19 @@
-//********************************************************************************************
-//*
-//*    This file is part of Egoboo.
-//*
-//*    Egoboo is free software: you can redistribute it and/or modify it
-//*    under the terms of the GNU General Public License as published by
-//*    the Free Software Foundation, either version 3 of the License, or
-//*    (at your option) any later version.
-//*
-//*    Egoboo is distributed in the hope that it will be useful, but
-//*    WITHOUT ANY WARRANTY; without even the implied warranty of
-//*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-//*    General Public License for more details.
-//*
-//*    You should have received a copy of the GNU General Public License
-//*    along with Egoboo.  If not, see <http://www.gnu.org/licenses/>.
-//*
-//********************************************************************************************
+// Copyright Michael Heilmann 2016, 2017.
+//
+// This file is part of Idlib.
+//
+// Idlib is free software: you can redistribute it and/or modify it
+// under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Idlib is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+// General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
 /// @file idlib/math/even_odd.hpp
 /// @brief Functionality to determine wether a value is even or odd.
@@ -29,8 +27,10 @@
 
 namespace id {
 
-/// @brief Functor which defines an operator @code{constexpr bool operator()(T x) const noexcept}
-/// which determines wether the specified value @a x is even.
+/// @brief Functor which determines wether a value is even.
+/// It defines an operator
+/// @code{constexpr bool operator()(T x) const noexcept}
+/// which returns @a true if the value @a x is even and returns @a false if the value is odd.
 /// @tparam T the type of the value
 /// @tparam E SFINAE support
 /// @remark Feel free to provide your own implementation.

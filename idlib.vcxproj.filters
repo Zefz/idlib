@@ -27,79 +27,85 @@
     <Filter Include="Header Files\parsing_expressions">
       <UniqueIdentifier>{686fbc11-2d64-4804-92e3-3d1553b0185b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\math">
+      <UniqueIdentifier>{0134ec10-8f51-45bb-b820-5b4e662daee5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\event">
+      <UniqueIdentifier>{721da912-650c-410d-a2ab-f28024b78950}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\event">
+      <UniqueIdentifier>{ca5fd402-a063-4989-8cf8-c3ce886d5cf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\type">
+      <UniqueIdentifier>{8e782aa6-3359-45d9-871c-4466389b0963}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\type\internal">
+      <UniqueIdentifier>{5c6ae2ec-6478-4294-9911-6c231f267d7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\event\internal">
+      <UniqueIdentifier>{3c8c75a3-775f-41d7-999f-8eb94d54e8b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\signal\internal">
+      <UniqueIdentifier>{f8b7b428-fb35-4ed2-ad20-94d1c3c702c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\language">
+      <UniqueIdentifier>{17944c54-0883-4370-953c-2d63640a7c25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\language">
+      <UniqueIdentifier>{02bcffdf-f0e0-47fa-afa5-297a6a4f4fec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\utility">
+      <UniqueIdentifier>{eeac9c9c-934e-43cf-a730-911795bcf8da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\utility\internal">
+      <UniqueIdentifier>{a9eb34ac-20c3-4b6d-8e7b-7de136dbc37c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utility">
+      <UniqueIdentifier>{0673c394-68f9-463c-98f9-fd666f310108}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\idlib\signal\ConnectionBase.cpp">
-      <Filter>Source Files\signal</Filter>
-    </ClCompile>
-    <ClCompile Include="src\idlib\signal\NodeBase.cpp">
-      <Filter>Source Files\signal</Filter>
-    </ClCompile>
-    <ClCompile Include="src\idlib\signal\SignalBase.cpp">
-      <Filter>Source Files\signal</Filter>
-    </ClCompile>
-    <ClCompile Include="src\idlib\color\utilities.cpp">
-      <Filter>Source Files\color</Filter>
-    </ClCompile>
     <ClCompile Include="src\idlib\idlib.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\idlib\location.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\idlib\qualified_name.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\idlib\to_upper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\idlib\to_lower.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\idlib\suffix.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\idlib\prefix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\idlib\text_range.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\idlib\color\instantiations.cpp">
+      <Filter>Source Files\color</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\math\instantiations.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\signal\connection_base.cpp">
+      <Filter>Source Files\signal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\signal\node_base.cpp">
+      <Filter>Source Files\signal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\signal\signal_base.cpp">
+      <Filter>Source Files\signal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\language\location.cpp">
+      <Filter>Source Files\language</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\language\qualified_name.cpp">
+      <Filter>Source Files\language</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\utility\prefix.cpp">
+      <Filter>Source Files\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\utility\suffix.cpp">
+      <Filter>Source Files\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\utility\to_lower.cpp">
+      <Filter>Source Files\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\utility\to_upper.cpp">
+      <Filter>Source Files\utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\idlib\Platform.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\Target.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\NonCopyable.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\AssertionFailedException.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\Exception.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\LockFailedException.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\UnhandledSwitchCaseException.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\EnvironmentErrorException.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\RuntimeErrorException.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\OutOfBoundsException.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\InvalidArgumentException.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\idlib\DebugAssert.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -109,46 +115,7 @@
     <ClInclude Include="src\idlib\crtp.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\idlib\token.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\CompilationErrorException.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\signal\Connection.hpp">
-      <Filter>Header Files\signal</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\signal\ConnectionBase.hpp">
-      <Filter>Header Files\signal</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\signal\Node.hpp">
-      <Filter>Header Files\signal</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\signal\NodeBase.hpp">
-      <Filter>Header Files\signal</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\signal\ScopedConnection.hpp">
-      <Filter>Header Files\signal</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\signal\Signal.hpp">
-      <Filter>Header Files\signal</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\signal\SignalBase.hpp">
-      <Filter>Header Files\signal</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\signal\Include.hpp">
-      <Filter>Header Files\signal</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\color\Include.hpp">
-      <Filter>Header Files\color</Filter>
-    </ClInclude>
     <ClInclude Include="src\idlib\idlib.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\qualified_name.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\location.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\idlib\parsing_expressions\choice.hpp">
@@ -178,18 +145,6 @@
     <ClInclude Include="src\idlib\parsing_expressions\option.hpp">
       <Filter>Header Files\parsing_expressions</Filter>
     </ClInclude>
-    <ClInclude Include="src\idlib\to_upper.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\to_lower.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\suffix.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\prefix.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\idlib\math\even_odd.hpp">
       <Filter>Header Files\math</Filter>
     </ClInclude>
@@ -197,9 +152,6 @@
       <Filter>Header Files\math</Filter>
     </ClInclude>
     <ClInclude Include="src\idlib\text_range.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\is_any_of.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\idlib\color\l.hpp">
@@ -220,14 +172,317 @@
     <ClInclude Include="src\idlib\color\color.hpp">
       <Filter>Header Files\color</Filter>
     </ClInclude>
-    <ClInclude Include="src\idlib\color\utilities.hpp">
-      <Filter>Header Files\color</Filter>
-    </ClInclude>
     <ClInclude Include="src\idlib\color\a.hpp">
       <Filter>Header Files\color</Filter>
     </ClInclude>
-    <ClInclude Include="src\idlib\math\Dimensionality.hpp">
+    <ClInclude Include="src\idlib\math\interpolation_method.hpp">
       <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\math\dimensionality.hpp">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\math\mu.hpp">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\math\interpolate.hpp">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\math\interpolate_floating_point.hpp">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\math\invert.hpp">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color\a.in.h">
+      <Filter>Header Files\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color\l.in.h">
+      <Filter>Header Files\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color\la.in.h">
+      <Filter>Header Files\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color\rgb.in.h">
+      <Filter>Header Files\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color\rgba.in.h">
+      <Filter>Header Files\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color\a-header.in.h">
+      <Filter>Header Files\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color\la-header.in.h">
+      <Filter>Header Files\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color\rgba-header.in.h">
+      <Filter>Header Files\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color\rgb-header.in.h">
+      <Filter>Header Files\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color\l-header.in.h">
+      <Filter>Header Files\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color\brighten.hpp">
+      <Filter>Header Files\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color\darken.hpp">
+      <Filter>Header Files\color</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\add.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\clamped_double_add.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\clamped_double_invert.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\clamped_double_scale.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\clamped_double_subtract.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\clamped_double_traits.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\clamped_single_add.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\clamped_single_invert.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\clamped_single_scale.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\clamped_single_subtract.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\clamped_single_traits.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\convert.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\invert.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\range.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\scale.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\subtract.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\uint8_add.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\uint8_invert.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\uint8_scale.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\uint8_subtract.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\uint8_traits.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\uint16_add.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\uint16_invert.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\uint16_scale.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\uint16_subtract.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\uint16_traits.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\uint32_add.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\uint32_invert.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\uint32_scale.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\uint32_subtract.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\uint32_traits.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\uint64_add.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\uint64_invert.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\uint64_scale.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\uint64_subtract.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\uint64_traits.hpp">
+      <Filter>Header Files\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\internal\footer.hpp">
+      <Filter>Header Files\type\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type\internal\header.hpp">
+      <Filter>Header Files\type\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\event\event.hpp">
+      <Filter>Header Files\event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\event\keyboard_key_event_kind.hpp">
+      <Filter>Header Files\event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\event\mouse_button_event_kind.hpp">
+      <Filter>Header Files\event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\event\mouse_wheel_event_kind.hpp">
+      <Filter>Header Files\event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\event\window_event_kind.hpp">
+      <Filter>Header Files\event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\event\internal\footer.hpp">
+      <Filter>Header Files\event\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\event\internal\header.hpp">
+      <Filter>Header Files\event\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\signal\connection_base.hpp">
+      <Filter>Header Files\signal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\signal\node.hpp">
+      <Filter>Header Files\signal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\signal\node_base.hpp">
+      <Filter>Header Files\signal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\signal\scoped_connection.hpp">
+      <Filter>Header Files\signal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\signal\signal.hpp">
+      <Filter>Header Files\signal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\signal\signal_base.hpp">
+      <Filter>Header Files\signal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\signal\internal\footer.hpp">
+      <Filter>Header Files\signal\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\signal\internal\header.hpp">
+      <Filter>Header Files\signal\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\signal\connection.hpp">
+      <Filter>Header Files\signal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\color.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\signal.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\math.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\event.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\type.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\language\compilation_error.hpp">
+      <Filter>Header Files\language</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\language\location.hpp">
+      <Filter>Header Files\language</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\language\qualified_name.hpp">
+      <Filter>Header Files\language</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\language.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\language\token.hpp">
+      <Filter>Header Files\language</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility\assertion_failed_error.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility\environment_error.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility\exception.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility\invalid_argument_error.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility\is_any_of.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility\lock_failed_error.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility\non_copyable.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility\out_of_bounds_error.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility\platform.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility\prefix.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility\runtime_error.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility\suffix.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility\target.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility\to_lower.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility\to_string.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility\to_upper.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility\unhandled_switch_case_error.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility\internal\footer.hpp">
+      <Filter>Header Files\utility\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility\internal\header.hpp">
+      <Filter>Header Files\utility\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility\null_error.hpp">
+      <Filter>Header Files\utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
