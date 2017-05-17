@@ -484,6 +484,9 @@
     <ClInclude Include="src\idlib\utility\null_error.hpp">
       <Filter>Header Files\utility</Filter>
     </ClInclude>
+    <ClInclude Include="src\idlib\math\clamp.hpp">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\idlib\CurrentFunction.inline">

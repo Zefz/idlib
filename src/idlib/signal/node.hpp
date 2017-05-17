@@ -43,10 +43,8 @@ struct node<ReturnType(ParameterTypes ...)> : internal::node_base
 public:
     /// The node type.
     using node_type = node<ReturnType(ParameterTypes ...)>;
-    /// The return type.
-    using return_type = ReturnType;
     /// The function type.
-    using function_type = std::function<return_type(ParameterTypes ...)>;
+    using function_type = std::function<ReturnType(ParameterTypes ...)>;
 
 public:
     /// The function.
@@ -67,10 +65,9 @@ public:
     /// @brief Invoke this node
     /// @param arguments (implied)
     /// @return (implied)
-    return_type operator()(ParameterTypes&& ... arguments)
+    ReturnType operator()(ParameterTypes&& ... arguments)
     {
-    std::tuple<int>;
-        function(std::forward<ParameterTypes>(arguments) ...);
+        return function(std::forward<ParameterTypes>(arguments) ...);
     }
 
 }; // struct node

@@ -17,7 +17,7 @@
 
 #pragma once
 
-#include "idlib/utility/platform.hpp"
+#include "idlib/math/clamp.hpp"
 
 #include "idlib/type/internal/header.hpp"
 
@@ -68,7 +68,7 @@ public:
     /// @param value the value
     /// @return the clamped value
     const type& clamp(const type& value) const
-    { return std::clamp(value, min(), max()); }
+    { return id::clamp(value, min(), max()); }
     
 }; // struct range
 

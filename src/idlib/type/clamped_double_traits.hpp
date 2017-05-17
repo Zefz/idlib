@@ -32,10 +32,10 @@ struct clamped_double_traits
     using underlying_type = double;
     /// @brief Get the range.
     /// @return the range
-    static const range<underlying_type>& range()
+    static const id::type::range<underlying_type>& range()
     {
-        static const type::range<underlying_type> range(0.0, 1.0f);
-        return range;
+        static const id::type::range<underlying_type> r(0.0, 1.0f);
+        return r;
     }
 }; // struct clamped_double_traits
 

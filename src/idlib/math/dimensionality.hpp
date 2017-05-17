@@ -17,6 +17,8 @@
 
 #pragma once
 
+#include <cstddef>
+
 namespace id {
 
 /// @brief Test whether @a N fulfils the <em>dimensionality concept</em>.

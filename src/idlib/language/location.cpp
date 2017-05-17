@@ -33,7 +33,7 @@ location::location(const location& other)
     : m_file_name(other.m_file_name), m_line_number(other.m_line_number)
 {}
 
-location::location(location&& other) noexcept(std::is_nothrow_move_constructible_v<std::string>)
+location::location(location&& other) noexcept(std::is_nothrow_move_constructible<std::string>::value)
     : m_file_name(std::move(other.m_file_name)), m_line_number(std::move(other.m_line_number))
 {}
 
@@ -44,7 +44,7 @@ location& location::operator=(const location& other)
     return *this;
 }
 
-location& location::operator=(location&& other) noexcept(std::is_nothrow_move_assignable_v<std::string>)
+location& location::operator=(location&& other) noexcept(std::is_nothrow_move_assignable<std::string>::value)
 {
     m_file_name = std::move(other.m_file_name);
     m_line_number = std::move(other.m_line_number);

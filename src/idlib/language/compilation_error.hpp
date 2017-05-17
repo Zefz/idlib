@@ -46,7 +46,7 @@ class compilation_error : public exception
 {
 private:
     /// @brief The location associated with the compilation error.
-    location m_location;
+    id::location m_location;
     /// @brief A description of the compilation error.
     std::string m_description;
     /// @brief The kind of the compilation error.
@@ -59,7 +59,7 @@ public:
     /// @param kind the kind of the compilation error
     /// @param location the location associated with the error
     /// @param description a description of the error
-    compilation_error(const char *file, int line, compilation_error_kind kind, const location& location, const std::string& description) :
+    compilation_error(const char *file, int line, compilation_error_kind kind, const id::location& location, const std::string& description) :
         exception(file, line), m_kind(kind), m_location(location), m_description(description)
     {}
 
@@ -84,7 +84,7 @@ public:
 public:
     /// @brief Get the location associated with the compilation error.
     /// @return the location associated with the compilation error
-    const location& location() const
+    const id::location& location() const
     {
         return m_location;
     }

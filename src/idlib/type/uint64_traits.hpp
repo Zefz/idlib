@@ -32,11 +32,11 @@ struct uint64_traits
     using underlying_type = uint64_t;
     /// @brief Get the range.
     /// @return the range
-    static const range<underlying_type>& range()
+    static const id::type::range<underlying_type>& range()
     {
-        static const type::range<underlying_type> range(std::numeric_limits<underlying_type>::min(),
+        static const id::type::range<underlying_type> r(std::numeric_limits<underlying_type>::min(),
                                                         std::numeric_limits<underlying_type>::max());
-        return range;
+        return r;
     }
 }; // struct uint64_traits
 

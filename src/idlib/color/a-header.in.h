@@ -1,6 +1,6 @@
 public:
 /// @brief The type of the alpha component.
-using component_a = typename color_space::a::syntax::underlying_type;
+using component_a = typename color_space_type::a::syntax::underlying_type;
 
 private:
 /// @brief The alpha component value.

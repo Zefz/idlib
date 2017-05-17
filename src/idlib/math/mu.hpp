@@ -36,7 +36,7 @@ template <typename T, typename E = void>
 class mu;
 
 template <typename T>
-class mu<T, std::enable_if_t<std::is_floating_point_v<T>>>
+class mu<T, std::enable_if_t<std::is_floating_point<T>::value>>
 {
 private:
     T m_oneMinusValue;
@@ -44,7 +44,7 @@ private:
 public:
     /// @brief Construct this mu.
     /// @param mu the float value this mu represents
-    /// @throw out_of_bounds_exception @a mu is smaller than @a 0 or greater than @a 1
+    /// @throw out_of_bounds_error @a mu is smaller than @a 0 or greater than @a 1
     mu(T value) :
         m_value(value)
     {

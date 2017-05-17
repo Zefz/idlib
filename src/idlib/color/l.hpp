@@ -46,10 +46,10 @@ struct color<ColorSpace, std::enable_if_t<internal::is_l<ColorSpace>::value>> :
 {
 public:
     /// @brief The type of the color space.
-    using color_space = ColorSpace;
+    using color_space_type = ColorSpace;
 
     // Assert the color space is an L color space.
-    static_assert(internal::is_l<color_space>::value, "not an L color space");
+    static_assert(internal::is_l<color_space_type>::value, "not an L color space");
 
     // Define component types and component members.
     #include "idlib/color/l-header.in.h"
@@ -65,39 +65,39 @@ public:
     /// @return the color "black"
     static const color& black()
     {
-        static const color color(color<Lb>(0));
-        return color;
+        static const color c(color<Lb>(0));
+        return c;
     }
 
     /// @brief The color "grey" (75,75,75).
     /// @return the color "grey".
     static const color& grey()
     {
-        static const color color(color<Lb>(75));
-        return color;
+        static const color c(color<Lb>(75));
+        return c;
     }
 
     /// @brief The color "white" (255,255,255).
     /// @return the color "white"
     static const color& white()
     {
-        static const color color(color<Lb>(255));
-        return color;
+        static const color c(color<Lb>(255));
+        return c;
     }
 
 public:
     /// @brief Default construct with component values corresponding to "opaque black".
     color() :
-        l(color_space::l::syntax::range().min())
+        l(color_space_type::l::syntax::range().min())
     {}
 
     /// @brief Construct this color with the specified luminance component color.
     /// @param l the component value of the luminance component
-    /// @throws out_of_bounds_exception @a l is not within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive)
+    /// @throws out_of_bounds_error @a l is not within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive)
     color(component_l l) :
         l(l)
     {
-        if (color_space::l::syntax::range().outside(l))
+        if (color_space_type::l::syntax::range().outside(l))
         {
             throw out_of_bounds_error(__FILE__, __LINE__, "luminance component out of bounds");
         }
@@ -105,27 +105,26 @@ public:
 
     /// @brief Copy construct this color with the component values of another color.
     /// @param other the other color
-    template <typename OtherColorSpace,
-              std::enable_if_t<std::is_same<OtherColorSpace, ColorSpace>::value, int *> = nullptr>
-    color(const color<OtherColorSpace>& other) :
+    template <typename ThisColorSpace = ColorSpace, typename OtherColorSpace>
+    color(const color<OtherColorSpace>& other,
+          typename std::enable_if<std::is_same<ThisColorSpace, OtherColorSpace>::value, int *>::type = nullptr) :
         l(other.get_l())
     {}
 
     /// @brief Convert construct this L color from another L color.
     /// @param other the other L color
-    template <typename OtherColorSpace,
-              std::enable_if_t<!std::is_same<color_space, OtherColorSpace>::value &&
-                               is_any_of<OtherColorSpace, Lb, Lf>::value, int *> = nullptr>
-    color(const color<OtherColorSpace>& other) :
-        l(type::convert<color_space::l::syntax, OtherColorSpace::l::syntax>()(other.get_l()))
+    template <typename ThisColorSpace = ColorSpace, typename OtherColorSpace>
+    color(const color<OtherColorSpace>& other,
+          typename std::enable_if<!std::is_same<color_space_type, OtherColorSpace>::value &&
+                                  is_any_of<OtherColorSpace, Lb, Lf>::value, int *>::type = nullptr) :
+        l(type::convert<typename color_space_type::l::syntax, typename OtherColorSpace::l::syntax>()(other.get_l()))
     {}
 
     /// @brief Decompose construct this L color from an LA color.
     /// @param other the LA or RGBA color
-    template <typename OtherColorSpace,
-        std::enable_if_t<std::is_same<color_space, pure_color_space_t<OtherColorSpace>>::value,
-                         int *> = 0>
-    color(const color<OtherColorSpace>& other) :
+    template <typename ThisColorSpace = ColorSpace, typename OtherColorSpace>
+    color(const color<OtherColorSpace>& other,
+          typename std::enable_if<std::is_same<color_space_type, pure_color_space_t<OtherColorSpace>>::value, int *>::type = 0) :
         l(other.get_l())
     {}
 
@@ -149,13 +148,13 @@ public:
     // CRTP
     void add(const color& other)
     {
-        l = type::add<color_space::l::syntax>()(get_l(), other.get_l());
+        l = type::add<typename color_space_type::l::syntax>()(get_l(), other.get_l());
     }
 
     // CRTP
     void subtract(const color& other)
     {
-        l = type::subtract<color_space::l::syntax>()(get_l(), other.get_l());
+        l = type::subtract<typename color_space_type::l::syntax>()(get_l(), other.get_l());
     }
 
 public:
@@ -164,11 +163,11 @@ public:
     /// @{
     /// @brief Set the value of the luminance component.
     /// @param l the value of the luminance component
-    /// @throws out_of_bounds_exception @a l is not within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive)
+    /// @throws out_of_bounds_error @a l is not within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive)
 #if defined(ID_COLOR_SETTERS) && 1 == ID_COLOR_SETTERS
     void set_luminance(component_l l)
     {
-        if (color_space::l::syntax::range().outside(l))
+        if (color_space_type::l::syntax::range().outside(l))
         {
             throw out_of_bounds_error(__FILE__, __LINE__, "luminance component out of bounds");
         }
@@ -189,19 +188,19 @@ template <typename ColorSpace>
 struct brighten_functor<color<ColorSpace>,
                         std::enable_if_t<is_any_of<ColorSpace, Lb, Lf>::value>>
 {
-    using color_space = ColorSpace;
-    using color = color<color_space>;
+    using color_space_type = ColorSpace;
+    using color_type = color<color_space_type>;
 
-    color operator()(const color& c, float f)
+    color_type operator()(const color_type& c, float f)
     {
         float t = (1.0f + f);
-        return color(type::scale<color_space::l::syntax>()(c.get_l(), t));
+        return color_type(type::scale<typename color_space_type::l::syntax>()(c.get_l(), t));
     }
 
-    color operator()(const color& c, double f)
+    color_type operator()(const color_type& c, double f)
     {
         double t = (1.0 + f);
-        return color(type::scale<color_space::l::syntax>()(c.get_l(), t));
+        return color_type(type::scale<typename color_space_type::l::syntax>()(c.get_l(), t));
     }
 
 }; // struct brighten_functor
@@ -211,19 +210,19 @@ template <typename ColorSpace>
 struct darken_functor<color<ColorSpace>,
                       std::enable_if_t<is_any_of<ColorSpace, Lb, Lf>::value>>
 {
-    using color_space = ColorSpace;
-    using color = color<color_space>;
+    using color_space_type = ColorSpace;
+    using color_type = color<color_space_type>;
 
-    color operator()(const color& c, float f)
+    color_type operator()(const color_type& c, float f)
     {
         float t = (1.0f - f);
-        return color(type::scale<color_space::l::syntax>()(c.get_l(), t));
+        return color_type(type::scale<typename color_space_type::l::syntax>()(c.get_l(), t));
     }
 
-    color operator()(const color& c, double f)
+    color_type operator()(const color_type& c, double f)
     {
         double t = (1.0 - f);
-        return color(type::scale<color_space::l::syntax>()(c.get_l(), t));
+        return color_type(type::scale<typename color_space_type::l::syntax>()(c.get_l(), t));
     }
 
 }; // struct darken_functor
@@ -237,12 +236,12 @@ template <typename ColorSpace>
 struct inversion_functor<color<ColorSpace>,
                          std::enable_if_t<is_any_of<ColorSpace, Lb, Lf>::value>>
 {
-    using color_space = ColorSpace;
-    using color = color<color_space>;
+    using color_space_type = ColorSpace;
+    using color_type = color<color_space_type>;
 
-    color operator()(const color& x) const
+    color_type operator()(const color_type& x) const
     {
-        return color(type::invert<color_space::l::syntax>()(x.get_l()));
+        return color_type(type::invert<typename color_space_type::l::syntax>()(x.get_l()));
     }
 
 }; // struct inversion_functor
@@ -252,20 +251,20 @@ template <typename ColorSpace>
 struct interpolation_functor<color<ColorSpace>, interpolation_method::LINEAR,
                              std::enable_if_t<std::is_same<ColorSpace, Lf>::value>>
 {
-    using color_space = ColorSpace;
-    using color = color<color_space>;
-    using component_functor = interpolation_functor<float, interpolation_method::LINEAR>;
+    using color_space_type = ColorSpace;
+    using color_type = color<color_space_type>;
+    using component_functor_type = interpolation_functor<float, interpolation_method::LINEAR>;
 
-    color operator()(const color& x, const color& y, float t) const
+    color_type operator()(const color_type& x, const color_type& y, float t) const
     {
         return (*this)(x, y, mu<float>(t));
     }
 
-    color operator()(const color& x, const color& y, const mu<float>& mu) const
+    color_type operator()(const color_type& x, const color_type& y, const mu<float>& mu) const
     {
-        static const component_functor f{};
-        static const auto& range_l = color_space::l::syntax::range();
-        return color(range_l.clamp(f(x.get_l(), y.get_l(), mu)));
+        static const component_functor_type f{};
+        static const auto& range_l = color_space_type::l::syntax::range();
+        return color_type(range_l.clamp(f(x.get_l(), y.get_l(), mu)));
     }
 
 }; // struct interpolate_functor

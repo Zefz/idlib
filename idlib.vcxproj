@@ -289,6 +289,7 @@
     <ClCompile Include="src\idlib\idlib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\idlib\math\clamp.hpp" />
     <ClInclude Include="src\idlib\utility\null_error.hpp" />
     <ClInclude Include="src\idlib\utility.hpp" />
     <ClInclude Include="src\idlib\utility\assertion_failed_error.hpp" />

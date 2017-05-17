@@ -17,7 +17,7 @@
 
 public:
 /// @brief The type of the l component.
-using component_l = typename color_space::l::syntax::underlying_type;
+using component_l = typename color_space_type::l::syntax::underlying_type;
 
 private:
 /// @brief The luminance component value.

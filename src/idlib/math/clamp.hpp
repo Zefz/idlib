@@ -15,23 +15,27 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-/// @file idlib/DebugAssert.hpp
-/// @brief Debug assertion functionality.
+/// @file idlib/math/clamp.hpp
+/// @brief Replacement for std::clamp until C++17 is fully supported.
+/// Directly copied from http://en.cppreference.com/w/cpp/algorithm/clamp.
 /// @author Michael Heilmann
 
 #pragma once
 
-#include "idlib/utility/assertion_failed_error.hpp"
+#include "idlib/utility/platform.hpp"
 
-/// @brief Macro raising an exception if an assertion fails.
-/// @param assertion the assertion
-/// @throw id::assertion_failed_error the assertion fails
-/// @remark This macro evaluates to the empty statement if #_DEBUG is not defined.
-#if defined(_DEBUG)
-    #define ID_ASSERT(assertion) \
-	    if(!(assertion)) { \
-		    throw id::assertion_failed_error(__FILE__, __LINE__, #assertion); \
-        }
-#else
-    #define ID_ASSERT(assertion) /* Empty statement. */;
-#endif
+namespace id {
+
+template<class T, class Compare>
+constexpr const T& clamp(const T& value, const T& low, const T& high, Compare compare)
+{
+    return assert(!compare(high, low)), compare(value, low) ? low : compare(high, value) ? high : value;
+}
+	
+template<class T>
+constexpr const T& clamp(const T& value, const T& low, const T& high)
+{
+	return id::clamp(value, low, high, std::less<T>());
+}
+
+} // namespace id

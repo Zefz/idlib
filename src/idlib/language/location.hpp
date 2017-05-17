@@ -52,7 +52,7 @@ public:
 
     /// @brief Move-construct this location from another location.
     /// @param other the other location
-    location(location&& other) noexcept(std::is_nothrow_move_constructible_v<std::string>);
+    location(location&& other) noexcept(std::is_nothrow_move_constructible<std::string>::value);
 
     /// @brief Copy assign this location from another location.
     /// @param other the other location
@@ -62,7 +62,7 @@ public:
     /// @brief Move assign this location from another location.
     /// @param other the other location
     /// @return this location
-    location& operator=(location&& other) noexcept(std::is_nothrow_move_assignable_v<std::string>);
+    location& operator=(location&& other) noexcept(std::is_nothrow_move_assignable<std::string>::value);
 
     /// @brief Compare this location to another location.
     /// @param other the other location
@@ -84,20 +84,22 @@ public:
 
 }; // class location
 
-static_assert(std::is_copy_constructible_v<location>, "id::location must be copy constructible");
+static_assert(std::is_copy_constructible<location>::value, "id::location must be copy constructible");
 
-static_assert(std::is_move_constructible_v<location>, "id::location must be move constructible");
-static_assert(std::is_nothrow_move_constructible_v<std::string> == std::is_nothrow_move_constructible_v<location>,
+static_assert(std::is_move_constructible<location>::value, "id::location must be move constructible");
+static_assert(std::is_nothrow_move_constructible<std::string>::value == std::is_nothrow_move_constructible<location>::value,
               "id::location is nothrow move constructible iff std::string is nothrow move constructible");
 
-static_assert(std::is_copy_assignable_v<location>, "id::location must be copy assignable");
+static_assert(std::is_copy_assignable<location>::value, "id::location must be copy assignable");
 
-static_assert(std::is_move_assignable_v<location>, "id::location must be move assignable");
-static_assert(std::is_nothrow_move_assignable_v<std::string> == std::is_nothrow_move_assignable_v<location>,
+static_assert(std::is_move_assignable<location>::value, "id::location must be move assignable");
+static_assert(std::is_nothrow_move_assignable<std::string>::value == std::is_nothrow_move_assignable<location>::value,
               "id::location is nothrow move assignable iff std::string is nothrow move assignable");
 
-static_assert(std::is_swappable_v<location>, "id::location must be swappable");
-static_assert(std::is_nothrow_swappable_v<std::string> == std::is_nothrow_swappable_v<location>,
+#if !defined(__GNUC__) || __GNUC__ > 6
+static_assert(std::is_swappable<location>::value, "id::location must be swappable");
+static_assert(std::is_nothrow_swappable<std::string>::value == std::is_nothrow_swappable<location>::value,
               "id::location is nothrow swappable iff std::string is nothrow swappable");
+#endif
 
 } // namespace id

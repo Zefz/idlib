@@ -48,10 +48,10 @@ struct color<ColorSpace, std::enable_if_t<internal::is_a<ColorSpace>::value>> :
 {
 public:
     /// @brief The type of color space.
-    using color_space = ColorSpace;
+    using color_space_type = ColorSpace;
 
     // Assert the color space is an A color space.
-    static_assert(internal::is_a<color_space>::value, "not an A color space");
+    static_assert(internal::is_a<color_space_type>::value, "not an A color space");
 
     // Define component types and component members.
     #include "idlib/color/a-header.in.h"
@@ -67,22 +67,22 @@ public:
     /// @return the color "transparent"
     static const color& transparent()
     {
-        static const color color(color<Ab>(0));
-        return color;
+        static const color c(color<Ab>(0));
+        return c;
     }
 
     /// @brief The color "opaque" (l) = (255).
     /// @return the color "opaque".
     static const color& opaque()
     {
-        static const color color(color<Ab>(255));
-        return color;
+        static const color c(color<Ab>(255));
+        return c;
     }
 
 public:
     /// @brief Default construct with component values corresponding to "opaque".
     color() :
-        a(color_space::a::syntax::range().max())
+        a(color_space_type::a::syntax::range().max())
     {}
 
     /// @brief Construct this color with the values of another color.
@@ -95,11 +95,11 @@ public:
 
     /// @brief Construct this color with the specified alpha component values.
     /// @param a the component value of the alpha component
-    /// @throws out_of_bounds_exception @a a is not within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive)
+    /// @throws out_of_bounds_error @a a is not within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive)
     color(component_a a) :
         a(a)
     {
-        if (color_space::a::syntax::range().outside(a))
+        if (color_space_type::a::syntax::range().outside(a))
         {
             throw out_of_bounds_error(__FILE__, __LINE__, "alpha component out of bounds");
         }
@@ -107,19 +107,19 @@ public:
 
     /// @brief Convert construct this A color from another A color.
     /// @param other the other A color
-    template <typename OtherColorSpace,
-              std::enable_if_t<!std::is_same<color_space, OtherColorSpace>::value &&
-                               is_any_of<OtherColorSpace, Ab, Af>::value, int *> = 0>
-    explicit color(const color<OtherColorSpace>& other) :
-        a(type::convert<color_space::a::syntax, OtherColorSpace::a::syntax>()(other.get_a()))
+    template <typename ThisColorSpace = ColorSpace, typename OtherColorSpace>
+    explicit color(const color<OtherColorSpace>& other,
+                   typename std::enable_if<!std::is_same<ThisColorSpace, OtherColorSpace>::value &&
+                                           is_any_of<OtherColorSpace, Ab, Af>::value, int *>::type dummy = nullptr) :
+        a(type::convert<typename color_space_type::a::syntax, typename OtherColorSpace::a::syntax>()(other.get_a()))
     {}
 
     /// @brief Decompose construct this A color from an LA or RGBA color.
     /// @param other the LA or RGBA color
-    template <typename OtherColorSpace,
-              std::enable_if_t<std::is_same<color_space, pure_opacity_space_t<OtherColorSpace>>::value,
-                               int *> = 0>
-    explicit color(const color<OtherColorSpace>& other) :
+    template <typename ThisColorSpace = ColorSpace, typename OtherColorSpace>
+    explicit color(const color<OtherColorSpace>& other,
+                   typename std::enable_if<(std::is_same<ThisColorSpace, Af>::value && is_any_of<OtherColorSpace, LAf, RGBAf>::value) ||
+                                           (std::is_same<ThisColorSpace, Ab>::value && is_any_of<OtherColorSpace, LAb, RGBAb>::value), int *>::type dummy = nullptr) :
         a(other.get_a())
     {}
 
@@ -143,13 +143,13 @@ public:
     // CRTP
     void add(const color& other)
     {
-        a = type::add<color_space::a::syntax>()(get_a(), other.get_a());
+        a = type::add<typename color_space_type::a::syntax>()(get_a(), other.get_a());
     }
 
     // CRTP
     void subtract(const color& other)
     {
-        a = type::subtract<color_space::a::syntax>()(get_a(), other.get_a());
+        a = type::subtract<typename color_space_type::a::syntax>()(get_a(), other.get_a());
     }
 
 public:
@@ -158,11 +158,11 @@ public:
     /// @{
     /// @brief Set the value of the alpha component.
     /// @param a the value of the alpha component
-    /// @throws out_of_bounds_exception @a a is not within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive)
+    /// @throws out_of_bounds_error @a a is not within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive)
 #if defined(ID_COLOR_SETTERS) && 1 == ID_COLOR_SETTERS
     void set_alpha(component_a a)
     {
-        if (color_space::a::syntax::range().outside(a))
+        if (color_space_type::a::syntax::range().outside(a))
         {
             throw out_of_bounds_error(__FILE__, __LINE__, "alpha component out of bounds");
         }
@@ -186,12 +186,12 @@ template <typename ColorSpace>
 struct inversion_functor<color<ColorSpace>,
                          std::enable_if_t<is_any_of<ColorSpace, Ab, Af>::value>>
 {
-    using color_space = ColorSpace;
-    using color = color<color_space>;
+    using color_space_type = ColorSpace;
+    using color_type = color<color_space_type>;
 
-    color operator()(const color& x) const
+    color_type operator()(const color_type& x) const
     {
-        return color(type::invert<color_space::a::syntax>()(x.get_a()));
+        return color_type(type::invert<typename color_space_type::a::syntax>()(x.get_a()));
     }
 
 }; // struct inversion_functor
@@ -201,20 +201,20 @@ template <typename ColorSpace>
 struct interpolation_functor<color<ColorSpace>, interpolation_method::LINEAR,
                              std::enable_if_t<std::is_same<Af, ColorSpace>::value>>
 {
-    using color_space = ColorSpace;
-    using color = color<color_space>;
-    using component_functor = interpolation_functor<float, interpolation_method::LINEAR>;
+    using color_space_type = ColorSpace;
+    using color_type = color<color_space_type>;
+    using component_functor_type = interpolation_functor<float, interpolation_method::LINEAR>;
 
-    color operator()(const color& x, const color& y, float t) const
+    color_type operator()(const color_type& x, const color_type& y, float t) const
     {
         return (*this)(x, y, mu<float>(t));
     }
 
-    color operator()(const color& x, const color& y, const mu<float>& mu) const
+    color_type operator()(const color_type& x, const color_type& y, const mu<float>& mu) const
     {
-        static const component_functor f{};
-        static const auto& range_a = color_space::a::syntax::range();
-        return color(range_a.clamp(f(x.get_a(), y.get_a(), mu)));
+        static const component_functor_type f{};
+        static const auto& range_a = color_space_type::a::syntax::range();
+        return color_type(range_a.clamp(f(x.get_a(), y.get_a(), mu)));
     }
 
 }; // struct interpolate_functor

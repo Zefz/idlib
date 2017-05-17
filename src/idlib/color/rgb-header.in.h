@@ -17,25 +17,25 @@
 
 public:
 /// @brief The type of the red component.
-using component_r = typename color_space::r::syntax::underlying_type;
+using component_r = typename color_space_type::r::syntax::underlying_type;
 
 private:
 /// @brief The red component value.
-/// @invariant Within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive).
+/// @invariant Within the bounds of color_space_type::min() (inclusive) and color_space_type::max() (inclusive).
 component_r r;
 
 public:
 /// @brief The type of the green component.
-using component_g = typename color_space::g::syntax::underlying_type;
+using component_g = typename color_space_type::g::syntax::underlying_type;
 
 private:
 /// @brief The green component value.
-/// @invariant Within the bounds of color_space::min() (inclusive) and color_space::max() (inclusive).
+/// @invariant Within the bounds of color_space_type::min() (inclusive) and color_space_type::max() (inclusive).
 component_g g;
 
 public:
 /// @brief The type of the blue component.
-using component_b = typename color_space::b::syntax::underlying_type;
+using component_b = typename color_space_type::b::syntax::underlying_type;
 
 private:
 /// @brief The blue component value.
