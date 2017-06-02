@@ -19,15 +19,15 @@
     <Filter Include="Source Files\parsing_expression">
       <UniqueIdentifier>{2a9f329f-6c0e-42cd-8810-48debce9ceff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\file_system">
+      <UniqueIdentifier>{1e79a26c-2be2-4d99-b29b-164ddc8b3079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\language">
+      <UniqueIdentifier>{0523f3be-b09b-44a1-985b-bb89b6099e27}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="tests\idlib\tests\Compilation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tests\idlib\tests\Signal.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tests\idlib\tests\Math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tests\idlib\tests\parsing_expressions\choice.cpp">
@@ -41,9 +41,6 @@
     </ClCompile>
     <ClCompile Include="tests\idlib\tests\parsing_expressions\symbols.cpp">
       <Filter>Source Files\parsing_expression</Filter>
-    </ClCompile>
-    <ClCompile Include="tests\idlib\tests\qualified_name.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tests\idlib\tests\prefix.cpp">
       <Filter>Source Files</Filter>
@@ -77,6 +74,18 @@
     </ClCompile>
     <ClCompile Include="tests\idlib\tests\color\addition_subtraction.cpp">
       <Filter>Source Files\color</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\idlib\Tests\file_system\access_mode.cpp">
+      <Filter>Source Files\file_system</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\idlib\Tests\compilation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\idlib\Tests\math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\idlib\tests\language\qualified_name.cpp">
+      <Filter>Source Files\language</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -34,17 +34,17 @@ struct scale<uint64_traits>
 
     traits::underlying_type operator()(const traits::underlying_type& v, float s) const
     {
-        static const type::range<long> range(traits::range().min(),
+        static const type::range<long long> range(traits::range().min(),
                                              traits::range().max());
-        auto u = std::lround(v * s);
+        auto u = std::llround(v * s);
         return traits::underlying_type(range.clamp(u));
     }
 
     traits::underlying_type operator()(const traits::underlying_type& v, double s) const
     {
-        static const type::range<long> range(traits::range().min(),
-                                             traits::range().max());
-        auto u = std::lround(v * s);
+        static const type::range<long long> range(traits::range().min(),
+                                                  traits::range().max());
+        auto u = std::llround(v * s);
         return traits::underlying_type(range.clamp(u));
     }
 }; // struct scale

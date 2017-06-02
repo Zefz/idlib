@@ -16,9 +16,9 @@
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
 #include "EgoTest/EgoTest.hpp"
-#include "idlib/Tests/color/color_generator.hpp"
+#include "idlib/tests/color/color_generator.hpp"
 
-namespace id::tests::color::brightening_darkening {
+namespace id { namespace tests { namespace color { namespace brightening_darkening {
 
 template <typename S, typename E = void>
 struct basic_test1;
@@ -114,4 +114,4 @@ EgoTest_TestCase(brightening_darkening_rgbab)
     }
 };
 
-} // namespace id::tests::color::brightening_darkening
+} } } } // namespace id::tests::color::brightening_darkening

@@ -33,7 +33,7 @@ struct scale<clamped_double_traits>
 	using traits = clamped_double_traits;
     traits::underlying_type operator()(const traits::underlying_type& v, float s) const
     {
-        return (*this)(v, s);
+        return (*this)(v, double(s));
     }
 
     traits::underlying_type operator()(const traits::underlying_type& v, double s) const

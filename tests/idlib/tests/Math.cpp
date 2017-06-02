@@ -16,9 +16,7 @@
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
 #include "EgoTest/EgoTest.hpp"
-#include "idlib/math/Dimensionality.hpp"
-#include "idlib/math/even_odd.hpp"
-#include "idlib/math/one_zero.hpp"
+#include "idlib/idlib.hpp"
 #include <limits>
 
 namespace id { namespace tests {

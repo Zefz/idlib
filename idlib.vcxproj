@@ -256,6 +256,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\idlib\file_system\mapped_file_linux.cpp" />
+    <ClCompile Include="src\idlib\file_system\mapped_file_windows.cpp" />
+    <ClCompile Include="src\idlib\file_system\file_linux.cpp" />
+    <ClCompile Include="src\idlib\file_system\file_windows.cpp" />
     <ClCompile Include="src\idlib\utility\prefix.cpp" />
     <ClCompile Include="src\idlib\utility\suffix.cpp" />
     <ClCompile Include="src\idlib\utility\to_lower.cpp" />
@@ -289,6 +293,20 @@
     <ClCompile Include="src\idlib\idlib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\idlib\language\category_element.hpp" />
+    <ClInclude Include="src\idlib\file_system\mapped_file.hpp" />
+    <ClInclude Include="src\idlib\file_system\mapped_file_linux.hpp" />
+    <ClInclude Include="src\idlib\file_system\mapped_file_windows.hpp" />
+    <ClInclude Include="src\idlib\file_system\create_mode.hpp" />
+    <ClInclude Include="src\idlib\file_system\file_linux.hpp" />
+    <ClInclude Include="src\idlib\file_system\file_windows.hpp" />
+    <ClInclude Include="src\idlib\file_system\file.hpp" />
+    <ClInclude Include="src\idlib\utility\bitmask_type.hpp" />
+    <ClInclude Include="src\idlib\file_system\error.hpp" />
+    <ClInclude Include="src\idlib\file_system.hpp" />
+    <ClInclude Include="src\idlib\file_system\access_mode.hpp" />
+    <ClInclude Include="src\idlib\file_system\internal\footer.hpp" />
+    <ClInclude Include="src\idlib\file_system\internal\header.hpp" />
     <ClInclude Include="src\idlib\math\clamp.hpp" />
     <ClInclude Include="src\idlib\utility\null_error.hpp" />
     <ClInclude Include="src\idlib\utility.hpp" />
@@ -413,7 +431,6 @@
     <ClInclude Include="src\idlib\color\space.hpp" />
     <ClInclude Include="src\idlib\text_range.hpp" />
     <ClInclude Include="src\idlib\crtp.hpp" />
-    <ClInclude Include="src\idlib\BitmaskTypes.hpp" />
     <ClInclude Include="src\idlib\DebugAssert.hpp" />
     <ClInclude Include="src\idlib\idlib.hpp" />
   </ItemGroup>

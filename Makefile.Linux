@@ -4,7 +4,7 @@ IDLIB_TARGET := libid.a
 
 #---------------------
 # the source files
-SOURCES := $(wildcard ./src/IdLib/*.cpp)
+SOURCES := $(wildcard ./src/idlib/*.cpp)
 
 #-------------------
 # object output
@@ -12,7 +12,7 @@ OBJECTS := $(SOURCES:.cpp=.o)
 
 #---------------------
 # the compiler options
-INCLUDES := -I./src -I../game/src -I../egolib/src
+INCLUDES := -I./src
 
 CXXFLAGS  := $(COMPILE_FLAGS) $(INCLUDES) $(COMPILE_OPTIMIZE) $(COMPILE_WARNINGS) $(COMPILE_DEBUG_FLAGS) $(SANITIZER_FLAGS)
 

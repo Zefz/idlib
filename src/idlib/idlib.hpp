@@ -23,9 +23,6 @@
 
 #define IDLIB_PRIVATE 1
 
-// Bitmask types.
-#include "idlib/BitmaskTypes.hpp"
-
 // CRTP.
 #include "idlib/crtp.hpp"
 
@@ -56,6 +53,9 @@
 
 // language library.
 #include "idlib/language.hpp"
+
+// file system library.
+#include "idlib/file_system.hpp"
 
 // utility library.
 #include "idlib/utility.hpp"

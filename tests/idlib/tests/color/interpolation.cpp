@@ -18,7 +18,7 @@
 #include "EgoTest/EgoTest.hpp"
 #include "idlib/idlib.hpp"
 
-namespace id::tests::color::interpolation {
+namespace id { namespace tests { namespace color { namespace interpolation {
 
 EgoTest_TestCase(lf_interpolation)
 {
@@ -118,4 +118,4 @@ EgoTest_TestCase(rgbaf_interpolation)
     }
 };
 
-} // namespace id::tests::color::interpolation
+} } } } // namespace id::tests::color::interpolation

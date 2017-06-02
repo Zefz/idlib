@@ -63,6 +63,15 @@
     <Filter Include="Source Files\utility">
       <UniqueIdentifier>{0673c394-68f9-463c-98f9-fd666f310108}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\file_system">
+      <UniqueIdentifier>{8a06c430-45f0-4120-abff-9ad968424fa8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\file_system\internal">
+      <UniqueIdentifier>{8026335a-694f-4ed7-bd82-b8932fec444e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\file_system">
+      <UniqueIdentifier>{c67b4275-1f90-4883-99a9-c8b78ed25904}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\idlib\idlib.cpp">
@@ -104,12 +113,21 @@
     <ClCompile Include="src\idlib\utility\to_upper.cpp">
       <Filter>Source Files\utility</Filter>
     </ClCompile>
+    <ClCompile Include="src\idlib\file_system\file_linux.cpp">
+      <Filter>Source Files\file_system</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\file_system\file_windows.cpp">
+      <Filter>Source Files\file_system</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\file_system\mapped_file_windows.cpp">
+      <Filter>Source Files\file_system</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\file_system\mapped_file_linux.cpp">
+      <Filter>Source Files\file_system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\idlib\DebugAssert.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\BitmaskTypes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\idlib\crtp.hpp">
@@ -486,6 +504,48 @@
     </ClInclude>
     <ClInclude Include="src\idlib\math\clamp.hpp">
       <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\file_system\internal\footer.hpp">
+      <Filter>Header Files\file_system\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\file_system\internal\header.hpp">
+      <Filter>Header Files\file_system\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\file_system\access_mode.hpp">
+      <Filter>Header Files\file_system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\file_system.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\utility\bitmask_type.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\file_system\file.hpp">
+      <Filter>Header Files\file_system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\file_system\file_linux.hpp">
+      <Filter>Header Files\file_system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\file_system\file_windows.hpp">
+      <Filter>Header Files\file_system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\file_system\create_mode.hpp">
+      <Filter>Header Files\file_system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\file_system\error.hpp">
+      <Filter>Header Files\file_system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\file_system\mapped_file_windows.hpp">
+      <Filter>Header Files\file_system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\file_system\mapped_file.hpp">
+      <Filter>Header Files\file_system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\file_system\mapped_file_linux.hpp">
+      <Filter>Header Files\file_system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\language\category_element.hpp">
+      <Filter>Header Files\language</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

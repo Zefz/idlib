@@ -77,6 +77,22 @@ public:
     }
 };
 
+/// @brief Inherit from this class to deine the assignment operator.
+/// The derived class needs to define a <tt>void assign(const Derived&)</tt> function.
+template <typename Derived>
+class assignment_expr
+{
+public:
+    Derived& operator=(const Derived& other)
+    {
+        if (this != &other)
+        {
+            static_cast<Derived *>(this)->assign(other);
+        }
+        return *static_cast<Derived *>(this);
+    }
+};
+
 /// @brief Inherit from this class to define the equality and inequality operators.
 /// The derived class needs to define a <tt>bool equal_to(const Derived&) const;</tt> function.
 template <typename Derived>

@@ -20,7 +20,8 @@ override LDFLAGS += $(EGO_LDFLAGS)
 # variables for EgoTest's makefile 
 
 EGOTEST_DIR  := ../egotest
-TEST_SOURCES := $(wildcard tests/*.cpp)
+TEST_SOURCES := $(wildcard tests/idlib/tests/*.cpp tests/idlib/tests/*/*.cpp)
+TEST_CXXFLAGS:= $(CXXFLAGS) -Itests
 TEST_LDFLAGS := $(IDLIB_TARGET) $(LDFLAGS)
 
 #------------------------------------

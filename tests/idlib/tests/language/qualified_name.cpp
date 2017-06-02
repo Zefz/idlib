@@ -18,7 +18,7 @@
 #include "EgoTest/EgoTest.hpp"
 #include "idlib/idlib.hpp"
 
-namespace id { namespace tests { namespace qualified_name {
+namespace id { namespace tests { namespace language { namespace qualified_name {
 
 /// Assert selected strings which are not qualified name strings are rejected.
 EgoTest_TestCase(non_qualified_name_strings_rejection)
@@ -47,4 +47,4 @@ EgoTest_TestCase(non_qualified_name_strings_rejection)
     }
 };
 
-} } } // namespace id::tests::qualified_name
+} } } } // namespace id::tests::language::qualified_name

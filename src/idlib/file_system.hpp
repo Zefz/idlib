@@ -15,30 +15,17 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-/// @file idlib/utility/to_string.hpp
-/// @brief Functor for converting values to strings.
+/// @file idlib/file_system.hpp
+/// @brief Master include file of the Idlib file_system library.
 /// @author Michael Heilmann
 
 #pragma once
 
-#include "idlib/utility/is_any_of.hpp"
+#if !defined(IDLIB_PRIVATE) || IDLIB_PRIVATE != 1
+#error(do not include directly, include `idlib/idlib.hpp` instead)
+#endif
 
-#include "idlib/utility/internal/header.hpp"
-
-/// @brief Functor for converting a value to a string.
-/// @tparam Type the type
-/// @tparam Enabled for SFINAE
-template <typename Type, typename Enabled = void>
-struct to_string;
-
-template <typename Type>
-struct to_string<Type, std::enable_if_t<is_any_of<Type, int, long, long long, unsigned int, unsigned long, unsigned long long, float, double, long double>::value>>
-{
-	using type = Type;
-	std::string operator()(const type& value) const
-	{
-		return std::to_string(value);
-	}
-}; // struct to_string
-
-#include "idlib/utility/internal/footer.hpp"
+#include "idlib/file_system/access_mode.hpp"
+#include "idlib/file_system/error.hpp"
+#include "idlib/file_system/file.hpp"
+#include "idlib/file_system/mapped_file.hpp"

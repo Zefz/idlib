@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-/// @file idlib/utility/assertion_failed_error.hpp
-/// @brief Definition of an exception indicating that an assertion failed.
+/// @file idlib/file_system/error.hpp
+/// @brief Definition of the base exception for any kind of file system exception.
 /// @author Michael Heilmann
 
 #pragma once
@@ -26,49 +26,38 @@
 #endif
 
 #include "idlib/utility/runtime_error.hpp"
+#include "idlib/utility/to_string.hpp"
 
-#include "idlib/utility/internal/header.hpp"
+#include "idlib/file_system/internal/header.hpp"
 
-/// @brief Exception for an assertion failed error.
-class assertion_failed_error : public runtime_error
+/// @brief Base exception for any kind of file system exception.
+class error : public id::runtime_error
 {
-private:
-    /// @brief A string describing the assertion e.g. <tt>nullptr != ptr</tt>.
-    std::string m_assertion;
-
 public:
     /// @brief Construct this exception.
     /// @param file the C++ source file associated with this exception
     /// @param line the line within the C++ source file associated with this exception
-    /// @param assertion a description of the assertion
-    explicit assertion_failed_error(const char *file, int line, const std::string& assertion) :
-        runtime_error(file, line, "assertion `" + assertion + "` failed"), m_assertion(assertion)
+    /// @param message the messae
+    explicit error(const char *file, int line, const std::string& message) :
+        id::runtime_error(file, line, message)
     {}
 
 public:
-    /// @brief Get a description of the assertion.
-    /// @return a description of the assertion
-    const std::string& assertion() const
+    friend void swap(error& a, error& b)
     {
-        return m_assertion;
+        using std::swap;
+        swap(static_cast<id::runtime_error&>(a), static_cast<id::runtime_error&>(b));
     }
 
-	friend void swap(assertion_failed_error& a, assertion_failed_error& b)
-	{
-		using std::swap;
-		swap(static_cast<runtime_error&>(a), static_cast<runtime_error&>(b));
-		swap(a.m_assertion, b.m_assertion);
-	}
-	
     virtual std::string to_string() const override
     {
         std::ostringstream buffer;
-        buffer << "invalid argument error:" << std::endl;
+        buffer << "file system error:" << std::endl;
         buffer << "(raised in file " << file() << ", line " << line() << ")" << ":" << std::endl;
         buffer << message();
         return buffer.str();
     }
 
-}; // class assertion_failed_error
+}; // class error
 
-#include "idlib/utility/internal/footer.hpp"
+#include "idlib/file_system/internal/footer.hpp"

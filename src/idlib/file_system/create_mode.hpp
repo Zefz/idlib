@@ -15,30 +15,22 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-/// @file idlib/utility/to_string.hpp
-/// @brief Functor for converting values to strings.
+/// @file idlib/file_system/create_mode.hpp
+/// @brief Create mode for files.
 /// @author Michael Heilmann
 
 #pragma once
 
-#include "idlib/utility/is_any_of.hpp"
+#include "idlib/utility/platform.hpp"
+#include "idlib/utility/bitmask_type.hpp"
 
-#include "idlib/utility/internal/header.hpp"
+#include "idlib/file_system/internal/header.hpp"
 
-/// @brief Functor for converting a value to a string.
-/// @tparam Type the type
-/// @tparam Enabled for SFINAE
-template <typename Type, typename Enabled = void>
-struct to_string;
-
-template <typename Type>
-struct to_string<Type, std::enable_if_t<is_any_of<Type, int, long, long long, unsigned int, unsigned long, unsigned long long, float, double, long double>::value>>
+/// @brief Enum class of file create modes.
+enum class create_mode
 {
-	using type = Type;
-	std::string operator()(const type& value) const
-	{
-		return std::to_string(value);
-	}
-}; // struct to_string
+    open_existing = 0, ///< Open the file if it exists.
+    create_not_existing = (1 << 1), ///< Create the file if it does not exist.
+};
 
-#include "idlib/utility/internal/footer.hpp"
+#include "idlib/file_system/internal/footer.hpp"

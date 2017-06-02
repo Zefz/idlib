@@ -18,7 +18,7 @@
 #include "EgoTest/EgoTest.hpp"
 #include "idlib/idlib.hpp"
 
-namespace id::tests::color::inversion {
+namespace id { namespace tests { namespace color { namespace inversion {
 
 EgoTest_TestCase(lb_inversion)
 {
@@ -92,4 +92,4 @@ EgoTest_TestCase(rgbab_inversion)
     }
 };
 
-} // namespace id::tests::color::inversion
+} } } } // namespace id::tests::color::inversion

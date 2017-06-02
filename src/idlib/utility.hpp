@@ -29,6 +29,8 @@
 #include "idlib/utility/platform.hpp"
 #include "idlib/utility/non_copyable.hpp"
 
+#include "idlib/utility/bitmask_type.hpp"
+
 #include "idlib/utility/exception.hpp"
 #include "idlib/utility/environment_error.hpp"
 #include "idlib/utility/assertion_failed_error.hpp"

@@ -18,7 +18,7 @@
 #include "EgoTest/EgoTest.hpp"
 #include "idlib/idlib.hpp"
 
-namespace id::tests::color {
+namespace id { namespace tests { namespace color {
 
 namespace decompose_construction {
 
@@ -48,4 +48,4 @@ EgoTest_TestCase(decompose_construction_rgbb_ab_rgbab)
 
 } // namespace decompose_construction
 
-} // namespace id::tests::color
+} } } // namespace id::tests::color

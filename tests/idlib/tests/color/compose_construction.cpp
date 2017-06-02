@@ -18,7 +18,7 @@
 #include "EgoTest/EgoTest.hpp"
 #include "idlib/idlib.hpp"
 
-namespace id::tests::color {
+namespace id { namespace tests { namespace color {
 
 namespace compose_construction {
 
@@ -112,4 +112,4 @@ EgoTest_TestCase(compose_construction_lab_lb_ab)
 
 } // namespace compose_construction
 
-} // namespace id::tests::color
+} } } // namespace id::tests::color

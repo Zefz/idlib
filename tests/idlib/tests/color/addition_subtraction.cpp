@@ -16,9 +16,9 @@
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
 #include "EgoTest/EgoTest.hpp"
-#include "idlib/Tests/color/color_generator.hpp"
+#include "idlib/tests/color/color_generator.hpp"
 
-namespace id::tests::color::addition_subtraction {
+namespace id { namespace tests { namespace color { namespace addition_subtraction {
 
 EgoTest_TestCase(addition_subtraction_ab)
 {
@@ -181,4 +181,4 @@ EgoTest_TestCase(addition_subtraction_rgbaf)
     }
 };
 
-} // namespace id::tests::color::addition_subtraction
+} } } } // namespace id::tests::color::addition_subtraction

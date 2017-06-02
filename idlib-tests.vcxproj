@@ -19,6 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="tests\idlib\tests\language\qualified_name.cpp" />
+    <ClCompile Include="tests\idlib\Tests\compilation.cpp" />
+    <ClCompile Include="tests\idlib\Tests\file_system\access_mode.cpp" />
+    <ClCompile Include="tests\idlib\Tests\math.cpp" />
     <ClCompile Include="tests\idlib\tests\color\addition_subtraction.cpp" />
     <ClCompile Include="tests\idlib\tests\color\decompose_construction.cpp" />
     <ClCompile Include="tests\idlib\tests\color\compose_construction.cpp" />
@@ -30,7 +34,6 @@
     <ClCompile Include="tests\idlib\tests\suffix.cpp" />
     <ClCompile Include="tests\idlib\tests\to_lower.cpp" />
     <ClCompile Include="tests\idlib\tests\to_upper.cpp" />
-    <ClCompile Include="tests\idlib\tests\qualified_name.cpp" />
     <ClCompile Include="tests\idlib\tests\parsing_expressions\choice.cpp" />
     <ClCompile Include="tests\idlib\tests\parsing_expressions\name.cpp" />
     <ClCompile Include="tests\idlib\tests\parsing_expressions\qualified_name.cpp">
@@ -44,9 +47,7 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\parsing_expressions\qualified_name.o</ObjectFileName>
     </ClCompile>
     <ClCompile Include="tests\idlib\tests\parsing_expressions\symbols.cpp" />
-    <ClCompile Include="tests\idlib\tests\Math.cpp" />
     <ClCompile Include="tests\idlib\tests\Signal.cpp" />
-    <ClCompile Include="tests\idlib\tests\Compilation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="idlib.vcxproj">

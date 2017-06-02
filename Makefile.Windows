@@ -4,7 +4,7 @@ IDLIB_TARGET := libid.a
 
 #---------------------
 # the source files
-SOURCES := $(wildcard ./src/IdLib/*.cpp)
+SOURCES := $(wildcard ./src/idlib/*.cpp) $(wildcard ./src/idlib/*/*.cpp) $(wildcard ./src/idlib/*/*/*.cpp)
 
 #-------------------
 # object output
@@ -12,10 +12,7 @@ OBJECTS := $(SOURCES:.cpp=.o)
 
 #---------------------
 # the compiler options
-INCLUDES := -I./src -I../game/src -I../egolib/src
-
-INCLUDES += -I../../enet-1.3.12/include
-INCLUDES += -I../../physfs-2.0.3/
+INCLUDES := -I./src
 
 CXXFLAGS  := $(COMPILE_FLAGS) $(INCLUDES) $(COMPILE_OPTIMIZE) $(COMPILE_WARNINGS)
 
@@ -47,4 +44,4 @@ $(IDLIB_TARGET): $(OBJECTS)
 	ar rcsv $(IDLIB_TARGET) $(OBJECTS)
 
 clean:
-	rm -f $(IDLIB_TARGET) ./src/IdLib/*.o
+	rm -f $(IDLIB_TARGET) ./src/idlib/*.o ./src/idlib/*/*.o ./src/idlib/*/*/*.o
