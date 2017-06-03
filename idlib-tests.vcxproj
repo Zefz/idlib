@@ -20,9 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tests\idlib\tests\language\qualified_name.cpp" />
-    <ClCompile Include="tests\idlib\Tests\compilation.cpp" />
-    <ClCompile Include="tests\idlib\Tests\file_system\access_mode.cpp" />
-    <ClCompile Include="tests\idlib\Tests\math.cpp" />
+    <ClCompile Include="tests\idlib\tests\compilation.cpp" />
+    <ClCompile Include="tests\idlib\tests\file_system\access_mode.cpp" />
+    <ClCompile Include="tests\idlib\tests\math.cpp" />
     <ClCompile Include="tests\idlib\tests\color\addition_subtraction.cpp" />
     <ClCompile Include="tests\idlib\tests\color\decompose_construction.cpp" />
     <ClCompile Include="tests\idlib\tests\color\compose_construction.cpp" />
