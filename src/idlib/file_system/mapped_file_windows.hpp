@@ -17,7 +17,8 @@ private:
     HANDLE m_file_mapping_handle;
 	size_t m_size;
     void *m_data;
-
+    bool m_writing; ///< @brief Is the file opened for writing.
+    bool m_reading; ///< @brief Is the file opened for reading.
 public:
     /// @brief Open a memory mapped file for writing.
     /// @param pathname the pathname of the file
@@ -32,6 +33,14 @@ public:
     /// @brief Get if the mapped file descriptor is open.
     /// @return @a true if the mapped descriptor is open, @a false otherwise
     bool is_open() const noexcept;
+
+    /// @brief Get if the mapped file descriptor is open for reading.
+    /// @return @a true if the mapped file descriptor is open for reading, @a false otherwise
+    bool is_opened_for_reading() const noexcept;
+
+    /// @brief Get if the mapped file descriptor is open for writing.
+    /// @return @a true if the mapped file descriptor is open for writing, @a false otherwise
+    bool is_opened_for_writing() const noexcept;
 
     /// @brief Ensure the mapped file descriptor is closed.
     void close() noexcept;
