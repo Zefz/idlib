@@ -21,9 +21,9 @@
 
 #pragma once
 
-#if !defined(IDLIB_PRIVATE) || IDLIB_PRIVATE != 1
-#error(do not include directly, include `idlib/idlib.hpp` instead)
-#endif
+#pragma push_macro("IDLIB_PRIVATE")
+#undef IDLIB_PRIVATE
+#define IDLIB_PRIVATE (1)
 
 #include "idlib/utility/target.hpp"
 #include "idlib/utility/platform.hpp"
@@ -45,3 +45,6 @@
 
 #include "idlib/utility/prefix.hpp"
 #include "idlib/utility/suffix.hpp"
+
+#undef IDLIB_PRIVATE
+#pragma pop_macro("IDLIB_PRIVATE")
