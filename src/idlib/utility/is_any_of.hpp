@@ -46,4 +46,7 @@ template<typename T, typename U>
 struct is_any_of<T, U> : std::is_same<T, U>::type
 {};
 
+template <typename T, typename ... U>
+constexpr bool is_any_of_v = is_any_of<T, U ...>::value;
+
 #include "idlib/utility/internal/footer.hpp"
