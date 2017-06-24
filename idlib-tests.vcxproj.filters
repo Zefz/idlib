@@ -75,13 +75,13 @@
     <ClCompile Include="tests\idlib\tests\color\addition_subtraction.cpp">
       <Filter>Source Files\color</Filter>
     </ClCompile>
-    <ClCompile Include="tests\idlib\Tests\file_system\access_mode.cpp">
+    <ClCompile Include="tests\idlib\tests\file_system\access_mode.cpp">
       <Filter>Source Files\file_system</Filter>
     </ClCompile>
-    <ClCompile Include="tests\idlib\Tests\compilation.cpp">
+    <ClCompile Include="tests\idlib\tests\compilation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tests\idlib\Tests\math.cpp">
+    <ClCompile Include="tests\idlib\tests\math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tests\idlib\tests\language\qualified_name.cpp">
