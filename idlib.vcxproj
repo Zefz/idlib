@@ -256,6 +256,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\idlib\utility\swap_bytes.cpp" />
     <ClCompile Include="src\idlib\file_system\mapped_file_linux.cpp" />
     <ClCompile Include="src\idlib\file_system\mapped_file_windows.cpp" />
     <ClCompile Include="src\idlib\file_system\file_linux.cpp" />
@@ -293,6 +294,7 @@
     <ClCompile Include="src\idlib\idlib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\idlib\utility\swap_bytes.hpp" />
     <ClInclude Include="src\idlib\language\category_element.hpp" />
     <ClInclude Include="src\idlib\file_system\mapped_file.hpp" />
     <ClInclude Include="src\idlib\file_system\mapped_file_linux.hpp" />
