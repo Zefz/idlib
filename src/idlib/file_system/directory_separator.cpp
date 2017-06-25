@@ -15,19 +15,21 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-/// @file idlib/file_system.hpp
-/// @brief Master include file of the Idlib file_system library.
+/// @file idlib/file_system/directory_separator.cpp
+/// @brief Determine the directory separator.
 /// @author Michael Heilmann
 
-#pragma once
-
-#if !defined(IDLIB_PRIVATE) || IDLIB_PRIVATE != 1
-#error(do not include directly, include `idlib/idlib.hpp` instead)
-#endif
-
-#include "idlib/file_system/access_mode.hpp"
-#include "idlib/file_system/error.hpp"
-#include "idlib/file_system/file.hpp"
-#include "idlib/file_system/mapped_file.hpp"
-#include "idlib/file_system/working_directory.hpp"
 #include "idlib/file_system/directory_separator.hpp"
+
+namespace id {
+
+std::string get_directory_separator()
+{
+#if defined(_WIN32)
+    return "\\";
+#else
+    return "/";
+#endif
+}
+
+} // namespace id

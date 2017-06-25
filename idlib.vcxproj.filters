@@ -128,6 +128,12 @@
     <ClCompile Include="src\idlib\utility\swap_bytes.cpp">
       <Filter>Source Files\utility</Filter>
     </ClCompile>
+    <ClCompile Include="src\idlib\file_system\working_directory.cpp">
+      <Filter>Source Files\file_system</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\file_system\directory_separator.cpp">
+      <Filter>Source Files\file_system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\idlib\DebugAssert.hpp">
@@ -555,6 +561,12 @@
     </ClInclude>
     <ClInclude Include="src\idlib\utility\swap_bytes.hpp">
       <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\file_system\working_directory.hpp">
+      <Filter>Header Files\file_system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\file_system\directory_separator.hpp">
+      <Filter>Header Files\file_system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

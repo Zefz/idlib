@@ -15,19 +15,20 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-/// @file idlib/file_system.hpp
-/// @brief Master include file of the Idlib file_system library.
+/// @file idlib/file_system/working_directory.hpp
+/// @brief Determine the working directory.
 /// @author Michael Heilmann
 
 #pragma once
 
-#if !defined(IDLIB_PRIVATE) || IDLIB_PRIVATE != 1
-#error(do not include directly, include `idlib/idlib.hpp` instead)
-#endif
+#include "idlib/utility.hpp"
 
-#include "idlib/file_system/access_mode.hpp"
-#include "idlib/file_system/error.hpp"
-#include "idlib/file_system/file.hpp"
-#include "idlib/file_system/mapped_file.hpp"
-#include "idlib/file_system/working_directory.hpp"
-#include "idlib/file_system/directory_separator.hpp"
+namespace id {
+
+/// @brief Get the current working directory of this process.
+/// @return the current working directory of this process
+/// @throw std::runtime_error the current working directory can not be obtained
+/// @throw std::bad_alloc an out of memory situation occurred
+std::string get_working_directory();
+
+} // namespace id

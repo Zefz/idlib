@@ -256,6 +256,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\idlib\file_system\directory_separator.cpp" />
+    <ClCompile Include="src\idlib\file_system\working_directory.cpp" />
     <ClCompile Include="src\idlib\utility\swap_bytes.cpp" />
     <ClCompile Include="src\idlib\file_system\mapped_file_linux.cpp" />
     <ClCompile Include="src\idlib\file_system\mapped_file_windows.cpp" />
@@ -294,6 +296,8 @@
     <ClCompile Include="src\idlib\idlib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\idlib\file_system\directory_separator.hpp" />
+    <ClInclude Include="src\idlib\file_system\working_directory.hpp" />
     <ClInclude Include="src\idlib\utility\swap_bytes.hpp" />
     <ClInclude Include="src\idlib\utility\byte_order.hpp" />
     <ClInclude Include="src\idlib\language\category_element.hpp" />
