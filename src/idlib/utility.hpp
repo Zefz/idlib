@@ -29,6 +29,7 @@
 #include "idlib/utility/platform.hpp"
 
 #include "idlib/utility/swap_bytes.hpp"
+#include "idlib/utility/byte_order.hpp"
 
 #include "idlib/utility/non_copyable.hpp"
 

@@ -295,6 +295,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\idlib\utility\swap_bytes.hpp" />
+    <ClInclude Include="src\idlib\utility\byte_order.hpp" />
     <ClInclude Include="src\idlib\language\category_element.hpp" />
     <ClInclude Include="src\idlib\file_system\mapped_file.hpp" />
     <ClInclude Include="src\idlib\file_system\mapped_file_linux.hpp" />
