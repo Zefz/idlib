@@ -550,6 +550,9 @@
     <ClInclude Include="src\idlib\language\category_element.hpp">
       <Filter>Header Files\language</Filter>
     </ClInclude>
+    <ClInclude Include="src\idlib\utility\byte_order.hpp">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
     <ClInclude Include="src\idlib\utility\swap_bytes.hpp">
       <Filter>Header Files\utility</Filter>
     </ClInclude>
