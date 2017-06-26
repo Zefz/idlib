@@ -56,9 +56,11 @@ namespace id {
 	#else
 		#error("unsupported Byte order")
 	#endif
-#else defined(_MSC_VER)
+#elif defined(_MSC_VER)
 	constexpr byte_order get_byte_order()
 	{ return byte_order::little_endian; }
+#else
+    #error("unable to determine Byte order")
 #endif
 
 } // namespace id
