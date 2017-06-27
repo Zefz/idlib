@@ -4,13 +4,17 @@
 #define IDLIB_PRIVATE 1
 #include "idlib/utility/platform.hpp"
 
+#include "idlib/file_system/file.hpp"
+
 #if defined(ID_WINDOWS)
-#include "idlib/file_system/file_windows.hpp"
+#define WIN32_LEAN_AND_MEAN
+#define NOMINMAX
+#include <windows.h>
 
 #include "idlib/file_system/internal/header.hpp"
 
-/// @brief A memory mapped file.
-class mapped_file_descriptor
+/// @brief A Windows memory mapped file.
+class mapped_file_descriptor_impl
 {
 private:
     file_descriptor m_file_descriptor;
@@ -55,20 +59,20 @@ public:
 
     /// @brief Construct this mapped file descriptor.
     /// @post The mapped file descriptor is closed.
-    mapped_file_descriptor() noexcept;
+    mapped_file_descriptor_impl() noexcept;
 
     /// @brief Destruct this mapped file descriptor.
     /// @post The file descriptor is closed.
-    ~mapped_file_descriptor() noexcept;
+    ~mapped_file_descriptor_impl() noexcept;
 
 public:
     // Delete copy constructor.
-    mapped_file_descriptor(const mapped_file_descriptor&) = delete;
+    mapped_file_descriptor_impl(const mapped_file_descriptor_impl&) = delete;
 
     // Delete copy assignment operator.
-    mapped_file_descriptor& operator=(const mapped_file_descriptor&) = delete;
+    mapped_file_descriptor_impl& operator=(const mapped_file_descriptor_impl&) = delete;
 
-}; // class mapped_file_descriptor
+}; // class mapped_file_descriptor_impl
 
 #include "idlib/file_system/internal/footer.hpp"
 #endif

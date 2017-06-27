@@ -12,7 +12,7 @@
 
 #include "idlib/file_system/internal/header.hpp"
 
-void file_descriptor::open(const std::string& pathname, access_mode access_mode, create_mode create_mode) noexcept
+void file_descriptor_impl::open(const std::string& pathname, access_mode access_mode, create_mode create_mode) noexcept
 {
     close();
 	m_access_mode = access_mode;
@@ -48,12 +48,12 @@ void file_descriptor::open(const std::string& pathname, access_mode access_mode,
     m_handle = ::open(pathname.c_str(), flags, 0);
 }
 
-bool file_descriptor::is_open() const noexcept
+bool file_descriptor_impl::is_open() const noexcept
 {
     return -1 != m_handle;
 }
 
-void file_descriptor::close() noexcept
+void file_descriptor_impl::close() noexcept
 {
     if (-1 != m_handle)
     {
@@ -62,16 +62,16 @@ void file_descriptor::close() noexcept
     }
 }
 
-file_descriptor::file_descriptor() noexcept :
+file_descriptor_impl::file_descriptor_impl() noexcept :
     m_handle(-1)
 {}
 
-file_descriptor::~file_descriptor() noexcept
+file_descriptor_impl::~file_descriptor_impl() noexcept
 {
     close();
 }
 
-size_t file_descriptor::size() const
+size_t file_descriptor_impl::size() const
 {
     if (!is_open())
     {

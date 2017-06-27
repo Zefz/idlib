@@ -6,7 +6,7 @@
 
 #include "idlib/file_system/internal/header.hpp"
 
-void mapped_file_descriptor::open_read(const std::string& pathname, create_mode create_mode) noexcept
+void mapped_file_descriptor_impl::open_read(const std::string& pathname, create_mode create_mode) noexcept
 {
     close();
     m_file_descriptor.open(pathname, id::file_system::access_mode::read, create_mode);
@@ -15,7 +15,7 @@ void mapped_file_descriptor::open_read(const std::string& pathname, create_mode 
         return;
     }
     m_size = m_file_descriptor.size();
-    m_data = mmap(0, m_size, PROT_READ, MAP_SHARED, m_file_descriptor.handle(), 0);
+    m_data = mmap(0, m_size, PROT_READ, MAP_SHARED, *((int *)m_file_descriptor.handle()), 0);
     if (MAP_FAILED == m_data)
     {
         errno = 0;
@@ -24,7 +24,7 @@ void mapped_file_descriptor::open_read(const std::string& pathname, create_mode 
     }
 }
 
-void mapped_file_descriptor::open_write(const std::string& pathname, create_mode create_mode, size_t size) noexcept
+void mapped_file_descriptor_impl::open_write(const std::string& pathname, create_mode create_mode, size_t size) noexcept
 {
     close();
     m_file_descriptor.open(pathname, id::file_system::access_mode::write, create_mode);
@@ -33,7 +33,7 @@ void mapped_file_descriptor::open_write(const std::string& pathname, create_mode
         return;
     }
     m_size = size;
-    m_data = mmap(0, m_size, PROT_READ, MAP_SHARED, m_file_descriptor.handle(), 0);
+    m_data = mmap(0, m_size, PROT_READ, MAP_SHARED, *((int *)m_file_descriptor.handle()), 0);
     if (MAP_FAILED == m_data)
     {
         errno = 0;
@@ -42,12 +42,12 @@ void mapped_file_descriptor::open_write(const std::string& pathname, create_mode
     }
 }
 
-bool mapped_file_descriptor::is_open() const noexcept
+bool mapped_file_descriptor_impl::is_open() const noexcept
 {
     return MAP_FAILED != m_data;
 }
 
-void mapped_file_descriptor::close() noexcept
+void mapped_file_descriptor_impl::close() noexcept
 {
     if (MAP_FAILED != m_data)
     {
@@ -60,7 +60,7 @@ void mapped_file_descriptor::close() noexcept
     m_file_descriptor.close();
 }
 
-char *mapped_file_descriptor::data()
+char *mapped_file_descriptor_impl::data()
 {
     return (char *)m_data;
 }
@@ -70,11 +70,11 @@ size_t mapped_file_descriptor::size() const
     return m_size;
 }
 
-mapped_file_descriptor::mapped_file_descriptor() noexcept :
+mapped_file_descriptor_impl::mapped_file_descriptor_impl() noexcept :
     m_file_descriptor(), m_size((size_t)-1), m_data(MAP_FAILED)
 {}
 
-mapped_file_descriptor::~mapped_file_descriptor() noexcept
+mapped_file_descriptor_impl::~mapped_file_descriptor_impl() noexcept
 {
     close();
 }

@@ -256,6 +256,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\idlib\file_system\file.cpp" />
+    <ClCompile Include="src\idlib\file_system\mapped_file.cpp" />
     <ClCompile Include="src\idlib\file_system\directory_separator.cpp" />
     <ClCompile Include="src\idlib\file_system\working_directory.cpp" />
     <ClCompile Include="src\idlib\utility\swap_bytes.cpp" />

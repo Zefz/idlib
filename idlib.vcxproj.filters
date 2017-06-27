@@ -134,6 +134,12 @@
     <ClCompile Include="src\idlib\file_system\directory_separator.cpp">
       <Filter>Source Files\file_system</Filter>
     </ClCompile>
+    <ClCompile Include="src\idlib\file_system\file.cpp">
+      <Filter>Source Files\file_system</Filter>
+    </ClCompile>
+    <ClCompile Include="src\idlib\file_system\mapped_file.cpp">
+      <Filter>Source Files\file_system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\idlib\DebugAssert.hpp">

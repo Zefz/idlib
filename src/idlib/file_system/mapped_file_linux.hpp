@@ -9,8 +9,8 @@
 
 #include "idlib/file_system/internal/header.hpp"
 
-/// @brief A memory mapped file.
-class mapped_file_descriptor
+/// @brief A Linux memory mapped file.
+class mapped_file_descriptor_impl
 {
 private:
     file_descriptor m_file_descriptor;
@@ -23,6 +23,7 @@ public:
     /// @param create_mode the create mode
     /// @param size the size, in Bytes, of the memory mapped file
     void open_write(const std::string& pathname, create_mode create_mode, size_t size) noexcept;
+
     /// @brief Open a memory mapped file for reading.
     /// @param pathname the pathname of the file
     /// @param create_mode the create mode
@@ -45,20 +46,20 @@ public:
 
     /// @brief Construct this mapped file descriptor.
     /// @post The mapped file descriptor is closed.
-    mapped_file_descriptor() noexcept;
+    mapped_file_descriptor_impl() noexcept;
 
     /// @brief Destruct this mapped file descriptor.
     /// @post The file descriptor is closed.
-    ~mapped_file_descriptor() noexcept;
+    ~mapped_file_descriptor_impl() noexcept;
 
 public:
     // Delete copy constructor.
-    mapped_file_descriptor(const mapped_file_descriptor&) = delete;
+    mapped_file_descriptor_impl(const mapped_file_descriptor_impl&) = delete;
 
     // Delete copy assignment operator.
-    mapped_file_descriptor& operator=(const mapped_file_descriptor&) = delete;
+    mapped_file_descriptor_impl& operator=(const mapped_file_descriptor_impl&) = delete;
 
-}; // class mapped_file_descriptor
+}; // class mapped_file_descriptor_impl
 
 #include "idlib/file_system/internal/footer.hpp"
 #endif

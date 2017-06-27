@@ -14,11 +14,14 @@
 
 #include "idlib/file_system/internal/header.hpp"
 
-// A file descriptor.
-struct file_descriptor final
+/// @brief A Windows file descriptor.
+class file_descriptor_impl final
 {
 private:
+    /// @brief The windows file handle.
     HANDLE m_handle;
+
+    /// @brief The access mode.
 	access_mode m_access_mode;
 
 public:
@@ -37,11 +40,11 @@ public:
 
     /// @brief Construct this file descriptor.
     /// @post The file descriptor is closed.
-    file_descriptor() noexcept;
+    file_descriptor_impl() noexcept;
 
     /// @brief Destruct this file descriptor.
     /// @post The file descriptor is closed.
-    ~file_descriptor() noexcept;
+    ~file_descriptor_impl() noexcept;
 
     /// @brief Get the size, in Bytes, of the file size.
     /// @return the size, in Bytes, of the file
@@ -50,16 +53,16 @@ public:
     size_t size() const;
 
     /// Get the internal handle.
-    HANDLE& handle() { return m_handle; }
+    void *handle() { return &m_handle; }
 
 public:
     // Delete copy constructor.
-    file_descriptor(const file_descriptor&) = delete;
+    file_descriptor_impl(const file_descriptor_impl&) = delete;
 
     // Delete copy assignment operator.
-    file_descriptor& operator=(const file_descriptor&) = delete;
+    file_descriptor_impl& operator=(const file_descriptor_impl&) = delete;
 
-}; // struct file_descriptor
+}; // class file_descriptor_impl
 
 #include "idlib/file_system/internal/footer.hpp"
 
