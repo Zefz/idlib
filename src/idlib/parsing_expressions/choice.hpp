@@ -68,7 +68,7 @@ public:
 /// @tparam Expr the type of the first expression
 /// @tparam Exprs ... the type of the remaining expressions
 template <typename Expr, typename ... Exprs>
-class choice_expr : public n_ary_expr<tuple_op_choice, Expr, Exprs ...>
+class choice_expr : public internal::n_ary_expr<tuple_op_choice, Expr, Exprs ...>
 {
 public:
     /// @internal
@@ -76,7 +76,7 @@ public:
     /// @param expr the first expression
     /// @param exprs the remaining expressions
     choice_expr(Expr&& expr, Exprs&& ... exprs) :
-        n_ary_expr<tuple_op_choice, Expr, Exprs ...>(std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...)
+        internal::n_ary_expr<tuple_op_choice, Expr, Exprs ...>(std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...)
     {}
 
     template <typename It>
