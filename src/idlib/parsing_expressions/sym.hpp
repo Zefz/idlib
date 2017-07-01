@@ -27,8 +27,7 @@
 
 #include "idlib/utility/platform.hpp"
 
-namespace id {
-namespace parsing_expressions {
+namespace id { namespace parsing_expressions {
 
 /// @internal
 /// @brief Parsing expression accepting a symbol.
@@ -72,5 +71,4 @@ sym_expr<Sym> sym(Sym sym)
     return sym_expr<Sym>(sym);
 }
 
-} // namespace parsing_expressions
-} // namespace id
+} } // namespace id::parsing_expressions

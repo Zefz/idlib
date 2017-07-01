@@ -27,8 +27,7 @@
 #include "idlib/parsing_expressions/sequence.hpp"
 #include "idlib/parsing_expressions/repetition.hpp"
 
-namespace id {
-namespace parsing_expressions {
+namespace id { namespace parsing_expressions {
 
 /// @brief Parsing expression accepting @code{whitespace = ' '|'\t'}.
 /// @tparam Sym the symbol type
@@ -171,5 +170,4 @@ public:
     }
 };
 
-} // namespace parsing_expressions
-} // namespace id
+} } // namespace id::parsing_expressions

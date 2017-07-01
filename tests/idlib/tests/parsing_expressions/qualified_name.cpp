@@ -62,6 +62,4 @@ EgoTest_TestCase(qualified_name_testing)
     }
 };
 
-} // namespace parsing_expression
-} // namespace tests
-} // namespace id
+} } } // namespace id::tests::parsing_expression

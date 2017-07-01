@@ -27,8 +27,7 @@
 
 #include "idlib/utility/platform.hpp"
 
-namespace id {
-namespace parsing_expressions {
+namespace id { namespace parsing_expressions {
 
 /// @internal
 /// @brief See id::repetition for more information.
@@ -75,5 +74,4 @@ repetition_expr<Sym, Expr> repetition(Expr&& expr)
     return repetition_expr<Sym, Expr>(std::forward<Expr>(expr));
 }
 
-} // namespace parsing_expressions
-} // namespace id
+} } // namespace id::parsing_expressions

@@ -65,6 +65,4 @@ EgoTest_TestCase(name_expression_testing)
 	}
 };
 
-} // namespace parsing_expression
-} // namespace tests
-} // namespace id
+} } } // namespace id::tests::parsing_expression

@@ -23,8 +23,7 @@
 
 #include "idlib/utility/platform.hpp"
 
-namespace id {
-namespace parsing_expressions {
+namespace id { namespace parsing_expressions {
 
 /// @internal
 /// @brief An \f$n\f$-ary parsing expression \f$n>0\f$.
@@ -50,5 +49,4 @@ public:
     {}
 };
 
-} // namespace parsing_expressions
-} // namespace id
+} } // namespace id::parsing_expressions

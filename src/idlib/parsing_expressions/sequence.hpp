@@ -27,8 +27,7 @@
 
 #include "idlib/parsing_expressions/n_ary_expr.hpp"
 
-namespace id {
-namespace parsing_expressions {
+namespace id { namespace parsing_expressions {
 
 struct tuple_op_sequence
 {
@@ -116,5 +115,4 @@ sequence_expr<Sym, Expr, Exprs ...> sequence(Expr&& expr, Exprs&& ... exprs)
     return sequence_expr<Sym, Expr, Exprs ...>(std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...);
 }
 
-} // namespace parsing_expressions
-} // namespace id
+} } // namespace id::parsing_expressions
