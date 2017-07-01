@@ -31,9 +31,8 @@ namespace id { namespace parsing_expressions {
 
 /// @internal
 /// @brief See id::option for more information.
-/// @tparam Sym the symbol type
 /// @tparam Expr the expression type
-template <typename Sym, typename Expr>
+template <typename Expr>
 struct option_expr
 {
 private:
@@ -67,14 +66,13 @@ public:
 /// @detail That is, the @a option of a parsing expressions @code{e}
 /// is defined as
 /// @code{repetition(e) = e?}.
-/// @tparam Sym the symbol type
 /// @tparam Expr the type of the expression
 /// @param expr the expression
 /// @return the parsing expression
-template <typename Sym, typename Expr>
-option_expr<Sym, Expr> option(Expr&& expr)
+template <typename Expr>
+option_expr<Expr> option(Expr&& expr)
 {
-    return option_expr<Sym, Expr>(std::forward<Expr>(expr));
+    return option_expr<Expr>(std::forward<Expr>(expr));
 }
 
 } } // namespace id::parsing_expressions

@@ -26,14 +26,14 @@ EgoTest_TestCase(choice_expression_testing)
 
     EgoTest_Test(test_choice_expression)
     {
-        auto p = id::parsing_expressions::choice<char>
+        auto p = id::parsing_expressions::choice
             (
-                id::parsing_expressions::sequence<char>
+                id::parsing_expressions::sequence
                 (
                     id::parsing_expressions::sym<char>('x'),
                     id::parsing_expressions::sym<char>('x')
                     ),
-                id::parsing_expressions::sequence<char>
+                id::parsing_expressions::sequence
                 (
                     id::parsing_expressions::sym<char>('y'),
                     id::parsing_expressions::sym<char>('y')

@@ -69,11 +69,10 @@ public:
 
 /// @internal
 /// @brief See id::sequence for more information.
-/// @tparam Sym the symbol type
 /// @tparam Expr the type of the first expression
 /// @tparam Exprs ... the type of the remaining expressions
-template <typename Sym, typename Expr, typename ... Exprs>
-struct sequence_expr : public n_ary_expr<tuple_op_sequence, Sym, Expr, Exprs ...>
+template <typename Expr, typename ... Exprs>
+struct sequence_expr : public n_ary_expr<tuple_op_sequence, Expr, Exprs ...>
 {
 public:
     /// @internal
@@ -81,7 +80,7 @@ public:
     /// @param expr the first expression
     /// @param exprs the remaining expressions
     sequence_expr(Expr&& expr, Exprs&& ... exprs) :
-        n_ary_expr<tuple_op_sequence, Sym, Expr, Exprs ...>(std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...)
+        n_ary_expr<tuple_op_sequence, Expr, Exprs ...>(std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...)
     {}
 
     template <typename It>
@@ -103,16 +102,15 @@ public:
 /// @detail That is, the @a sequence of @code{n > 0} parsing expressions @code{e1}, ..., @code{en}
 /// is defined as
 /// @code{or(e1, ..., en) = e1 ...  en}.
-/// @tparam Sym the symbol type
 /// @tparam Expr the type of the first expression
 /// @tparam Exprs ... the types of the remaining expressions
 /// @param expr the first expression
 /// @param exprs the remaining expressions
 /// @return the parsing expression
-template <typename Sym, typename Expr, typename ... Exprs>
-sequence_expr<Sym, Expr, Exprs ...> sequence(Expr&& expr, Exprs&& ... exprs)
+template <typename Expr, typename ... Exprs>
+sequence_expr<Expr, Exprs ...> sequence(Expr&& expr, Exprs&& ... exprs)
 {
-    return sequence_expr<Sym, Expr, Exprs ...>(std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...);
+    return sequence_expr<Expr, Exprs ...>(std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...);
 }
 
 } } // namespace id::parsing_expressions

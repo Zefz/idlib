@@ -28,10 +28,9 @@ namespace id { namespace parsing_expressions {
 /// @internal
 /// @brief An \f$n\f$-ary parsing expression \f$n>0\f$.
 /// @param Op the tuple operation
-/// @tparam Sym the symbol type
 /// @tparam Expr the type of the first expression
 /// @tparam Exprs ... the type of the remaining expressions
-template <typename Op, typename Sym, typename Expr, typename ... Exprs>
+template <typename Op, typename Expr, typename ... Exprs>
 class n_ary_expr
 {
 protected:

@@ -38,7 +38,7 @@ public:
     template <typename It>
     bool operator()(It& at, It& end) const
     {
-        static const auto x = choice<Sym>(sym<Sym>(' '), sym<Sym>('\t'));
+        static const auto x = choice(sym<Sym>(' '), sym<Sym>('\t'));
         return x(at, end);
     }
 };
@@ -52,7 +52,7 @@ public:
     template <typename It>
     bool operator()(It& at, It& end) const
     {
-        static const auto x = choice<Sym>(sym<Sym>('\n'), sym<Sym>('\r'));
+        static const auto x = choice(sym<Sym>('\n'), sym<Sym>('\r'));
         return x(at, end);
     }
 };
@@ -94,7 +94,7 @@ public:
     template <typename It>
     bool operator()(It& at, It& end) const
     {
-        static const auto x = choice<Sym>(alpha_lowercase<Sym>(), alpha_uppercase<Sym>());
+        static const auto x = choice(alpha_lowercase<Sym>(), alpha_uppercase<Sym>());
         return x(at, end);
     }
 };
@@ -123,16 +123,16 @@ public:
     bool operator()(It& at, It& end) const
     {
         static const auto w =
-            sequence<char>
+            sequence
             (
-                choice<char>
+                choice
                 (
                     alpha<char>(),
                     sym<char>('_')
                 ),
-                repetition<char>
+                repetition
                 (
-                    choice<char>
+                    choice
                     (
                         alpha<char>(),
                         digit<char>(),
@@ -154,12 +154,12 @@ public:
     bool operator()(It& at, It& end) const
     {
         static const auto w =
-            sequence<char>
+            sequence
             (
                 name<char>(),
-                repetition<char>
+                repetition
                 (
-                    sequence<char>
+                    sequence
                     (
                         sym<char>('.'),
                         name<char>()

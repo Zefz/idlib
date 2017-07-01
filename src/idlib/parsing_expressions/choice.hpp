@@ -65,11 +65,10 @@ public:
 
 /// @internal
 /// @brief See id::choice for more information.
-/// @tparam Sym the symbol type
 /// @tparam Expr the type of the first expression
 /// @tparam Exprs ... the type of the remaining expressions
-template <typename Sym, typename Expr, typename ... Exprs>
-class choice_expr : public n_ary_expr<tuple_op_choice, Sym, Expr, Exprs ...>
+template <typename Expr, typename ... Exprs>
+class choice_expr : public n_ary_expr<tuple_op_choice, Expr, Exprs ...>
 {
 public:
     /// @internal
@@ -77,7 +76,7 @@ public:
     /// @param expr the first expression
     /// @param exprs the remaining expressions
     choice_expr(Expr&& expr, Exprs&& ... exprs) :
-        n_ary_expr<tuple_op_choice, Sym, Expr, Exprs ...>(std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...)
+        n_ary_expr<tuple_op_choice, Expr, Exprs ...>(std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...)
     {}
 
     template <typename It>
@@ -107,16 +106,15 @@ public:
 /// @detail That is, the @a choice of @code{n > 0} parsing expressions @code{e1}, ..., @code{en}
 /// is defined as
 /// @code{choice(e1, ..., en) = e1 | ...  | en}.
-/// @tparam Sym the symbol type
 /// @tparam Expr the type of the first expression
 /// @tparam Exprs ... the types of the remaining expressions
 /// @param expr the first expression
 /// @param exprs the remaining expressions
 /// @return the parsing expression
-template <typename Sym, typename Expr, typename ... Exprs>
-choice_expr<Sym, Expr, Exprs ...> choice(Expr&& expr, Exprs&& ... exprs)
+template <typename Expr, typename ... Exprs>
+choice_expr<Expr, Exprs ...> choice(Expr&& expr, Exprs&& ... exprs)
 {
-    return choice_expr<Sym, Expr, Exprs ...>(std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...);
+    return choice_expr<Expr, Exprs ...>(std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...);
 }
 
 } } // namespace id::parsing_expressions

@@ -31,9 +31,8 @@ namespace id { namespace parsing_expressions {
 
 /// @internal
 /// @brief See id::repetition for more information.
-/// @tparam Sym the symbol type
 /// @tparam Expr the type of the expression
-template <typename Sym, typename Expr>
+template <typename Expr>
 struct repetition_expr
 {
 private:
@@ -64,14 +63,13 @@ public:
 /// @detail That is, the @a repetition of a parsing expressions @code{e}
 /// is defined as
 /// @code{repetition(e) = e*}.
-/// @tparam Sym the symbol type
 /// @tparam Expr the type of the expression
 /// @param expr the expression
 /// @return the parsing expression
-template <typename Sym, typename Expr>
-repetition_expr<Sym, Expr> repetition(Expr&& expr)
+template <typename Expr>
+repetition_expr<Expr> repetition(Expr&& expr)
 {
-    return repetition_expr<Sym, Expr>(std::forward<Expr>(expr));
+    return repetition_expr<Expr>(std::forward<Expr>(expr));
 }
 
 } } // namespace id::parsing_expressions
