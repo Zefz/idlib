@@ -26,7 +26,7 @@
 namespace id { namespace parsing_expressions {
 
 /// @internal
-/// @brief An \f$n\f$-ary parsing expression \f$n>0\f$.
+/// @brief An \f$n\f$-ary parsing expression (where \f$n>0\f$).
 /// @param Op the tuple operation
 /// @tparam Expr the type of the first expression
 /// @tparam Exprs ... the type of the remaining expressions
@@ -40,12 +40,12 @@ protected:
 
 public:
     /// @internal
-    /// @brief Construct this parsing expression.
+    /// @brief Construct this $n$-ary parsing expression (where $n > 0$).
     /// @param expr the first expression
     /// @param exprs the remaining expressions
     n_ary_expr(Expr&& expr, Exprs&& ... exprs) :
         m_exprs{std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...}
     {}
-};
+}; // class n_ary_expr
 
 } } // namespace id::parsing_expressions

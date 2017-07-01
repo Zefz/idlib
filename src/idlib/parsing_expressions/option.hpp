@@ -65,7 +65,7 @@ public:
 /// The option of a parsing expression accepts regardless of wether the parsing expression acccepts.
 /// @detail That is, the @a option of a parsing expressions @code{e}
 /// is defined as
-/// @code{repetition(e) = e?}.
+/// @code{option(e) = e?}.
 /// @tparam Expr the type of the expression
 /// @param expr the expression
 /// @return the parsing expression

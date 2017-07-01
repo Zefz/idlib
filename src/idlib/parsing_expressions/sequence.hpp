@@ -101,7 +101,7 @@ public:
 /// The sequence of one or more parsing expressions accepts if all parsing expression of one or more parsing expressions accept.
 /// @detail That is, the @a sequence of @code{n > 0} parsing expressions @code{e1}, ..., @code{en}
 /// is defined as
-/// @code{or(e1, ..., en) = e1 ...  en}.
+/// @code{sequence(e1, ..., en) = e1 ...  en}.
 /// @tparam Expr the type of the first expression
 /// @tparam Exprs ... the types of the remaining expressions
 /// @param expr the first expression
