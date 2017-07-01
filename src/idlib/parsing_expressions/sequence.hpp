@@ -34,22 +34,50 @@ struct tuple_op_sequence
 private:
     // Terminates the iteration.
     // This is utility code for iterating over an std::tuple.
-    template<typename Tuple, typename Function>
-    bool for_each(Tuple&&, Function, std::integral_constant<size_t,
-                  std::tuple_size<typename std::remove_reference<Tuple>::type >::value>) const
+    template<typename Tuple,
+             typename Function>
+    bool
+    for_each
+        (
+            Tuple&&,
+            Function,
+            std::integral_constant
+                <
+                    size_t,
+                    std::tuple_size
+                        <
+                            std::remove_reference_t<Tuple>
+                        >::value
+                >
+        ) const
     {
         return true;
     }
 
     // Drives the iteration.
     // This is utility code for iterating over an std::tuple.
-    template<std::size_t I, typename Tuple, typename Function,
-        typename = std::enable_if_t<I != std::tuple_size<typename std::remove_reference<Tuple>::type>::value>>
-        bool for_each(Tuple&& t, Function f, std::integral_constant<size_t, I>) const
+    template<std::size_t Index,
+             typename Tuple,
+             typename Function,
+             typename = std::enable_if_t
+                            <
+                                Index != std::tuple_size
+                                            <
+                                                std::remove_reference_t<Tuple>
+                                            >::value
+                            >
+            >
+    bool
+    for_each
+        (
+            Tuple&& t,
+            Function f,
+            std::integral_constant<size_t, Index>
+        ) const
     {
-        if (f(std::get<I>(t)))
+        if (f(std::get<Index>(t)))
         {
-            return for_each(std::forward<Tuple>(t), f, std::integral_constant<size_t, I + 1>()); // Advance.
+            return for_each(std::forward<Tuple>(t), f, std::integral_constant<size_t, Index + 1>()); // Advance.
         }
         return false;
     }
@@ -57,8 +85,14 @@ private:
 public:
     // The iteration.
     // This is utility code for iterating over an std::tuple.
-    template<typename Tuple, typename Function>
-    bool for_each(Tuple&& t, Function f) const
+    template<typename Tuple,
+             typename Function>
+    bool
+    for_each
+        (
+            Tuple&& t,
+            Function f
+        ) const
     {
         return for_each(std::forward<Tuple>(t), f, std::integral_constant<size_t, 0>());
     }
