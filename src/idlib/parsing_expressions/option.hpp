@@ -49,15 +49,17 @@ public:
     {}
 
     template <typename It>
-    bool operator()(It& at, It& end) const
+    std::pair<bool, It> operator()(It at, It end) const
     {
-        auto old_at = at;
-        if (m_expr(at, end))
+        auto result = m_expr(at, end);
+        if (result.first)
         {
-            return true;
+            return std::make_pair(true, result.second);
         }
-        at = old_at;
-        return false;
+        else
+        {
+            return std::make_pair(true, at);
+        }
     }
 };
 

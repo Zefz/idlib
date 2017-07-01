@@ -51,11 +51,8 @@ qualified_name::qualified_name(const std::string& string) :
     static const auto p = parsing_expressions::qualified_name<char>();
     auto c = string.cbegin(),
          e = string.cend();
-    if (!p(c, e))
-    {
-        no_qualified_name(__FILE__, __LINE__, location("string `" + string + "`", 1), string);
-    }
-    if (c != e)
+    auto r = p(string.cbegin(), string.cend());
+    if (!r.first || r.second != string.cend()) // The check r.second != string.cend() is actually not required.
     {
         no_qualified_name(__FILE__, __LINE__, location("string `" + string + "`", 1), string);
     }

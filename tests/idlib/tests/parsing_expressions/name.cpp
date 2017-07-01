@@ -35,10 +35,10 @@ EgoTest_TestCase(name_expression_regression_testing)
         };
         for (const auto& word : words)
         {
-            auto c = word.cbegin();
+            auto s = word.cbegin();
             auto e = word.cend();
-            EgoTest_Assert(true == p(c, e));
-            EgoTest_Assert(c < word.cend());
+            EgoTest_Assert(true == p(s, e).first);
+            EgoTest_Assert(p(s, e).second < word.cend());
         }
     }
 };
@@ -51,16 +51,13 @@ EgoTest_TestCase(name_expression_testing)
     {
         const std::vector<string> words{"org","org_","_1", "_0", "a0"};
         auto p = id::parsing_expressions::name<char>();
-		string w;
-        string::const_iterator c, e;
-		//
         for (const auto& word : words)
         {
-            auto c = word.cbegin();
+            auto s = word.cbegin();
             auto e = word.cend();
-            EgoTest_Assert(true == p(c, e));
-            EgoTest_Assert(c == e);
-            EgoTest_Assert(false == p(c, e));
+            EgoTest_Assert(true == p(s, e).first);
+            EgoTest_Assert(p(s, e).second == e);
+            EgoTest_Assert(false == p(p(s, e).second, e).first);
         }
 	}
 };

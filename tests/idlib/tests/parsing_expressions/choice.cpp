@@ -24,7 +24,44 @@ EgoTest_TestCase(choice_expression_testing)
 {
     using string = std::basic_string<char>;
 
-    EgoTest_Test(test_choice_expression)
+    EgoTest_Test(test_choice_expression_1)
+    {
+        static const std::string w0 = "x", w1 = "y";
+        static const auto p = id::parsing_expressions::choice
+            (
+                id::parsing_expressions::sym<char>('x'),
+                id::parsing_expressions::sym<char>('y')
+                
+            );
+        /*
+        const std::vector<string> words_to_accept
+        {
+            "x",
+            "y"
+        };
+        const std::vector<string> words_to_reject
+        {
+            "u",
+            "v"
+        };
+        */
+        //for (const auto& word : words_to_accept)
+        {
+            auto s = w0.cbegin();
+            auto e = w0.cend();
+            EgoTest_Assert(true == p(s, e).first);
+            EgoTest_Assert(p(s, e).second == w0.cend());
+        }
+        //for (const auto& word : words_to_reject)
+        {
+            auto s = w1.cbegin();
+            auto e = w1.cend();
+            EgoTest_Assert(true == p(s, e).first);
+            EgoTest_Assert(p(s, e).second == w1.cend());
+        }
+    }
+
+    EgoTest_Test(test_choice_expression_2)
     {
         auto p = id::parsing_expressions::choice
             (
@@ -32,7 +69,7 @@ EgoTest_TestCase(choice_expression_testing)
                 (
                     id::parsing_expressions::sym<char>('x'),
                     id::parsing_expressions::sym<char>('x')
-                    ),
+                ),
                 id::parsing_expressions::sequence
                 (
                     id::parsing_expressions::sym<char>('y'),
@@ -51,17 +88,17 @@ EgoTest_TestCase(choice_expression_testing)
         };
         for (const auto& word : words_to_accept)
         {
-            auto c = word.cbegin();
+            auto s = word.cbegin();
             auto e = word.cend();
-            EgoTest_Assert(true == p(c, e));
-            EgoTest_Assert(c == word.cend());
+            EgoTest_Assert(true == p(s, e).first);
+            EgoTest_Assert(p(s,e).second == word.cend());
         }
         for (const auto& word : words_to_reject)
         {
-            auto c = word.cbegin();
+            auto s = word.cbegin();
             auto e = word.cend();
-            EgoTest_Assert(false == p(c, e));
-            EgoTest_Assert(c == word.cbegin());
+            EgoTest_Assert(false == p(s, e).first);
+            EgoTest_Assert(p(s, e).second == word.cbegin());
         }
     }
 };

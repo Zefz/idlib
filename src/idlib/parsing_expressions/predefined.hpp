@@ -36,7 +36,7 @@ class whitespace
 {
 public:
     template <typename It>
-    bool operator()(It& at, It& end) const
+    std::pair<bool, It> operator()(It at, It end) const
     {
         static const auto x = choice(sym<Sym>(' '), sym<Sym>('\t'));
         return x(at, end);
@@ -50,7 +50,7 @@ class newline
 {
 public:
     template <typename It>
-    bool operator()(It& at, It& end) const
+    std::pair<bool, It> operator()(It at, It end) const
     {
         static const auto x = choice(sym<Sym>('\n'), sym<Sym>('\r'));
         return x(at, end);
@@ -64,7 +64,7 @@ class alpha_lowercase
 {
 public:
     template <typename It>
-    bool operator()(It& at, It& end) const
+    std::pair<bool, It> operator()(It at, It end) const
     {
         static const auto x = sym_range<Sym>('a', 'z');
         return x(at, end);
@@ -78,7 +78,7 @@ class alpha_uppercase
 {
 public:
     template <typename It>
-    bool operator()(It& at, It& end) const
+    std::pair<bool, It> operator()(It at, It end) const
     {
         static const auto x = sym_range<Sym>('A', 'Z');
         return x(at, end);
@@ -92,7 +92,7 @@ class alpha
 {
 public:
     template <typename It>
-    bool operator()(It& at, It& end) const
+    std::pair<bool, It> operator()(It at, It end) const
     {
         static const auto x = choice(alpha_lowercase<Sym>(), alpha_uppercase<Sym>());
         return x(at, end);
@@ -106,7 +106,7 @@ class digit
 {
 public:
     template <typename It>
-    bool operator()(It& at, It& end) const
+    std::pair<bool, It> operator()(It at, It end) const
     {
         static const auto x = sym_range<Sym>('0', '9');
         return x(at, end);
@@ -120,7 +120,7 @@ class name
 {
 public:
     template <typename It>
-    bool operator()(It& at, It& end) const
+    std::pair<bool, It> operator()(It at, It end) const
     {
         static const auto w =
             sequence
@@ -151,7 +151,7 @@ class qualified_name
 {
 public:
     template <typename It>
-    bool operator()(It& at, It& end) const
+    std::pair<bool, It> operator()(It at, It end) const
     {
         static const auto w =
             sequence

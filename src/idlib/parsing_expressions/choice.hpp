@@ -31,12 +31,15 @@ private:
     // Terminates the iteration.
     // This is utility code for iterating over an std::tuple.
     template<typename Tuple,
-             typename Function>
-    bool
+             typename Function,
+             typename Iterator>
+    std::pair<bool, Iterator>
     for_each
         (
-            Tuple&&,
-            Function,
+            Tuple&& t,
+            Function f,
+            Iterator at,
+            Iterator end,
             std::integral_constant
                 <
                     size_t,
@@ -47,7 +50,7 @@ private:
                 >
         ) const
     {
-        return false;
+        return std::make_pair(false, at);
     }
 
     // Drives the iteration.
@@ -55,6 +58,7 @@ private:
     template<std::size_t Index,
              typename Tuple,
              typename Function,
+             typename Iterator,
              typename = std::enable_if_t
                             <
                                 Index != std::tuple_size
@@ -63,34 +67,40 @@ private:
                                             >::value
                             >
             >
-    bool
+    std::pair<bool, Iterator>
     for_each
         (
             Tuple&& t,
             Function f,
+            Iterator at,
+            Iterator end,
             std::integral_constant<size_t, Index>
         ) const
     {
-        if (f(std::get<Index>(t)))
+        auto result = f(std::get<Index>(t), at, end);
+        if (result.first)
         {
-            return true; // Call the function.
+            return result;
         }
-        return for_each(std::forward<Tuple>(t), f, std::integral_constant<size_t, Index + 1>()); // Advance.
+        return for_each(std::forward<Tuple>(t), f, at, end, std::integral_constant<size_t, Index + 1>()); // Advance.
     }
 
 public:
     // The iteration.
     // This is utility code for iterating over an std::tuple.
     template<typename Tuple,
-             typename Function>
-    bool
+             typename Function,
+             typename Iterator>
+    std::pair<bool, Iterator>
     for_each
         (
             Tuple&& t,
-            Function f
+            Function f,
+            Iterator at,
+            Iterator end
         ) const
     {
-        return for_each(std::forward<Tuple>(t), f, std::integral_constant<size_t, 0>());
+        return for_each(std::forward<Tuple>(t), f, at, end, std::integral_constant<size_t, 0>());
     }
 
     tuple_op_choice()
@@ -114,23 +124,18 @@ public:
     {}
 
     template <typename It>
-    bool operator()(It& at, It& end) const
+    std::pair<bool, It> operator()(It at, It end) const
     {
         static const tuple_op_choice op;
-        if (op.for_each(this->m_exprs, [&at, &end](const auto& expr)
-            {
-                auto old_at = at;
-                if (expr(at, end))
-                {
-                    return true;
-                }
-                at = old_at;
-                return false;
-            }))
-        {
-            return true;
-        }
-        return false;
+        auto result = op.for_each(this->m_exprs,
+                                  [](const auto& expr, It at, It end)
+                                    {
+                                        auto result = expr(at, end);
+                                        return result.first ? result : std::make_pair(false, at);
+                                    }, 
+                                  at, 
+                                  end);
+        return result;
     }
 };
 

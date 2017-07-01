@@ -54,15 +54,16 @@ public:
     {}
 
     template <typename It>
-    bool operator()(It& current, It& end) const
+    std::pair<bool, It> operator()(It at, It end) const
     {
-        if (current == end) return false;
-        if (m_first <= *current && *current <= m_last)
+        if (at != end && (m_first <= *at && *at <= m_last))
         {
-            current++;
-            return true;
+            return std::make_pair(true, ++at);
         }
-        return false;
+        else
+        {
+            return std::make_pair(false, at);
+        }
     }
 };
 

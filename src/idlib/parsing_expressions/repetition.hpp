@@ -49,12 +49,22 @@ public:
     {}
 
     template <typename It>
-    bool operator()(It& at, It& end) const
+    std::pair<bool, It> operator()(It at, It end) const
     {
-        while (m_expr(at, end))
+        auto result = std::make_pair(true, at);
+        while (true)
         {
+            auto next_result = m_expr(result.second, end);
+            if (next_result.first)
+            {
+                result = next_result;
+            }
+            else
+            {
+                break;
+            }
         }
-        return true;
+        return result;
     }
 };
 

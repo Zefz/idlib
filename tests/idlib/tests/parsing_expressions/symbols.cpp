@@ -26,13 +26,13 @@ EgoTest_TestCase(period_expression_testing)
     {
         auto p = id::parsing_expressions::sym<char>('.');
         std::string w;
-        std::string::const_iterator c, e;
+        std::string::const_iterator s, e;
         //
         w = std::string(".");
-        c = w.cbegin(); e = w.cend();
-        EgoTest_Assert(true == p(c, e));
-        EgoTest_Assert(c == e);
-        EgoTest_Assert(false == p(c, e));
+        s = w.cbegin(); e = w.cend();
+        EgoTest_Assert(true == p(s, e).first);
+        EgoTest_Assert(p(s,e).second == e);
+        EgoTest_Assert(false == p(p(s,e).second, e).first);
     }
 };
 
@@ -42,19 +42,19 @@ EgoTest_TestCase(whitespace_expression_testing)
     {
         auto p = id::parsing_expressions::whitespace<char>();
         std::string w;
-        std::string::const_iterator c, e;
+        std::string::const_iterator s, e;
         //
         w = std::string(" ");
-        c = w.cbegin(); e = w.cend();
-        EgoTest_Assert(true == p(c, e));
-        EgoTest_Assert(c == e);
-        EgoTest_Assert(false == p(c, e));
+        s = w.cbegin(); e = w.cend();
+        EgoTest_Assert(true == p(s, e).first);
+        EgoTest_Assert(p(s,e).second == e);
+        EgoTest_Assert(false == p(p(s,e).second, e).first);
         //
         w = std::string("\t");
-        c = w.cbegin(); e = w.cend();
-        EgoTest_Assert(true == p(c, e));
-        EgoTest_Assert(c == e);
-        EgoTest_Assert(false == p(c, e));
+        s = w.cbegin(); e = w.cend();
+        EgoTest_Assert(true == p(s, e).first);
+        EgoTest_Assert(p(s,e).second == e);
+        EgoTest_Assert(false == p(p(s,e).second, e).first);
     }
 };
 
@@ -64,19 +64,19 @@ EgoTest_TestCase(newline_expression_testing)
     {
         auto p = id::parsing_expressions::newline<char>();
         std::string w;
-        std::string::const_iterator c, e;
+        std::string::const_iterator s, e;
         //
         w = std::string("\n");
-        c = w.cbegin(); e = w.cend();
-        EgoTest_Assert(true == p(c, e));
-        EgoTest_Assert(c == e);
-        EgoTest_Assert(false == p(c, e));
+        s = w.cbegin(); e = w.cend();
+        EgoTest_Assert(true == p(s, e).first);
+        EgoTest_Assert(p(s,e).second == e);
+        EgoTest_Assert(false == p(p(s,e).second, e).first);
         //
         w = std::string("\r");
-        c = w.cbegin(); e = w.cend();
-        EgoTest_Assert(true == p(c, e));
-        EgoTest_Assert(c == e);
-        EgoTest_Assert(false == p(c, e));
+        s = w.cbegin(); e = w.cend();
+        EgoTest_Assert(true == p(s, e).first);
+        EgoTest_Assert(p(s,e).second == e);
+        EgoTest_Assert(false == p(p(s,e).second, e).first);
     }
 };
 
@@ -88,10 +88,10 @@ EgoTest_TestCase(digit_symbol_testing)
         for (char symbol = '0'; symbol <= '9'; ++symbol)
         {
             auto w = std::string(1, symbol);
-            auto c = w.cbegin(), e = w.cend();
-            EgoTest_Assert(true == p(c, e));
-            EgoTest_Assert(c == e);
-            EgoTest_Assert(false == p(c, e));
+            auto s = w.cbegin(), e = w.cend();
+            EgoTest_Assert(true == p(s, e).first);
+            EgoTest_Assert(p(s,e).second == e);
+            EgoTest_Assert(false == p(p(s,e).second, e).first);
         }
     }
 };
@@ -104,10 +104,10 @@ EgoTest_TestCase(alpha_lowercase_expression_testing)
         for (char symbol = 'a'; symbol <= 'z'; ++symbol)
         {
             auto w = std::string(1, symbol);
-            auto c = w.cbegin(), e = w.cend();
-            EgoTest_Assert(true == p(c, e));
-            EgoTest_Assert(c == e);
-            EgoTest_Assert(false == p(c, e));
+            auto s = w.cbegin(), e = w.cend();
+            EgoTest_Assert(true == p(s, e).first);
+            EgoTest_Assert(p(s,e).second == e);
+            EgoTest_Assert(false == p(p(s,e).second, e).first);
         }
     }
 };
@@ -120,16 +120,39 @@ EgoTest_TestCase(alpha_uppercase_expression_testing)
         for (char symbol = 'A'; symbol <= 'Z'; ++symbol)
         {
             auto w = std::string(1, symbol);
-            auto c = w.cbegin(), e = w.cend();
-            EgoTest_Assert(true == p(c, e));
-            EgoTest_Assert(c == e);
-            EgoTest_Assert(false == p(c, e));
+            auto s = w.cbegin(), e = w.cend();
+            EgoTest_Assert(true == p(s, e).first);
+            EgoTest_Assert(p(s,e).second == e);
+            EgoTest_Assert(false == p(p(s,e).second, e).first);
         }
     }
 };
 
 EgoTest_TestCase(alpha_expression_testing)
 {
+    EgoTest_Test(test_single_symbol)
+    {
+        //
+        for (char symbol = 'a'; symbol <= 'z'; ++symbol)
+        {
+            auto p = id::parsing_expressions::sym(symbol);
+            auto w = std::string(1, symbol);
+            auto s = w.cbegin(), e = w.cend();
+            EgoTest_Assert(true == p(s, e).first);
+            EgoTest_Assert(p(s, e).second == e);
+            EgoTest_Assert(false == p(p(s,e).second, e).first);
+        }
+        //
+        for (char symbol = 'A'; symbol <= 'Z'; ++symbol)
+        {
+            auto p = id::parsing_expressions::sym(symbol);
+            auto w = std::string(1, symbol);
+            auto s = w.cbegin(), e = w.cend();
+            EgoTest_Assert(true == p(s, e).first);
+            EgoTest_Assert(p(s, e).second == e);
+            EgoTest_Assert(false == p(p(s, e).second, e).first);
+        }
+    }
     EgoTest_Test(test_alpha_expression)
     {
         auto p = id::parsing_expressions::alpha<char>();
@@ -137,19 +160,19 @@ EgoTest_TestCase(alpha_expression_testing)
         for (char symbol = 'a'; symbol <= 'z'; ++symbol)
         {
             auto w = std::string(1, symbol);
-            auto c = w.cbegin(), e = w.cend();
-            EgoTest_Assert(true == p(c, e));
-            EgoTest_Assert(c == e);
-            EgoTest_Assert(false == p(c, e));
+            auto s = w.cbegin(), e = w.cend();
+            EgoTest_Assert(true == p(s, e).first);
+            EgoTest_Assert(p(s,e).second == e);
+            EgoTest_Assert(false == p(p(s,e).second, e).first);
         }
         //
         for (char symbol = 'A'; symbol <= 'Z'; ++symbol)
         {
             auto w = std::string(1, symbol);
-            auto c = w.cbegin(), e = w.cend();
-            EgoTest_Assert(true == p(c, e));
-            EgoTest_Assert(c == e);
-            EgoTest_Assert(false == p(c, e));
+            auto s = w.cbegin(), e = w.cend();
+            EgoTest_Assert(true == p(s, e).first);
+            EgoTest_Assert(p(s,e).second == e);
+            EgoTest_Assert(false == p(p(s,e).second, e).first);
         }
     }
 };

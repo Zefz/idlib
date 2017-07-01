@@ -22,10 +22,13 @@ namespace id { namespace tests { namespace parsing_expression {
 
 EgoTest_TestCase(qualified_name_testing)
 {
+    using symbol = char;
+    using string = std::basic_string<symbol>;
+    using qualified_name = id::parsing_expressions::qualified_name<symbol>;
     EgoTest_Test(test_qualified_name_acceptance)
     {
-        auto p = id::parsing_expressions::qualified_name<char>();
-        const std::vector<std::string> words
+        auto p = qualified_name();
+        const std::vector<string> words
             {
                 "org.egoboo",
                 "org.egoboo.ego",
@@ -33,18 +36,18 @@ EgoTest_TestCase(qualified_name_testing)
             };
         for (const auto& word : words)
         {
-            auto c = word.cbegin();
+            auto s = word.cbegin();
             auto e = word.cend();
-            EgoTest_Assert(true == p(c, e));
-            EgoTest_Assert(c == e);
-            EgoTest_Assert(false == p(c, e));
+            EgoTest_Assert(true == p(s, e).first);
+            EgoTest_Assert(p(s, e).second == e);
+            EgoTest_Assert(false == p(p(s, e).second, e).first);
         }
     }
 
     EgoTest_Test(qualified_name_rejection)
     {
-        auto p = id::parsing_expressions::qualified_name<char>();
-        const std::vector<std::tuple<std::string, bool, size_t>> words
+        auto p = qualified_name();
+        const std::vector<std::tuple<string, bool, size_t>> words
         {
                 { ".egoboo", false, 0 },
                 { "org.", true, 3 },
@@ -54,10 +57,12 @@ EgoTest_TestCase(qualified_name_testing)
         };
         for (const auto& word : words)
         {
-            auto c = std::get<0>(word).cbegin();
+            auto s = std::get<0>(word).cbegin();
             auto e = std::get<0>(word).cend();
-            EgoTest_Assert(std::get<1>(word) == p(c, e));
-            EgoTest_Assert(c == std::get<0>(word).cbegin() + std::get<2>(word));
+            EgoTest_Assert(std::get<1>(word) == p(s, e).first);
+            auto a = p(s,e).second;
+            auto b = std::get<0>(word).cbegin() + std::get<2>(word);
+            EgoTest_Assert(a == b);
         }
     }
 };
