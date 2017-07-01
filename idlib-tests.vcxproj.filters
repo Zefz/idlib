@@ -87,6 +87,12 @@
     <ClCompile Include="tests\idlib\tests\language\qualified_name.cpp">
       <Filter>Source Files\language</Filter>
     </ClCompile>
+    <ClCompile Include="tests\idlib\tests\parsing_expressions\sequence.cpp">
+      <Filter>Source Files\parsing_expression</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\idlib\tests\parsing_expressions\repetition.cpp">
+      <Filter>Source Files\parsing_expression</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tests\idlib\tests\color\color_generator.hpp">
