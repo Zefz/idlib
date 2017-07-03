@@ -2,8 +2,8 @@
 
 #pragma push_macro("IDLIB_PRIVATE")
 #define IDLIB_PRIVATE 1
-#include "idlib/utility/platform.hpp"
 
+#include "idlib/utility/platform.hpp"
 #include "idlib/file_system/file.hpp"
 
 #if defined(ID_WINDOWS)

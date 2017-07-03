@@ -2,11 +2,11 @@
 
 #pragma push_macro("IDLIB_PRIVATE")
 #define IDLIB_PRIVATE 1
+
 #include "idlib/utility/platform.hpp"
+#include "idlib/file_system/file.hpp"
 
 #if defined(ID_LINUX)
-#include "idlib/file_system/file_linux.hpp"
-
 #include "idlib/file_system/internal/header.hpp"
 
 /// @brief A Linux memory mapped file.

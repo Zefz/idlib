@@ -65,7 +65,7 @@ char *mapped_file_descriptor_impl::data()
     return (char *)m_data;
 }
 
-size_t mapped_file_descriptor::size() const
+size_t mapped_file_descriptor_impl::size() const
 {
     return m_size;
 }
