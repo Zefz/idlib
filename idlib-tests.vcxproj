@@ -36,7 +36,7 @@
     <ClCompile Include="tests\idlib\tests\suffix.cpp" />
     <ClCompile Include="tests\idlib\tests\to_lower.cpp" />
     <ClCompile Include="tests\idlib\tests\to_upper.cpp" />
-    <ClCompile Include="tests\idlib\tests\parsing_expressions\choice.cpp" />
+    <ClCompile Include="tests\idlib\tests\parsing_expressions\ordered_choice.cpp" />
     <ClCompile Include="tests\idlib\tests\parsing_expressions\name.cpp" />
     <ClCompile Include="tests\idlib\tests\parsing_expressions\qualified_name.cpp">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\parsing_expressions\qualified_name.asm</AssemblerListingLocation>

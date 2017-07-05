@@ -151,9 +151,6 @@
     <ClInclude Include="src\idlib\idlib.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\idlib\parsing_expressions\choice.hpp">
-      <Filter>Header Files\parsing_expressions</Filter>
-    </ClInclude>
     <ClInclude Include="src\idlib\parsing_expressions\include.hpp">
       <Filter>Header Files\parsing_expressions</Filter>
     </ClInclude>
@@ -573,6 +570,9 @@
     </ClInclude>
     <ClInclude Include="src\idlib\file_system\directory_separator.hpp">
       <Filter>Header Files\file_system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\parsing_expressions\ordered_choice.hpp">
+      <Filter>Header Files\parsing_expressions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

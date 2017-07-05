@@ -21,7 +21,7 @@
 
 #include "idlib/parsing_expressions/sym.hpp"
 #include "idlib/parsing_expressions/sym_range.hpp"
-#include "idlib/parsing_expressions/choice.hpp"
+#include "idlib/parsing_expressions/ordered_choice.hpp"
 #include "idlib/parsing_expressions/option.hpp"
 #include "idlib/parsing_expressions/sequence.hpp"
 #include "idlib/parsing_expressions/repetition.hpp"

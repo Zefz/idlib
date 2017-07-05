@@ -27,7 +27,7 @@ EgoTest_TestCase(choice_expression_testing)
     EgoTest_Test(test_choice_expression_1)
     {
         static const std::string w0 = "x", w1 = "y";
-        static const auto p = id::parsing_expressions::choice
+        static const auto p = id::parsing_expressions::ordered_choice
             (
                 id::parsing_expressions::sym<char>('x'),
                 id::parsing_expressions::sym<char>('y')
@@ -63,7 +63,7 @@ EgoTest_TestCase(choice_expression_testing)
 
     EgoTest_Test(test_choice_expression_2)
     {
-        auto p = id::parsing_expressions::choice
+        auto p = id::parsing_expressions::ordered_choice
             (
                 id::parsing_expressions::sequence
                 (

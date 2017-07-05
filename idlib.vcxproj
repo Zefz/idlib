@@ -427,7 +427,7 @@
     <ClInclude Include="src\idlib\parsing_expressions\n_ary_expr.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\repetition.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\sequence.hpp" />
-    <ClInclude Include="src\idlib\parsing_expressions\choice.hpp" />
+    <ClInclude Include="src\idlib\parsing_expressions\ordered_choice.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\predefined.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\include.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\sym.hpp" />

@@ -30,9 +30,6 @@
     <ClCompile Include="tests\idlib\tests\Signal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tests\idlib\tests\parsing_expressions\choice.cpp">
-      <Filter>Source Files\parsing_expression</Filter>
-    </ClCompile>
     <ClCompile Include="tests\idlib\tests\parsing_expressions\name.cpp">
       <Filter>Source Files\parsing_expression</Filter>
     </ClCompile>
@@ -91,6 +88,9 @@
       <Filter>Source Files\parsing_expression</Filter>
     </ClCompile>
     <ClCompile Include="tests\idlib\tests\parsing_expressions\repetition.cpp">
+      <Filter>Source Files\parsing_expression</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\idlib\tests\parsing_expressions\ordered_choice.cpp">
       <Filter>Source Files\parsing_expression</Filter>
     </ClCompile>
   </ItemGroup>

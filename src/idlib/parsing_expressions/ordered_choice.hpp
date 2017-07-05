@@ -25,7 +25,7 @@
 
 namespace id { namespace parsing_expressions {
 
-struct tuple_op_choice
+struct tuple_op_ordered_choice
 {
 private:
     // Terminates the iteration.
@@ -103,30 +103,30 @@ public:
         return for_each(std::forward<Tuple>(t), f, at, end, std::integral_constant<size_t, 0>());
     }
 
-    tuple_op_choice()
+    tuple_op_ordered_choice()
     {}
 };
 
 /// @internal
-/// @brief See id::choice for more information.
+/// @brief See id::ordered_choice for more information.
 /// @tparam Expr the type of the first expression
 /// @tparam Exprs ... the type of the remaining expressions
 template <typename Expr, typename ... Exprs>
-class choice_expr : public internal::n_ary_expr<tuple_op_choice, Expr, Exprs ...>
+class ordered_choice_expr : public internal::n_ary_expr<tuple_op_ordered_choice, Expr, Exprs ...>
 {
 public:
     /// @internal
     /// @brief Construct this parsing expression.
     /// @param expr the first expression
     /// @param exprs the remaining expressions
-    choice_expr(Expr&& expr, Exprs&& ... exprs) :
-        internal::n_ary_expr<tuple_op_choice, Expr, Exprs ...>(std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...)
+    ordered_choice_expr(Expr&& expr, Exprs&& ... exprs) :
+        internal::n_ary_expr<tuple_op_ordered_choice, Expr, Exprs ...>(std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...)
     {}
 
     template <typename It>
     std::pair<bool, It> operator()(It at, It end) const
     {
-        static const tuple_op_choice op;
+        static const tuple_op_ordered_choice op;
         auto result = op.for_each(this->m_exprs,
                                   [](const auto& expr, It at, It end)
                                     {
@@ -139,21 +139,21 @@ public:
     }
 };
 
-/// @brief Create the choice of one or more parsing expressions.
-/// The choice of a one or more parsing expressions accepts if at least one of the parsing expressions accepts.
+/// @brief Create the ordered choice of one or more parsing expressions.
+/// The ordered choice of a one or more parsing expressions accepts if at least one of the parsing expressions accepts.
 /// If several of these parsing expressions would accept, the first (in left to right order) accepting parsing expression is considered as accepting.
 /// @detail That is, the @a choice of @code{n > 0} parsing expressions @code{e1}, ..., @code{en}
 /// is defined as
-/// @code{choice(e1, ..., en) = e1 | ...  | en}.
+/// @code{ordered_choice(e1, ..., en) = e1 / ...  / en}.
 /// @tparam Expr the type of the first expression
 /// @tparam Exprs ... the types of the remaining expressions
 /// @param expr the first expression
 /// @param exprs the remaining expressions
 /// @return the parsing expression
 template <typename Expr, typename ... Exprs>
-choice_expr<Expr, Exprs ...> choice(Expr&& expr, Exprs&& ... exprs)
+ordered_choice_expr<Expr, Exprs ...> ordered_choice(Expr&& expr, Exprs&& ... exprs)
 {
-    return choice_expr<Expr, Exprs ...>(std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...);
+    return ordered_choice_expr<Expr, Exprs ...>(std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...);
 }
 
 } } // namespace id::parsing_expressions

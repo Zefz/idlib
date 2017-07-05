@@ -23,7 +23,7 @@
 
 #include "idlib/parsing_expressions/sym.hpp"
 #include "idlib/parsing_expressions/sym_range.hpp"
-#include "idlib/parsing_expressions/choice.hpp"
+#include "idlib/parsing_expressions/ordered_choice.hpp"
 #include "idlib/parsing_expressions/sequence.hpp"
 #include "idlib/parsing_expressions/repetition.hpp"
 
@@ -38,7 +38,7 @@ public:
     template <typename It>
     std::pair<bool, It> operator()(It at, It end) const
     {
-        static const auto x = choice(sym<Sym>(' '), sym<Sym>('\t'));
+        static const auto x = ordered_choice(sym<Sym>(' '), sym<Sym>('\t'));
         return x(at, end);
     }
 };
@@ -52,7 +52,7 @@ public:
     template <typename It>
     std::pair<bool, It> operator()(It at, It end) const
     {
-        static const auto x = choice(sym<Sym>('\n'), sym<Sym>('\r'));
+        static const auto x = ordered_choice(sym<Sym>('\n'), sym<Sym>('\r'));
         return x(at, end);
     }
 };
@@ -94,7 +94,7 @@ public:
     template <typename It>
     std::pair<bool, It> operator()(It at, It end) const
     {
-        static const auto x = choice(alpha_lowercase<Sym>(), alpha_uppercase<Sym>());
+        static const auto x = ordered_choice(alpha_lowercase<Sym>(), alpha_uppercase<Sym>());
         return x(at, end);
     }
 };
@@ -125,14 +125,14 @@ public:
         static const auto w =
             sequence
             (
-                choice
+                ordered_choice
                 (
                     alpha<char>(),
                     sym<char>('_')
                 ),
                 repetition
                 (
-                    choice
+                    ordered_choice
                     (
                         alpha<char>(),
                         digit<char>(),
