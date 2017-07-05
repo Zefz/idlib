@@ -66,11 +66,11 @@
     <Filter Include="Header Files\file_system">
       <UniqueIdentifier>{8a06c430-45f0-4120-abff-9ad968424fa8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\file_system\internal">
-      <UniqueIdentifier>{8026335a-694f-4ed7-bd82-b8932fec444e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\file_system">
       <UniqueIdentifier>{c67b4275-1f90-4883-99a9-c8b78ed25904}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\parsing_expressions\internal">
+      <UniqueIdentifier>{b4342126-d708-41a4-8224-2677160d0a80}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -152,9 +152,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\idlib\parsing_expressions\include.hpp">
-      <Filter>Header Files\parsing_expressions</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\parsing_expressions\n_ary_expr.hpp">
       <Filter>Header Files\parsing_expressions</Filter>
     </ClInclude>
     <ClInclude Include="src\idlib\parsing_expressions\predefined.hpp">
@@ -517,12 +514,6 @@
     <ClInclude Include="src\idlib\math\clamp.hpp">
       <Filter>Header Files\math</Filter>
     </ClInclude>
-    <ClInclude Include="src\idlib\file_system\internal\footer.hpp">
-      <Filter>Header Files\file_system\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\file_system\internal\header.hpp">
-      <Filter>Header Files\file_system\internal</Filter>
-    </ClInclude>
     <ClInclude Include="src\idlib\file_system\access_mode.hpp">
       <Filter>Header Files\file_system</Filter>
     </ClInclude>
@@ -547,13 +538,7 @@
     <ClInclude Include="src\idlib\file_system\error.hpp">
       <Filter>Header Files\file_system</Filter>
     </ClInclude>
-    <ClInclude Include="src\idlib\file_system\mapped_file_windows.hpp">
-      <Filter>Header Files\file_system</Filter>
-    </ClInclude>
     <ClInclude Include="src\idlib\file_system\mapped_file.hpp">
-      <Filter>Header Files\file_system</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\file_system\mapped_file_linux.hpp">
       <Filter>Header Files\file_system</Filter>
     </ClInclude>
     <ClInclude Include="src\idlib\language\category_element.hpp">
@@ -573,6 +558,15 @@
     </ClInclude>
     <ClInclude Include="src\idlib\parsing_expressions\ordered_choice.hpp">
       <Filter>Header Files\parsing_expressions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\file_system\mapped_file_linux.hpp">
+      <Filter>Header Files\file_system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\file_system\mapped_file_windows.hpp">
+      <Filter>Header Files\file_system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\parsing_expressions\internal\n_ary_expr.hpp">
+      <Filter>Header Files\parsing_expressions\internal</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

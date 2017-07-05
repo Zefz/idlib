@@ -24,7 +24,7 @@
 #include "idlib/utility/platform.hpp"
 #include "idlib/utility/bitmask_type.hpp"
 
-#include "idlib/file_system/internal/header.hpp"
+#include "idlib/file_system/header.in"
 
 /// @brief Enum class of file create modes.
 enum class create_mode
@@ -33,4 +33,4 @@ enum class create_mode
     create_not_existing = (1 << 1), ///< Create the file if it does not exist.
 };
 
-#include "idlib/file_system/internal/footer.hpp"
+#include "idlib/file_system/footer.in"

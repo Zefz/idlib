@@ -298,6 +298,7 @@
     <ClCompile Include="src\idlib\idlib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\idlib\parsing_expressions\internal\n_ary_expr.hpp" />
     <ClInclude Include="src\idlib\file_system\directory_separator.hpp" />
     <ClInclude Include="src\idlib\file_system\working_directory.hpp" />
     <ClInclude Include="src\idlib\utility\swap_bytes.hpp" />
@@ -314,8 +315,6 @@
     <ClInclude Include="src\idlib\file_system\error.hpp" />
     <ClInclude Include="src\idlib\file_system.hpp" />
     <ClInclude Include="src\idlib\file_system\access_mode.hpp" />
-    <ClInclude Include="src\idlib\file_system\internal\footer.hpp" />
-    <ClInclude Include="src\idlib\file_system\internal\header.hpp" />
     <ClInclude Include="src\idlib\math\clamp.hpp" />
     <ClInclude Include="src\idlib\utility\null_error.hpp" />
     <ClInclude Include="src\idlib\utility.hpp" />
@@ -424,7 +423,6 @@
     <ClInclude Include="src\idlib\math\even_odd.hpp" />
     <ClInclude Include="src\idlib\math\one_zero.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\option.hpp" />
-    <ClInclude Include="src\idlib\parsing_expressions\n_ary_expr.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\repetition.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\sequence.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\ordered_choice.hpp" />

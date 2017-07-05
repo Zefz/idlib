@@ -27,7 +27,7 @@
 
 #include "idlib/utility/platform.hpp"
 
-namespace id { namespace parsing_expressions {
+#include "idlib/parsing_expressions/header.in"
 
 /// @internal
 /// @brief Parsing expression accepting a range of symbols.
@@ -78,4 +78,4 @@ sym_range_expr<Sym> sym_range(Sym first, Sym last)
     return sym_range_expr<Sym>(first, last);
 }
 
-} } // namespace id::parsing_expressions
+#include "idlib/parsing_expressions/footer.in"

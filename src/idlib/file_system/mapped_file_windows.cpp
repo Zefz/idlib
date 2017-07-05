@@ -1,7 +1,7 @@
 #include "idlib/file_system/mapped_file_windows.hpp"
 
 #if defined(ID_WINDOWS)
-#include "idlib/file_system/internal/header.hpp"
+#include "idlib/file_system/header.in"
 
 static const char dummy = 0;
 
@@ -135,5 +135,5 @@ mapped_file_descriptor_impl::~mapped_file_descriptor_impl() noexcept
     close();
 }
 
-#include "idlib/file_system/internal/footer.hpp"
+#include "idlib/file_system/footer.in"
 #endif

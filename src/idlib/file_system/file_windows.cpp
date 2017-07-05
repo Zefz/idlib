@@ -6,7 +6,7 @@
 #include "idlib/file_system/error.hpp"
 #undef IDLIB_PRIVATE
 
-#include "idlib/file_system/internal/header.hpp"
+#include "idlib/file_system/header.in"
 
 void file_descriptor_impl::open(const std::string& pathname, access_mode access_mode, create_mode create_mode) noexcept
 {
@@ -90,6 +90,6 @@ size_t file_descriptor_impl::size() const
     return size;
 }
 
-#include "idlib/file_system/internal/footer.hpp"
+#include "idlib/file_system/footer.in"
 
 #endif

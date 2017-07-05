@@ -27,7 +27,7 @@
 
 #include "idlib/utility/platform.hpp"
 
-namespace id { namespace parsing_expressions {
+#include "idlib/parsing_expressions/header.in"
 
 /// @internal
 /// @brief See id::option for more information.
@@ -77,4 +77,4 @@ option_expr<Expr> option(Expr&& expr)
     return option_expr<Expr>(std::forward<Expr>(expr));
 }
 
-} } // namespace id::parsing_expressions
+#include "idlib/parsing_expressions/footer.in"

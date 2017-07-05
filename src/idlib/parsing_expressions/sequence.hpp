@@ -25,9 +25,9 @@
 #error(do not include directly, include `idlib/parsing_expressions/include.hpp` instead)
 #endif
 
-#include "idlib/parsing_expressions/n_ary_expr.hpp"
+#include "idlib/parsing_expressions/internal/n_ary_expr.hpp"
 
-namespace id { namespace parsing_expressions {
+#include "idlib/parsing_expressions/header.in"
 
 struct tuple_op_sequence
 {
@@ -114,7 +114,7 @@ public:
 /// @tparam Expr the type of the first expression
 /// @tparam Exprs ... the type of the remaining expressions
 template <typename Expr, typename ... Exprs>
-struct sequence_expr : public internal::n_ary_expr<tuple_op_sequence, Expr, Exprs ...>
+struct sequence_expr : public id::parsing_expressions::internal::n_ary_expr<tuple_op_sequence, Expr, Exprs ...>
 {
 public:
     /// @internal
@@ -160,4 +160,4 @@ sequence_expr<Expr, Exprs ...> sequence(Expr&& expr, Exprs&& ... exprs)
     return sequence_expr<Expr, Exprs ...>(std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...);
 }
 
-} } // namespace id::parsing_expressions
+#include "idlib/parsing_expressions/footer.in"

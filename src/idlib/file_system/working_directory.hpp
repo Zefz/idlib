@@ -23,7 +23,7 @@
 
 #include "idlib/utility.hpp"
 
-namespace id {
+#include "idlib/file_system/header.in"
 
 /// @brief Get the current working directory of this process.
 /// @return the current working directory of this process
@@ -31,4 +31,4 @@ namespace id {
 /// @throw std::bad_alloc an out of memory situation occurred
 std::string get_working_directory();
 
-} // namespace id
+#include "idlib/file_system/footer.in"

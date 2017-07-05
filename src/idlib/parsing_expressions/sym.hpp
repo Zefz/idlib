@@ -27,7 +27,7 @@
 
 #include "idlib/utility/platform.hpp"
 
-namespace id { namespace parsing_expressions {
+#include "idlib/parsing_expressions/header.in"
 
 /// @internal
 /// @brief Parsing expression accepting a symbol.
@@ -72,4 +72,4 @@ sym_expr<Sym> sym(Sym sym)
     return sym_expr<Sym>(sym);
 }
 
-} } // namespace id::parsing_expressions
+#include "idlib/parsing_expressions/footer.in"

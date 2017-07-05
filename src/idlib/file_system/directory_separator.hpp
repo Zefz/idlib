@@ -23,10 +23,10 @@
 
 #include "idlib/utility.hpp"
 
-namespace id {
+#include "idlib/file_system/header.in"
 
 /// @brief Get the directory separator.
 /// @return the directory separator
 std::string get_directory_separator();
 
-} // namespace id
+#include "idlib/file_system/footer.in"

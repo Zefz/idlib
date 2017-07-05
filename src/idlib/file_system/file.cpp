@@ -15,7 +15,7 @@
 	#error("operating system not supported")	
 #endif
 
-#include "idlib/file_system/internal/header.hpp"
+#include "idlib/file_system/header.in"
 
 file_descriptor::file_descriptor() :
 	m_pimpl(std::make_unique<file_descriptor_impl>())
@@ -49,4 +49,4 @@ void *file_descriptor::handle()
 	return m_pimpl->handle();
 }
 
-#include "idlib/file_system/internal/footer.hpp"
+#include "idlib/file_system/footer.in"

@@ -18,7 +18,7 @@
 #include "EgoTest/EgoTest.hpp"
 #include "idlib/parsing_expressions/include.hpp"
 
-namespace id { namespace tests { namespace parsing_expression {
+#include "idlib/tests/parsing_expressions/header.in"
 
 EgoTest_TestCase(sequence_testing)
 {
@@ -41,4 +41,4 @@ EgoTest_TestCase(sequence_testing)
     }
 };
 
-} } } // namespace id::tests::parsing_expression
+#include "idlib/tests/parsing_expressions/footer.in"

@@ -28,7 +28,7 @@
 #include "idlib/utility/runtime_error.hpp"
 #include "idlib/utility/to_string.hpp"
 
-#include "idlib/file_system/internal/header.hpp"
+#include "idlib/file_system/header.in"
 
 /// @brief Base exception for any kind of file system exception.
 class error : public id::runtime_error
@@ -60,4 +60,4 @@ public:
 
 }; // class error
 
-#include "idlib/file_system/internal/footer.hpp"
+#include "idlib/file_system/footer.in"

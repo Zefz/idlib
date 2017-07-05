@@ -21,7 +21,7 @@
 
 #include "idlib/file_system/directory_separator.hpp"
 
-namespace id {
+#include "idlib/file_system/header.in"
 
 std::string get_directory_separator()
 {
@@ -32,4 +32,4 @@ std::string get_directory_separator()
 #endif
 }
 
-} // namespace id
+#include "idlib/file_system/footer.in"

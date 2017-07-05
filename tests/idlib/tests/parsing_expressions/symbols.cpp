@@ -18,7 +18,7 @@
 #include "EgoTest/EgoTest.hpp"
 #include "idlib/parsing_expressions/include.hpp"
 
-namespace id { namespace tests { namespace parsing_expression {
+#include "idlib/tests/parsing_expressions/header.in"
 
 EgoTest_TestCase(period_expression_testing)
 {
@@ -177,6 +177,4 @@ EgoTest_TestCase(alpha_expression_testing)
     }
 };
 
-} // namespace parsing_expression
-} // namespace tests
-} // namespace id
+#include "idlib/tests/parsing_expressions/footer.in"

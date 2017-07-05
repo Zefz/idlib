@@ -9,7 +9,7 @@
 #include "idlib/file_system/access_mode.hpp"
 #include "idlib/file_system/create_mode.hpp"
 
-#include "idlib/file_system/internal/header.hpp"
+#include "idlib/file_system/header.in"
 
 /// @brief A Linux file descriptor.
 class file_descriptor_impl final
@@ -60,7 +60,7 @@ public:
 
 }; // class file_descriptor_impl
 
-#include "idlib/file_system/internal/footer.hpp"
+#include "idlib/file_system/footer.in"
 
 #endif
 

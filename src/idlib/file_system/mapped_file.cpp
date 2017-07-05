@@ -15,7 +15,7 @@
 #error("operating system not supported")	
 #endif
 
-#include "idlib/file_system/internal/header.hpp"
+#include "idlib/file_system/header.in"
 
 void mapped_file_descriptor::open_read(const std::string& pathname, create_mode create_mode) noexcept
 {
@@ -54,4 +54,4 @@ mapped_file_descriptor::mapped_file_descriptor() :
 mapped_file_descriptor::~mapped_file_descriptor() noexcept
 {}
 
-#include "idlib/file_system/internal/footer.hpp"
+#include "idlib/file_system/footer.in"

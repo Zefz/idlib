@@ -2,7 +2,7 @@
 
 #include "idlib/file_system/file.hpp"
 
-#include "idlib/file_system/internal/header.hpp"
+#include "idlib/file_system/header.in"
 
 // Forward declaration.
 class mapped_file_descriptor_impl;
@@ -64,4 +64,4 @@ public:
 
 }; // class mapped_file_descriptor
 
-#include "idlib/file_system/internal/footer.hpp"
+#include "idlib/file_system/footer.in"

@@ -24,7 +24,7 @@
 #include "idlib/utility/platform.hpp"
 #include "idlib/utility/bitmask_type.hpp"
 
-#include "idlib/file_system/internal/header.hpp"
+#include "idlib/file_system/header.in"
 
 enum class access_mode : uint8_t 
 {
@@ -36,7 +36,7 @@ enum class access_mode : uint8_t
     all = read_write, ///< Alias for @ode{read_write}. 
 };
 
-#include "idlib/file_system/internal/footer.hpp"
+#include "idlib/file_system/footer.in"
 
 /// Bitwise |.
 inline id::file_system::access_mode operator|(id::file_system::access_mode lhs, id::file_system::access_mode rhs)

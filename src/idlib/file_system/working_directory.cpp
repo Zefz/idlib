@@ -29,7 +29,7 @@
 #include <unistd.h>
 #endif
 
-namespace id {
+#include "idlib/file_system/header.in"
 
 std::string get_working_directory()
 {
@@ -56,4 +56,5 @@ std::string get_working_directory()
 #endif
 }
 
-} // namespace id
+#include "idlib/file_system/footer.in"
+

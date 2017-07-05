@@ -5,7 +5,7 @@
 #include "idlib/file_system/access_mode.hpp"
 #include "idlib/file_system/create_mode.hpp"
 
-#include "idlib/file_system/internal/header.hpp"
+#include "idlib/file_system/header.in"
 
 // Forward declaration.
 class file_descriptor_impl;
@@ -57,4 +57,4 @@ public:
 
 }; // class file_descriptor
 
-#include "idlib/file_system/internal/footer.hpp"
+#include "idlib/file_system/footer.in"
