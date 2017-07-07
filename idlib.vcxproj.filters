@@ -568,6 +568,12 @@
     <ClInclude Include="src\idlib\parsing_expressions\internal\n_ary_expr.hpp">
       <Filter>Header Files\parsing_expressions\internal</Filter>
     </ClInclude>
+    <ClInclude Include="src\idlib\parsing_expressions\any_sym.hpp">
+      <Filter>Header Files\parsing_expressions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\parsing_expressions\difference.hpp">
+      <Filter>Header Files\parsing_expressions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\idlib\CurrentFunction.inline">

@@ -93,6 +93,12 @@
     <ClCompile Include="tests\idlib\tests\parsing_expressions\ordered_choice.cpp">
       <Filter>Source Files\parsing_expression</Filter>
     </ClCompile>
+    <ClCompile Include="tests\idlib\tests\parsing_expressions\any_sym.cpp">
+      <Filter>Source Files\parsing_expression</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\idlib\tests\parsing_expressions\difference.cpp">
+      <Filter>Source Files\parsing_expression</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tests\idlib\tests\color\color_generator.hpp">

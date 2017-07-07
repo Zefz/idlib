@@ -19,6 +19,8 @@
 
 #define IDLIB_PRIVATE 1
 
+#include "idlib/parsing_expressions/any_sym.hpp"
+#include "idlib/parsing_expressions/difference.hpp"
 #include "idlib/parsing_expressions/sym.hpp"
 #include "idlib/parsing_expressions/sym_range.hpp"
 #include "idlib/parsing_expressions/ordered_choice.hpp"

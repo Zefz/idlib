@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="tests\idlib\tests\parsing_expressions\any_sym.cpp" />
+    <ClCompile Include="tests\idlib\tests\parsing_expressions\difference.cpp" />
     <ClCompile Include="tests\idlib\tests\parsing_expressions\repetition.cpp" />
     <ClCompile Include="tests\idlib\tests\parsing_expressions\sequence.cpp" />
     <ClCompile Include="tests\idlib\tests\language\qualified_name.cpp" />

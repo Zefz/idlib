@@ -298,6 +298,8 @@
     <ClCompile Include="src\idlib\idlib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\idlib\parsing_expressions\any_sym.hpp" />
+    <ClInclude Include="src\idlib\parsing_expressions\difference.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\internal\n_ary_expr.hpp" />
     <ClInclude Include="src\idlib\file_system\directory_separator.hpp" />
     <ClInclude Include="src\idlib\file_system\working_directory.hpp" />
