@@ -51,7 +51,7 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\parsing_expressions\qualified_name.o</ObjectFileName>
     </ClCompile>
     <ClCompile Include="tests\idlib\tests\parsing_expressions\symbols.cpp" />
-    <ClCompile Include="tests\idlib\tests\Signal.cpp" />
+    <ClCompile Include="tests\idlib\tests\signal.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="idlib.vcxproj">

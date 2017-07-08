@@ -27,7 +27,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="tests\idlib\tests\Signal.cpp">
+    <ClCompile Include="tests\idlib\tests\signal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tests\idlib\tests\parsing_expressions\name.cpp">
