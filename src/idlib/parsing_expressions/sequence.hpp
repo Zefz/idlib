@@ -115,7 +115,7 @@ public:
 /// @tparam Expr the type of the first expression
 /// @tparam Exprs ... the type of the remaining expressions
 template <typename Expr, typename ... Exprs>
-struct sequence_expr : public id::parsing_expressions::internal::n_ary_expr<tuple_op_sequence, Expr, Exprs ...>
+struct sequence_expr : public internal::n_ary_expr<tuple_op_sequence, Expr, Exprs ...>
 {
 public:
     /// @internal

@@ -113,7 +113,7 @@ public:
 /// @tparam Expr the type of the first expression
 /// @tparam Exprs ... the type of the remaining expressions
 template <typename Expr, typename ... Exprs>
-class ordered_choice_expr : public id::parsing_expressions::internal::n_ary_expr<tuple_op_ordered_choice, Expr, Exprs ...>
+class ordered_choice_expr : public internal::n_ary_expr<tuple_op_ordered_choice, Expr, Exprs ...>
 {
 public:
     /// @internal
