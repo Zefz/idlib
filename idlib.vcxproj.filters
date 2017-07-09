@@ -574,6 +574,9 @@
     <ClInclude Include="src\idlib\parsing_expressions\difference.hpp">
       <Filter>Header Files\parsing_expressions</Filter>
     </ClInclude>
+    <ClInclude Include="src\idlib\parsing_expressions\match.hpp">
+      <Filter>Header Files\parsing_expressions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\idlib\CurrentFunction.inline">

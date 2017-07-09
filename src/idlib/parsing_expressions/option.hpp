@@ -25,7 +25,7 @@
 #error(do not include directly, include `idlib/parsing_expressions/include.hpp` instead)
 #endif
 
-#include "idlib/utility/platform.hpp"
+#include "idlib/parsing_expressions/match.hpp"
 
 #include "idlib/parsing_expressions/header.in"
 
@@ -49,16 +49,16 @@ public:
     {}
 
     template <typename It>
-    std::pair<bool, It> operator()(It at, It end) const
+    match<std::decay_t<It>> operator()(It at, It end) const
     {
         auto result = m_expr(at, end);
         if (result.first)
         {
-            return std::make_pair(true, result.second);
+            return make_match(true, result.second);
         }
         else
         {
-            return std::make_pair(true, at);
+            return make_match(true, at);
         }
     }
 };

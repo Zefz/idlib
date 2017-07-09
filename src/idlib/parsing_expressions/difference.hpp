@@ -45,7 +45,7 @@ public:
     {}
 
     template <typename It>
-    std::pair<bool, It> operator()(It at, It end) const
+    match<std::decay_t<It>> operator()(It at, It end) const
     {
         auto result1 = m_expr1(at, end);
         if (result1.first)
@@ -56,7 +56,7 @@ public:
                 return result1;
             }
         }
-        return std::make_pair(false, at);
+        return make_match(false, at);
     }
 
 }; // class difference_expr

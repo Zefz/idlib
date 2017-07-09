@@ -26,6 +26,7 @@
 #endif
 
 #include "idlib/parsing_expressions/internal/n_ary_expr.hpp"
+#include "idlib/parsing_expressions/match.hpp"
 
 #include "idlib/parsing_expressions/header.in"
 
@@ -35,7 +36,7 @@ private:
     // Terminates the iteration.
     // This is utility code for iterating over an std::tuple.
     template<typename Tuple, typename Function, typename Iterator>
-    std::pair<bool, Iterator>
+    match<std::decay_t<Iterator>>
     for_each
         (
             Tuple&&,
@@ -52,7 +53,7 @@ private:
                 >
         ) const
     {
-        return std::make_pair(true, at);
+        return make_match(true, at);
     }
 
     // Drives the iteration.
@@ -69,7 +70,7 @@ private:
                                             >::value
                             >
             >
-    std::pair<bool, Iterator>
+    match<std::decay_t<Iterator>>
     for_each
         (
             Tuple&& t,
@@ -84,7 +85,7 @@ private:
         {
             return for_each(std::forward<Tuple>(t), f, result.second, end, std::integral_constant<size_t, Index + 1>()); // Advance.
         }
-        return std::make_pair(false, at);
+        return make_match(false, at);
     }
 
 public:
@@ -93,7 +94,7 @@ public:
     template<typename Tuple,
              typename Function,
              typename It>
-    std::pair<bool, It>
+    match<std::decay_t<It>>
     for_each
         (
             Tuple&& t,
@@ -126,7 +127,7 @@ public:
     {}
 
     template <typename It>
-    std::pair<bool, It> operator()(It at, It end) const
+    match<std::decay_t<It>> operator()(It at, It end) const
     {
         static const tuple_op_sequence op;
         auto result = op.for_each(this->m_exprs,
@@ -140,7 +141,7 @@ public:
         {
             return result;
         }
-        return std::make_pair(false, at);
+        return make_match(false, at);
     }
 };
 

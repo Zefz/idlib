@@ -19,7 +19,7 @@
 /// @brief "any symbol" parsing expression.
 /// @author Michael Heilmann
 
-#include "idlib/utility/platform.hpp"
+#include "idlib/parsing_expressions/match.hpp"
 
 #include "idlib/parsing_expressions/header.in"
 
@@ -36,13 +36,13 @@ public:
 	{}
 
     template <typename It>
-    std::pair<bool, It> operator()(It at, It end) const
+    match<std::decay_t<It>> operator()(It at, It end) const
     {
 		if (at == end)
 		{
-			return std::make_pair(false, at);		
+			return make_match(false, at);		
 		}
-		return std::make_pair(true, ++at);
+		return make_match(true, ++at);
     }
 
 }; // class any_sym_expr

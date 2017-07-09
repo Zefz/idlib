@@ -22,6 +22,7 @@
 #endif
 
 #include "idlib/parsing_expressions/internal/n_ary_expr.hpp"
+#include "idlib/parsing_expressions/match.hpp"
 
 #include "idlib/parsing_expressions/header.in"
 
@@ -33,7 +34,7 @@ private:
     template<typename Tuple,
              typename Function,
              typename Iterator>
-    std::pair<bool, Iterator>
+    match<std::decay_t<Iterator>>
     for_each
         (
             Tuple&& t,
@@ -50,7 +51,7 @@ private:
                 >
         ) const
     {
-        return std::make_pair(false, at);
+        return make_match(false, at);
     }
 
     // Drives the iteration.
@@ -67,7 +68,7 @@ private:
                                             >::value
                             >
             >
-    std::pair<bool, Iterator>
+    match<std::decay_t<Iterator>>
     for_each
         (
             Tuple&& t,
@@ -91,7 +92,7 @@ public:
     template<typename Tuple,
              typename Function,
              typename Iterator>
-    std::pair<bool, Iterator>
+    match<std::decay_t<Iterator>>
     for_each
         (
             Tuple&& t,
@@ -124,7 +125,7 @@ public:
     {}
 
     template <typename It>
-    std::pair<bool, It> operator()(It at, It end) const
+    match<std::decay_t<It>> operator()(It at, It end) const
     {
         static const tuple_op_ordered_choice op;
         auto result = op.for_each(this->m_exprs,
