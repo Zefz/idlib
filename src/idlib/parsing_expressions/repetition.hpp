@@ -25,6 +25,7 @@
 #error(do not include directly, include `idlib/parsing_expressions/include.hpp` instead)
 #endif
 
+#include "idlib/parsing_expressions/internal/constructor_access_token.hpp"
 #include "idlib/parsing_expressions/match.hpp"
 
 #include "idlib/parsing_expressions/header.in"
@@ -44,7 +45,7 @@ public:
     /// @internal
     /// @brief Construct this parsing expression.
     /// @param expr the expression
-    repetition_expr(Expr expr) :
+    repetition_expr(internal::constructor_access_token, const Expr& expr) :
         m_expr(expr)
     {}
 
@@ -77,9 +78,9 @@ public:
 /// @param expr the expression
 /// @return the parsing expression
 template <typename Expr>
-repetition_expr<Expr> repetition(Expr&& expr)
+repetition_expr<std::decay_t<Expr>> repetition(Expr&& expr)
 {
-    return repetition_expr<Expr>(std::forward<Expr>(expr));
+    return repetition_expr<std::decay_t<Expr>>(internal::constructor_access_token{}, std::forward<Expr>(expr));
 }
 
 #include "idlib/parsing_expressions/footer.in"

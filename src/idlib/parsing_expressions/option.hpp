@@ -25,6 +25,7 @@
 #error(do not include directly, include `idlib/parsing_expressions/include.hpp` instead)
 #endif
 
+#include "idlib/parsing_expressions/internal/constructor_access_token.hpp"
 #include "idlib/parsing_expressions/match.hpp"
 
 #include "idlib/parsing_expressions/header.in"
@@ -44,7 +45,7 @@ public:
     /// @internal
     /// @brief Construct this parsing expression.
     /// @param expr the expression
-    option_expr(Expr expr) :
+    option_expr(internal::constructor_access_token, const Expr& expr) :
         m_expr(expr)
     {}
 
@@ -72,9 +73,9 @@ public:
 /// @param expr the expression
 /// @return the parsing expression
 template <typename Expr>
-option_expr<Expr> option(Expr&& expr)
+option_expr<std::decay_t<Expr>> option(Expr&& expr)
 {
-    return option_expr<Expr>(std::forward<Expr>(expr));
+    return option_expr<std::decay_t<Expr>>(internal::constructor_access_token{}, std::forward<Expr>(expr));
 }
 
 #include "idlib/parsing_expressions/footer.in"

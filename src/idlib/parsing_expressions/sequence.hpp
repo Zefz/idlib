@@ -122,8 +122,8 @@ public:
     /// @brief Construct this parsing expression.
     /// @param expr the first expression
     /// @param exprs the remaining expressions
-    sequence_expr(Expr&& expr, Exprs&& ... exprs) :
-        internal::n_ary_expr<tuple_op_sequence, Expr, Exprs ...>(std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...)
+    sequence_expr(internal::constructor_access_token, const Expr& expr, const Exprs& ... exprs) :
+        internal::n_ary_expr<tuple_op_sequence, Expr, Exprs ...>(internal::constructor_access_token{}, expr, exprs ...)
     {}
 
     template <typename It>
@@ -156,9 +156,9 @@ public:
 /// @param exprs the remaining expressions
 /// @return the parsing expression
 template <typename Expr, typename ... Exprs>
-sequence_expr<Expr, Exprs ...> sequence(Expr&& expr, Exprs&& ... exprs)
+sequence_expr<std::decay_t<Expr>, std::decay_t<Exprs> ...> sequence(Expr&& expr, Exprs&& ... exprs)
 {
-    return sequence_expr<Expr, Exprs ...>(std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...);
+    return sequence_expr<std::decay_t<Expr>, std::decay_t<Exprs> ...>(internal::constructor_access_token{}, std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...);
 }
 
 #include "idlib/parsing_expressions/footer.in"

@@ -21,31 +21,12 @@
 #error(do not include directly, include `idlib/parsing_expressions/include.hpp` instead)
 #endif
 
-#include "idlib/parsing_expressions/internal/constructor_access_token.hpp"
+#include "idlib/utility/platform.hpp"
 
 #include "idlib/parsing_expressions/internal/header.in"
 
-/// @internal
-/// @brief An \f$n\f$-ary parsing expression (where \f$n>0\f$).
-/// @param Op the tuple operation
-/// @tparam Expr the type of the first expression
-/// @tparam Exprs ... the type of the remaining expressions
-template <typename Op, typename Expr, typename ... Exprs>
-class n_ary_expr
-{
-protected:
-    /// @internal
-    /// @brief The parsing expressions.
-    std::tuple<Expr, Exprs ...> m_exprs;
-
-public:
-    /// @internal
-    /// @brief Construct this $n$-ary parsing expression (where $n > 0$).
-    /// @param expr the first expression
-    /// @param exprs the remaining expressions
-    n_ary_expr(constructor_access_token, const Expr& expr, const Exprs& ... exprs) :
-        m_exprs{expr, exprs ...}
-    {}
-}; // class n_ary_expr
+/// @brief A constructor access token is used to distinguish constructors from copy/move constructors.
+struct constructor_access_token
+{};
 
 #include "idlib/parsing_expressions/internal/footer.in"

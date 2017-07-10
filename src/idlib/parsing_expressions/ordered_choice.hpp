@@ -120,8 +120,9 @@ public:
     /// @brief Construct this parsing expression.
     /// @param expr the first expression
     /// @param exprs the remaining expressions
-    ordered_choice_expr(Expr&& expr, Exprs&& ... exprs) :
-        internal::n_ary_expr<tuple_op_ordered_choice, Expr, Exprs ...>(std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...)
+    ordered_choice_expr(internal::constructor_access_token, const Expr& expr, const Exprs& ... exprs) :
+        internal::n_ary_expr<tuple_op_ordered_choice, Expr, Exprs ...>(internal::constructor_access_token{}, expr, 
+                             exprs ...)
     {}
 
     template <typename It>
@@ -152,9 +153,9 @@ public:
 /// @param exprs the remaining expressions
 /// @return the parsing expression
 template <typename Expr, typename ... Exprs>
-ordered_choice_expr<Expr, Exprs ...> ordered_choice(Expr&& expr, Exprs&& ... exprs)
+ordered_choice_expr<std::decay_t<Expr>, std::decay_t<Exprs> ...> ordered_choice(Expr&& expr, Exprs&& ... exprs)
 {
-    return ordered_choice_expr<Expr, Exprs ...>(std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...);
+    return ordered_choice_expr<std::decay_t<Expr>, std::decay_t<Exprs> ...>(internal::constructor_access_token{}, std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...);
 }
 
 #include "idlib/parsing_expressions/footer.in"
