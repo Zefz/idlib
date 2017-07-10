@@ -7,7 +7,7 @@
 #include "idlib/file_system/file.hpp"
 
 #if defined(ID_LINUX)
-#include "idlib/file_system/internal/header.hpp"
+#include "idlib/file_system/header.in"
 
 /// @brief A Linux memory mapped file.
 class mapped_file_descriptor_impl
@@ -61,5 +61,5 @@ public:
 
 }; // class mapped_file_descriptor_impl
 
-#include "idlib/file_system/internal/footer.hpp"
+#include "idlib/file_system/footer.in"
 #endif
