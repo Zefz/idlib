@@ -18,7 +18,10 @@
 #include "EgoTest/EgoTest.hpp"
 #include "idlib/parsing_expressions/include.hpp"
 
-#include "idlib/tests/parsing_expressions/header.in"
+namespace id {
+    namespace tests {
+        namespace parsing_expression {
+
 
 EgoTest_TestCase(difference_testing)
 {
@@ -63,4 +66,6 @@ EgoTest_TestCase(difference_testing)
     }
 };
 
-#include "idlib/tests/parsing_expressions/footer.in"
+        }
+    }
+}
