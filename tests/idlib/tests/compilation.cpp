@@ -15,21 +15,13 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-#include "EgoTest/EgoTest.hpp"
+#include "gtest/gtest.h"
 
-namespace id {
-namespace tests {
-namespace compilation {
+namespace id { namespace tests { namespace compilation {
 
-EgoTest_TestCase(compilation) {
-
-EgoTest_Test(compile) {
-    EgoTest_Assert(1 == 1);
+TEST(compilation_testing, test_compilation)
+{
+    ASSERT_EQ(1, 1);
 }
 
-};
-
-} // namespace compilation
-} // namespace tests
-} // namespace id
-
+} } } // namespace id::tests::compilation

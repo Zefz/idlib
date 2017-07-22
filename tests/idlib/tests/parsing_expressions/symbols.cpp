@@ -15,171 +15,146 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-#include "EgoTest/EgoTest.hpp"
+#include "gtest/gtest.h"
 #include "idlib/parsing_expressions/include.hpp"
 
-namespace id {
-    namespace tests {
-        namespace parsing_expression {
+#include "idlib/tests/parsing_expressions/header.in"
 
-
-EgoTest_TestCase(period_expression_testing)
+TEST(period_expression_testing, test_period_expression)
 {
-    EgoTest_Test(test_period_expression)
-    {
-        auto p = id::parsing_expressions::sym<char>('.');
-        std::string w;
-        std::string::const_iterator s, e;
-        //
-        w = std::string(".");
-        s = w.cbegin(); e = w.cend();
-        EgoTest_Assert(true == p(s, e).first);
-        EgoTest_Assert(p(s,e).second == e);
-        EgoTest_Assert(false == p(p(s,e).second, e).first);
-    }
-};
+    auto p = id::parsing_expressions::sym<char>('.');
+    std::string w;
+    std::string::const_iterator s, e;
+    //
+    w = std::string(".");
+    s = w.cbegin(); e = w.cend();
+    ASSERT_TRUE(p(s, e).first);
+    ASSERT_EQ(p(s,e).second, e);
+    ASSERT_FALSE(p(p(s,e).second, e).first);
+}
 
-EgoTest_TestCase(whitespace_expression_testing)
+TEST(whitespace_expression_testing, test_whitespace_expression)
 {
-    EgoTest_Test(test_whitespace_expression)
-    {
-        auto p = id::parsing_expressions::whitespace<char>();
-        std::string w;
-        std::string::const_iterator s, e;
-        //
-        w = std::string(" ");
-        s = w.cbegin(); e = w.cend();
-        EgoTest_Assert(true == p(s, e).first);
-        EgoTest_Assert(p(s,e).second == e);
-        EgoTest_Assert(false == p(p(s,e).second, e).first);
-        //
-        w = std::string("\t");
-        s = w.cbegin(); e = w.cend();
-        EgoTest_Assert(true == p(s, e).first);
-        EgoTest_Assert(p(s,e).second == e);
-        EgoTest_Assert(false == p(p(s,e).second, e).first);
-    }
-};
+    auto p = id::parsing_expressions::whitespace<char>();
+    std::string w;
+    std::string::const_iterator s, e;
+    //
+    w = std::string(" ");
+    s = w.cbegin(); e = w.cend();
+    ASSERT_TRUE(p(s, e).first);
+    ASSERT_EQ(p(s,e).second, e);
+    ASSERT_FALSE(p(p(s,e).second, e).first);
+    //
+    w = std::string("\t");
+    s = w.cbegin(); e = w.cend();
+    ASSERT_TRUE(p(s, e).first);
+    ASSERT_EQ(p(s,e).second, e);
+    ASSERT_FALSE(p(p(s,e).second, e).first);
+}
 
-EgoTest_TestCase(newline_expression_testing)
+TEST(newline_expression_testing, test_newline_expression)
 {
-    EgoTest_Test(test_newline_expression)
-    {
-        auto p = id::parsing_expressions::newline<char>();
-        std::string w;
-        std::string::const_iterator s, e;
-        //
-        w = std::string("\n");
-        s = w.cbegin(); e = w.cend();
-        EgoTest_Assert(true == p(s, e).first);
-        EgoTest_Assert(p(s,e).second == e);
-        EgoTest_Assert(false == p(p(s,e).second, e).first);
-        //
-        w = std::string("\r");
-        s = w.cbegin(); e = w.cend();
-        EgoTest_Assert(true == p(s, e).first);
-        EgoTest_Assert(p(s,e).second == e);
-        EgoTest_Assert(false == p(p(s,e).second, e).first);
-    }
-};
+    auto p = id::parsing_expressions::newline<char>();
+    std::string w;
+    std::string::const_iterator s, e;
+    //
+    w = std::string("\n");
+    s = w.cbegin(); e = w.cend();
+    ASSERT_TRUE(p(s, e).first);
+    ASSERT_EQ(p(s,e).second, e);
+    ASSERT_FALSE(p(p(s,e).second, e).first);
+    //
+    w = std::string("\r");
+    s = w.cbegin(); e = w.cend();
+    ASSERT_TRUE(p(s, e).first);
+    ASSERT_EQ(p(s,e).second, e);
+    ASSERT_FALSE(p(p(s,e).second, e).first);
+}
 
-EgoTest_TestCase(digit_symbol_testing)
+TEST(digit_symbol_testing, test_digit_expression)
 {
-    EgoTest_Test(test_digit_expression)
+    auto p = id::parsing_expressions::digit<char>();
+    for (char symbol = '0'; symbol <= '9'; ++symbol)
     {
-        auto p = id::parsing_expressions::digit<char>();
-        for (char symbol = '0'; symbol <= '9'; ++symbol)
-        {
-            auto w = std::string(1, symbol);
-            auto s = w.cbegin(), e = w.cend();
-            EgoTest_Assert(true == p(s, e).first);
-            EgoTest_Assert(p(s,e).second == e);
-            EgoTest_Assert(false == p(p(s,e).second, e).first);
-        }
-    }
-};
-    
-EgoTest_TestCase(alpha_lowercase_expression_testing)
-{
-    EgoTest_Test(test_alpha_lowercase_expression)
-    {
-        auto p = id::parsing_expressions::alpha_lowercase<char>();
-        for (char symbol = 'a'; symbol <= 'z'; ++symbol)
-        {
-            auto w = std::string(1, symbol);
-            auto s = w.cbegin(), e = w.cend();
-            EgoTest_Assert(true == p(s, e).first);
-            EgoTest_Assert(p(s,e).second == e);
-            EgoTest_Assert(false == p(p(s,e).second, e).first);
-        }
-    }
-};
-
-EgoTest_TestCase(alpha_uppercase_expression_testing)
-{
-    EgoTest_Test(test_alpha_uppercase_expression)
-    {
-        auto p = id::parsing_expressions::alpha_uppercase<char>();
-        for (char symbol = 'A'; symbol <= 'Z'; ++symbol)
-        {
-            auto w = std::string(1, symbol);
-            auto s = w.cbegin(), e = w.cend();
-            EgoTest_Assert(true == p(s, e).first);
-            EgoTest_Assert(p(s,e).second == e);
-            EgoTest_Assert(false == p(p(s,e).second, e).first);
-        }
-    }
-};
-
-EgoTest_TestCase(alpha_expression_testing)
-{
-    EgoTest_Test(test_single_symbol)
-    {
-        //
-        for (char symbol = 'a'; symbol <= 'z'; ++symbol)
-        {
-            auto p = id::parsing_expressions::sym(symbol);
-            auto w = std::string(1, symbol);
-            auto s = w.cbegin(), e = w.cend();
-            EgoTest_Assert(true == p(s, e).first);
-            EgoTest_Assert(p(s, e).second == e);
-            EgoTest_Assert(false == p(p(s,e).second, e).first);
-        }
-        //
-        for (char symbol = 'A'; symbol <= 'Z'; ++symbol)
-        {
-            auto p = id::parsing_expressions::sym(symbol);
-            auto w = std::string(1, symbol);
-            auto s = w.cbegin(), e = w.cend();
-            EgoTest_Assert(true == p(s, e).first);
-            EgoTest_Assert(p(s, e).second == e);
-            EgoTest_Assert(false == p(p(s, e).second, e).first);
-        }
-    }
-    EgoTest_Test(test_alpha_expression)
-    {
-        auto p = id::parsing_expressions::alpha<char>();
-        //
-        for (char symbol = 'a'; symbol <= 'z'; ++symbol)
-        {
-            auto w = std::string(1, symbol);
-            auto s = w.cbegin(), e = w.cend();
-            EgoTest_Assert(true == p(s, e).first);
-            EgoTest_Assert(p(s,e).second == e);
-            EgoTest_Assert(false == p(p(s,e).second, e).first);
-        }
-        //
-        for (char symbol = 'A'; symbol <= 'Z'; ++symbol)
-        {
-            auto w = std::string(1, symbol);
-            auto s = w.cbegin(), e = w.cend();
-            EgoTest_Assert(true == p(s, e).first);
-            EgoTest_Assert(p(s,e).second == e);
-            EgoTest_Assert(false == p(p(s,e).second, e).first);
-        }
-    }
-};
-
-        }
+        auto w = std::string(1, symbol);
+        auto s = w.cbegin(), e = w.cend();
+        ASSERT_TRUE(p(s, e).first);
+        ASSERT_EQ(p(s,e).second, e);
+        ASSERT_FALSE(p(p(s,e).second, e).first);
     }
 }
+    
+TEST(alpha_lowercase_expression_testing, test_alpha_lowercase_expression)
+{
+    auto p = id::parsing_expressions::alpha_lowercase<char>();
+    for (char symbol = 'a'; symbol <= 'z'; ++symbol)
+    {
+        auto w = std::string(1, symbol);
+        auto s = w.cbegin(), e = w.cend();
+        ASSERT_TRUE(p(s, e).first);
+        ASSERT_EQ(p(s,e).second, e);
+        ASSERT_FALSE(p(p(s,e).second, e).first);
+    }
+}
+
+TEST(alpha_uppercase_expression_testing, test_alpha_uppercase_expression)
+{
+    auto p = id::parsing_expressions::alpha_uppercase<char>();
+    for (char symbol = 'A'; symbol <= 'Z'; ++symbol)
+    {
+        auto w = std::string(1, symbol);
+        auto s = w.cbegin(), e = w.cend();
+        ASSERT_TRUE(p(s, e).first);
+        ASSERT_EQ(p(s,e).second, e);
+        ASSERT_FALSE(p(p(s,e).second, e).first);
+    }
+}
+
+TEST(single_symbol_testing, test_single_symbol)
+{
+    //
+    for (char symbol = 'a'; symbol <= 'z'; ++symbol)
+    {
+        auto p = id::parsing_expressions::sym(symbol);
+        auto w = std::string(1, symbol);
+        auto s = w.cbegin(), e = w.cend();
+        ASSERT_TRUE(p(s, e).first);
+        ASSERT_EQ(p(s, e).second, e);
+        ASSERT_FALSE(p(p(s, e).second, e).first);
+    }
+    //
+    for (char symbol = 'A'; symbol <= 'Z'; ++symbol)
+    {
+        auto p = id::parsing_expressions::sym(symbol);
+        auto w = std::string(1, symbol);
+        auto s = w.cbegin(), e = w.cend();
+        ASSERT_TRUE(p(s, e).first);
+        ASSERT_EQ(p(s, e).second, e);
+        ASSERT_FALSE(p(p(s, e).second, e).first);
+    }
+}
+
+TEST(alpha_expression_testing, test_alpha_expression)
+{
+    auto p = id::parsing_expressions::alpha<char>();
+    //
+    for (char symbol = 'a'; symbol <= 'z'; ++symbol)
+    {
+        auto w = std::string(1, symbol);
+        auto s = w.cbegin(), e = w.cend();
+        ASSERT_TRUE(p(s, e).first);
+        ASSERT_EQ(p(s,e).second, e);
+        ASSERT_FALSE(p(p(s,e).second, e).first);
+    }
+    //
+    for (char symbol = 'A'; symbol <= 'Z'; ++symbol)
+    {
+        auto w = std::string(1, symbol);
+        auto s = w.cbegin(), e = w.cend();
+        ASSERT_TRUE(p(s, e).first);
+        ASSERT_EQ(p(s,e).second, e);
+        ASSERT_FALSE(p(p(s,e).second, e).first);
+    }
+}
+
+#include "idlib/tests/parsing_expressions/footer.in"

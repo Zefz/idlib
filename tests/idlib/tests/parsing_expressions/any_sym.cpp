@@ -15,43 +15,40 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-#include "EgoTest/EgoTest.hpp"
+#include "gtest/gtest.h"
 #include "idlib/parsing_expressions/include.hpp"
 
-namespace id {
-    namespace tests {
-        namespace parsing_expression {
+#include "idlib/tests/parsing_expressions/header.in"
 
-EgoTest_TestCase(any_sym_testing)
+using symbol = char;
+using namespace id::parsing_expressions;
+using namespace std;
+
+TEST(any_sym_testing, test_acceptance)
 {
-    EgoTest_Test(test_any_sym_acceptance)
+    auto p = any_sym<char>();
+    const vector<pair<string, bool>> words
     {
-        auto p = id::parsing_expressions::any_sym<char>();
-        const std::vector<std::pair<std::string, bool>> words
+        make_pair("", false),
+        make_pair("x", true),
+        make_pair("y", true),
+        make_pair("z", true),
+    };
+    for (const auto& word : words)
+    {
+        auto s = word.first.cbegin();
+        auto e = word.first.cend();
+        ASSERT_EQ(word.second, p(s, e).first);
+        if (word.second)
         {
-            std::make_pair("", false),
-            std::make_pair("x", true),
-            std::make_pair("y", true),
-            std::make_pair("z", true),
-        };
-        for (const auto& word : words)
+            ASSERT_EQ(p(s, e).second, e);
+        }
+        else
         {
-            auto s = word.first.cbegin();
-            auto e = word.first.cend();
-            EgoTest_Assert(word.second == p(s, e).first);
-            if (word.second)
-            {
-                EgoTest_Assert(p(s, e).second == e);
-            }
-            else
-            {
-                EgoTest_Assert(p(s,e).second == s);
-            }
-            EgoTest_Assert(false == p(p(s, e).second, e).first);
+            ASSERT_EQ(p(s,e).second, s);
         }
-    }
-};
-
-        }
+        ASSERT_FALSE(p(p(s, e).second, e).first);
     }
 }
+
+#include "idlib/tests/parsing_expressions/footer.in"

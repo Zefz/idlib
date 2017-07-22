@@ -15,15 +15,14 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-#include "EgoTest/EgoTest.hpp"
+#include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
 namespace id { namespace tests { namespace signal {
 
-EgoTest_TestCase(Signal) {
-
 // Connection, invocation, and explicit disconnection.
-EgoTest_Test(signal0) {
+TEST(signal_testing, test_signal_0)
+{
     id::signal<void(const std::string&)> signal;
     // (1) Invoke with no subscriber.
     signal("Hello, World!");
@@ -33,61 +32,59 @@ EgoTest_Test(signal0) {
     auto connection = signal.subscribe(function);
     signal("Hello, World!");
     connection.disconnect();
-    EgoTest_Assert(true == invoked);
+    ASSERT_EQ(true, invoked);
 }
 
 // Implicit disconnection (upon destruction of a signal).
-EgoTest_Test(signal1) {
+TEST(signal_testing, test_signal_1)
+{
     id::connection connection;
     {
         id::signal<void(const std::string&)> signal;
         bool invoked = false;
         auto function = [&invoked](const std::string& s) { invoked = true; };
         connection = signal.subscribe(function);
-        EgoTest_Assert(true == connection.is_connected());
+        ASSERT_EQ(true, connection.is_connected());
     }
-    EgoTest_Assert(false == connection.is_connected());
+    ASSERT_EQ(false, connection.is_connected());
 }
 
 // Scoped disconnection (upon destruction of a scoped connection).
-EgoTest_Test(signal2) {
+TEST(signal_testing, test_signal_2) {
     bool invoked = false;
     id::signal<void(const std::string&)> signal;
     {
         auto function = [&invoked](const std::string& s) { invoked = true; };
         id::scoped_connection scoped_connection(signal.subscribe(function));
-        EgoTest_Assert(true == scoped_connection.is_connected());
+        ASSERT_EQ(true, scoped_connection.is_connected());
     }
     signal("Hello, World!");
-    EgoTest_Assert(false == invoked);
+    ASSERT_EQ(false, invoked);
 }
 
-EgoTest_Test(signal3) {
+TEST(signal_testing, test_signal_3) {
     bool invoked = false;
     id::signal<void(const std::string&, const std::string&)> signal;
     {
         auto function = [&invoked](const std::string& s0, const std::string& s1) { invoked = true; };
         id::scoped_connection scoped_connection(signal.subscribe(function));
-        EgoTest_Assert(true == scoped_connection.is_connected());
+        ASSERT_EQ(true, scoped_connection.is_connected());
     }
     signal("Hello, ", "World!");
-    EgoTest_Assert(false == invoked);
+    ASSERT_EQ(false, invoked);
 }
 
-EgoTest_Test(signal4)
+TEST(signal_testing, test_signal_4)
 {
     bool invoked = false;
     id::signal<void(float, float)> signal;
     {
         auto function = [&invoked](float s0, float s1) { invoked = true; };
         id::scoped_connection scoped_connection(signal.subscribe(function));
-        EgoTest_Assert(true == scoped_connection.is_connected());
+        ASSERT_EQ(true, scoped_connection.is_connected());
     }
     signal(1.0f, 2.0f);
-    EgoTest_Assert(false == invoked);
+    ASSERT_EQ(false, invoked);
 }
-
-
-};
 
 } } } // namespace id::tests::signal

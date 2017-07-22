@@ -15,35 +15,29 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-#include "EgoTest/EgoTest.hpp"
+#include "gtest/gtest.h"
 #include "idlib/parsing_expressions/include.hpp"
 
-namespace id {
-    namespace tests {
-        namespace parsing_expression {
+#include "idlib/tests/parsing_expressions/header.in"
 
+using string = std::basic_string<char>;
+template <typename T>
+using vector = std::vector<T>;
 
-EgoTest_TestCase(sequence_testing)
+TEST(sequence_testing, test_sequence)
 {
-    using string = std::basic_string<char>;
-
-    EgoTest_Test(test_sequence)
+    auto p = id::parsing_expressions::sequence(id::parsing_expressions::sym('a'), id::parsing_expressions::sym('b'));
+    const vector<string> words
     {
-        auto p = id::parsing_expressions::sequence(id::parsing_expressions::sym('a'), id::parsing_expressions::sym('b'));
-        const std::vector<string> words
-        {
-            "ab",
-        };
-        for (const auto& word : words)
-        {
-            auto s = word.cbegin();
-            auto e = word.cend();
-            EgoTest_Assert(true == p(s, e).first);
-            EgoTest_Assert(p(s, e).second == word.cend());
-        }
-    }
-};
-
-        }
+        "ab",
+    };
+    for (const auto& word : words)
+    {
+        auto s = word.cbegin();
+        auto e = word.cend();
+        ASSERT_TRUE(p(s, e).first);
+        ASSERT_EQ(p(s, e).second, word.cend());
     }
 }
+
+#include "idlib/tests/parsing_expressions/footer.in"

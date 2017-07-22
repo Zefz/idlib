@@ -15,22 +15,19 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-#include "EgoTest/EgoTest.hpp"
+#include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
 namespace id { namespace tests {
 
-EgoTest_TestCase(lowercase_conversion)
+TEST(lowercase_conversion_test, test_lowercase_conversion)
 {
-    EgoTest_Test(convert_lowercase)
-    {
-        std::string x("X");
-        id::to_lower_in_situ(x);
-        EgoTest_Assert(x == "x");
-        // Identity.
-        id::to_lower_in_situ(x);
-        EgoTest_Assert(x == "x");
-    }
-};
+    std::string x("X");
+    id::to_lower_in_situ(x);
+    ASSERT_EQ(x, "x");
+    // Identity.
+    id::to_lower_in_situ(x);
+    ASSERT_EQ(x, "x");
+}
 
 } } // namespace id::tests

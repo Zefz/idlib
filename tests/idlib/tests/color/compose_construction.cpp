@@ -15,100 +15,85 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-#include "EgoTest/EgoTest.hpp"
+#include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
 namespace id { namespace tests { namespace color {
 
 namespace compose_construction {
 
-EgoTest_TestCase(compose_construction_rgbb_lb)
+TEST(compose_construction_rgbb_lb, compose_construct_rgbb_lb)
 {
-    EgoTest_Test(compose_construct_rgbb_lb)
-    {
-        using source = id::color<id::Lb>;
-        using target = id::color<id::RGBb>;
-        EgoTest_Assert(target::white() == target(source::white()));
-        EgoTest_Assert(target::black() == target(source::black()));
-    }
-};
+    using source = id::color<id::Lb>;
+    using target = id::color<id::RGBb>;
+    ASSERT_EQ(target::white(), target(source::white()));
+    ASSERT_EQ(target::black(), target(source::black()));
+}
 
-EgoTest_TestCase(compose_construction_rgbf_lf)
+TEST(compose_construction_rgbf_lf, compose_construct_rgbf_Lf)
 {
-    EgoTest_Test(compose_construct_rgbf_Lf)
-    {
-        using source = id::color<id::Lf>;
-        using target = id::color<id::RGBf>;
-        EgoTest_Assert(target::white() == target(source::white()));
-        EgoTest_Assert(target::black() == target(source::black()));
-    }
-};
+    using source = id::color<id::Lf>;
+    using target = id::color<id::RGBf>;
+    ASSERT_EQ(target::white(), target(source::white()));
+    ASSERT_EQ(target::black(), target(source::black()));
+}
 
-EgoTest_TestCase(compose_construction_rgbab_lab)
+TEST(compose_construction_rgbab_lab, compose_construct_rgbab_lab)
 {
-    EgoTest_Test(compose_construct_rgbab_lab)
-    {
-        using source = id::color<id::LAb>;
-        using target = id::color<id::RGBAb>;
-        EgoTest_Assert(target::white() == target(source::white()));
-        EgoTest_Assert(target::black() == target(source::black()));
-    }
-};
+    using source = id::color<id::LAb>;
+    using target = id::color<id::RGBAb>;
+    ASSERT_EQ(target::white(), target(source::white()));
+    ASSERT_EQ(target::black(), target(source::black()));
+}
 
-EgoTest_TestCase(compose_construction_rgbaf_laf)
+TEST(compose_construction_rgbaf_laf, compose_construct_rgbaf_laf)
 {
-    EgoTest_Test(compose_construct_rgbaf_laf)
-    {
-        using source = id::color<id::LAf>;
-        using target = id::color<id::RGBAf>;
-        EgoTest_Assert(target::white() == target(source::white()));
-        EgoTest_Assert(target::black() == target(source::black()));
-    }
-};
+    using source = id::color<id::LAf>;
+    using target = id::color<id::RGBAf>;
+    ASSERT_EQ(target::white(), target(source::white()));
+    ASSERT_EQ(target::black(), target(source::black()));
+}
 
 } // namespace compose_construction
 
 namespace compose_construction {
 
-EgoTest_TestCase(compose_construction_lab_lb_ab)
+TEST(compose_construction_lab_lb_ab, compose_construct_lab_lb_ab)
 {
-    EgoTest_Test(compose_construct_lab_lb_ab)
-    {
-        using color_space = id::LAb;
-        using color = id::color<color_space>;
+    using color_space = id::LAb;
+    using color = id::color<color_space>;
 
-        using pure_color_space = id::pure_color_space_t<color_space>;
-        using pure_color = id::color<pure_color_space>;
+    using pure_color_space = id::pure_color_space_t<color_space>;
+    using pure_color = id::color<pure_color_space>;
 
-        using pure_opacity_space = id::pure_opacity_space_t<color_space>;
-        using pure_opacity = id::color<pure_opacity_space>;
+    using pure_opacity_space = id::pure_opacity_space_t<color_space>;
+    using pure_opacity = id::color<pure_opacity_space>;
 
-        EgoTest_Assert(color(pure_color::white(), pure_opacity::opaque()) == color::white());
-        EgoTest_Assert(color(pure_color::black(), pure_opacity::opaque()) == color::black());
-        EgoTest_Assert(color(pure_color::grey(), pure_opacity::opaque()) == color::grey());
-    }
+    ASSERT_EQ(color(pure_color::white(), pure_opacity::opaque()), color::white());
+    ASSERT_EQ(color(pure_color::black(), pure_opacity::opaque()), color::black());
+    ASSERT_EQ(color(pure_color::grey(), pure_opacity::opaque()), color::grey());
+}
 
-    EgoTest_Test(compose_construct_rgbab_rgbb_ab)
-    {
-        using color_space = id::RGBAb;
-        using color = id::color<color_space>;
+TEST(compose_construction_lab_lb_ab, compose_construct_rgbab_rgbb_ab)
+{
+    using color_space = id::RGBAb;
+    using color = id::color<color_space>;
 
-        using pure_color_space = id::pure_color_space_t<color_space>;
-        using pure_color = id::color<pure_color_space>;
+    using pure_color_space = id::pure_color_space_t<color_space>;
+    using pure_color = id::color<pure_color_space>;
 
-        using pure_opacity_space = id::pure_opacity_space_t<color_space>;
-        using pure_opacity = id::color<pure_opacity_space>;
+    using pure_opacity_space = id::pure_opacity_space_t<color_space>;
+    using pure_opacity = id::color<pure_opacity_space>;
 
-        EgoTest_Assert(color(pure_color::white(), pure_opacity::opaque()) == color::white());
-        EgoTest_Assert(color(pure_color::black(), pure_opacity::opaque()) == color::black());
-        EgoTest_Assert(color(pure_color::red(), pure_opacity::opaque()) == color::red());
-        EgoTest_Assert(color(pure_color::green(), pure_opacity::opaque()) == color::green());
-        EgoTest_Assert(color(pure_color::blue(), pure_opacity::opaque()) == color::blue());
-        EgoTest_Assert(color(pure_color::cyan(), pure_opacity::opaque()) == color::cyan());
-        EgoTest_Assert(color(pure_color::magenta(), pure_opacity::opaque()) == color::magenta());
-        EgoTest_Assert(color(pure_color::yellow(), pure_opacity::opaque()) == color::yellow());
-    }
-};
+    ASSERT_EQ(color(pure_color::white(), pure_opacity::opaque()), color::white());
+    ASSERT_EQ(color(pure_color::black(), pure_opacity::opaque()), color::black());
+    ASSERT_EQ(color(pure_color::red(), pure_opacity::opaque()), color::red());
+    ASSERT_EQ(color(pure_color::green(), pure_opacity::opaque()), color::green());
+    ASSERT_EQ(color(pure_color::blue(), pure_opacity::opaque()), color::blue());
+    ASSERT_EQ(color(pure_color::cyan(), pure_opacity::opaque()), color::cyan());
+    ASSERT_EQ(color(pure_color::magenta(), pure_opacity::opaque()), color::magenta());
+    ASSERT_EQ(color(pure_color::yellow(), pure_opacity::opaque()), color::yellow());
+}
 
 } // namespace compose_construction
 

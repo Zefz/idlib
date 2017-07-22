@@ -15,36 +15,33 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-#include "EgoTest/EgoTest.hpp"
+#include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
 namespace id { namespace tests { namespace language { namespace qualified_name {
 
 /// Assert selected strings which are not qualified name strings are rejected.
-EgoTest_TestCase(non_qualified_name_strings_rejection)
+TEST(non_qualified_name_strings_rejection, reject_non_qualified_name_strings)
 {
-    EgoTest_Test(reject_non_qualified_name_strings)
+    const std::vector<std::string> words
     {
-        const std::vector<std::string> words
+        "",
+        ".",
+        ".egoboo",
+        "org.egoboo.",
+        "org.",
+    };
+    for (const auto& word : words)
+    {
+        try
         {
-            "",
-            ".",
-            ".egoboo",
-            "org.egoboo.",
-            "org.",
-        };
-        for (const auto& word : words)
+            id::qualified_name qualified_name(word);
+            ASSERT_TRUE(false);
+        }
+        catch (...)
         {
-            try
-            {
-                id::qualified_name qualified_name(word);
-                EgoTest_Assert(false);
-            }
-            catch (...)
-            {
-            }
         }
     }
-};
+}
 
 } } } } // namespace id::tests::language::qualified_name

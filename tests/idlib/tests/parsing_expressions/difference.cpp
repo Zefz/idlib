@@ -15,57 +15,49 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-#include "EgoTest/EgoTest.hpp"
+#include "gtest/gtest.h"
 #include "idlib/parsing_expressions/include.hpp"
 
-namespace id {
-    namespace tests {
-        namespace parsing_expression {
+#include "idlib/tests/parsing_expressions/header.in"
 
-
-EgoTest_TestCase(difference_testing)
+TEST(parsing_expressions,test_difference)
 {
-    EgoTest_Test(test_difference)
+    using namespace id::parsing_expressions;
+    using namespace std;
+    auto p = difference(digit<char>(), 
+                                    ordered_choice(sym('1'),
+                                                sym('3'),
+                                                sym('5'),
+                                                sym('7'),
+                                                sym('9')));
+    const std::vector<std::pair<std::string, bool>> words
     {
-        using namespace id::parsing_expressions;
-        using namespace std;
-        auto p = difference(digit<char>(), 
-                                     ordered_choice(sym('1'),
-                                                    sym('3'),
-                                                    sym('5'),
-                                                    sym('7'),
-                                                    sym('9')));
-        const std::vector<std::pair<std::string, bool>> words
+        std::make_pair("0", true), // even. accept.
+        std::make_pair("1", false), // odd. reject.
+        std::make_pair("2", true),
+        std::make_pair("3", false),
+        std::make_pair("4", true),
+        std::make_pair("5", false),
+        std::make_pair("6", true),
+        std::make_pair("7", false),
+        std::make_pair("8", true),
+        std::make_pair("9", false),
+    };
+    for (const auto& word : words)
+    {
+        auto s = word.first.cbegin();
+        auto e = word.first.cend();
+        ASSERT_EQ(word.second, p(s, e).first);
+        if (word.second)
         {
-            std::make_pair("0", true), // even. accept.
-            std::make_pair("1", false), // odd. reject.
-            std::make_pair("2", true),
-            std::make_pair("3", false),
-            std::make_pair("4", true),
-            std::make_pair("5", false),
-            std::make_pair("6", true),
-            std::make_pair("7", false),
-            std::make_pair("8", true),
-            std::make_pair("9", false),
-        };
-        for (const auto& word : words)
+            ASSERT_EQ(p(s, e).second, e);
+        }
+        else
         {
-            auto s = word.first.cbegin();
-            auto e = word.first.cend();
-            EgoTest_Assert(word.second == p(s, e).first);
-            if (word.second)
-            {
-                EgoTest_Assert(p(s, e).second == e);
-            }
-            else
-            {
-                EgoTest_Assert(p(s,e).second == s);
-            }
-            EgoTest_Assert(false == p(p(s, e).second, e).first);
+            ASSERT_EQ(p(s,e).second, s);
         }
-    }
-};
-
-        }
+        ASSERT_EQ(false, p(p(s, e).second, e).first);
     }
 }
+
+#include "idlib/tests/parsing_expressions/footer.in"

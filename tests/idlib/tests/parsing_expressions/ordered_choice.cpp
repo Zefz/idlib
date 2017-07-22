@@ -15,29 +15,24 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-#include "EgoTest/EgoTest.hpp"
+#include "gtest/gtest.h"
 #include "idlib/parsing_expressions/include.hpp"
 
-namespace id {
-    namespace tests {
-        namespace parsing_expression {
+#include "idlib/tests/parsing_expressions/header.in"
 
+using string = std::basic_string<char>;
 
-EgoTest_TestCase(choice_expression_testing)
+TEST(choice_expression_testing, test_choice_expression_1)
 {
-    using string = std::basic_string<char>;
-
-    EgoTest_Test(test_choice_expression_1)
     {
-        static const std::string w0 = "x", w1 = "y";
+        static const string w0 = "x", w1 = "y";
         static const auto p = id::parsing_expressions::ordered_choice
             (
                 id::parsing_expressions::sym<char>('x'),
                 id::parsing_expressions::sym<char>('y')
-                
             );
         /*
-        const std::vector<string> words_to_accept
+        const vector<string> words_to_accept
         {
             "x",
             "y"
@@ -52,60 +47,58 @@ EgoTest_TestCase(choice_expression_testing)
         {
             auto s = w0.cbegin();
             auto e = w0.cend();
-            EgoTest_Assert(true == p(s, e).first);
-            EgoTest_Assert(p(s, e).second == w0.cend());
+            ASSERT_TRUE(p(s, e).first);
+            ASSERT_EQ(p(s, e).second, w0.cend());
         }
         //for (const auto& word : words_to_reject)
         {
             auto s = w1.cbegin();
             auto e = w1.cend();
-            EgoTest_Assert(true == p(s, e).first);
-            EgoTest_Assert(p(s, e).second == w1.cend());
-        }
-    }
-
-    EgoTest_Test(test_choice_expression_2)
-    {
-        auto p = id::parsing_expressions::ordered_choice
-            (
-                id::parsing_expressions::sequence
-                (
-                    id::parsing_expressions::sym<char>('x'),
-                    id::parsing_expressions::sym<char>('x')
-                ),
-                id::parsing_expressions::sequence
-                (
-                    id::parsing_expressions::sym<char>('y'),
-                    id::parsing_expressions::sym<char>('y')
-                )
-            );
-        const std::vector<string> words_to_accept
-        {
-            "xx",
-            "yy"
-        };
-        const std::vector<string> words_to_reject
-        {
-            "xy",
-            "yx"
-        };
-        for (const auto& word : words_to_accept)
-        {
-            auto s = word.cbegin();
-            auto e = word.cend();
-            EgoTest_Assert(true == p(s, e).first);
-            EgoTest_Assert(p(s,e).second == word.cend());
-        }
-        for (const auto& word : words_to_reject)
-        {
-            auto s = word.cbegin();
-            auto e = word.cend();
-            EgoTest_Assert(false == p(s, e).first);
-            EgoTest_Assert(p(s, e).second == word.cbegin());
-        }
-    }
-};
-
+            ASSERT_TRUE(p(s, e).first);
+            ASSERT_EQ(p(s, e).second, w1.cend());
         }
     }
 }
+
+TEST(choice_expression_testing, test_choice_expression_2)
+{
+    auto p = id::parsing_expressions::ordered_choice
+        (
+            id::parsing_expressions::sequence
+            (
+                id::parsing_expressions::sym<char>('x'),
+                id::parsing_expressions::sym<char>('x')
+            ),
+            id::parsing_expressions::sequence
+            (
+                id::parsing_expressions::sym<char>('y'),
+                id::parsing_expressions::sym<char>('y')
+            )
+        );
+    const std::vector<string> words_to_accept
+    {
+        "xx",
+        "yy"
+    };
+    const std::vector<string> words_to_reject
+    {
+        "xy",
+        "yx"
+    };
+    for (const auto& word : words_to_accept)
+    {
+        auto s = word.cbegin();
+        auto e = word.cend();
+        ASSERT_TRUE(p(s, e).first);
+        ASSERT_EQ(p(s,e).second, word.cend());
+    }
+    for (const auto& word : words_to_reject)
+    {
+        auto s = word.cbegin();
+        auto e = word.cend();
+        ASSERT_FALSE(p(s, e).first);
+        ASSERT_EQ(p(s, e).second, word.cbegin());
+    }
+}
+
+#include "idlib/tests/parsing_expressions/footer.in"

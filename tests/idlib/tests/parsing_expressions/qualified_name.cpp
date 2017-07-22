@@ -15,61 +15,54 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-#include "EgoTest/EgoTest.hpp"
+#include "gtest/gtest.h"
 #include "idlib/parsing_expressions/include.hpp"
 
-namespace id {
-    namespace tests {
-        namespace parsing_expression {
+#include "idlib/tests/parsing_expressions/header.in"
 
+using symbol = char;
+using string = std::basic_string<symbol>;
+using qualified_name = id::parsing_expressions::qualified_name<symbol>;
 
-EgoTest_TestCase(qualified_name_testing)
+TEST(qualified_name_testing, test_acceptance)
 {
-    using symbol = char;
-    using string = std::basic_string<symbol>;
-    using qualified_name = id::parsing_expressions::qualified_name<symbol>;
-    EgoTest_Test(test_qualified_name_acceptance)
-    {
-        auto p = qualified_name();
-        const std::vector<string> words
-            {
-                "org.egoboo",
-                "org.egoboo.ego",
-                "org.egoboo.id"
-            };
-        for (const auto& word : words)
+    auto p = qualified_name();
+    const std::vector<string> words
         {
-            auto s = word.cbegin();
-            auto e = word.cend();
-            EgoTest_Assert(true == p(s, e).first);
-            EgoTest_Assert(p(s, e).second == e);
-            EgoTest_Assert(false == p(p(s, e).second, e).first);
-        }
-    }
-
-    EgoTest_Test(qualified_name_rejection)
-    {
-        auto p = qualified_name();
-        const std::vector<std::tuple<string, bool, size_t>> words
-        {
-                { ".egoboo", false, 0 },
-                { "org.", true, 3 },
-                { "org.egoboo.", true, 10 },
-                { "org.#", true, 3 },
-                { "org.egoboo.#", true, 10 },
+            "org.egoboo",
+            "org.egoboo.ego",
+            "org.egoboo.id"
         };
-        for (const auto& word : words)
-        {
-            auto s = std::get<0>(word).cbegin();
-            auto e = std::get<0>(word).cend();
-            EgoTest_Assert(std::get<1>(word) == p(s, e).first);
-            auto a = p(s,e).second;
-            auto b = std::get<0>(word).cbegin() + std::get<2>(word);
-            EgoTest_Assert(a == b);
-        }
-    }
-};
-
-        }
+    for (const auto& word : words)
+    {
+        auto s = word.cbegin();
+        auto e = word.cend();
+        ASSERT_EQ(true, p(s, e).first);
+        ASSERT_EQ(p(s, e).second, e);
+        ASSERT_EQ(false, p(p(s, e).second, e).first);
     }
 }
+
+TEST(qualified_name, test_rejection)
+{
+    auto p = qualified_name();
+    const std::vector<std::tuple<string, bool, size_t>> words
+    {
+            { ".egoboo", false, 0 },
+            { "org.", true, 3 },
+            { "org.egoboo.", true, 10 },
+            { "org.#", true, 3 },
+            { "org.egoboo.#", true, 10 },
+    };
+    for (const auto& word : words)
+    {
+        auto s = std::get<0>(word).cbegin();
+        auto e = std::get<0>(word).cend();
+        ASSERT_EQ(std::get<1>(word), p(s, e).first);
+        auto a = p(s,e).second;
+        auto b = std::get<0>(word).cbegin() + std::get<2>(word);
+        ASSERT_EQ(a, b);
+    }
+}
+
+#include "idlib/tests/parsing_expressions/footer.in"

@@ -15,56 +15,43 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-#include "EgoTest/EgoTest.hpp"
+#include "gtest/gtest.h"
 #include "idlib/parsing_expressions/include.hpp"
 
-namespace id {
-    namespace tests {
-        namespace parsing_expression {
+#include "idlib/tests/parsing_expressions/header.in"
 
+using string = std::basic_string<char>;
 
-EgoTest_TestCase(name_expression_regression_testing)
+/// @brief Regression test.
+/// @code{'x.'} was accepted.
+TEST(name_expression_regression_testing, test_name_expression_regression)
 {
-    using string = std::basic_string<char>;
-
-    /// @brief Regression test.
-    /// @code{'x.'} was accepted.
-    EgoTest_Test(test_name_expression_regression)
+    auto p = id::parsing_expressions::name<char>();
+    const std::vector<string> words
     {
-        auto p = id::parsing_expressions::name<char>();
-        const std::vector<string> words
-        {
-            "x.",
-        };
-        for (const auto& word : words)
-        {
-            auto s = word.cbegin();
-            auto e = word.cend();
-            EgoTest_Assert(true == p(s, e).first);
-            EgoTest_Assert(p(s, e).second < word.cend());
-        }
-    }
-};
-
-EgoTest_TestCase(name_expression_testing)
-{
-    using string = std::basic_string<char>;
-
-    EgoTest_Test(test_name_expression)
+        "x.",
+    };
+    for (const auto& word : words)
     {
-        const std::vector<string> words{"org","org_","_1", "_0", "a0"};
-        auto p = id::parsing_expressions::name<char>();
-        for (const auto& word : words)
-        {
-            auto s = word.cbegin();
-            auto e = word.cend();
-            EgoTest_Assert(true == p(s, e).first);
-            EgoTest_Assert(p(s, e).second == e);
-            EgoTest_Assert(false == p(p(s, e).second, e).first);
-        }
-	}
-};
-
-        }
+        auto s = word.cbegin();
+        auto e = word.cend();
+        ASSERT_TRUE(p(s, e).first);
+        ASSERT_TRUE(p(s, e).second < word.cend());
     }
 }
+
+TEST(name_expression_testing, test_name_expression)
+{
+    const std::vector<string> words{"org","org_","_1", "_0", "a0"};
+    auto p = id::parsing_expressions::name<char>();
+    for (const auto& word : words)
+    {
+        auto s = word.cbegin();
+        auto e = word.cend();
+        ASSERT_TRUE(p(s, e).first);
+        ASSERT_EQ(p(s, e).second, e);
+        ASSERT_FALSE(p(p(s, e).second, e).first);
+    }
+}
+
+#include "idlib/tests/parsing_expressions/footer.in"

@@ -15,24 +15,21 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-#include "EgoTest/EgoTest.hpp"
+#include "gtest/gtest.h"
 #include "idlib/idlib.hpp"
 
 namespace id { namespace tests { namespace color { namespace inversion {
 
-EgoTest_TestCase(lb_inversion)
+TEST(lb_inversion, invert_lb)
 {
     using color_space = id::Lb;
     using color = id::color<color_space>;
 
-    EgoTest_Test(invert_lb)
-    {
-        EgoTest_Assert(color::white() == id::invert(color::black()));
-        EgoTest_Assert(color::black() == id::invert(color::white()));
-    }
-};
+    ASSERT_EQ(color::white(), id::invert(color::black()));
+    ASSERT_EQ(color::black(), id::invert(color::white()));
+}
 
-EgoTest_TestCase(lab_inversion)
+TEST(lab_inversion, invert_lab)
 {
     using color_space = id::LAb;
     using color = id::color<color_space>;
@@ -43,32 +40,26 @@ EgoTest_TestCase(lab_inversion)
     using alpha_color_space = id::Ab;
     using alpha_color = id::color<alpha_color_space>;
 
-    EgoTest_Test(invert_lab)
-    {
-        EgoTest_Assert(color(opaque_color::black(), alpha_color::transparent()) == id::invert(color::white()));
-        EgoTest_Assert(color(opaque_color::white(), alpha_color::transparent()) == id::invert(color::black()));
-    }
-};
+    ASSERT_EQ(color(opaque_color::black(), alpha_color::transparent()), id::invert(color::white()));
+    ASSERT_EQ(color(opaque_color::white(), alpha_color::transparent()), id::invert(color::black()));
+}
 
-EgoTest_TestCase(rgbb_inversion)
+TEST(rgbb_inversion, invert_rgbb)
 {
     using color_space = id::RGBb;
     using color = id::color<color_space>;
 
-    EgoTest_Test(invert_rgbb)
-    {
-        EgoTest_Assert(color::black() == id::invert(color::white()));
-        EgoTest_Assert(color::white() == id::invert(color::black()));
-        EgoTest_Assert(color::cyan() == id::invert(color::red()));
-        EgoTest_Assert(color::magenta() == id::invert(color::green()));
-        EgoTest_Assert(color::yellow() == id::invert(color::blue()));
-        EgoTest_Assert(color::red() == id::invert(color::cyan()));
-        EgoTest_Assert(color::green() == id::invert(color::magenta()));
-        EgoTest_Assert(color::blue() == id::invert(color::yellow()));
-    }
-};
+    ASSERT_EQ(color::black(), id::invert(color::white()));
+    ASSERT_EQ(color::white(), id::invert(color::black()));
+    ASSERT_EQ(color::cyan(), id::invert(color::red()));
+    ASSERT_EQ(color::magenta(), id::invert(color::green()));
+    ASSERT_EQ(color::yellow(), id::invert(color::blue()));
+    ASSERT_EQ(color::red(), id::invert(color::cyan()));
+    ASSERT_EQ(color::green(), id::invert(color::magenta()));
+    ASSERT_EQ(color::blue(), id::invert(color::yellow()));
+}
 
-EgoTest_TestCase(rgbab_inversion)
+TEST(rgbab_inversion, invert_rgbab)
 {
     using color_space = id::RGBAb;
     using color = id::color<color_space>;
@@ -79,17 +70,14 @@ EgoTest_TestCase(rgbab_inversion)
     using alpha_color_space = id::Ab;
     using alpha_color = id::color<alpha_color_space>;
 
-    EgoTest_Test(invert_rgbab)
-    {
-        EgoTest_Assert(color(opaque_color::black(), alpha_color::transparent()) == id::invert(color::white()));
-        EgoTest_Assert(color(opaque_color::white(), alpha_color::transparent()) == id::invert(color::black()));
-        EgoTest_Assert(color(opaque_color::cyan(), alpha_color::transparent()) == id::invert(color::red()));
-        EgoTest_Assert(color(opaque_color::magenta(), alpha_color::transparent()) == id::invert(color::green()));
-        EgoTest_Assert(color(opaque_color::yellow(), alpha_color::transparent()) == id::invert(color::blue()));
-        EgoTest_Assert(color(opaque_color::red(), alpha_color::transparent()) == id::invert(color::cyan()));
-        EgoTest_Assert(color(opaque_color::green(), alpha_color::transparent()) == id::invert(color::magenta()));
-        EgoTest_Assert(color(opaque_color::blue(), alpha_color::transparent()) == id::invert(color::yellow()));
-    }
-};
+    ASSERT_EQ(color(opaque_color::black(), alpha_color::transparent()), id::invert(color::white()));
+    ASSERT_EQ(color(opaque_color::white(), alpha_color::transparent()), id::invert(color::black()));
+    ASSERT_EQ(color(opaque_color::cyan(), alpha_color::transparent()), id::invert(color::red()));
+    ASSERT_EQ(color(opaque_color::magenta(), alpha_color::transparent()), id::invert(color::green()));
+    ASSERT_EQ(color(opaque_color::yellow(), alpha_color::transparent()), id::invert(color::blue()));
+    ASSERT_EQ(color(opaque_color::red(), alpha_color::transparent()), id::invert(color::cyan()));
+    ASSERT_EQ(color(opaque_color::green(), alpha_color::transparent()), id::invert(color::magenta()));
+    ASSERT_EQ(color(opaque_color::blue(), alpha_color::transparent()), id::invert(color::yellow()));
+}
 
 } } } } // namespace id::tests::color::inversion
