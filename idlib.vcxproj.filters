@@ -57,9 +57,6 @@
     <Filter Include="Header Files\utility">
       <UniqueIdentifier>{eeac9c9c-934e-43cf-a730-911795bcf8da}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\utility\internal">
-      <UniqueIdentifier>{a9eb34ac-20c3-4b6d-8e7b-7de136dbc37c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\utility">
       <UniqueIdentifier>{0673c394-68f9-463c-98f9-fd666f310108}</UniqueIdentifier>
     </Filter>
@@ -499,12 +496,6 @@
     <ClInclude Include="src\idlib\utility\unhandled_switch_case_error.hpp">
       <Filter>Header Files\utility</Filter>
     </ClInclude>
-    <ClInclude Include="src\idlib\utility\internal\footer.hpp">
-      <Filter>Header Files\utility\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="src\idlib\utility\internal\header.hpp">
-      <Filter>Header Files\utility\internal</Filter>
-    </ClInclude>
     <ClInclude Include="src\idlib\utility.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -584,6 +575,12 @@
   <ItemGroup>
     <None Include="src\idlib\CurrentFunction.inline">
       <Filter>Header Files</Filter>
+    </None>
+    <None Include="src\idlib\utility\footer.in">
+      <Filter>Header Files\utility</Filter>
+    </None>
+    <None Include="src\idlib\utility\header.in">
+      <Filter>Header Files\utility</Filter>
     </None>
   </ItemGroup>
 </Project>

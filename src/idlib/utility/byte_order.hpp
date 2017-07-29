@@ -24,10 +24,7 @@
 #include "idlib/utility/is_any_of.hpp"
 #include "idlib/utility/swap_bytes.hpp"
 
-
-
-
-namespace id {
+#include "idlib/utility/header.in"
 	
 /// @brief An enumeration of Byte orders.
 enum class byte_order
@@ -38,12 +35,6 @@ enum class byte_order
     big_endian,
 }; // enum class byte_order
 
-} // namespace id
-
-
-
-
-namespace id {
 /// @brief A constexpr function which returns the Byte order of the environment.
 /// @return the Byte order of the environment
 #if defined(__GNUC__)
@@ -62,13 +53,6 @@ namespace id {
 #else
     #error("unable to determine Byte order")
 #endif
-
-} // namespace id
-
-
-
-
-namespace id {
 
 /// @brief Functor to convert a value from one Byte order to another Byte order.
 /// This functor defines an @code{operator()}. Its arguments are depicted in the table below.
@@ -132,13 +116,6 @@ struct byte_order_conversion_functor<V, std::enable_if_t<is_any_of_v<V,
     }
 }; // struct byte_order_conversion_functor
 
-} // namespace id
-
-
-
-
-namespace id {
-
 /// @brief Convert a value from one Byte order to another Byte order.
 /// @param v the value of type @a V in the source Byte order @a s
 /// @param t the target Byte order
@@ -155,5 +132,4 @@ V convert_byte_order(const V& v, byte_order t, byte_order s)
     return byte_order_conversion_functor<V>()(v, t, s);
 }
 
-} // namespace id
-
+#include "idlib/utility/footer.in"

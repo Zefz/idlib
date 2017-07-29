@@ -23,7 +23,7 @@
 
 #include <type_traits>
 
-#include "idlib/utility/internal/header.hpp"
+#include "idlib/utility/header.in"
 
 /// @brief
 /// @code
@@ -49,4 +49,4 @@ struct is_any_of<T, U> : std::is_same<T, U>::type
 template <typename T, typename ... U>
 constexpr bool is_any_of_v = is_any_of<T, U ...>::value;
 
-#include "idlib/utility/internal/footer.hpp"
+#include "idlib/utility/footer.in"

@@ -25,7 +25,7 @@
 #include <locale>
 #include <algorithm>
 
-#include "idlib/utility/internal/header.hpp"
+#include "idlib/utility/header.in"
 
 /// @brief In-place (aka in-situ) convert a character to upper case.
 /// @param x the character
@@ -70,4 +70,4 @@ std::basic_string<CharType> to_upper(std::basic_string<CharType> w, const std::l
 	return w;
 }
 
-#include "idlib/utility/internal/footer.hpp"
+#include "idlib/utility/footer.in"

@@ -10,7 +10,7 @@
 
 #include <algorithm>
 
-namespace id {
+#include "idlib/utility/header.in"
 	
 template <typename T>
 union bytes
@@ -135,4 +135,4 @@ double swap_bytes(double x)
 	return b.value();		
 }
 
-} // namespace id
+#include "idlib/utility/footer.in"

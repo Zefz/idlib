@@ -27,7 +27,7 @@
 
 #include "idlib/utility/runtime_error.hpp"
 
-#include "idlib/utility/internal/header.hpp"
+#include "idlib/utility/header.in"
 
 /// @brief Exception indicating a missing switch case handle for a specific label
 class unhandled_switch_case_error : public runtime_error
@@ -58,4 +58,4 @@ public:
 
 }; // class unhandled_switch_case_error
 
-#include "idlib/utility/internal/footer.hpp"
+#include "idlib/utility/footer.in"

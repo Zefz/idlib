@@ -27,7 +27,7 @@
 #error(do not include directly, include `idlib/idlib.hpp` instead)
 #endif
 
-#include "idlib/utility/internal/header.hpp"
+#include "idlib/utility/header.in"
 
 /// 17.5.2.1.3 [bitmask.types] of the C++ Standard: 
 /// Bitmask types shall provide definitions for the operators |, &, ^, ~, |=, &= and ^= with the expected semantics.
@@ -42,7 +42,7 @@ struct enable_bitmask_operators
     static constexpr bool enable = false;
 };
 
-#include "idlib/utility/internal/footer.hpp"
+#include "idlib/utility/footer.in"
 
 /// Bitwise |.
 template<typename E>

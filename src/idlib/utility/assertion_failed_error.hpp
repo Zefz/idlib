@@ -27,7 +27,7 @@
 
 #include "idlib/utility/runtime_error.hpp"
 
-#include "idlib/utility/internal/header.hpp"
+#include "idlib/utility/header.in"
 
 /// @brief Exception for an assertion failed error.
 class assertion_failed_error : public runtime_error
@@ -71,4 +71,4 @@ public:
 
 }; // class assertion_failed_error
 
-#include "idlib/utility/internal/footer.hpp"
+#include "idlib/utility/footer.in"

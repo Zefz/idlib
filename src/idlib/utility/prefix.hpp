@@ -25,7 +25,7 @@
 
 #include <string>
 
-#include "idlib/utility/internal/header.hpp"
+#include "idlib/utility/header.in"
 
 /// @brief Get if a string is a prefix of another string.
 /// @param w the string
@@ -49,4 +49,4 @@ bool is_true_prefix(const std::basic_string<CharType>& w, const std::basic_strin
     return std::equal(v.begin(), v.end(), w.begin());
 }
 
-#include "idlib/utility/internal/footer.hpp"
+#include "idlib/utility/footer.in"

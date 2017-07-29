@@ -27,7 +27,7 @@
 
 #include "idlib/utility/runtime_error.hpp"
 
-#include "idlib/utility/internal/header.hpp"
+#include "idlib/utility/header.in"
 
 /// @brief An exception indicating an invalid argument error.
 /// @detail Use this exception only if there is no exception type available which is more specific.
@@ -59,4 +59,4 @@ public:
 
 }; // class invalid_argument_error
 
-#include "idlib/utility/internal/footer.hpp"
+#include "idlib/utility/footer.in"

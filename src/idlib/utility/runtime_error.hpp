@@ -27,7 +27,7 @@
 
 #include "idlib/utility/exception.hpp"
 
-#include "idlib/utility/internal/header.hpp"
+#include "idlib/utility/header.in"
 
 /// @brief A generic exception indicating a runtime error.
 /// @detail Use this exception only if there is no exception type available which is more specific.
@@ -71,4 +71,4 @@ private:
 
 }; // struct runtime_error
 
-#include "idlib/utility/internal/footer.hpp"
+#include "idlib/utility/footer.in"

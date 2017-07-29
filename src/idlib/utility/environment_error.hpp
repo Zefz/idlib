@@ -27,7 +27,7 @@
 
 #include "idlib/utility/runtime_error.hpp"
 
-#include "idlib/utility/internal/header.hpp"
+#include "idlib/utility/header.in"
 
 /// @brief A generic exception to propagate errors of the environment (e.g. SDL, Win32, OSX, Linux, ...)
 /// to the application level. Use this exception as well if the environment does not follow its
@@ -75,4 +75,4 @@ public:
 
 }; // class environment_error
 
-#include "idlib/utility/internal/footer.hpp"
+#include "idlib/utility/footer.in"

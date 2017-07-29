@@ -27,7 +27,7 @@
 
 #include "idlib/utility/invalid_argument_error.hpp"
 
-#include "idlib/utility/internal/header.hpp"
+#include "idlib/utility/header.in"
 
 /// @brief An exception indicating an argument null error.
 /// @detail Use this exception only if there is no exception type available which is more specific.
@@ -59,4 +59,4 @@ public:
 
 }; // class null_error
 
-#include "idlib/utility/internal/footer.hpp"
+#include "idlib/utility/footer.in"

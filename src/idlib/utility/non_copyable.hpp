@@ -25,7 +25,7 @@
 #error(do not include directly, include `idlib/idlib.hpp` instead)
 #endif
 
-#include "idlib/utility/internal/header.hpp"
+#include "idlib/utility/header.in"
 
 /// @brief Non-copyable mixing.
 /// @detail Inherit from this class to make the inheriting descendant classes non-copyable.
@@ -45,4 +45,4 @@ public:
     non_copyable& operator=(const non_copyable&) = delete;
 }; // class non_copyable
 
-#include "idlib/utility/internal/footer.hpp"
+#include "idlib/utility/footer.in"

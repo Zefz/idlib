@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-namespace id {
+#include "idlib/utility/header.in"
 
 /// @brief Swap the Bytes of an @a int8_t value.
 /// @param x the @a int8_t value
@@ -54,4 +54,4 @@ float swap_bytes(float x);
 /// @return the @a double value with its Bytes swapped
 double swap_bytes(double x);
 
-} // namespace id
+#include "idlib/utility/footer.in"

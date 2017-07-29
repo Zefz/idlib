@@ -23,7 +23,7 @@
 
 #include "idlib/utility/is_any_of.hpp"
 
-#include "idlib/utility/internal/header.hpp"
+#include "idlib/utility/header.in"
 
 /// @brief Functor for converting a value to a string.
 /// @tparam Type the type
@@ -41,4 +41,4 @@ struct to_string<Type, std::enable_if_t<is_any_of<Type, int, long, long long, un
 	}
 }; // struct to_string
 
-#include "idlib/utility/internal/footer.hpp"
+#include "idlib/utility/footer.in"

@@ -325,8 +325,6 @@
     <ClInclude Include="src\idlib\utility\assertion_failed_error.hpp" />
     <ClInclude Include="src\idlib\utility\environment_error.hpp" />
     <ClInclude Include="src\idlib\utility\exception.hpp" />
-    <ClInclude Include="src\idlib\utility\internal\footer.hpp" />
-    <ClInclude Include="src\idlib\utility\internal\header.hpp" />
     <ClInclude Include="src\idlib\utility\invalid_argument_error.hpp" />
     <ClInclude Include="src\idlib\utility\is_any_of.hpp" />
     <ClInclude Include="src\idlib\utility\lock_failed_error.hpp" />
@@ -446,6 +444,8 @@
     <ClInclude Include="src\idlib\idlib.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="src\idlib\utility\footer.in" />
+    <None Include="src\idlib\utility\header.in" />
     <None Include="src\idlib\CurrentFunction.inline" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -21,7 +21,7 @@
 
 #include "idlib/utility/to_upper.hpp"
 
-#include "idlib/utility/internal/header.hpp"
+#include "idlib/utility/header.in"
 
 template void to_upper_in_situ<char>(char& x, const std::locale& lc);
 template void to_upper_in_situ<wchar_t>(wchar_t& x, const std::locale& lc);
@@ -35,4 +35,4 @@ template void to_upper_in_situ<wchar_t>(std::basic_string<wchar_t>& w, const std
 template std::basic_string<char> to_upper<char>(std::basic_string<char> w, const std::locale& lc);
 template std::basic_string<wchar_t> to_upper<wchar_t>(std::basic_string<wchar_t> w, const std::locale& lc);
 
-#include "idlib/utility/internal/footer.hpp"
+#include "idlib/utility/footer.in"

@@ -27,7 +27,7 @@
 
 #include "idlib/utility/runtime_error.hpp"
 
-#include "idlib/utility/internal/header.hpp"
+#include "idlib/utility/header.in"
 
 /// @brief An exception indicating a lock failed error.
 class lock_failed_error : public runtime_error
@@ -58,4 +58,4 @@ public:
 
 }; // class lock_failed_error
 
-#include "idlib/utility/internal/footer.hpp"
+#include "idlib/utility/footer.in"

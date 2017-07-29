@@ -27,7 +27,7 @@
 
 #include "idlib/utility/invalid_argument_error.hpp"
 
-#include "idlib/utility/internal/header.hpp"
+#include "idlib/utility/header.in"
 
 /// @brief Exception indicating an argument out of bounds error.
 class out_of_bounds_error : public invalid_argument_error
@@ -58,4 +58,4 @@ public:
 
 }; // class out_of_bounds_error
 
-#include "idlib/utility/internal/footer.hpp"
+#include "idlib/utility/footer.in"

@@ -27,7 +27,7 @@
 
 #include "idlib/utility/platform.hpp"
 
-#include "idlib/utility/internal/header.hpp"
+#include "idlib/utility/header.in"
 
 inline std::string sanitize(const std::string& source)
 {
@@ -107,4 +107,4 @@ public:
 
 }; // struct exception
 
-#include "idlib/utility/internal/footer.hpp"
+#include "idlib/utility/footer.in"
