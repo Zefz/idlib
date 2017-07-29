@@ -27,6 +27,7 @@
 #include "idlib/parsing_expressions/option.hpp"
 #include "idlib/parsing_expressions/sequence.hpp"
 #include "idlib/parsing_expressions/repetition.hpp"
+#include "idlib/parsing_expressions/end_of_input.hpp"
 #include "idlib/parsing_expressions/predefined.hpp"
 
 #undef IDLIB_PRIVATE

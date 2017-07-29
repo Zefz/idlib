@@ -571,6 +571,9 @@
     <ClInclude Include="src\idlib\parsing_expressions\internal\constructor_access_token.hpp">
       <Filter>Header Files\parsing_expressions\internal</Filter>
     </ClInclude>
+    <ClInclude Include="src\idlib\parsing_expressions\end_of_input.hpp">
+      <Filter>Header Files\parsing_expressions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\idlib\CurrentFunction.inline">
