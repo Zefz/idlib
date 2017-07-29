@@ -69,6 +69,9 @@
     <Filter Include="Header Files\parsing_expressions\internal">
       <UniqueIdentifier>{b4342126-d708-41a4-8224-2677160d0a80}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\range">
+      <UniqueIdentifier>{9a620f5e-be9c-492f-a81f-efcfd23c5d35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\idlib\idlib.cpp">
@@ -573,6 +576,12 @@
     </ClInclude>
     <ClInclude Include="src\idlib\parsing_expressions\end_of_input.hpp">
       <Filter>Header Files\parsing_expressions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\range\iterator_range.hpp">
+      <Filter>Header Files\range</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\range.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -298,7 +298,9 @@
     <ClCompile Include="src\idlib\idlib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\idlib\range.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\end_of_input.hpp" />
+    <ClInclude Include="src\idlib\range\iterator_range.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\internal\constructor_access_token.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\match.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\any_sym.hpp" />

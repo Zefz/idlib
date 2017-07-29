@@ -60,4 +60,7 @@
 // utility library.
 #include "idlib/utility.hpp"
 
+// range library.
+#include "idlib/range.hpp"
+
 #undef IDLIB_PRIVATE
