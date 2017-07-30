@@ -26,6 +26,9 @@
 // CRTP.
 #include "idlib/crtp.hpp"
 
+// parsing expressions.
+#include "idlib/parsing_expressions.hpp"
+
 // Text utilities.
 #include "idlib/text_range.hpp"
 

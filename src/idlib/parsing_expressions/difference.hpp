@@ -25,53 +25,53 @@
 
 /// @internal
 /// @brief See id::difference for more information.
-/// @tparam Expr1 the expression type of the first expression
-/// @tparam Expr2 the expression type of the second expression
-template <typename Expr1, typename Expr2>
-class difference_expr
+/// @tparam Expression1 the expression type of the first expression
+/// @tparam Expression2 the expression type of the second expression
+template <typename Expression1, typename Expression2>
+class difference_expression
 {
 private:
     /// @brief The first expression.
-    Expr1 m_expr1;
+    Expression1 m_expression1;
     /// @brief The second expression.
-    Expr2 m_expr2;
+    Expression2 m_expression2;
 public:
     /// @internal
     /// @brief Construct this parsing expression.
-    /// @param expr1 the first expression
-    /// @param expr2 the second expression
-    difference_expr(Expr1 expr1, Expr2 expr2) :
-        m_expr1(expr1), m_expr2(expr2)
+    /// @param expression1 the first expression
+    /// @param expression2 the second expression
+    difference_expression(Expression1 expression1, Expression2 expression2) :
+        m_expression1(expression1), m_expression2(expression2)
     {}
 
-    template <typename It>
-    match<std::decay_t<It>> operator()(It at, It end) const
+    template <typename Iterator>
+    match<std::decay_t<Iterator>> operator()(Iterator at, Iterator end) const
     {
-        auto result1 = m_expr1(at, end);
-        if (result1.first)
+        auto result1 = m_expression1(at, end);
+        if (result1)
         {
-            auto result2 = m_expr2(at, end);
-            if (!result2.first)
+            auto result2 = m_expression2(at, end);
+            if (!result2)
             {
                 return result1;
             }
         }
-        return make_match(false, at);
+		return make_match(false, at, at);
     }
 
 }; // class difference_expr
 
 /// @brief Create a difference of a parsing expression and another parsing expression.
-/// The difference of a parsing expression and another parsing expression accepts if
-/// the former accepts and the latter does not accept.
-/// @tparam Expr the type of the expression
-/// @param expr1 the first expression
-/// @param expr2 the second expression
+/// The difference of a parsing expression and another parsing expression accepts if the former accepts and the latter does not accept.
+/// @tparam Expression1 the type of the first expression
+/// @tparam Expression2 the type of the second expression
+/// @param expression1 the first expression
+/// @param expression2 the second expression
 /// @return the parsing expression
-template <typename Expr1, typename Expr2>
-difference_expr<Expr1, Expr2> difference(Expr1 expr1, Expr2 expr2)
+template <typename Expression1, typename Expression2>
+difference_expression<Expression1, Expression2> difference(Expression1 expression1, Expression2 expression2)
 {
-    return difference_expr<Expr1, Expr2>(expr1, expr2);
+    return difference_expression<Expression1, Expression2>(expression1, expression2);
 }
 
 #include "idlib/parsing_expressions/footer.in"

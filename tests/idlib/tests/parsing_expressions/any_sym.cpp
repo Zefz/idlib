@@ -16,7 +16,7 @@
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
 #include "gtest/gtest.h"
-#include "idlib/parsing_expressions/include.hpp"
+#include "idlib/parsing_expressions.hpp"
 
 #include "idlib/tests/parsing_expressions/header.in"
 
@@ -36,18 +36,21 @@ TEST(any_sym_testing, test_acceptance)
     };
     for (const auto& word : words)
     {
-        auto s = word.first.cbegin();
-        auto e = word.first.cend();
-        ASSERT_EQ(word.second, p(s, e).first);
+        auto s = word.first.cbegin(),
+			 e = word.first.cend();
+		auto m = parse(p, s, e);
+        ASSERT_EQ(word.second, static_cast<bool>(m));
         if (word.second)
         {
-            ASSERT_EQ(p(s, e).second, e);
+			ASSERT_EQ(m.range().begin(), s);
+            ASSERT_EQ(m.range().end(), e);
         }
         else
         {
-            ASSERT_EQ(p(s,e).second, s);
+			ASSERT_EQ(m.range().begin(), s);
+            ASSERT_EQ(m.range().end(), s);
         }
-        ASSERT_FALSE(p(p(s, e).second, e).first);
+        ASSERT_FALSE(parse(p, m.range().end(), e));
     }
 }
 

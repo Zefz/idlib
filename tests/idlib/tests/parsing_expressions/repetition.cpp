@@ -16,7 +16,7 @@
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
 #include "gtest/gtest.h"
-#include "idlib/parsing_expressions/include.hpp"
+#include "idlib/parsing_expressions.hpp"
 
 #include "idlib/tests/parsing_expressions/header.in"
 
@@ -36,8 +36,8 @@ TEST(repetition_testing, test_repetition)
     {
         auto s = word.cbegin();
         auto e = word.cend();
-        ASSERT_TRUE(p(s, e).first);
-        ASSERT_EQ(p(s, e).second, word.cend());
+        ASSERT_TRUE(parse(p, s, e));
+        ASSERT_EQ(parse(p, s, e).range().end(), word.cend());
     }
 }
 

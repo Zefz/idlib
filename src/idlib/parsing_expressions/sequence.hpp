@@ -53,7 +53,7 @@ private:
                 >
         ) const
     {
-        return make_match(true, at);
+		return make_match(true, id::make_iterator_range(at, at));
     }
 
     // Drives the iteration.
@@ -81,11 +81,11 @@ private:
         ) const
     {
         auto result = f(std::get<Index>(t), at, end);
-        if (result.first)
+        if (result)
         {
-            return for_each(std::forward<Tuple>(t), f, result.second, end, std::integral_constant<size_t, Index + 1>()); // Advance.
+            return for_each(std::forward<Tuple>(t), f, result.range().end(), end, std::integral_constant<size_t, Index + 1>()); // Advance.
         }
-        return make_match(false, at);
+		return make_match(false, id::make_iterator_range(at, at));
     }
 
 public:
@@ -114,34 +114,34 @@ public:
 /// @brief See id::sequence for more information.
 /// @tparam Expr the type of the first expression
 /// @tparam Exprs ... the type of the remaining expressions
-template <typename Expr, typename ... Exprs>
-struct sequence_expr : public internal::n_ary_expr<tuple_op_sequence, Expr, Exprs ...>
+template <typename Expression, typename ... Expressions>
+struct sequence_expr : public internal::n_ary_expr<tuple_op_sequence, Expression, Expressions ...>
 {
 public:
     /// @internal
     /// @brief Construct this parsing expression.
-    /// @param expr the first expression
-    /// @param exprs the remaining expressions
-    sequence_expr(internal::constructor_access_token, const Expr& expr, const Exprs& ... exprs) :
-        internal::n_ary_expr<tuple_op_sequence, Expr, Exprs ...>(internal::constructor_access_token{}, expr, exprs ...)
+    /// @param expression the first expression
+    /// @param expressions the remaining expressions
+    sequence_expr(internal::constructor_access_token, const Expression& expression, const Expressions& ... expressions) :
+        internal::n_ary_expr<tuple_op_sequence, Expression, Expressions ...>(internal::constructor_access_token{}, expression, expressions ...)
     {}
 
-    template <typename It>
-    match<std::decay_t<It>> operator()(It at, It end) const
+    template <typename Iterator>
+    match<std::decay_t<Iterator>> operator()(Iterator at, Iterator end) const
     {
         static const tuple_op_sequence op;
         auto result = op.for_each(this->m_exprs,
-                                  [](const auto& expr, It at, It end) 
+                                  [](const auto& expr, Iterator at, Iterator end) 
                                     {
                                         return expr(at, end);
                                     },
                                   at, 
                                   end);
-        if (result.first)
+        if (result)
         {
-            return result;
+			return make_match(true, id::make_iterator_range(at, result.range().end()));
         }
-        return make_match(false, at);
+		return make_match(false, id::make_iterator_range(at, at));
     }
 };
 
@@ -150,15 +150,15 @@ public:
 /// @detail That is, the @a sequence of @code{n > 0} parsing expressions @code{e1}, ..., @code{en}
 /// is defined as
 /// @code{sequence(e1, ..., en) = e1 ...  en}.
-/// @tparam Expr the type of the first expression
-/// @tparam Exprs ... the types of the remaining expressions
-/// @param expr the first expression
-/// @param exprs the remaining expressions
+/// @tparam Expression the type of the first expression
+/// @tparam Expressions ... the types of the remaining expressions
+/// @param expression the first expression
+/// @param expressions the remaining expressions
 /// @return the parsing expression
-template <typename Expr, typename ... Exprs>
-sequence_expr<std::decay_t<Expr>, std::decay_t<Exprs> ...> sequence(Expr&& expr, Exprs&& ... exprs)
+template <typename Expression, typename ... Expressions>
+sequence_expr<std::decay_t<Expression>, std::decay_t<Expressions> ...> sequence(Expression&& expression, Expressions&& ... expressions)
 {
-    return sequence_expr<std::decay_t<Expr>, std::decay_t<Exprs> ...>(internal::constructor_access_token{}, std::forward<Expr>(expr), std::forward<Exprs>(exprs) ...);
+    return sequence_expr<std::decay_t<Expression>, std::decay_t<Expressions> ...>(internal::constructor_access_token{}, std::forward<Expression>(expression), std::forward<Expressions>(expressions) ...);
 }
 
 #include "idlib/parsing_expressions/footer.in"

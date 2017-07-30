@@ -16,7 +16,7 @@
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
 #include "gtest/gtest.h"
-#include "idlib/parsing_expressions/include.hpp"
+#include "idlib/parsing_expressions.hpp"
 
 #include "idlib/tests/parsing_expressions/header.in"
 
@@ -37,9 +37,9 @@ TEST(qualified_name_testing, test_acceptance)
     {
         auto s = word.cbegin();
         auto e = word.cend();
-        ASSERT_EQ(true, p(s, e).first);
-        ASSERT_EQ(p(s, e).second, e);
-        ASSERT_EQ(false, p(p(s, e).second, e).first);
+        ASSERT_EQ(true, static_cast<bool>(p(s, e)));
+        ASSERT_EQ(parse(p, s, e).range().end(), e);
+        ASSERT_EQ(false, static_cast<bool>(p(p(s, e).range().end(), e)));
     }
 }
 
@@ -58,8 +58,8 @@ TEST(qualified_name, test_rejection)
     {
         auto s = std::get<0>(word).cbegin();
         auto e = std::get<0>(word).cend();
-        ASSERT_EQ(std::get<1>(word), p(s, e).first);
-        auto a = p(s,e).second;
+        ASSERT_EQ(std::get<1>(word), static_cast<bool>(p(s, e)));
+        auto a = p(s,e).range().end();
         auto b = std::get<0>(word).cbegin() + std::get<2>(word);
         ASSERT_EQ(a, b);
     }

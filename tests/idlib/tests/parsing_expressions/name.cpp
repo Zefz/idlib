@@ -16,7 +16,7 @@
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
 #include "gtest/gtest.h"
-#include "idlib/parsing_expressions/include.hpp"
+#include "idlib/parsing_expressions.hpp"
 
 #include "idlib/tests/parsing_expressions/header.in"
 
@@ -26,7 +26,8 @@ using string = std::basic_string<char>;
 /// @code{'x.'} was accepted.
 TEST(name_expression_regression_testing, test_name_expression_regression)
 {
-    auto p = id::parsing_expressions::name<char>();
+	using namespace id::parsing_expressions;
+    auto p = name<char>();
     const std::vector<string> words
     {
         "x.",
@@ -35,8 +36,8 @@ TEST(name_expression_regression_testing, test_name_expression_regression)
     {
         auto s = word.cbegin();
         auto e = word.cend();
-        ASSERT_TRUE(p(s, e).first);
-        ASSERT_TRUE(p(s, e).second < word.cend());
+        ASSERT_TRUE(parse(p, s, e));
+        ASSERT_TRUE(parse(p, s, e).range().end() < word.cend());
     }
 }
 
@@ -46,11 +47,13 @@ TEST(name_expression_testing, test_name_expression)
     auto p = id::parsing_expressions::name<char>();
     for (const auto& word : words)
     {
-        auto s = word.cbegin();
-        auto e = word.cend();
-        ASSERT_TRUE(p(s, e).first);
-        ASSERT_EQ(p(s, e).second, e);
-        ASSERT_FALSE(p(p(s, e).second, e).first);
+        auto s = word.cbegin(),
+			 e = word.cend();
+		auto m = p(s, e);
+        ASSERT_TRUE(m);
+		ASSERT_EQ(m.range().begin(), s);
+        ASSERT_EQ(m.range().end(), e);
+        ASSERT_FALSE(parse(p, m.range().end(), e));
     }
 }
 

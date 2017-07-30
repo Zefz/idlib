@@ -53,13 +53,13 @@ public:
     match<std::decay_t<It>> operator()(It at, It end) const
     {
         auto result = m_expr(at, end);
-        if (result.first)
+        if (result)
         {
-            return make_match(true, result.second);
+			return result;
         }
         else
         {
-            return make_match(true, at);
+			return make_match(true, at, at);
         }
     }
 };

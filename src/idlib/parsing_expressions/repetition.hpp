@@ -52,13 +52,13 @@ public:
     template <typename It>
     match<std::decay_t<It>> operator()(It at, It end) const
     {
-        auto result = make_match(true, at);
+		auto result = make_match(true, at, at);
         while (true)
         {
-            auto next_result = m_expr(result.second, end);
-            if (next_result.first)
+            auto next_result = m_expr(result.range().end(), end);
+            if (next_result)
             {
-                result = next_result;
+                result = make_match(true, at, next_result.range().end());
             }
             else
             {

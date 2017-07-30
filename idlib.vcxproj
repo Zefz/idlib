@@ -298,6 +298,9 @@
     <ClCompile Include="src\idlib\idlib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\idlib\parsing_expressions.hpp" />
+    <ClInclude Include="src\idlib\parsing_expressions\action.hpp" />
+    <ClInclude Include="src\idlib\parsing_expressions\parse.hpp" />
     <ClInclude Include="src\idlib\iterator.hpp" />
     <ClInclude Include="src\idlib\range.hpp" />
     <ClInclude Include="src\idlib\iterator\transform_iterator.hpp" />
@@ -434,7 +437,6 @@
     <ClInclude Include="src\idlib\parsing_expressions\sequence.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\ordered_choice.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\predefined.hpp" />
-    <ClInclude Include="src\idlib\parsing_expressions\include.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\sym.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\sym_range.hpp" />
     <ClInclude Include="src\idlib\color\color.hpp" />

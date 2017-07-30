@@ -15,46 +15,24 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-/// @file idlib/parsing_expressions/any_sym.hpp
-/// @brief "any symbol" parsing expression.
+/// @file idlib/parsing_expressions/parse.hpp
+/// @brief "parse" function
 /// @author Michael Heilmann
 
 #include "idlib/parsing_expressions/match.hpp"
 
 #include "idlib/parsing_expressions/header.in"
 
-/// @internal
-/// @see id::any_sym for more information.
-/// @tparam Sym the symbol type
-template <typename Sym>
-class any_sym_expr
+/// @brief Perform parsing.
+/// @tparam Expression the type of the parsing grammar expression
+/// @tparam Iterator the type of the input iterator
+/// @param expression the parsing grammar expression of the parse
+/// @param begin, end iterators to the beginning and the ending of the input of the parse
+/// @return the match of the parse
+template <typename Expression, typename Iterator>
+decltype(auto) parse(const Expression& expression, const Iterator& begin, const Iterator& end)
 {
-public:
-    /// @internal
-    /// @brief Construct this parsing expression.
-	any_sym_expr()
-	{}
-
-    template <typename Iterator>
-    match<std::decay_t<Iterator>> operator()(Iterator at, Iterator end) const
-    {
-		if (at == end)
-		{
-			return make_match(false, at, at);
-		}
-		return make_match(true, at, std::next(at));
-    }
-
-}; // class any_sym_expr
-
-/// @brief Create an any symbol parsing expression.
-/// The any symbol parsing expression accepts any symbol.
-/// @return the parsing expression
-/// @tparam Sym the symbol type
-template <typename Sym>
-any_sym_expr<Sym> any_sym()
-{
-    return any_sym_expr<Sym>();
+	return expression(begin, end);
 }
 
 #include "idlib/parsing_expressions/footer.in"

@@ -31,45 +31,45 @@
 
 /// @internal
 /// @brief Parsing expression accepting a symbol.
-/// @tparam Sym the symbol type
-template <typename Sym>
+/// @tparam Symbol the symbol type
+template <typename Symbol>
 struct sym_expr
 {
 private:
     /// @internal
     /// @brief The symbol.
-    Sym m_x;
+    Symbol m_x;
 
 public:
     /// @internal
     /// @brief Construct this parsing expression.
     /// @param x the symbol
-    sym_expr(Sym x) :
+    sym_expr(Symbol x) :
         m_x(x)
     {}
 
-    template <typename It>
-    match<std::decay_t<It>> operator()(It at, It end) const
+    template <typename Iterator>
+    match<std::decay_t<Iterator>> operator()(Iterator at, Iterator end) const
     {
         if (at != end && m_x == *at)
         {
-            return make_match(true, ++at);
+			return make_match(true, at, std::next(at));
         }
         else
         {
-            return make_match(false, at);
+			return make_match(false, at, at);
         }
     }
 };
 
 /// @brief Create a parsing expression accepting a symbol.
-/// @tparam Sym the symbol type
-/// @param sym the symbol
+/// @tparam Symbol the symbol type
+/// @param symbol the symbol
 /// @return the parsing expression
-template <typename Sym>
-sym_expr<Sym> sym(Sym sym)
+template <typename Symbol>
+sym_expr<Symbol> sym(Symbol symbol)
 {
-    return sym_expr<Sym>(sym);
+    return sym_expr<Symbol>(symbol);
 }
 
 #include "idlib/parsing_expressions/footer.in"

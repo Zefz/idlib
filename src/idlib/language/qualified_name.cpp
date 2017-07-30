@@ -52,7 +52,7 @@ qualified_name::qualified_name(const std::string& string) :
     auto c = string.cbegin(),
          e = string.cend();
     auto r = p(string.cbegin(), string.cend());
-    if (!r.first || r.second != string.cend()) // The check r.second != string.cend() is actually not required.
+    if (!r || (r.range().begin() != string.cbegin() || r.range().end() != string.cend())) // The check r.iterator() != string.cend() is actually not required.
     {
         no_qualified_name(__FILE__, __LINE__, location("string `" + string + "`", 1), string);
     }

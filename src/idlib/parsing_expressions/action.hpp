@@ -15,29 +15,26 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
-#include "gtest/gtest.h"
-#include "idlib/parsing_expressions.hpp"
+/// @file idlib/parsing_expressions/action.hpp
+/// @brief Basic definitions for actions.
+/// @author Michael Heilmann
 
-#include "idlib/tests/parsing_expressions/header.in"
+#pragma once
 
-using string = std::basic_string<char>;
-template <typename T>
-using vector = std::vector<T>;
+#include "idlib/parsing_expressions/header.in"
 
-TEST(sequence_testing, test_sequence)
+template <typename Expression>
+struct action
 {
-    auto p = id::parsing_expressions::sequence(id::parsing_expressions::sym('a'), id::parsing_expressions::sym('b'));
-    const vector<string> words
-    {
-        "ab",
-    };
-    for (const auto& word : words)
-    {
-        auto s = word.cbegin();
-        auto e = word.cend();
-        ASSERT_TRUE(parse(p, s, e));
-        ASSERT_EQ(parse(p,s, e).range().end(), word.cend());
-    }
-}
+private:
+	Expression m_expression;
+public:
+	template <typename Iterator>
+	match<std::decay_t<Iterator>> operator()(Iterator at, Iterator end) const
+	{
+		auto result = m_expression(at, end);
+		return result;
+	}
+}; // struct action
 
-#include "idlib/tests/parsing_expressions/footer.in"
+#include "idlib/parsing_expressions/footer.in"

@@ -16,7 +16,7 @@
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
 #include "gtest/gtest.h"
-#include "idlib/parsing_expressions/include.hpp"
+#include "idlib/parsing_expressions.hpp"
 
 #include "idlib/tests/parsing_expressions/header.in"
 
@@ -28,9 +28,9 @@ TEST(period_expression_testing, test_period_expression)
     //
     w = std::string(".");
     s = w.cbegin(); e = w.cend();
-    ASSERT_TRUE(p(s, e).first);
-    ASSERT_EQ(p(s,e).second, e);
-    ASSERT_FALSE(p(p(s,e).second, e).first);
+    ASSERT_TRUE(parse(p, s, e));
+    ASSERT_EQ(parse(p, s,e).range().end(), e);
+    ASSERT_FALSE(parse(p, parse(p,s,e).range().end(), e));
 }
 
 TEST(whitespace_expression_testing, test_whitespace_expression)
@@ -41,15 +41,15 @@ TEST(whitespace_expression_testing, test_whitespace_expression)
     //
     w = std::string(" ");
     s = w.cbegin(); e = w.cend();
-    ASSERT_TRUE(p(s, e).first);
-    ASSERT_EQ(p(s,e).second, e);
-    ASSERT_FALSE(p(p(s,e).second, e).first);
+    ASSERT_TRUE(parse(p, s, e));
+    ASSERT_EQ(parse(p, s,e).range().end(), e);
+    ASSERT_FALSE(parse(p, parse(p, s,e).range().end(), e));
     //
     w = std::string("\t");
     s = w.cbegin(); e = w.cend();
-    ASSERT_TRUE(p(s, e).first);
-    ASSERT_EQ(p(s,e).second, e);
-    ASSERT_FALSE(p(p(s,e).second, e).first);
+    ASSERT_TRUE(parse(p, s, e));
+    ASSERT_EQ(parse(p, s,e).range().end(), e);
+    ASSERT_FALSE(parse(p, parse(p,s,e).range().end(), e));
 }
 
 TEST(newline_expression_testing, test_newline_expression)
@@ -60,15 +60,15 @@ TEST(newline_expression_testing, test_newline_expression)
     //
     w = std::string("\n");
     s = w.cbegin(); e = w.cend();
-    ASSERT_TRUE(p(s, e).first);
-    ASSERT_EQ(p(s,e).second, e);
-    ASSERT_FALSE(p(p(s,e).second, e).first);
+    ASSERT_TRUE(p(s, e));
+    ASSERT_EQ(p(s,e).range().end(), e);
+    ASSERT_FALSE(p(p(s,e).range().end(), e));
     //
     w = std::string("\r");
     s = w.cbegin(); e = w.cend();
-    ASSERT_TRUE(p(s, e).first);
-    ASSERT_EQ(p(s,e).second, e);
-    ASSERT_FALSE(p(p(s,e).second, e).first);
+    ASSERT_TRUE(p(s, e));
+    ASSERT_EQ(p(s,e).range().end(), e);
+    ASSERT_FALSE(p(p(s,e).range().end(), e));
 }
 
 TEST(digit_symbol_testing, test_digit_expression)
@@ -78,9 +78,9 @@ TEST(digit_symbol_testing, test_digit_expression)
     {
         auto w = std::string(1, symbol);
         auto s = w.cbegin(), e = w.cend();
-        ASSERT_TRUE(p(s, e).first);
-        ASSERT_EQ(p(s,e).second, e);
-        ASSERT_FALSE(p(p(s,e).second, e).first);
+        ASSERT_TRUE(p(s, e));
+        ASSERT_EQ(p(s,e).range().end(), e);
+        ASSERT_FALSE(p(p(s,e).range().end(), e));
     }
 }
     
@@ -91,9 +91,9 @@ TEST(alpha_lowercase_expression_testing, test_alpha_lowercase_expression)
     {
         auto w = std::string(1, symbol);
         auto s = w.cbegin(), e = w.cend();
-        ASSERT_TRUE(p(s, e).first);
-        ASSERT_EQ(p(s,e).second, e);
-        ASSERT_FALSE(p(p(s,e).second, e).first);
+        ASSERT_TRUE(p(s, e));
+        ASSERT_EQ(p(s,e).range().end(), e);
+        ASSERT_FALSE(p(p(s,e).range().end(), e));
     }
 }
 
@@ -104,9 +104,9 @@ TEST(alpha_uppercase_expression_testing, test_alpha_uppercase_expression)
     {
         auto w = std::string(1, symbol);
         auto s = w.cbegin(), e = w.cend();
-        ASSERT_TRUE(p(s, e).first);
-        ASSERT_EQ(p(s,e).second, e);
-        ASSERT_FALSE(p(p(s,e).second, e).first);
+        ASSERT_TRUE(p(s, e));
+        ASSERT_EQ(p(s,e).range().end(), e);
+        ASSERT_FALSE(p(p(s,e).range().end(), e));
     }
 }
 
@@ -118,9 +118,9 @@ TEST(single_symbol_testing, test_single_symbol)
         auto p = id::parsing_expressions::sym(symbol);
         auto w = std::string(1, symbol);
         auto s = w.cbegin(), e = w.cend();
-        ASSERT_TRUE(p(s, e).first);
-        ASSERT_EQ(p(s, e).second, e);
-        ASSERT_FALSE(p(p(s, e).second, e).first);
+        ASSERT_TRUE(p(s, e));
+        ASSERT_EQ(p(s, e).range().end(), e);
+        ASSERT_FALSE(p(p(s, e).range().end(), e));
     }
     //
     for (char symbol = 'A'; symbol <= 'Z'; ++symbol)
@@ -128,9 +128,9 @@ TEST(single_symbol_testing, test_single_symbol)
         auto p = id::parsing_expressions::sym(symbol);
         auto w = std::string(1, symbol);
         auto s = w.cbegin(), e = w.cend();
-        ASSERT_TRUE(p(s, e).first);
-        ASSERT_EQ(p(s, e).second, e);
-        ASSERT_FALSE(p(p(s, e).second, e).first);
+        ASSERT_TRUE(p(s, e));
+        ASSERT_EQ(p(s, e).range().end(), e);
+        ASSERT_FALSE(p(p(s, e).range().end(), e));
     }
 }
 
@@ -142,18 +142,18 @@ TEST(alpha_expression_testing, test_alpha_expression)
     {
         auto w = std::string(1, symbol);
         auto s = w.cbegin(), e = w.cend();
-        ASSERT_TRUE(p(s, e).first);
-        ASSERT_EQ(p(s,e).second, e);
-        ASSERT_FALSE(p(p(s,e).second, e).first);
+        ASSERT_TRUE(p(s, e));
+        ASSERT_EQ(p(s,e).range().end(), e);
+        ASSERT_FALSE(p(p(s,e).range().end(), e));
     }
     //
     for (char symbol = 'A'; symbol <= 'Z'; ++symbol)
     {
         auto w = std::string(1, symbol);
         auto s = w.cbegin(), e = w.cend();
-        ASSERT_TRUE(p(s, e).first);
-        ASSERT_EQ(p(s,e).second, e);
-        ASSERT_FALSE(p(p(s,e).second, e).first);
+        ASSERT_TRUE(p(s, e));
+        ASSERT_EQ(p(s,e).range().end(), e);
+        ASSERT_FALSE(p(p(s,e).range().end(), e));
     }
 }
 

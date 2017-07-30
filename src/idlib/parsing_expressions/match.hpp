@@ -25,19 +25,45 @@
 #error(do not include directly, include `idlib/parsing_expressions/include.hpp` instead)
 #endif
 
-#include "idlib/utility/platform.hpp"
+#include "idlib/range.hpp"
 
 #include "idlib/parsing_expressions/header.in"
 
 template <typename Iterator>
-using match = std::pair<bool, Iterator>;
+struct match
+{
+	using iterator_type = Iterator;
+private:
+	bool m_outcome;
+	id::iterator_range<iterator_type> m_range;
+public:
+	match(bool outcome, id::iterator_range<iterator_type> range) :
+		m_outcome(outcome), m_range(range)
+	{}
+	/// @brief Get the range of this match.
+	/// @return this range of this match
+	const id::iterator_range<iterator_type>& range() const
+	{
+		return m_range;
+	}
+	/// @brief Get if the match is a success or a failure.
+	/// @return @a true if the match is a success, @a false if the match is  failure
+	explicit operator bool() const noexcept
+	{
+		return m_outcome;
+	}
+};
 
 template <typename Iterator>
-inline constexpr match<std::decay_t<Iterator>> make_match(bool outcome, Iterator&& end)
+inline constexpr match<std::decay_t<Iterator>> make_match(bool outcome, const Iterator& begin, const Iterator& end)
 {
-    return std::make_pair(outcome, std::forward<Iterator>(end));
+	return match<std::decay_t<Iterator>>(outcome, id::make_iterator_range(begin, end));
 }
 
-
+template <typename Range>
+inline constexpr match<typename Range::iterator_type> make_match(bool outcome, const Range& range)
+{
+    return match<typename Range::iterator_type>(outcome, range);
+}
 
 #include "idlib/parsing_expressions/footer.in"

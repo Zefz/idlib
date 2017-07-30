@@ -51,7 +51,7 @@ private:
                 >
         ) const
     {
-        return make_match(false, at);
+		return make_match(false, at, at);
     }
 
     // Drives the iteration.
@@ -79,7 +79,7 @@ private:
         ) const
     {
         auto result = f(std::get<Index>(t), at, end);
-        if (result.first)
+        if (result)
         {
             return result;
         }
@@ -133,7 +133,7 @@ public:
                                   [](const auto& expr, It at, It end)
                                     {
                                         auto result = expr(at, end);
-                                        return result.first ? result : std::make_pair(false, at);
+										return result ? result : make_match(false, at, at);
                                     }, 
                                   at, 
                                   end);

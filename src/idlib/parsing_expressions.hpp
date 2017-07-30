@@ -15,9 +15,15 @@
 // You should have received a copy of the GNU General Public License
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
+/// @file idlib/parsing_expressions.hpp
+/// @brief Master include file of the Idlib parsing expressions library.
+/// @author Michael Heilmann
+
 #pragma once
 
-#define IDLIB_PRIVATE 1
+#pragma push_macro("IDLIB_PRIVATE")
+#undef IDLIB_PRIVATE
+#define IDLIB_PRIVATE (1)
 
 #include "idlib/parsing_expressions/any_sym.hpp"
 #include "idlib/parsing_expressions/difference.hpp"
@@ -28,6 +34,12 @@
 #include "idlib/parsing_expressions/sequence.hpp"
 #include "idlib/parsing_expressions/repetition.hpp"
 #include "idlib/parsing_expressions/end_of_input.hpp"
+
+#include "idlib/parsing_expressions/action.hpp"
+
+#include "idlib/parsing_expressions/parse.hpp"
+
 #include "idlib/parsing_expressions/predefined.hpp"
 
 #undef IDLIB_PRIVATE
+#pragma pop_macro("IDLIB_PRIVATE")

@@ -31,24 +31,24 @@
 
 /// @internal
 /// @brief Parsing expression accepting the end of the input.
-/// @tparam Sym the symbol type
-template <typename Sym>
+/// @tparam Symbol the symbol type
+template <typename Symbol>
 struct end_of_input_expr
 {
-    template <typename It>
-    match<std::decay_t<It>> operator()(It at, It end) const
+    template <typename Iterator>
+    match<std::decay_t<Iterator>> operator()(Iterator at, Iterator end) const
     {
-		return make_match(at == end, at);
+		return make_match(at == end, at, at);
     }
 };
 
 /// @brief Create a parsing expression accepting the end of the input.
-/// @tparam Sym the symbol type
+/// @tparam Symbol the symbol type
 /// @return the parsing expression
-template <typename Sym>
-end_of_input_expr<Sym> end_of_input()
+template <typename Symbol>
+end_of_input_expr<Symbol> end_of_input()
 {
-	return end_of_input_expr<Sym>();
+	return end_of_input_expr<Symbol>();
 }
 
 #include "idlib/parsing_expressions/footer.in"
