@@ -72,6 +72,9 @@
     <Filter Include="Header Files\range">
       <UniqueIdentifier>{9a620f5e-be9c-492f-a81f-efcfd23c5d35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\iterator">
+      <UniqueIdentifier>{4347675c-b8cb-4ab3-b3d2-648de1d6cf24}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\idlib\idlib.cpp">
@@ -580,6 +583,12 @@
     <ClInclude Include="src\idlib\range\iterator_range.hpp">
       <Filter>Header Files\range</Filter>
     </ClInclude>
+    <ClInclude Include="src\idlib\iterator\transform_iterator.hpp">
+      <Filter>Header Files\iterator</Filter>
+    </ClInclude>
+    <ClInclude Include="src\idlib\iterator.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="src\idlib\range.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -593,6 +602,12 @@
     </None>
     <None Include="src\idlib\utility\header.in">
       <Filter>Header Files\utility</Filter>
+    </None>
+    <None Include="src\idlib\iterator\footer.in">
+      <Filter>Header Files\iterator</Filter>
+    </None>
+    <None Include="src\idlib\iterator\header.in">
+      <Filter>Header Files\iterator</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -63,4 +63,7 @@
 // range library.
 #include "idlib/range.hpp"
 
+// iterator library.
+#include "idlib/iterator.hpp"
+
 #undef IDLIB_PRIVATE

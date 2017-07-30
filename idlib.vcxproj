@@ -298,7 +298,9 @@
     <ClCompile Include="src\idlib\idlib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\idlib\iterator.hpp" />
     <ClInclude Include="src\idlib\range.hpp" />
+    <ClInclude Include="src\idlib\iterator\transform_iterator.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\end_of_input.hpp" />
     <ClInclude Include="src\idlib\range\iterator_range.hpp" />
     <ClInclude Include="src\idlib\parsing_expressions\internal\constructor_access_token.hpp" />
@@ -447,6 +449,8 @@
     <ClInclude Include="src\idlib\idlib.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="src\idlib\iterator\footer.in" />
+    <None Include="src\idlib\iterator\header.in" />
     <None Include="src\idlib\utility\footer.in" />
     <None Include="src\idlib\utility\header.in" />
     <None Include="src\idlib\CurrentFunction.inline" />

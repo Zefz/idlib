@@ -25,6 +25,9 @@
     <Filter Include="Source Files\language">
       <UniqueIdentifier>{0523f3be-b09b-44a1-985b-bb89b6099e27}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\iterator">
+      <UniqueIdentifier>{2da79753-475e-49b1-b7cb-5d5ffe129b05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tests\idlib\tests\signal.cpp">
@@ -99,10 +102,21 @@
     <ClCompile Include="tests\idlib\tests\parsing_expressions\difference.cpp">
       <Filter>Source Files\parsing_expression</Filter>
     </ClCompile>
+    <ClCompile Include="tests\idlib\tests\iterator\transform_iterator.cpp">
+      <Filter>Source Files\iterator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tests\idlib\tests\color\color_generator.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="tests\iterator\footer.in">
+      <Filter>Source Files\iterator</Filter>
+    </None>
+    <None Include="tests\iterator\header.in">
+      <Filter>Source Files\iterator</Filter>
+    </None>
   </ItemGroup>
 </Project>
