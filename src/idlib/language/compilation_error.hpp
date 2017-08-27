@@ -60,13 +60,13 @@ public:
     /// @param location the location associated with the error
     /// @param description a description of the error
     compilation_error(const char *file, int line, compilation_error_kind kind, const id::location& location, const std::string& description) :
-        exception(file, line), m_kind(kind), m_location(location), m_description(description)
+        exception(file, line), m_location(location), m_description(description), m_kind(kind)
     {}
 
     /// @brief Copy construct this exception with the values of another exception.
     /// @param other the other exception
     compilation_error(const compilation_error& other) :
-        exception(other), m_kind(other.m_kind), m_location(other.m_location), m_description(other.m_description)
+        exception(other), m_location(other.m_location), m_description(other.m_description), m_kind(other.m_kind)
     {}
 
     /// @brief Assign this exception with the values of another exception.

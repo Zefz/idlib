@@ -1,4 +1,4 @@
-#pragma
+#pragma once
 
 #if !defined(IDLIB_PRIVATE) || IDLIB_PRIVATE != 1
 #error(do not include directly, include `idlib/range.hpp` instead)
@@ -81,9 +81,9 @@ private:
 	/// @brief Decrement the wrapped iterator.
 	/// @remark Enabled iff the wrapped iterator is a bidirectional iterator.
 	std::enable_if_t<
-		std::is_base_of_v<
+		std::is_base_of<
 			std::bidirectional_iterator_tag,
-			source_iterator_category>, void>
+			source_iterator_category>::value, void>
 	decrement()
 	{
 		--m_it;
@@ -93,9 +93,9 @@ private:
 	/// @brief Increment the wrapped iterator.
 	/// @remark Enabled iff the wrapped iterator is a random access iterator.
 	std::enable_if_t<
-		std::is_base_of_v<
+		std::is_base_of<
 		std::random_access_iterator_tag,
-		source_iterator_category>, void>
+		source_iterator_category>::value, void>
 	increment(difference_type n)
 	{
 		m_it += n;
@@ -105,9 +105,9 @@ private:
 	/// @brief Decrement the wrapped iterator.
 	/// @remark Enabled iff the wrapped iterator is a random access iterator.
 	std::enable_if_t<
-		std::is_base_of_v<
+		std::is_base_of<
 		std::random_access_iterator_tag,
-		source_iterator_category>, void>
+		source_iterator_category>::value, void>
 	decrement(difference_type n)
 	{
 		m_it -= n;
@@ -147,9 +147,9 @@ public:
 	/// @return reference to this iterator
 	/// @remark Enabled iff the underlying iterator is a bidirectional iterator.
 	std::enable_if_t<
-		std::is_base_of_v<
+		std::is_base_of<
 		std::bidirectional_iterator_tag,
-		source_iterator_category>, transform_iterator&>
+		source_iterator_category>::value, transform_iterator&>
 	operator--()
 	{ decrement(); return *this; }
 
@@ -157,9 +157,9 @@ public:
 	/// @return copy of this iterator before its decrement
 	/// @remark Enabled iff the underlying iterator is a bidirectional iterator.
 	std::enable_if_t<
-		std::is_base_of_v<
+		std::is_base_of<
 		std::bidirectional_iterator_tag,
-		source_iterator_category>, transform_iterator>
+		source_iterator_category>::value, transform_iterator>
 	operator--(int)
 	{ auto it = *this; ++(*this); return it; }
 
@@ -168,9 +168,9 @@ public:
 	/// @return a reference to this iterator
 	/// @remark Enabled iff the underlying iterator is a bidirectional iterator.
 	std::enable_if_t<
-		std::is_base_of_v<
+		std::is_base_of<
 		std::random_access_iterator_tag,
-		source_iterator_category>, transform_iterator&>
+		source_iterator_category>::value, transform_iterator&>
 	operator+=(difference_type n)
 	{
 		increment(n);
@@ -182,9 +182,9 @@ public:
 	/// @return a reference to this iterator
 	/// @remark Enabled iff the underlying iterator is a bidirectional iterator.
 	std::enable_if_t<
-		std::is_base_of_v<
+		std::is_base_of<
 		std::random_access_iterator_tag,
-		source_iterator_category>, transform_iterator&>
+		source_iterator_category>::value, transform_iterator&>
 	operator-=(difference_type n)
 	{
 		decrement(n);
@@ -196,9 +196,9 @@ public:
 	/// @return a copy of this iterator incremented by @a n
 	/// @remark Enabled iff the underlying iterator is a bidirectional iterator.
 	std::enable_if_t<
-		std::is_base_of_v<
+		std::is_base_of<
 		std::random_access_iterator_tag,
-		source_iterator_category>, transform_iterator>
+		source_iterator_category>::value, transform_iterator>
 	operator+(difference_type n) const
 	{
 		auto it = *this;
@@ -211,9 +211,9 @@ public:
 	/// @return a copy of this iterator incremented by @a n
 	/// @remark Enabled iff the underlying iterator is a bidirectional iterator.
 	std::enable_if_t<
-		std::is_base_of_v<
+		std::is_base_of<
 		std::random_access_iterator_tag,
-		source_iterator_category>, transform_iterator>
+		source_iterator_category>::value, transform_iterator>
 	operator-(difference_type n) const
 	{
 		auto it = *this;
