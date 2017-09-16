@@ -18,7 +18,7 @@
 #include "gtest/gtest.h"
 #include "idlib/parsing_expressions.hpp"
 
-#include "idlib/tests/parsing_expressions/header.in"
+#include "idlib/parsing_expressions/header.in"
 
 using string = std::basic_string<char>;
 
@@ -101,4 +101,4 @@ TEST(choice_expression_testing, test_choice_expression_2)
     }
 }
 
-#include "idlib/tests/parsing_expressions/footer.in"
+#include "idlib/parsing_expressions/footer.in"

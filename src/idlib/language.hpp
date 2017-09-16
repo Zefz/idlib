@@ -27,7 +27,7 @@
 
 #include "idlib/language/compilation_error.hpp"
 #include "idlib/language/location.hpp"
-#include "idlib/language/qualified_name.hpp"
+#include "idlib/language/qualified_name_language.hpp"
 #include "idlib/language/token.hpp"
 
 #undef IDLIB_PRIVATE

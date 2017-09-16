@@ -20,7 +20,7 @@
 /// @author Michael Heilmann
 
 #define IDLIB_PRIVATE 1
-#include "idlib/language/qualified_name.hpp"
+#include "idlib/language/qualified_name_language.hpp"
 
 #include "idlib/language/location.hpp"
 #include "idlib/parsing_expressions/predefined.hpp"
@@ -49,8 +49,6 @@ qualified_name::qualified_name(const std::string& string) :
     m_string(string)
 {
     static const auto p = parsing_expressions::qualified_name<char>();
-    auto c = string.cbegin(),
-         e = string.cend();
     auto r = p(string.cbegin(), string.cend());
     if (!r || (r.range().begin() != string.cbegin() || r.range().end() != string.cend())) // The check r.iterator() != string.cend() is actually not required.
     {

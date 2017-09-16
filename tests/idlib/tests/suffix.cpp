@@ -16,7 +16,7 @@
 // along with Idlib. If not, see <http://www.gnu.org/licenses/>.
 
 #include "gtest/gtest.h"
-#include "idlib/idlib.hpp"
+#include <idlib/idlib.hpp>
 #include <vector>
 
 namespace id { namespace tests {

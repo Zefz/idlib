@@ -18,8 +18,8 @@
 #include "gtest/gtest.h"
 #include "idlib/iterator.hpp"
 
-#include "idlib/tests/iterator/header.in"
-#include "idlib/tests/iterator/footer.in"
+#include "idlib/iterator/header.in"
+#include "idlib/iterator/footer.in"
 
 TEST(transform_iterator_test, test_transform_iterator)
 {

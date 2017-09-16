@@ -18,7 +18,7 @@
 #include "gtest/gtest.h"
 #include "idlib/parsing_expressions.hpp"
 
-#include "idlib/tests/parsing_expressions/header.in"
+#include "idlib/parsing_expressions/header.in"
 
 using symbol = char;
 using string = std::basic_string<symbol>;
@@ -41,4 +41,4 @@ TEST(repetition_testing, test_repetition)
     }
 }
 
-#include "idlib/tests/parsing_expressions/footer.in"
+#include "idlib/parsing_expressions/footer.in"
